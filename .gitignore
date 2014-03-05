@@ -1,7 +1,10 @@
 *.py[cod]
 
+.DS_Store
+
 # C extensions
 *.so
+db.sqlite3
 
 # Packages
 *.egg
