@@ -27,16 +27,25 @@ INSTALLED_APPS = [
   'django.contrib.staticfiles',
 ]
 
+# For now we use the default, which is sqlite.
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bitnami_osqa',
-        'USER': 'bitnami',
-        'PASSWORD': 'f195a1285d',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'db.sqlite3',
+  }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'bitnami_osqa',
+#        'USER': 'bitnami',
+#        'PASSWORD': '',
+#        'HOST': '127.0.0.1',
+#        'PORT': '5432',
+#    }
+#}
 
 #CACHE_BACKEND = 'file://%s' % os.path.join(os.path.dirname(__file__),'cache').replace('\\','/')
 CACHE_BACKEND = 'dummy://'
@@ -48,7 +57,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 APP_URL = 'http://localhost:8080/osqa'
 
 #LOCALIZATIONS
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'America/Los_Angeles'
 
 #OTHER SETTINGS
 
