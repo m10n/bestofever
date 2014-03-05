@@ -73,7 +73,7 @@
         {% loadregistry head_content %}{% endloadregistry %}
     </head>
     <body>
-        <div class="wrapper">
+        <div id="wrapper">
         {% if settings.USE_CUSTOM_HEADER|or_preview:request %}
             <div id="custom_header">
                 {{ settings.CUSTOM_HEADER|or_preview:request|static_content:settings.CUSTOM_HEADER_RENDER_MODE }}
@@ -81,7 +81,6 @@
         {% endif %}
         {% include "header.html" %}
         {% block page_center %}
-        <div id="wrapper">
             <div id="room">
                 <div id="CAFull">
                     {% block content%}
@@ -141,7 +140,7 @@
             {% autoescape off %}
                 {% if user_messages %}
                     {% for message in user_messages %}
-                          <p class="darkred">{{ message }}</p>
+                          {{ message }}
                     {% endfor %}
                 {% endif %}
             {% endautoescape %}

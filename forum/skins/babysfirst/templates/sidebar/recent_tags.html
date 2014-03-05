@@ -3,6 +3,21 @@
     show_tags_in_a_cloud = settings.SHOW_TAGS_IN_A_CLOUD
 {% enddeclare %}
 <div id="tagSelector" class="boxC">
+    <div class="sponsored-ad-box"></div>
+    <div class="categories-box">
+        <h3>Channels</h3>
+        <ul>
+            <li><a href="http://localhost:8080/tags/ideas/">Ideas</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Naming</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Brainstorming</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Humor</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Tech</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Relationships</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Memes</a></li>
+            <li><a href="http://localhost:8080/tags/ideas/">Entertainment</a></li>
+        </ul>
+    </div>
+
     <h3 class="subtitle">Filter by theme</h3>
     <div class="tags interesting marked-tags">
         {% for tag_name in interesting_tag_names %}
