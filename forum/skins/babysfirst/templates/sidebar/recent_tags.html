@@ -1,0 +1,36 @@
+{% load i18n extra_tags %}
+{% declare %}
+    show_tags_in_a_cloud = settings.SHOW_TAGS_IN_A_CLOUD
+{% enddeclare %}
+<div id="tagSelector" class="boxC">
+    <h3 class="subtitle">Filter by theme</h3>
+    <div class="tags interesting marked-tags">
+        {% for tag_name in interesting_tag_names %}
+        {% spaceless %}
+        <span class="deletable-tag" id="interesting-tag-{{tag_name}}">
+            <a rel="tag"
+               class="tag-link-{{ tag_name }}"
+               title="{% blocktrans with tag as tagname %}see questions tagged '{{ tag_name }}'{% endblocktrans %}"
+               href="{% url tag_questions tag_name|urlencode %}">{{tag_name}}</a>
+            <img class="delete-icon"
+                 src="{% media  "/media/images/close-small-dark.png" %}"
+                title="{% blocktrans %}remove '{{tag_name}}' from the list of themes{% endblocktrans %}"/>
+        </span>
+        {% endspaceless %}
+        {% endfor %}
+    </div>
+    <input id="interestingTagInput" autocomplete="on" type="text"/>
+    <input id="interestingTagAdd" type="submit" value="{% trans "Add" %}"/>
+
+<div class="latest-themes">
+	<h3>Latest themes</h3>
+	<div class="body">
+         <div class="tags" id="recent-tags">
+        {% for tag in tags %}
+            <a rel="tag"{% if show_tags_in_a_cloud %} style="font-size: {% get_tag_font_size tag %}px;"{% endif %} class="tag-link-{{ tag.name }}" title="{% blocktrans with tag.name as tagname %}see questions tagged '{{tagname}}'{% endblocktrans %}" href="{% url tag_questions tag.name|urlencode %}">{{ tag.name }}</a>
+        {% endfor %}
+        </div>
+        <div class="more"><a href="{% url tags %}"><h3>Browse All</h3></a> </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,26 @@
+{% load markup %}
+
+{% if show %}
+{% if wrap %}<div id="{{ blockid }}" class="boxC">
+    {% endif %}
+        {{ content }}
+        <div id="sidebar-search">
+            <form action="{% url search %}" method="get">
+                {% csrf_token %}
+                <div class ="sidebar-search-input">
+                    <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
+                    <input type="submit" name="Submit" value="Search" class="searchBtn" />
+                    <div class="search-options">
+                        <input id="type-question" type="radio" value="question" name="t"
+                               checked="checked" /><label for="type-question">topics </label>
+                        <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">themes </label>
+                        <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">people </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+     {% if wrap %}
+</div>{% endif %}
+{% endif %}
+
+

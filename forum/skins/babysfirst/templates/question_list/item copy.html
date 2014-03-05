@@ -1,0 +1,31 @@
+{% load i18n humanize extra_filters extra_tags user_tags %}
+<div class="short-summary">
+    <div class="counts">{% if favorite_count %}
+        <div class="favorites">
+            <span class="favorite-mark{% if question.favourite_count %} on{% endif %}"></span>
+            <p class="item-count">{{question.favourite_count|intcomma}}</p>
+        </div>
+        {% endif %}
+        <div class="item-count">{{question.score|intcomma}} {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}</div>
+        <div class="item-count">{{question.answer_count|intcomma}} {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}
+  <div {% if question.accepted_count %}title="this question has an accepted answer""{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+            <div class="item-count">{{question.answer_count|intcomma}}</div>
+        </div>
+        <div class="item-count">{{question.view_count|decorated_int|safe}} {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}</div>
+        
+    </div>
+
+    <div class="question-summary-wrapper">
+        <h2><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></h2>
+        {% if question_summary %}
+        <div class="summary">
+          {{ question.summary }}
+        </div>
+        {% endif %}
+        <div class="userinfo">
+            <div class="relativetime" title="{{question.last_activity_at}}">{{sample_answer|safe}}  {% diff_date question.last_activity_at %}</span>
+        </div>
+
+    </div>
+
+</div>

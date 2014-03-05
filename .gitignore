@@ -6,6 +6,8 @@
 # Packages
 *.egg
 *.egg-info
+cache
+log/django.osqa.log
 dist
 build
 eggs
