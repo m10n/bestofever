@@ -20,6 +20,8 @@ sudo pip install markdown
 echo 'Installing html5lib'
 sudo pip install html5lib
 
+cd ..
+
 echo 'Syncing DB'
 python manage.py syncdb
 
