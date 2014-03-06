@@ -8,22 +8,33 @@
 {% load markup %}
 
 {% if show %}
-{% if wrap %}
-<div id="{{ blockid }}" class="boxC">
+{% if wrap %}<div id="{{ blockid }}" class="boxC">
     {% endif %}
-       <!-- {{ content }} -->
+        {{ content }}
         {% if view_user and not view_user.is_anonymous %}
         <div id="sidebar-user">
-            <span class="headUser">{{ view_user.decorated_name }}
-                  {% if not view_user.is_suspended %}<br/></span>
-            <span class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
-                   {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}<br/>
-                   {% else %}suspended{{ view_user.suspension.extra.publicmsg }}<br/></span>
-                   {% endif %}
-                   {% gravatar view_user 148 %}
+            <table width="100%" style="vertical-align:middle;text-align:center;" class="user-info-table">
+                <tr>
+                    <td class="headUser"><b>{{ view_user.decorated_name }}</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        {% gravatar view_user 128 %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if not view_user.is_suspended %}
+                            <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>
+                            <p><b style="color:#777;">{% trans "reputation" %}</b></p>
+                        {% else %}
+                            <div class="scoreNumber">{% trans "Suspended" %}</div>
+                            <p>{{ view_user.suspension.extra.publicmsg }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
         </div>
-</div>
-<div id="{{ blockid }}" class="boxC">
         {% endif %}
         <div id="sidebar-search">
             <form action="{% url search %}" method="get">

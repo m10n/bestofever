@@ -142,7 +142,7 @@
                 <div class="tabBar">
                     <a name="sort-top"></a>
                     <div class="headQuestions">
-                    {% blocktrans count answers.paginator.count as counter %}one post{% plural %}{{counter}} posts{% endblocktrans %}
+                    {% blocktrans count answers.paginator.count as counter %}One post:{% plural %}{{counter}} Posts:{% endblocktrans %}
                     </div>
                     {{ answers.paginator.sort_tabs }}
                 </div>
