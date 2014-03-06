@@ -521,10 +521,6 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
     width:98%;
     overflow: hidden;
     position: relative;
-<<<<<<< HEAD
-=======
-    width: 98%;
->>>>>>> FETCH_HEAD
     padding: 10px;
 }
 
@@ -937,17 +933,6 @@ a.medal:hover {
     text-align: left;
 }
 
-<<<<<<< HEAD
-=======
-.headUser {
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    padding: 5px;
-    text-align: center;
-}
-
->>>>>>> FETCH_HEAD
 #feeds {
     margin: 10px 0;
 }
