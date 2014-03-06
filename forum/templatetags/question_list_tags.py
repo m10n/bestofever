@@ -75,7 +75,7 @@ def question_list_related_tags(questions):
 @register.inclusion_tag('question_list/tag_selector.html', takes_context=True)
 def tag_selector(context):
     request = context['request']
-    show_interesting_tags = settings.SHOW_INTERESTING_TAGS_BOX
+    show_interesting_tags = False #settings.SHOW_INTERESTING_TAGS_BOX
 
     if request.user.is_authenticated():
         pt = MarkedTag.objects.filter(user=request.user)

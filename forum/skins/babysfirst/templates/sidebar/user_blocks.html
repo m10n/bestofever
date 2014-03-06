@@ -11,7 +11,7 @@
 {% if wrap %}<div id="{{ blockid }}" class="boxC">
     {% endif %}
         {{ content }}
-        {% if not view_user.is_anonymous %}
+        {% if view_user and not view_user.is_anonymous %}
         <div id="sidebar-user">
             <table width="100%" style="vertical-align:middle;text-align:center;" class="user-info-table">
                 <tr>
