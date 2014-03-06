@@ -1,9 +1,41 @@
 {% load markup %}
+{% load user_tags %}
+{% load extra_tags %}
+{% load extra_filters %}
+{% load humanize %}
+{% load smart_if %}
+{% load i18n %}
+{% load markup %}
 
 {% if show %}
 {% if wrap %}<div id="{{ blockid }}" class="boxC">
     {% endif %}
         {{ content }}
+        {% if not view_user.is_anonymous %}
+        <div id="sidebar-user">
+            <table width="100%" style="vertical-align:middle;text-align:center;" class="user-info-table">
+                <tr>
+                    <td class="headUser"><b>{{ view_user.decorated_name }}</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        {% gravatar view_user 128 %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if not view_user.is_suspended %}
+                            <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>
+                            <p><b style="color:#777;">{% trans "reputation" %}</b></p>
+                        {% else %}
+                            <div class="scoreNumber">{% trans "Suspended" %}</div>
+                            <p>{{ view_user.suspension.extra.publicmsg }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {% endif %}
         <div id="sidebar-search">
             <form action="{% url search %}" method="get">
                 {% csrf_token %}

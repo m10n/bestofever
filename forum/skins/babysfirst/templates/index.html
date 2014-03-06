@@ -17,12 +17,11 @@
             </div>
         {% endif %}
     {% endif %}
-    {% sidebar_upper %}
+    {% sidebar_upper user %}
     {% include "question_list/count.html" %}
     {% if request.user.is_authenticated %}
         {% tag_selector %}
     {% endif %}
-    {% sidebar_lower %}
     {% recent_tags %}
     {% recent_awards %}
 {% endblock %}
