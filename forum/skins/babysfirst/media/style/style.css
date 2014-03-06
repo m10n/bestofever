@@ -227,9 +227,9 @@ max-width:100%;  border-bottom: 1px solid #999;
     padding: 20px 0px 0px;
 }
 
-#CALeft { float: left; position: relative; width: 72%; }
+#CALeft { float: left; position: relative; width: 76%; }
 
-#CARight { float: right; width:24%; border: 1px solid #e8e8e8; }
+#CARight { float: right; width:22%; border: 1px solid #e8e8e8; }
 
 
 #CAFull { float: left; padding: 0 5px; width:98%; }
@@ -486,7 +486,7 @@ text-decoration: none; }
     float: left;
     overflow: hidden;
     position: relative;
-    width: 780px;
+    width: 98%;
     padding: 10px;
 }
 
@@ -965,12 +965,11 @@ font-size: 14px; line-height: 20px; margin: 0px; padding: 0px 11px 10px 11px;
 }
 
 .headUser {
-    border-bottom: 1px solid #777777;
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 12px;
     padding: 5px;
-    text-align: left;
+    text-align: center;
 }
 
 #feeds {

@@ -8,35 +8,24 @@
 {% load markup %}
 
 {% if show %}
-{% if wrap %}<div id="{{ blockid }}" class="boxC">
+{% if wrap %}
+<div id="{{ blockid }}" class="boxC">
     {% endif %}
-        {{ content }}
-        {% if not view_user.is_anonymous %}
+        <!-- {{ content }} -->
+        {% if view_user and not view_user.is_anonymous %}
         <div id="sidebar-user">
-            <table width="100%" style="vertical-align:middle;text-align:center;" class="user-info-table">
-                <tr>
-                    <td class="headUser"><b>{{ view_user.decorated_name }}</b></td>
-                </tr>
-                <tr>
-                    <td>
-                        {% gravatar view_user 128 %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% if not view_user.is_suspended %}
-                            <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>
-                            <p><b style="color:#777;">{% trans "reputation" %}</b></p>
-                        {% else %}
-                            <div class="scoreNumber">{% trans "Suspended" %}</div>
-                            <p>{{ view_user.suspension.extra.publicmsg }}</p>
+                    <span class="headUser">{{ view_user.decorated_name }}
+                        {% if not view_user.is_suspended %}<br/></span>
+                            <span class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
+                                {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}<br/>
+                        {% else %} suspended {{ view_user.suspension.extra.publicmsg }<br/></span>
                         {% endif %}
-                    </td>
-                </tr>
-            </table>
+                        {% gravatar view_user 128 %}
         </div>
-        {% endif %}
-        <div id="sidebar-search">
+</div>
+<div id="{{ blockid }}" class="boxC">
+    {% endif %}
+    <div id="sidebar-search">
             <form action="{% url search %}" method="get">
                 {% csrf_token %}
                 <div class ="sidebar-search-input">
@@ -50,7 +39,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+    </div>
      {% if wrap %}
 </div>{% endif %}
 {% endif %}
