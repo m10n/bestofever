@@ -27,6 +27,7 @@ INSTALLED_APPS = [
   'django.contrib.staticfiles',
 ]
 
+# HELLO
 # For now we use the default, which is sqlite.
 
 DATABASES = {
