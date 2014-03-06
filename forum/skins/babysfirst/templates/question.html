@@ -156,7 +156,7 @@
                                 <td style="width:30px;vertical-align:top">
                                     <div class="vote-buttons">
                                         {% vote_buttons answer request.user %}
-                                    <!--    {% accept_button answer request.user %} -->
+                                         {% accept_button answer request.user %}
                                     </div>
                                 </td>
                                 <td>
@@ -277,7 +277,7 @@
 
 {% markdown_help %}
 
-{% sidebar_upper %}
+{% sidebar_upper user %}
 
 {% cache 60 questions_tags settings.APP_URL question.id %}
 <div class="boxC">

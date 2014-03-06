@@ -14,7 +14,7 @@
 
 {% ifequal page.extra.template "sidebar" %}
     {% block sidebar %}
-        {% sidebar_upper %}
+        {% sidebar_upper request.user %}
         {% if page.extra.sidebar %}
             {% if page.extra.sidebar_wrap %}<div class="boxC"><div class="body">{% endif %}
                 {{ sidebar }}
