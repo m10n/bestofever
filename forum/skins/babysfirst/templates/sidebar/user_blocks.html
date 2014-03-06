@@ -11,6 +11,7 @@
 {% if wrap %}
 <div id="{{ blockid }}" class="boxC">
     {% endif %}
+<<<<<<< HEAD
        <!-- {{ content }} -->
         {% if view_user and not view_user.is_anonymous %}
         <div id="sidebar-user">
@@ -26,6 +27,23 @@
 <div id="{{ blockid }}" class="boxC">
         {% endif %}
         <div id="sidebar-search">
+=======
+        <!-- {{ content }} -->
+        {% if view_user and not view_user.is_anonymous %}
+        <div id="sidebar-user">
+                    <span class="headUser">{{ view_user.decorated_name }}
+                        {% if not view_user.is_suspended %}<br/></span>
+                            <span class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
+                                {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}<br/>
+                        {% else %} suspended {{ view_user.suspension.extra.publicmsg }<br/></span>
+                        {% endif %}
+                        {% gravatar view_user 128 %}
+        </div>
+</div>
+<div id="{{ blockid }}" class="boxC">
+    {% endif %}
+    <div id="sidebar-search">
+>>>>>>> FETCH_HEAD
             <form action="{% url search %}" method="get">
                 {% csrf_token %}
                 <div class ="sidebar-search-input">
@@ -39,7 +57,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+    </div>
      {% if wrap %}
 </div>{% endif %}
 {% endif %}
