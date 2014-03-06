@@ -40,7 +40,7 @@
 
 {% block sidebar %}
     {% include "question_list/count.html" %}
-    {% sidebar_upper user %}
+    {% sidebar_upper %}
     {% tag_selector %}
     {% question_list_related_tags questions.paginator.page %}
 

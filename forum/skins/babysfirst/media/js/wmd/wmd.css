@@ -43,28 +43,28 @@ body
 
 .wmd-button
 {
-	width: 20px; 
-	height: 20px; 
+	width: 20px;
+	height: 20px;
 	margin-left: 5px;
 	margin-right: 5px;
-	
+
 	position: absolute;
 	background-image: url(images/wmd-buttons.png);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
-	display: inline-block; 
+	display: inline-block;
 	list-style: none;
 }
 
 .wmd-button > a
 {
-	width: 20px; 
-	height: 20px; 
+	width: 20px;
+	height: 20px;
 	margin-left: 5px;
 	margin-right: 5px;
-	
+
 	position: absolute;
-	display: inline-block; 
+	display: inline-block;
 }
 
 
