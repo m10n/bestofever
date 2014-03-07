@@ -223,13 +223,12 @@ blockquote {
 }
 
 #room {
-max-width:100%;  border-bottom: 1px solid #999;
-    padding: 20px 0px 0px;
+max-width:100%; padding: 20px 0px 0px;
 }
 
-#CALeft { float: left; position: relative; width: 72%; }
+#CALeft { float: left; position: relative; width: 76%; }
 
-#CARight { float: right; width:24%; border: 1px solid #e8e8e8; }
+#CARight { float: right; width:22%; border: 1px solid #e8e8e8; }
 
 
 #CAFull { float: left; padding: 0 5px; width:98%; }
@@ -476,29 +475,22 @@ text-decoration: none; }
 
 */
 
-.short-summary {
-    -webkit-box-shadow: #D7E1E7 0 -1px 0 inset;
-    -moz-box-shadow: #d7e1e7 0 -1px 0 inset;
-    -ms-box-shadow: #d7e1e7 0 -1px 0 inset;
-    -o-box-shadow: #d7e1e7 0 -1px 0 inset;
-    box-shadow: #D7E1E7 0 -1px 0 inset;
-    border-bottom: 1px solid #D7E1E7;
-    float: left;
-    overflow: hidden;
-    position: relative;
-    width: 780px;
-    padding: 10px;
-}
+/*______ ITEM - FRONT PAGE ________*/
+.short-summary .votes, .short-summary .posts, .short-summary .views { font-weight:normal; font-size: 14px; border: none; width:70px; clear: both; margin:0px; padding: 0px; color: #767676;}
+.counts, .short-summary .counts .item-count { font-size: 14px; font-weight: bold; color: #767676; }
 
-.short-summary:hover { background:#f5f5f5; }
 
-.short-summary h2 a {
-    color: #092f42;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 21px; float:left; }
+.top-post p {font-size:15px; color: #444; }
+.posted, .posted a { font-size: 14px; color: #666; font-weight:bold; }
+.posted a:hover {text-decoration:underline; color:#0000ff; }
+.posted-date a, .empty-topic, .score, .badgecount { font-size: 14px; color: #767676; }
 
-}
+.top-poster, .empty-topic { float:right; display: inline-block; }
+.top-post-content { float: left; width: 100%; padding-top:10px; }
+
+.topthumb { float:left; margin-right: 18px; }
+
+
 
 /* .short-summary .userinfo {
     color: #666666;
@@ -545,9 +537,6 @@ text-decoration: none; }
     text-align: center;
 } */
 
-#question-table {
-    margin-bottom: 10px;
-}
 
 .evenMore {
     font-size: 14px;
@@ -620,12 +609,10 @@ text-decoration: none; }
 
 .boxC {
     border-bottom: 1px solid #e5eef4;
-    margin-bottom: 8px;
     padding: 10px;
 }
 
 .boxC p {
-    margin-bottom: 8px;
 }
 
 .boxC p.nomargin {
@@ -726,10 +713,11 @@ text-decoration: none; }
     margin-top: 5px;
 }
 
+
 .tags a, span.tag {
     background-color: #efefef;
     color: #333;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
     padding: 4px 8px;
     text-decoration: none;
@@ -896,7 +884,6 @@ font-size: 14px; line-height: 20px; margin: 0px; padding: 0px 11px 10px 11px;
 }
 
 .headQuestions {
-    background: url("../images/dot-list.gif") no-repeat scroll left center transparent;
     border-bottom: 0 solid #777777;
     float: left;
     font-size: 15px;
@@ -965,13 +952,13 @@ font-size: 14px; line-height: 20px; margin: 0px; padding: 0px 11px 10px 11px;
 }
 
 .headUser {
-    border-bottom: 1px solid #777777;
     font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    padding: 5px;
-    text-align: left;
-}
+    line-height:26px;
+    font-weight: 700; }
+
+
+#sidebar-user {padding: 5px; 5px 10px 5px; }
+#sidebar-user img { float: left; margin-right:10px;  }
 
 #feeds {
     margin: 10px 0;
@@ -984,20 +971,6 @@ font-size: 14px; line-height: 20px; margin: 0px; padding: 0px 11px 10px 11px;
     padding-left: 18px;
 }
 
-#question {
-    margin-bottom: 30px;
-}
-
-#question h1 {
-    background: none repeat scroll 0 0 #CCCCCC;
-    font-size: 15px;
-    padding: 6px 8px;
-}
-
-#question .body {
-    background: none repeat scroll 0 0 #F7F7F7;
-    padding: 20px 10px;
-}
 
 .starter {
     background: none repeat scroll 0 0 #E0EAF1;
@@ -1030,15 +1003,6 @@ font-size: 14px; line-height: 20px; margin: 0px; padding: 0px 11px 10px 11px;
 
 .question-status h3 {
     font-size: 125%;
-}
-
-.question-body {
-    font-size: 13px;
-    line-height: 20px;
-}
-
-.question-body img {
-    max-width: 600px;
 }
 
 .question-mark {
@@ -1161,15 +1125,6 @@ div.comments-container, div.comments-container-accepted, div.comments-container-
     width: 100%;
 }
 
-.answer-body {
-    font-size: 13px;
-    line-height: 20px;
-}
-
-.answer-body img {
-    max-width: 600px;
-}
-
 .accepted-answer {
     background-color: #EBFFE6;
     border-bottom-color: #9BD59B;
@@ -1222,6 +1177,11 @@ div.comments-container, div.comments-container-accepted, div.comments-container-
     background: none repeat scroll 0 0 #F4E7E7;
 }
 
+
+/*______ TAGS PAGE ________*/
+.tags a, span.tag { font-size: 18px; color: #333; background: #efefef; border: none; }
+
+
 .tagsList {
     list-style-type: none;
     margin: 0;
@@ -1229,11 +1189,8 @@ div.comments-container, div.comments-container-accepted, div.comments-container-
     padding: 0;
 }
 
-.tagsList li {
-    float: left;
-    width: 190px;
-    padding-top: 20px;
-}
+.tagsList li { width: 190px; padding: 10px 0px 0px; }
+
 
 .badge-list {
     list-style-type: none;
@@ -1489,10 +1446,9 @@ ins .post-tag {
 }
 
 .scoreNumber {
-    color: #777777;
-    font-size: 35px;
-    font-weight: 800;
-    line-height: 40px;
+    color: #333;
+    font-size: 24px;
+    line-height: 30px;
 }
 
 .user-details {
@@ -2337,7 +2293,7 @@ p.signup_p {
 /*______ SIDEBAR ________*/
 #searchBar { clear:both; }
 #sidebar-search { font-size: 16px; }
-#sidebar-search .searchInput { font-size: 16px; height: 22px; width: 160px; }
+#sidebar-search .searchInput { font-size: 16px; height: 22px; width: 140px; }
 #sidebar-search .searchBtn { font-size: 24px; }
 
 .sponsored-ad-box { border-bottom: 1px solid #E5EEF4;padding: 10px; }
@@ -2364,9 +2320,8 @@ a.post-vote, .favorite-mark, a.accept-answer {
     width: 30px;
 }
 
-a.post-vote.up {
-    background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_up-24.png") no-repeat scroll center center transparent; opacity: 0.4; }
-}
+a.post-vote.up { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_up-24.png") no-repeat scroll center center transparent; opacity: 0.4; }
+
 
 a.post-vote.up.on, a.post-vote.up:hover { background: url("https://cdn1.iconfinder.com/data/icons/freeapplication/png/24x24/Dollar.png") no-repeat scroll center center transparent; opacity:1;}
 
@@ -2555,6 +2510,35 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 }
 
 
+.short-summary h2 a:hover, .short-summary a:hover, .biglink:hover { color: #0000ff !important; text-decoration:underline; }
+div.item-count {  float: right; margin-left: 20px; text-align: right; }
+
+
+.short-summary {
+    -webkit-box-shadow: #D7E1E7 0 -1px 0 inset;
+    -moz-box-shadow: #d7e1e7 0 -1px 0 inset;
+    -ms-box-shadow: #d7e1e7 0 -1px 0 inset;
+    -o-box-shadow: #d7e1e7 0 -1px 0 inset;
+    box-shadow: #D7E1E7 0 -1px 0 inset;
+    border-bottom: 1px solid #D7E1E7;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 98%;
+    padding: 10px;
+}
+
+.short-summary:hover { background:#f6f6f6; }
+
+.short-summary h2 a {
+    color: #092f42;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px; float:left; }
+
+}
+
+
 
 .votes-section { margin-right: 20px; float: left; width: 500px; height:100px; }
 .votes-section h2 { font-size: 160%; float: left; padding-right: 30px; }
@@ -2573,34 +2557,19 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .posts-section h2 { font-size: 160%; }
 
 
-/*______ ITEM - FRONT PAGE ________*/
-.short-summary .votes, .short-summary .posts, .short-summary .views { font-weight:normal; font-size: 14px; border: none; width:70px; clear: both; margin:0px; padding: 0px; color: #767676;}
-.counts, .short-summary .counts .item-count { font-size: 14px; font-weight: bold; color: #767676; }
-
-
-.top-post p {font-size:15px; color: #444; }
-.posted, .posted a { font-size: 14px; color: #666; font-weight:bold; }
-.posted-date a, .empty-topic, .score, .badgecount { font-size: 14px; color: #767676; }
-
-.top-poster, .empty-topic { float:right; display: inline-block; }
-.top-post-content { float: left; width: 100%; padding-top:10px; }
-
-.topthumb { float:left; margin-right: 18px; }
-
-
-.short-summary h2 a:hover { color: #0000cc; text-decoration:none; }
-div.item-count {  float: right; margin-left: 20px; text-align: right; }
-
-
 
 /*___ POSTS ____*/
 
-.answer-body, .question-body { width: 520px; float: left; margin: 10px 0px 0px 10px; }
+
+
+.answer-body { width: 560px; float: left; margin: 10px 0px 0px 10px; }
+.answer-body img, .question-body img { max-width: 600px; }
 .answer-body p, .question-body p { font-size: 16px; }
 .post-update-info a, .post-update-info a { font-size: 14px; line-height: 15px; }
 .author-name a { font-size: 14px; font-weight: bold; color: #444; }
 
 .post-controls { float:left; }
+
 
 
 .search-options { padding: 5px 10px 10px 10px; font-size: 14px; }
@@ -2617,7 +2586,3 @@ div.item-count {  float: right; margin-left: 20px; text-align: right; }
 a.medal { background: none; }
 
 
-
-/*______ TAGS PAGE ________*/
-.tags a, span.tag { font-size: 18px; color: #333; background: #efefef; border: none; }
-.tagsList li { width: 190px; padding: 10px 0px 0px; }
