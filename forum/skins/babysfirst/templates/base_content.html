@@ -1,5 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- base_content.html -->
+
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'twitter_bootstrap/js/transition.js' %}"></script>
 {% load i18n extra_tags extra_filters markup ui_registry %}
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>{% block after_head_js %}{% endblock %}
@@ -62,6 +65,7 @@
                 var element = $('#validate_email_alert');
                 element.click(function(){notify.close(true);})
                 notify.show();
+                var notifyRemove = setTimeout('notify.close(true)', 10000);
             });
         </script>
         {% endif %}
