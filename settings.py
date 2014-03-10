@@ -125,7 +125,7 @@ INSTALLED_APPS.extend([
     'django.contrib.markup',
     'django.contrib.messages',
     'forum',
-    'crisp_forms',
+    'crispy_forms',
     'twitter_bootstrap',
     'django.contrib.staticfiles',
 ])

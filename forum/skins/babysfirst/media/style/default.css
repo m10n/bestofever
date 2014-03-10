@@ -1,15 +1,14 @@
-/*
+
 Document   : default
 Created on : Dec 9, 2008, 8:48:40 PM
 Author     : Mike
 Description:
 Style sheet for cnprog.com
 All rights reserved. 2008 CNPROG.COM
-*/
+
 
 @import url(media/style/jquery.autocomplete.css);
 @import url(media/style/openid.css);
-@import url(media/style/prettify.css);
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, form, label, table, caption, tbody, tfoot, thead, tr, th, td
 {
@@ -63,9 +62,7 @@ input, select, button, textarea
 
 input
 {
-    /*
-	margin: 5px 0px 5px 0px;*/
-    padding:3px;
+
 
 }
 
@@ -208,12 +205,12 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     float: left;
     font-size: 140%;
     font-weight:700;
-    /*letter-spacing:3px;*/
+    /*letter-spacing:3px;
     margin-top:8px;
     padding:5px 0 0 3px ;
     height:20px;
     width:200px;
-    color:#333;
+    color:#333;*/
 }
 
 #question-title{
@@ -339,8 +336,8 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     font-size:120%;
     font-weight:bold;
     width:120px;
-    /*letter-spacing:1px;*/
-    background-color:#D4D0C8;
+    /*letter-spacing:1px;
+    background-color:#D4D0C8;*/
 }
 .notify
 {
@@ -406,8 +403,8 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
 
 .header-table{
     width:100%;
-    /*solve template header space problem*/
-    margin-top:-12px;
+    /*solve template header space problem
+    margin-top:-12px;*/
 }
 
 .header-table a{
@@ -471,8 +468,8 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
 }
 
 .highlight-box{
-    /*letter-spacing:1px;*/
-    color:#735005;
+    /*letter-spacing:1px;
+    color:#735005;*/
 }
 
 .highlight-box p{
@@ -1115,7 +1112,7 @@ div.grippie {
     width:670px; /*IE*/
     /*
     width:100% !important;
-    */
+
     margin-bottom:20px;
 }
 
@@ -1124,8 +1121,8 @@ div.grippie {
     width:650px; /*IE*/
     /*
     width:100% !important;
-    */
-    margin-bottom:20px
+
+    margin-bottom:20px */
 }
 
 .taglist-td{
@@ -1145,7 +1142,7 @@ div.grippie {
 .submit{
     cursor:pointer;
     #padding-bottom:0px;
-    #padding-top:0px
+    #padding-top:0px;
     background-color:#D4D0C8;
 }
 
@@ -1202,8 +1199,8 @@ form .errorlist li{
 }
 
 .revision .summary span{
-    /**background-color:yellow;/**/
-    display:inline;
+    /**background-color:yellow;
+    display:inline;*/
 }
 .revision h1{
     font-size:130%;
@@ -1232,7 +1229,7 @@ form .errorlist li{
     padding:10px 0 5px 10px;
 }
 
-/* Revision pages */
+/* Revision pages
 del { color: #FF5F5F; }
 del .post-tag{
     color: #FF5F5F;
@@ -1242,7 +1239,7 @@ ins .post-tag{
     background-color: #97ff97;
 };
 
-/** PAGINATOR **/
+/** PAGINATOR */
 .paginator {
     padding:5px 0 10px 0;
     font:normal .8em arial;
@@ -1719,8 +1716,8 @@ a.comment-user:hover {
 }
 
 .revision-summary{
-    /**background-color:#FFFE9B;/**/
-    padding:2px;
+    /**background-color:#FFFE9B;
+    padding:2px;*/
 }
 .question-title-link a{
     font-weight:bold;
@@ -1754,8 +1751,9 @@ a.comment-user:hover {
 .post-type-8 a{
     color:#333;
 }
+*/
 
-/* openid styles */
+/* openid styles
 .form-row{line-height:25px;}
 .submit-row{line-height:30px;padding-top:10px;}
 .errors{line-height:20px;color:red;}
@@ -1763,3 +1761,5 @@ a.comment-user:hover {
 .error-list li{padding:5px;}
 .login{margin-bottom:10px;}
 .fieldset{border:solid 1px #777;margin-top:10px;padding:10px;}
+
+*/

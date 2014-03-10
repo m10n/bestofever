@@ -19,6 +19,7 @@
         </script>
 {% endblock %}
 {% block content %}
+        <div class="container">
 <div class="tabBar">
     <div class="headUsers">{% trans "Users" %}</div>
     {{ users.paginator.sort_tabs }}
@@ -51,4 +52,5 @@
     {{ users.paginator.page_numbers }}
 </div>              
 {% endblock %}
+        </div>
 <!-- end users.html -->

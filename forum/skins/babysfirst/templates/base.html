@@ -1,30 +1,25 @@
 {% extends "base_content.html" %}
-{% load staticfiles %}
-<script type="text/javascript" src="{% static 'twitter_bootstrap/js/transition.js' %}"></script>
-{% block page_center %}
 
-{% block full_width_banner %}{% endblock %}
-
+    {% block page_center %}
+    {% block full_width_banner %}{% endblock %}
 <div id="wrapper">
     {% block site_width_banner %}{% endblock %}
-    
-    <div id="room">
-        <div id="CALeft">
-            {% block content%}
-            {% endblock%}
 
-        </div>
-        <div id="CARight">
-            {% block sidebar%}
-            {% endblock%}
+    <div class="container">
+            <div class="row">
+                    <div id="CALeft" class="col-md-9">
+                     {% block content%}
+                     {% endblock%}</div>
+                    <div id="CARight" class="col-md-3">
+                      {% block sidebar %}
+                      {% endblock%}</div>
 
-        </div>
-        <div id="tail" style="clear:both;">
-            {% block tail %}
-            {% endblock %}
-        </div>
+                <div id="tail" style="clear:both;">
+                    {% block tail %}
+                    {% endblock %}
+                </div>
+            </div>
+        <div class="spacer3"></div>
     </div>
-    <div class="spacer3"></div>
 </div>
-{% endblock %}
-
+    {% endblock %}

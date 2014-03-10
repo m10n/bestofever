@@ -6,29 +6,28 @@
 {% load smart_if %}
 {% load i18n %}
 {% load markup %}
+{% load ui_registry markup %}
 
-{% if show %}
-{% if wrap %}<div id="{{ blockid }}" class="boxC">
-    {% endif %}
-    <!-- {{ content }} -->
-    {% if view_user and not view_user.is_anonymous %}
-    <div id="sidebar-user">
-        <span class="headUser">{% gravatar view_user 80 %}
-                    {{ view_user.decorated_name }}
-                        {% if not view_user.is_suspended %}<br/></span>
+{% if wrap %}<div id="{{ blockid }}">{% endif %}
+
+<div class="boxC">
+    <div id="sidebar-profile">
+            <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a topic »</a>
+            {% if view_user and not view_user.is_anonymous %}
+            <div class="sidebar-user">{% gravatar view_user 80 %}
+                    <h3>{{ view_user.decorated_name }}{% if not view_user.is_suspended %}</h3>
                             <span class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
-                                {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}<br/></span>
-                                per post average
+                                {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</span>
                         {% else %} suspended {{ view_user.suspension.extra.publicmsg }
+            </div>
+     </div>
         {% endif %}
-    </div>
 </div>
-<div id="{{ blockid }}" class="boxC">
-    {% endif %}
+    <!--
         <div id="sidebar-search">
             <form action="{% url search %}" method="get">
                 {% csrf_token %}
-                <div class ="sidebar-search-input">
+                <div class="sidebar-search-input">
                     <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
                     <input type="submit" name="Submit" value="Search" class="searchBtn" />
                     <div class="search-options">
@@ -39,9 +38,8 @@
                     </div>
                 </div>
             </form>
-        </div>
-     {% if wrap %}
+        </div> -->
+
+    {% if wrap %}
 </div>{% endif %}
 {% endif %}
-
-

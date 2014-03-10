@@ -55,10 +55,10 @@
                 $("#select_revision").click();
             });
 
-            init = $("textarea#editor")[0].value;
+            init = $("textarea#editor").tinymce().getContent();
 
             title = $("input#id_title")[0].value;
-            body = $("textarea#editor")[0].value;
+            body = $("textarea#editor").tinymce().getContent();
             tag = $("input#id_tags")[0].value;
         });
 
@@ -74,7 +74,7 @@
         }
 
         function beforeUnload(e) {
-            if($("input#id_title")[0].value != title || $("textarea#editor")[0].value != body || $("input#id_tags")[0].value != tag) {
+            if($("input#id_title")[0].value != title || $("textarea#editor").tinymce().getContent() != body || $("input#id_tags")[0].value != tag) {
                  return yourWorkWillBeLost(e);
             }
         }

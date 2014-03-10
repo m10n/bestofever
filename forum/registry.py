@@ -20,14 +20,17 @@ try:
 except:
     pass
 
-ui.register(ui.HEADER_LINKS,
-            ui.Link(_('faq'), ui.Url('faq'), weight=400, name='FAQ'),
-            ui.Link(_('about'), ui.Url('about'), weight=300, name='ABOUT'),
+ui.register(ui.LOGIN_OUT,
+#        ui.Link(_('faq'), ui.Url('faq'), weight=400, name='FAQ'),
+#        ui.Link(_('about'), ui.Url('about'), weight=300, name='ABOUT'),
 
             ui.Link(
                     text=lambda u, c: u.is_authenticated() and _('logout') or _('login'),
                     url=lambda u, c: u.is_authenticated() and reverse('logout') or reverse('auth_signin'),
                     weight=200, name='LOGIN/OUT'),
+)
+
+ui.register(ui.USERNAME_SCORE_BADGE,
 
             ui.Link(
                     visibility=ui.Visibility.AUTHENTICATED,
@@ -35,6 +38,9 @@ ui.register(ui.HEADER_LINKS,
                     url=lambda u, c: u.get_profile_url(),
                     post_code=lambda u, c: get_score_badge(u),
                     weight=100, name='ACCOUNT'),
+)
+
+ui.register(ui.ADMIN_SUPERUSER,
 
             ui.Link(
                     visibility=ui.Visibility.SUPERUSER,

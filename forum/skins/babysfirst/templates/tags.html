@@ -25,6 +25,7 @@
 {% endblock %}
 {% block content %}
 <!-- Tabs -->
+        <div class="container">
 <div class="tabBar">
     <div class="headQuestions">{% trans "Tag list" %}</div>
     {{ tags.paginator.sort_tabs }}
@@ -60,4 +61,5 @@
     {{ tags.paginator.page_numbers }}
 </div>              
 {% endblock %}
+        </div>
 <!-- end tags.html -->

@@ -161,6 +161,7 @@ core_urls = (
     
 )
 
+
 from forum.modules import get_modules_script
 
 module_patterns = get_modules_script('urls')
@@ -190,4 +191,3 @@ def urlname(name):
     return name
 
 urlpatterns += patterns('', *core_defined)
-

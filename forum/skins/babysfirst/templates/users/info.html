@@ -9,6 +9,8 @@
 
 <div id="subheader" class="headUser{% if view_user.is_suspended %} suspended-user{% endif %}">
     {{view_user.decorated_name}}
+    XXXXXXXX   {% user_menu request.user view_user %}
+
 </div>
 <table class="user-info-table">
     <tr>

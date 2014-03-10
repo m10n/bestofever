@@ -93,7 +93,7 @@
             </style>
         </noscript>
 {% endblock %}
-        
+
 {% block content %}
 <div class="headNormal">
     <h1><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h1>
@@ -302,7 +302,7 @@
     <p>
         {% trans "question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
     </p>
-    <p> 
+    <p>
      	{% trans "question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
     </p>
     <p> 

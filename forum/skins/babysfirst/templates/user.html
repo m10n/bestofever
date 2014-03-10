@@ -25,10 +25,12 @@
     {% block userjs %}{% endblock %}
 {% endblock %}
 {% block content %}
+        <div class="container">
     <div id="mainbar-full">
         {% include "users/info.html" %}
         {% include "users/tabs.html" %}
         {% block usercontent %}
         {% endblock %}
 	</div>
+        </div>
 {% endblock %}<!-- end user.html -->

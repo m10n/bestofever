@@ -32,7 +32,7 @@
             });
 
 
-            answer = $("textarea#editor")[0].value;
+            answer = $("textarea#editor").tinymce().getContent();
         });
 
 
@@ -48,7 +48,7 @@
         }
 
         function beforeUnload(e) {
-            if($("textarea#editor")[0].value != answer) {
+            if($("textarea#editor").tinymce().getContent() != answer) {
                  return yourWorkWillBeLost(e);
             }
         }
