@@ -16,27 +16,31 @@
 
 {% block meta %}
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
+<script type="text/javascript" src="media/js/bootstrap.js"></script>
+
 {% endblock %}
 
 {% block content %}
 
-<div id="announcement">
+<!-- <div id="announcement">
     <!-- {% if settings.USE_ANNOUNCEMENT_BAR|or_preview:request %}
     <div id="announcement">
         {{ settings.ANNOUNCEMENT_BAR|or_preview:request|static_content:settings.ANNOUNCEMENT_BAR_RENDER_MODE }}
     </div>
-    {% endif %} -->
-    <div class="alert alert-warning alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Warning!</strong> Better check yourself, you're not looking too good. <p>Announcement would go here.</p>
+    {% endif %}
+</div> -->
+
+
+<div class="tabBar">
+    <div class="tabsa">
+        {% include "question_list/title.html" %}
+        <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>
+    <ul class="nav nav-tabs">
+        {{ questions.paginator.sort_tabs }}
+    </ul>
     </div>
 </div>
 
-<div class="tabBar">
-    {% include "question_list/title.html" %}
-    <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>
-    {{ questions.paginator.sort_tabs }}
-</div>
 <div id="listA">{% for question in questions.paginator.page %}
     {% if show_summary %}
     {% question_list_item question question_summary=yes %}

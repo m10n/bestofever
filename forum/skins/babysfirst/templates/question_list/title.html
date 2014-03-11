@@ -2,24 +2,26 @@
 
 <div class="headQuestions">
     {% if searchtag %}
-        {"by theme"}
+        By themes
     {% else %}
         {% if searchtitle %}
             {% if settings.USE_SPHINX_SEARCH %}
-                {% trans "Search results" %}
+                Search results
             {% else %}
-                {% trans "Found by title" %}
+                Mainpage
             {% endif %}
         {% else %}
             {% if is_unanswered %}
-                 {% trans "Unanswered" %}
+                New
             {% else %}
                 {% if page_title %}
-                    {% trans page_title %}
+                    Lists
                 {% else %}
-                    {% trans All %}
+                    All
                 {% endif %}
             {% endif %}
         {% endif %}
     {% endif %}
 </div>
+
+{% load i18n %}

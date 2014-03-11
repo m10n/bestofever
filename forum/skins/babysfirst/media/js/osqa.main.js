@@ -138,7 +138,7 @@ var response_commands = {
 
     mark_deleted: function(post_type, post_id) {
         if (post_type == 'question') {
-            var $container = $('#question-table');
+            var $container = $('#list-submission');
             $container.addClass('deleted');
         } else {
             var $el = $('#' + post_type + '-container-' + post_id);
@@ -151,7 +151,7 @@ var response_commands = {
             var $answer = $('#answer-container-' + post_id);
             $answer.removeClass('deleted');
         } else {
-            var $container = $('#question-table');
+            var $container = $('#list-submission');
             $container.removeClass('deleted');
         }
     },

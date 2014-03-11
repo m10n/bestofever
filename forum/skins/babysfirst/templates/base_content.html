@@ -103,10 +103,12 @@
         {% include "header.html" %}
         {% block page_center %}
         <div id="wrapper">
-            <div class="row">
-                <div id="CAFull" class="col-md-12">
+            <div id="house">
+                <div id="CAFull">
+                    <div class="col-md-12">
                     {% block content%}
                     {% endblock%}</div>
+                    </div>
                 <div id="tail" style="clear:both;">
                     {% block tail %}
                     {% endblock %}

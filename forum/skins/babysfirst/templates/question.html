@@ -95,98 +95,117 @@
 {% endblock %}
 
 {% block content %}
-<div class="headNormal">
-    <h1><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h1>
-</div>
-<div id="main-body" class="">
+<div id="main-body">
     <div id="askform">
-        <table style="width:100%;" id="question-table" {% post_classes question %}>
-        <tr>
-            <td style="width:30px;vertical-align:top">
-                <div class="vote-buttons">
-                    {% vote_buttons question request.user %}
-                    {% favorite_mark question request.user %}
+        <div class="headNormal">
+            <a href="{{ question.get_absolute_url }}">{{ question.headline }}</a>
+        </div>
+        <div id="list-submission1">
+            <div class="row">
+                <div class="col-xs-1 col-sm-1 col-md-1">
+                    <div class="vote-buttons">
+                        {% vote_buttons question request.user %}
+                    </div>
                 </div>
-            </td>
-            <td>
-                <div id="item-right">
+                <div class="col-xs-11 col-sm-11 col-md-8">
                     <div class="question-body">
                         {{ question.html|safe }}
+                        {% post_classes question %}
                     </div>
-                    <div id="question-tags" class="tags-container tags">
-                        {% for tag in question.tagname_list %}
-                        <a href="{% url tag_questions tag|urlencode %}" class="post-tag tag-link-{{ tag }}"
-                           title="{% blocktrans with tag as tagname %}see questions tagged '{{ tagname }}'{% endblocktrans %}" rel="tag">{{ tag }}</a>
-                        {% endfor %}
-                    </div>
-                    <div id="question-controls" class="post-controls">
-                        {% post_controls question request.user %}
-                        {% wiki_symbol request.user question %}
-                    </div>
+                </div>
+                <div class="col-xs-11 col-sm-11 col-md-3">
                     <div class="post-update-info-container">
                         {% contributors_info question %}
                     </div>
-                    {% comments question request.user %}
                 </div>
-
-            </td>
-        </tr>
-        </table>
-        {% if question.nis.closed %}
-        <div class="question-status" style="margin-bottom:15px">
-            <h3>
-                {% blocktrans with question.nstate.closed.extra as close_reason %}The question has been closed for the following reason "{{ close_reason }}" by{% endblocktrans %}
-                <a href="{{ question.nstate.closed.by.get_profile_url }}">{{ question.nstate.closed.by.username }}</a>
-                {% diff_date question.nstate.closed.at %}
-            </h3>
+            </div>
         </div>
-        {% endif %}
+        <div id="list-submission2">
+            <div class="row">
+                <div class="col-xs-1 col-sm-1 col-md-1">{% favorite_mark question request.user %}</div>
+                <div class="col-xs-4 col-sm-4 col-md-2">
+                    {% for tag in question.tagname_list %}
+                    <a href="{% url tag_questions tag|urlencode %}" class="post-tag tag-link-{{ tag }}"
+                       title="{% blocktrans with tag as tagname %}see questions tagged '{{ tagname }}'{% endblocktrans %}" rel="tag">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-12 col-sm-11 col-md-6">
+                    <div class="comments-container">{% comments question request.user %}</div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-3">
+                    {% post_controls question request.user %}
+                    {% wiki_symbol request.user question %}
+                </div>
+            </div>
+        </div><!--list-submission-->
+                        {% if question.nis.closed %}
+                        <div class="question-status">
+                            <h3>{% blocktrans with question.nstate.closed.extra as close_reason %}The question has been closed for the following reason "{{ close_reason }}"
+                                by {% endblocktrans %} <a href="{{ question.nstate.closed.by.get_profile_url }}">{{ question.nstate.closed.by.username }}</a>
+                                {% diff_date question.nstate.closed.at %}</h3>
+                        </div>
+                        {% endif %}
+
         {% if answers %}
         <hr/>
+
         <div class="tabBar">
             <a name="sort-top"></a>
-            <div class="headQuestions">
-                {% blocktrans count answers.paginator.count as counter %}One Answer:{% plural %}{{counter}} Answers:{% endblocktrans %}
+            <div class="row">
+                <div class="col-xs-12 col-xs-12 col-md-4">
+                    <div class="headQuestions">
+                          {% blocktrans count answers.paginator.count as counter %}One Answer:{% plural %}{{counter}} Answers:{% endblocktrans %}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                {{ answers.paginator.sort_tabs }}
+                </div>
             </div>
-            {{ answers.paginator.sort_tabs }}
         </div>
-        {{ answers.paginator.page_numbers }}
+                {{ answers.paginator.page_numbers }}
 
-        {% for answer in answers.paginator.page %}
-        <a name="{{ answer.id }}"></a>
+                {% for answer in answers.paginator.page %}
+                <a name="{{ answer.id }}"></a>
         <div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}{% ifequal answer.id focused_answer_id %} focusedAnswer{% endifequal %}">
-            <table style="width:100%;">
-                <tr>
-                    <td style="width:30px;vertical-align:top">
+                <div class="row">
+                    <div class="col-xs-1 col-md-1">
                         <div class="vote-buttons">
                             {% vote_buttons answer request.user %}
+                        </div>
+                    </div>
+                    <div class="col-xs-11 col-md-8">
+                          <div class="answer-body">
+                            {{ answer.html|safe }}
+                          </div>
+                    </div>
+                    <div class="col-xs-11 col-sm-11 col-md-3">
+                            <div class="post-update-info-container">
+                                {% contributors_info answer %}
+                            </div>
+                    </div>
+                </div>
+        </div>
+                <div class="row">
+                        <div class="col-md-1">
                             {% accept_button answer request.user %}
                         </div>
-                    </td>
-                    <td>
-                        <div class="item-right">
-                            <div class="answer-body">
-                                {{ answer.html|safe }}
-                            </div>
+                        <div class="col-md-8">
+                            <div class="comments-container">{% comments answer request.user %}</div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="answer-controls post-controls">
                                 {% post_controls answer request.user %}
                                 {% wiki_symbol request.user answer %}
                             </div>
-                            <div class="post-update-info-container">
-                                {% contributors_info answer %}
-                            </div>
-                            {% comments answer request.user %}
                         </div>
-                    </td>
-                </tr>
-            </table>
+                </div>
         </div>
         {% endfor %}
         <div class="paginator-container-left">
             {{ answers.paginator.page_numbers }}
         </div>
         {% endif %}
-        <form id="fmanswer" action="{% url answer question.id %}" method="post">
+      <!--  <form id="fmanswer" action="{% url answer question.id %}" method="post">
             {% csrf_token %}
             <div style="clear:both">
             </div>
@@ -219,13 +238,13 @@
                 {% endif %}
             </p>
             {% endif %}
-            {% endcomment %}
+            {% endcomment %} -->
 
-            <div id="description" class="" >
+                <!-- <div id="description" class="" >
                 <div id="wmd-button-bar" class="wmd-panel"></div>
                 {{ answer.text }}
                 <div class="preview-toggle">
-                    <table width="100%">
+                    <table>
                         <tr>
                             <td>
                                     <span id="pre-collapse"
@@ -272,9 +291,9 @@
             {% endif %}
             class="submit" style="float:left" onclick="submitClicked(event, this.form)"/>
             {% endif %}
-        </form>
-    </div>
-</div>
+        </form> -->
+    </div><!--askform-->
+</div><!--main-body-->
 {% endblock %}
 
 {% block sidebar %}

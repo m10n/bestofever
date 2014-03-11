@@ -6,14 +6,17 @@
     {% block site_width_banner %}{% endblock %}
 
     <div class="container">
-            <div class="row">
-                    <div id="CALeft" class="col-md-9">
+            <div id="house">
+                    <div id="CALeft"
+                         <div class="col-md-9">
                      {% block content%}
                      {% endblock%}</div>
-                    <div id="CARight" class="col-md-3">
+                    </div>
+                    <div id="CARight">
+                        <div class="col-md-3">
                       {% block sidebar %}
                       {% endblock%}</div>
-
+                    </div>
                 <div id="tail" style="clear:both;">
                     {% block tail %}
                     {% endblock %}

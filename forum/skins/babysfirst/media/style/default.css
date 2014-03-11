@@ -233,10 +233,6 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     color:#333;
 }
 
-#main-body{
-    float:left;
-    width:100%;
-}
 
 #main-bar .golden{
     background:url(../../images/bg_title_golden.gif) no-repeat;
@@ -318,26 +314,7 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     color: White;
 }
 
-#askform{
-    padding:5px;
-    line-height:20px;
-}
-#askform .title-desc{
-    color:#999;
-    font-size:90%;
-}
 
-#askform #description{
-    padding:20px 0 20px 0;
-}
-
-#askform .submit{
-    padding:5px 10px 5px 10px;
-    font-size:120%;
-    font-weight:bold;
-    width:120px;
-    /*letter-spacing:1px;
-    background-color:#D4D0C8;*/
 }
 .notify
 {
@@ -995,9 +972,6 @@ div.grippie {
     cursor:pointer;
 }
 
-.item-right{
-    float:left;
-}
 
 .vote-number{
     font-family:Arial;

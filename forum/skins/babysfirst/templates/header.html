@@ -1,7 +1,7 @@
 <!-- template header.html -->
 {% load extra_tags ui_registry i18n extra_filters markup %}
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -11,8 +11,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- <img src="{{ settings.APP_LOGO }}" title="BestOfEver" alt="{{settings.APP_TITLE}} logo"/> -->
-            <a class="navbar-brand" href="{% url index %}">BestOfEver</a>
+
+            <div id="logo">
+                <a href="{% url index %}">
+                    <img src="{{ settings.APP_LOGO }}" title="home" alt="{{settings.APP_TITLE}} logo"/>
+                </a>
+            </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
