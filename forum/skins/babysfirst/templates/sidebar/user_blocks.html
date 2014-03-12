@@ -8,21 +8,25 @@
 {% load markup %}
 {% load ui_registry markup %}
 
-{% if wrap %}<div id="{{ blockid }}">{% endif %}
+{% if wrap %}
+<div id="{{ blockid }}">{% endif %}
+    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
 
-<div class="boxC">
-    <div id="sidebar-profile">
-            <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a topic »</a>
+    <div class="boxC">
+        <div id="sidebar-profile">
             {% if view_user and not view_user.is_anonymous %}
-            <div class="sidebar-user">{% gravatar view_user 80 %}
-                    <h3>{{ view_user.decorated_name }}{% if not view_user.is_suspended %}</h3>
-                            <span class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
-                                {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</span>
-                        {% else %} suspended {{ view_user.suspension.extra.publicmsg }
-            </div>
-     </div>
+           <a href="{{ view_user.get_profile_url }}">
+               {% gravatar view_user 80 %}
+               {{ view_user.decorated_name }}</a>{% if not view_user.is_suspended %}<br/>
+                     {{view_user.reputation|intcomma}}
+                     {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
+                     {% else %} suspended {{ view_user.suspension.extra.publicmsg }
+        </div>
         {% endif %}
-</div>
+    </div>
+    {% if wrap %}
+</div>{% endif %}
+{% endif %}
     <!--
         <div id="sidebar-search">
             <form action="{% url search %}" method="get">
@@ -39,7 +43,3 @@
                 </div>
             </form>
         </div> -->
-
-    {% if wrap %}
-</div>{% endif %}
-{% endif %}

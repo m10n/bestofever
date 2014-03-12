@@ -3,37 +3,30 @@
     show_tags_in_a_cloud = settings.SHOW_TAGS_IN_A_CLOUD
 {% enddeclare %}
 <div id="tagSelector" class="boxC">
-    <div class="categories-box">
-        <div class="categories-box">
-            <h3>Leaderboard</h3>
-            <ul>
-                <li><a href="http://localhost:8000/users/">Users</a></li>
-                <li><a href="http://localhost:8000/badges/">Badges</a></li>
-            </ul>
-        </div>
-        <h3>Channels</h3>
-        <ul>
-            <li><a href="http://localhost:8000/tags/ideas/">Ideas</a></li>
-            <li><a href="http://localhost:8000/tags/ideas/">Naming</a></li>
-            <li><a href="http://localhost:8000/tags/ideas/">Brainstorming</a></li>
-            <li><a href="http://localhost:8080/tags/ideas/">Crowdsourcing</a></li>
-            <li><a href="http://localhost:8000/tags/tech/">Tech</a></li>
-            <li><a href="http://localhost:8000/tags/love/">Love</a></li>
-            <li><a href="http://localhost:8080/tags/ideas/">Memes</a></li>
+    <div class="bs-glyphicons">
+        <ul class="bs-glyphicons-list">
+            <li><span class="glyphicon glyphicon-globe"></span>
+                <span class="glyphicon-class">News</span>
+            </li>
+            <li><span class="glyphicon glyphicon-phone"></span>
+                <span class="glyphicon-class">Tech</span>
+            </li>
+            <li><span class="glyphicon glyphicon-heart"></span>
+                <span class="glyphicon-class">Advice</span>
+            </li>
+            <li><span class="glyphicon glyphicon-certificate"></span>
+                <span class="glyphicon-class">Ideas</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">SF</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">NYC</span>
+            </li>
         </ul>
     </div>
-
-<div class="latest-themes">
-	<h3>Latest themes</h3>
-	<div class="body">
-         <div class="tags" id="recent-tags">
-        {% for tag in tags %}
-            <a rel="tag"{% if show_tags_in_a_cloud %} style="font-size: {% get_tag_font_size tag %}px;"{% endif %} class="tag-link-{{ tag.name }}" title="{% blocktrans with tag.name as tagname %}see questions tagged '{{tagname}}'{% endblocktrans %}" href="{% url tag_questions tag.name|urlencode %}">{{ tag.name }}</a>
-        {% endfor %}
-        </div>
-        <div class="more"><a href="{% url tags %}">Browse All</a></div>
-    </div>
 </div>
+
     <!--
         <h3 class="subtitle">Filter by theme</h3>
         <div class="tags interesting marked-tags">
@@ -53,4 +46,4 @@
         </div>
         <input id="interestingTagInput" autocomplete="on" type="text"/>
         <input id="interestingTagAdd" type="submit" value="{% trans "Add" %}"/>-->
-        </div>
+

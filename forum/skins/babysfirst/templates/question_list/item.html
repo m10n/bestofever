@@ -1,41 +1,48 @@
 {% load i18n humanize extra_filters extra_tags user_tags %}
 <div class="short-summary">
     <a class="biglink" href="{{ question.get_absolute_url }}"></a>
-        <h2><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></h2>
-        {% if sample_answer %}
-        <div class="counts">{% if favorite_count %}
-            <div class="item-count">{{question.favourite_count|intcomma}}
-                <span class="favorites">
-                    <span class="favorite-mark{% if question.favourite_count %} on{% endif %}"></span>
-                </span>
-            </div>
-            {% endif %}
-            <div class="item-count">{{question.score|intcomma}}
-                <span class="votes">
-                    <span>{% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}</span>
-                </span>
-            </div>
-            <div class="item-count">{{question.answer_count|intcomma}}
-                    <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
-                    {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span>
-            </div>
-            <div class="item-count">{{question.view_count|decorated_int|safe}}
-                <span class="views">
-                    <span>{% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}</span>
-                </span>
-            </div>
-        </div>
-
-   <div class="top-post-content">
-           <div class="topthumb"><a href="{{ sample_answer.author.get_profile_url }} ">{% gravatar sample_answer.author 48 %}</a></div>
-      <span class="top-post">{{sample_answer.html|safe}}</span>
-   </div>
-    <div class="top-poster">
-            <span class="posted">&mdash; <a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ sample_answer.author.get_profile_url }}">{{ sample_answer.author.decorated_name }}
-                {% get_score_badge sample_answer.author %}</a></span>
-            <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">, posted {% diff_date question.last_activity_at %}</a></span>
-    </div>
-            {% else %}
-            <span class="empty-topic"><br/>You could be the first!</span>
-            {% endif %}
+          <div id="list-row1">
+                  <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                <span class="headline">{% if sample_answer %}<a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></span>
+                          </div>
+                          <div class="hidden-xs col-sm-12 col-md-4 col-lg-4">
+                                    <div class="counts"><!--{% if favorite_count %}
+                                            <div class="item-count">{{question.favourite_count|intcomma}}        </div>
+                                            {% if question.favourite_count %} on{% endif %}
+                                                {% endif %}-->
+                                            <div class="item-count">{{question.score|intcomma}}        </div>
+                                             {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
+                                            <div class="item-count">{{question.answer_count|intcomma}}        </div>
+                                                        <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+                                                        {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span>
+                                            <div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
+                                              {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}
+                                    </div>
+                          </div>
+                  </div>
+          </div>
+          <div id="list-row2">
+                 <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="top-post-content">
+                                            <div class="topthumb"><a href="{{ sample_answer.author.get_profile_url }} ">{% gravatar sample_answer.author 48 %}</a></div>
+                                            <span class="top-post">{{sample_answer.html|safe}}</span>
+                                    </div>
+                          </div>
+                </div>
+          </div>
+          <div id="list-row3">
+                <div class="row">
+                          <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
+                                    <div class="top-poster">
+                                            <span class="posted">&mdash; <a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ sample_answer.author.get_profile_url }}">
+                                             {{ sample_answer.author.decorated_name }}<!--{% get_score_badge sample_answer.author %}--></a></span>
+                                            <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">, {% diff_date question.last_activity_at %}</a></span>
+                                                    <br/>{% else %}
+                                            <span class="empty-topic">You could be the first!</span>{% endif %}
+                                    </div>
+                          </div>
+                </div>
+          </div>
 </div>

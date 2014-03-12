@@ -9,8 +9,6 @@
 
 <div id="subheader" class="headUser{% if view_user.is_suspended %} suspended-user{% endif %}">
     {{view_user.decorated_name}}
-    XXXXXXXX   {% user_menu request.user view_user %}
-
 </div>
 <table class="user-info-table">
     <tr>
@@ -24,30 +22,29 @@
                 <tr>
                     <td align="center">
                         {% if not view_user.is_suspended %}
-                            <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>
-                            <p><b style="color:#777;">{% trans "reputation" %}</b></p>
+                        <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>votes
                         {% else %}
-                            <div class="scoreNumber">{% trans "Suspended" %}</div>
-                            <p>{{ view_user.suspension.extra.publicmsg }}</p>
+                        <div class="scoreNumber">{% trans "Suspended" %}</div>
+                        <p>{{ view_user.suspension.extra.publicmsg }}</p>
                         {% endif %}
                     </td>
                 </tr>
             </table>
         </td>
         <td width="360" style="vertical-align: top;">
-        {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
+            {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
             <table class="user-details">
                 <tr>
                     <th colspan="2" align="left">
                         <h3>
                             {% if view_user.is_superuser %}
-                                {% trans "Administrator" %}
+                            {% trans "Administrator" %}
                             {% else %}
-                                {% if view_user.is_staff %}
-                                    {% trans "Moderator" %}
-                                {% else %}
-                                    {% trans "Registered user" %}
-                                {% endif %}
+                            {% if view_user.is_staff %}
+                            {% trans "Moderator" %}
+                            {% else %}
+                            {% trans "Registered user" %}
+                            {% endif %}
                             {% endif %}
                         </h3>
                     </th>
@@ -82,7 +79,7 @@
                 {% endif %}
                 {% if view_user.date_of_birth%}
                 <tr>
-					<!--todo  - redo this with blocktrans -->
+                    <!--todo  - redo this with blocktrans -->
                     {% if view_user.date_of_birth.year != 1900%}
                     <td>{% trans "age" %}</td>
                     <td>{% get_age view_user.date_of_birth %} {% trans "age unit" %}</td>
@@ -95,35 +92,38 @@
                     <td>
                         <a href="mailto:{{ view_user.email }}">{{ view_user.email }}</a>
                         {% if not view_user.email_isvalid %}
-                            ({% trans "not validated" %})
-                            {% ifequal request.user view_user %}
-                                </td></tr><tr><td></td><td><a href="{% url send_validation_email %}">{% trans "Send me a validation link." %}</a>
-                            {% endifequal %}
-                        {% endif %}
-                    </td>
-                </tr>
+                        ({% trans "not validated" %})
+                        {% ifequal request.user view_user %}
+                    </td></tr><tr><td></td><td><a href="{% url send_validation_email %}">{% trans "Send me a validation link." %}</a>
+                {% endifequal %}
                 {% endif %}
+            </td>
+            </tr>
+                {% endif %}
+
                 <tr>
                     <td colspan="2" style="text-align:right">
-
+                        <a href="{% url user_report user.pk %}" class="ajax-command withprompt">
+                            Report user
+                        </a>
                     </td>
                 </tr>
-				<!--
+                <!--
                 {% if votes_today_left %}
                 <tr>
                     <td>{% trans "todays unused votes" %}</td>
                     <td><strong class="darkred">{{ votes_today_left }}</strong> {% trans "votes left" %}</td>
                 </tr>
                 {% endif %}
-				-->
+                -->
             </table>
         </td>
         <td width="380">
             {% if not view_user.is_suspended %}
             <div class="user-about">
-            {% if view_user.about %}
+                {% if view_user.about %}
                 {{view_user.about|markdown}}
-            {% endif %}
+                {% endif %}
             </div>
             {% endif %}
         </td>
