@@ -27,19 +27,54 @@
     {% if wrap %}
 </div>{% endif %}
 {% endif %}
-    <!--
-        <div id="sidebar-search">
-            <form action="{% url search %}" method="get">
-                {% csrf_token %}
-                <div class="sidebar-search-input">
-                    <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
-                    <input type="submit" name="Submit" value="Search" class="searchBtn" />
-                    <div class="search-options">
-                        <input id="type-question" type="radio" value="question" name="t"
-                               checked="checked" /><label for="type-question">topics </label>
-                        <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">themes </label>
-                        <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">people </label>
-                    </div>
+
+<div id="tagSelector" class="boxC">
+    <div class="bs-glyphicons">
+        <ul class="bs-glyphicons-list">
+            <li><span class="glyphicon glyphicon-globe"></span>
+                <span class="glyphicon-class">News</span>
+            </li>
+            <li><span class="glyphicon glyphicon-phone"></span>
+                <span class="glyphicon-class">Tech</span>
+            </li>
+            <li><span class="glyphicon glyphicon-heart"></span>
+                <span class="glyphicon-class">Advice</span>
+            </li>
+            <li><span class="glyphicon glyphicon-certificate"></span>
+                <span class="glyphicon-class">Ideas</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">SF</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">NYC</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="boxC">
+    <div class="sidebar-box">
+        <h4>Menu</h4>
+        <ul>
+            <li><a href="{% url users %}">Users</a></li>
+            <li><a href="{% url tags %}">Themes</a></li>
+            <li><a href="{% url badges %}">Badges</a></li>
+        </ul>
+
+<!--
+    <div id="sidebar-search">
+        <form action="{% url search %}" method="get">
+            {% csrf_token %}
+            <div class="sidebar-search-input">
+                <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
+                <input type="submit" name="Submit" value="Search" class="searchBtn" />
+                <div class="search-options">
+                    <input id="type-question" type="radio" value="question" name="t"
+                           checked="checked" /><label for="type-question">topics </label>
+                    <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">themes </label>
+                    <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">people </label>
                 </div>
-            </form>
-        </div> -->
+            </div>
+        </form>
+    </div> -->

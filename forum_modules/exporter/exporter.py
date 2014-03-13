@@ -47,8 +47,8 @@ DATE_AND_AUTHOR_INF_SECTION = 'DateAndAuthor'
 OPTIONS_INF_SECTION = 'Options'
 META_INF_SECTION = 'Meta'
 
-DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
-DATE_FORMAT = "%Y-%m-%d"
+DATETIME_FORMAT = "%a %e %b %Y, %l:%M %p"
+DATE_FORMAT = "%e %b %Y"
 
 def Etree_pretty__write(self, file, node, encoding, namespaces,
                         level=0, identator="    "):
@@ -171,7 +171,7 @@ def create_targz(tmp, files, start_time, options, user, state, set_state, file_f
     else:
         domain = 'localhost'
 
-    fname = "%s-%s" % (domain, now.strftime('%Y%m%d%H%M'))
+    fname = "%s-%s" % (domain, now.strftime('%l:%M %p %a, %b %e, %Y'))
     if file_format == 'zip':
         full_fname = "%s.zip" % fname
     else:

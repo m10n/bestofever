@@ -24,7 +24,7 @@ def sidebar_upper(user=None):
         'view_user': user
     }
 
-@register.inclusion_tag('sidebar/recent_tags.html')
-def recent_tags():
-    return {'tags': Tag.active.order_by('-id')[:settings.RECENT_TAGS_SIZE]}
+#@register.inclusion_tag('sidebar/recent_tags.html')
+#def recent_tags():
+   #return {'tags': Tag.active.order_by('-id')[:settings.RECENT_TAGS_SIZE]}
 

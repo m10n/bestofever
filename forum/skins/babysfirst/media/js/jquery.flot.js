@@ -734,15 +734,15 @@
                     var span = axis.max - axis.min;
                     
                     if (t < timeUnitSize.minute)
-                        fmt = "%h:%M:%S";
+                        fmt = "%l:%M %p";
                     else if (t < timeUnitSize.day) {
                         if (span < 2 * timeUnitSize.day)
-                            fmt = "%h:%M";
+                            fmt = "%l:%M %p";
                         else
-                            fmt = "%b %d %h:%M";
+                            fmt = "%a %b %e, %l:%M %p";
                     }
                     else if (t < timeUnitSize.month)
-                        fmt = "%b %d";
+                        fmt = "%b %e";
                     else if (t < timeUnitSize.year) {
                         if (span < timeUnitSize.year)
                             fmt = "%b";

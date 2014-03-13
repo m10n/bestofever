@@ -106,7 +106,7 @@ def readTime(ts):
     if noms:
         ts = noms.group(1)
 
-    return datetime(*time.strptime(ts, '%Y-%m-%dT%H:%M:%S')[0:6])
+    return datetime(*time.strptime(ts, '%a %b %e, %l:%M %p')[0:6])
 
 #def readEl(el):
 #    return dict([(n.tagName.lower(), getText(n)) for n in el.childNodes if n.nodeType == el.ELEMENT_NODE])

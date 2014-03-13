@@ -5,38 +5,13 @@ show_tags_in_a_cloud = settings.SHOW_TAGS_IN_A_CLOUD
 {% enddeclare %}
 
 
-<div class="boxC">
-    <div class="sidebar-box">
-        <h4>Leaderboard</h4>
-        <ul>
-            <li><a href="http://localhost:8000/users/">Users</a></li>
-            <li><a href="http://localhost:8000/badges/">Badges</a></li>
-        </ul>
-      <div class="body">
-          <ul class="badge-list">
-                    {% for award in awards %}
-            <li>
-            <a href="{% url badges %}{{award.badge.id}}/{{award.badge.name|slugify}}" title="{{ award.badge.description }}" class="medal">
-            <span class="badge{{ award.badge.type }}">&#9679;</span>&nbsp;{{ award.badge.name }}</a>
-            <a href="{{ award.user.get_profile_url }}">{{ award.user.decorated_name }}</a>
-            </li>
-                {% endfor %}
-          </ul>
-        <div class="more"><a href="{% url badges %}">List winners</a></div>
-      </div>
-    </div>
-</div>
 
-<div class="boxC">
-    <div class="sidebar-box">
-        <div class="latest-themes">
-            <h4>Latest</h4>
-            <div class="tags" id="recent-tags">
-                {% for tag in tags %}
-                <a rel="tag"{% if show_tags_in_a_cloud %} style="font-size: {% get_tag_font_size tag %}px;"{% endif %} class="tag-link-{{ tag.name }}" title="{% blocktrans with tag.name as tagname %}see questions tagged '{{tagname}}'{% endblocktrans %}" href="{% url tag_questions tag.name|urlencode %}">{{ tag.name }}</a>
-                {% endfor %}
-            </div>
-            <div class="more"><a href="{% url tags %}">Browse All</a></div>
-        </div>
-    </div>
-</div>
+        <!--
+                    {% for award in awards %}
+                <li><a href="{% url badges %}{{award.badge.id}}/{{award.badge.name|slugify}}" title="{{ award.badge.description }}" class="medal">
+                    <span class="badge{{ award.badge.type }}">&#9679;</span>&nbsp;{{ award.badge.name }}</a></li>
+                <li><a href="{{ award.user.get_profile_url }}">{{ award.user.decorated_name }}</a></li>
+                    {% endfor %}
+
+
+        -->
