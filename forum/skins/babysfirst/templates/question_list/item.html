@@ -4,7 +4,7 @@
           <div id="list-row1">
                   <div class="row">
                           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                <span class="headline">{% if sample_answer %}<a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></span>
+                                <span class="headline">{% if sample_answer %}<h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a></span>
                           </div>
                           <div class="hidden-xs col-sm-12 col-md-4 col-lg-4">
                                     <div class="counts"><!--{% if favorite_count %}

@@ -1839,6 +1839,14 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
+ $('#my-affix').affix({
+    offset: {
+        top: 100
+        , bottom: function () {
+            return (this.bottom = $('.footer').outerHeight(true))
+        }
+    }
+})
 
 +function ($) {
   'use strict';

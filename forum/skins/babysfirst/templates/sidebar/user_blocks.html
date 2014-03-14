@@ -8,27 +8,17 @@
 {% load markup %}
 {% load ui_registry markup %}
 
-{% if wrap %}
-<div id="{{ blockid }}">{% endif %}
+<div data-spy="affix" data-offset-bottom="0" data-offset-bottom="0">
     <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
-
-    <div class="boxC">
-        <div id="sidebar-profile">
-            {% if view_user and not view_user.is_anonymous %}
-           <a href="{{ view_user.get_profile_url }}">
-               {% gravatar view_user 80 %}
-               {{ view_user.decorated_name }}</a>{% if not view_user.is_suspended %}<br/>
-                     {{view_user.reputation|intcomma}}
-                     {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
-                     {% else %} suspended {{ view_user.suspension.extra.publicmsg }
-        </div>
-        {% endif %}
+    <div id="sidebar-profile">
+        {% if view_user and not view_user.is_anonymous %}
+        <a href="{{ view_user.get_profile_url }}">
+            {% gravatar view_user 80 %}
+            {{ view_user.decorated_name }}<br/>
+            {{view_user.reputation|intcomma}}
+            {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
+            {% endif %}
     </div>
-    {% if wrap %}
-</div>{% endif %}
-{% endif %}
-
-<div id="tagSelector" class="boxC">
     <div class="bs-glyphicons">
         <ul class="bs-glyphicons-list">
             <li><span class="glyphicon glyphicon-globe"></span>
@@ -51,9 +41,6 @@
             </li>
         </ul>
     </div>
-</div>
-
-<div class="boxC">
     <div class="sidebar-box">
         <h4>Menu</h4>
         <ul>
@@ -61,8 +48,6 @@
             <li><a href="{% url tags %}">Themes</a></li>
             <li><a href="{% url badges %}">Badges</a></li>
         </ul>
-
-<!--
     <div id="sidebar-search">
         <form action="{% url search %}" method="get">
             {% csrf_token %}
@@ -77,4 +62,24 @@
                 </div>
             </div>
         </form>
-    </div> -->
+    </div>
+</div>
+    <!--
+{% if wrap %}
+<div class="boxC">
+<div id="{{ blockid }}">{% endif %}
+
+        <div id="sidebar-profile">
+            {% if view_user and not view_user.is_anonymous %}
+                 <a href="{{ view_user.get_profile_url }}">
+            {% gravatar view_user 80 %}
+            {{ view_user.decorated_name }}</a>{% if not view_user.is_suspended %}<br/>
+                 {{view_user.reputation|intcomma}}
+                 {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
+                 {% else %} suspended {{ view_user.suspension.extra.publicmsg }
+        </div>
+             {% endif %}
+</div>
+{% if wrap %}
+</div>{% endif %}
+{% endif %} -->

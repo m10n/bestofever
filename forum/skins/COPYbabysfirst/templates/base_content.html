@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- base_content.html -->
+
+
+{% load i18n extra_tags extra_filters markup ui_registry %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>{% block after_head_js %}{% endblock %}
+        <title>{% block fulltitle %}{% block title %}{% endblock %} - {{ settings.APP_SHORT_NAME }}{% endblock %}</title>
+        <meta name="description" content="{% block metadescription %}{{ settings.APP_DESCRIPTION }}{% endblock %}" />
+        <meta name="keywords" content="{% block metakeywords %}{{ settings.APP_KEYWORDS }}{% endblock %}" />
+        {% block meta %}{% endblock %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        {% if settings.GOOGLE_SITEMAP_CODE %}
+        <meta name="google-site-verification" content="{{ settings.GOOGLE_SITEMAP_CODE }}" />
+        {% endif %}
+        <link rel="shortcut icon" href="{{ settings.APP_FAVICON }}" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
+                 <link href="{% media  "/media/style/style.css" %}" rel="stylesheet" type="text/css" />
+        {% if settings.USE_CUSTOM_CSS|or_preview:request %}
+
+        <!-- Bootstrap -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="media/js/bootstrap.js"></script>
+
+
+        {% endif %}
+
+
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" />
+        <!--[if IE 6]>
+        <style type="text/css">
+        img, div, a { behavior: url({% media "/media/iepngfix/iepngfix.htc" %}) }
+        </style>
+        <![endif]-->
+        {% block forestyle %}{% endblock %}
+        <script type="text/javascript" src="media/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: "textarea"
+            });
+        </script>
+
+        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+        /*<![CDATA[*/
+            google.load("jquery", "1");
+            google.load("jqueryui", "1", {autoload:true});
+
+            var i18nLang = '{{ settings.LANGUAGE_CODE }}';
+            var appUrl = '{{ settings.APP_URL }}'
+            var scriptUrl = '{{ settings.FORCE_SCRIPT_NAME }}/'
+            var osqaSkin = '{{ settings.OSQA_SKIN }}';
+
+            var messages = {
+                username: '{{ user.username }}',
+                confirm: "{% trans "Are you sure?" %}",
+                yes: "{% trans "Yes" %}",
+                no: "{% trans "No" %}",
+                message: "{% trans "Message:" %}",
+                cancel: "{% trans "Cancel" %}",
+                close: "{% trans "Close" %}",
+                ok: "{% trans "Ok" %}",
+                matching_tags_url: "{% url matching_tags %}",
+                word: "{% trans "word" %}",
+                words: "{% trans "words" %}",
+                character: "{% trans "character" %}",
+                characters: "{% trans "characters" %}"
+            }
+        /*]]>*/
+        </script>
+        <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
+
+        {% if user_messages %}
+        <style type="text/css">
+            body { margin-top:2.4em; }
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var element = $('#validate_email_alert');
+                element.click(function(){notify.close(true);})
+                notify.show();
+                var notifyRemove = setTimeout('notify.close(true)', 10000);
+            });
+        </script>
+        {% endif %}
+        {% if settings.USE_CUSTOM_HEAD|or_preview:request %}
+            {{ settings.CUSTOM_HEAD|or_preview:request|safe }}
+        {% endif %}
+        {% block forejs %}{% endblock %}
+        <link rel="search" type="application/opensearchdescription+xml" href="{% url opensearch %}" title="{{ settings.APP_SHORT_NAME }} Search" />
+        {% loadregistry head_content %}{% endloadregistry %}
+    </head>
+<body>
+        <!--{% if settings.USE_CUSTOM_HEADER|or_preview:request %}
+            <div id="custom_header">
+                {{ settings.CUSTOM_HEADER|or_preview:request|static_content:settings.CUSTOM_HEADER_RENDER_MODE }}
+            </div>
+        {% endif %}-->
+        {% include "header.html" %}
+        {% block page_center %}
+        <div id="wrapper">
+            <div id="house">
+                <div id="CAFull">
+                    <div class="col-md-12">
+                    {% block content%}
+                    {% endblock%}</div>
+                    </div>
+                <div id="tail" style="clear:both;">
+                    {% block tail %}
+                    {% endblock %}
+                    {% endblock %}
+                </div>
+            <div class="spacer3"></div>
+            </div>
+        </div>
+
+        <!--{% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
+            {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}
+                <div id="custom_footer">
+                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
+                </div>
+            {% endifequal %}
+            <div id="ground">
+                {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
+                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
+                {% else %}
+                    {% include "footer.html" %}
+                {% endifequal %}
+            </div>
+            {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "below" %}
+                <div id="custom_footer">
+                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
+                </div>
+            {% endifequal %}
+        {% else %}-->
+            <div id="ground">
+                {% include "footer.html" %}
+            </div>
+        {% endif %}
+        {% block endjs %}
+        {% endblock %}
+        {% if settings.GOOGLE_ANALYTICS_KEY %}
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_KEY }}']);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        {% endif %}
+        </div>
+
+        <!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
+        <div class="notify" style="display:none">
+            {% autoescape off %}
+                {% if user_messages %}
+                    {% for message in user_messages %}
+                          {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endautoescape %}
+            <a id="close-notify" onclick="notify.close(true)">&#215;</a>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+    </body>
+</html>
+<!-- end template base_content.html -->
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<!-- base_content.html -->
+
+{% load i18n extra_tags extra_filters markup ui_registry %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>{% block after_head_js %}{% endblock %}
+    <title>{% block fulltitle %}{% block title %}{% endblock %} - {{ settings.APP_SHORT_NAME }}{% endblock %}</title>
+    <meta name="description" content="{% block metadescription %}{{ settings.APP_DESCRIPTION }}{% endblock %}" />
+    <meta name="keywords" content="{% block metakeywords %}{{ settings.APP_KEYWORDS }}{% endblock %}" />
+    {% block meta %}{% endblock %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {% if settings.GOOGLE_SITEMAP_CODE %}
+    <meta name="google-site-verification" content="{{ settings.GOOGLE_SITEMAP_CODE }}" />
+    {% endif %}
+    <link rel="shortcut icon" href="{{ settings.APP_FAVICON }}" />
+    <meta charset="utf-8">
+    <!-- OSQA CSS -->
+    <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
+    <link href="/media/style/style.css" rel="stylesheet" type="text/css">
+    {% if settings.USE_CUSTOM_CSS|or_preview:request %}
+    {% endif %}
+    <!-- Viewport -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS (not using, copypasted bootstrap.css content to style.css -->
+    <link href="media/style/bootstrap.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="font-awesome-4.0.3/css/font-awesome.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" />
+
+    <!-- TinyMCE js-->
+    <script type="text/javascript" src="media/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea"
+        });
+    </script>
+
+
+    <!-- Bootstrap js plugins -->
+    <script type="text/javascript" src="media/js/bootstrap.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--[if IE 6]>
+    <style type="text/css">
+        img, div, a { behavior: url({% media "/media/iepngfix/iepngfix.htc" %}) }
+    </style>
+    <![endif]-->
+    {% block forestyle %}{% endblock %}
+
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        google.load("jquery", "1");
+        google.load("jqueryui", "1", {autoload:true});
+
+        var i18nLang = '{{ settings.LANGUAGE_CODE }}';
+        var appUrl = '{{ settings.APP_URL }}'
+        var scriptUrl = '{{ settings.FORCE_SCRIPT_NAME }}/'
+        var osqaSkin = '{{ settings.OSQA_SKIN }}';
+
+        var messages = {
+            username: '{{ user.username }}',
+            confirm: "{% trans "Are you sure?" %}",
+            yes: "{% trans "Yes" %}",
+            no: "{% trans "No" %}",
+            message: "{% trans "Message:" %}",
+            cancel: "{% trans "Cancel" %}",
+            close: "{% trans "Close" %}",
+            ok: "{% trans "Ok" %}",
+            matching_tags_url: "{% url matching_tags %}",
+            word: "{% trans "word" %}",
+            words: "{% trans "words" %}",
+            character: "{% trans "character" %}",
+            characters: "{% trans "characters" %}"
+        }
+        /*]]>*/
+    </script>
+    <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
+    {% if user_messages %}
+    <style type="text/css">
+            body { margin-top:2.4em; }
+    </style>
+    <script type="text/javascript">
+            $(document).ready(function() {
+                var element = $('#validate_email_alert');
+                element.click(function(){notify.close(true);})
+                notify.show();
+            });
+    </script>
+    {% block forejs %}{% endblock %}
+    <link rel="search" type="application/opensearchdescription+xml" href="{% url opensearch %}" title="{{ settings.APP_SHORT_NAME }} Search" />
+    {% loadregistry head_content %}{% endloadregistry %}
+</head>
+
+<body>
+{% include "header.html" %}
+{% block page_center %}
+<div id="wrapper">
+    <div id="house">
+        <div id="CAFull">
+            <div class="col-md-12">
+                {% block content%}
+                {% endblock%}
+            </div>
+        </div>
+        <div id="tail" style="clear:both;">
+            {% block tail %}
+            {% endblock %}
+            {% endblock %}
+        </div>
+        <div class="spacer3"></div>
+    </div>
+</div>
+<div id="ground">
+    {% include "footer.html" %}
+</div>
+{% endif %}
+{% block endjs %}
+{% endblock %}
+{% if settings.GOOGLE_ANALYTICS_KEY %}
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_KEY }}']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+{% endif %}
+</div>
+
+<!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
+<div class="notify" style="display:none">
+    {% autoescape off %}
+    {% if user_messages %}
+    {% for message in user_messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    {% endautoescape %}
+    <a id="close-notify" onclick="notify.close(true)">&#215;</a>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+</body>
+</html>
+<!-- end template base_content.html -->
+
+
+

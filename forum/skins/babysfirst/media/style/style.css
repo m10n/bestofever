@@ -1,6 +1,8 @@
 @import "jquery.autocomplete.css";
 
-
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
+}
 
 /*
     border-top-left-radius: 5px;
@@ -11,22 +13,21 @@
     -webkit-border-top-right-radius: 5px;
     */
 #wrapper {
-    background: #F5F1EA;
-    padding: 20px 0px;
+    padding: 80px 0px 0px;
 }
 
 #logo { padding: 0px 20px 0px 10px;
     margin-top: 8px; }
 
-#main-body { background-color: #fff; 1px solid #D7E1E7; border-radius: 5px;}
+#main-body { }
 
-#askform{
-    border: 1px solid #D7E1E7;
-}
+#askform{ }
 
 #askform .title-desc{
     color:#999;
 }
+
+#CARight { }
 
 #askform #description{
     padding:20px 0 20px 0;
@@ -38,56 +39,10 @@
 background-color:#D4D0C8;*/ }
 
 
-/* body {
-    color: #222;
-    font-size: 12px;
-    line-height: 150%;
-    margin: 0;
-    padding: 0;
-    font-family: Helvetica Neue, helvetica, arial, sans-serif;
-}
-
-div {
-    margin: 0 auto;
-    padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, form, img, p {
-    border: medium none;
-    margin: 0;
-    padding: 0;
-    font-family: Helvetica Neue, helvetica, arial, sans-serif;
-} */
-
 label {
     vertical-align: middle;
 }
 
-/*
-hr {
-    border-color: #CCCCCE -moz-use-text-color -moz-use-text-color;
-    border-right: medium none;
-    border-style: dashed none none;
-    border-width: 1px medium medium;
-}
-
-input, select {
-    vertical-align: middle;
-}
-
-p {
-    font-size: 13px;
-    line-height: 140%;
-    margin-bottom: 13px;
-    font-family: Helvetica Neue, helvetica, arial, sans-serif;
-}
-
-a {
-    color: #345260;
-    text-decoration: none;
-}
-
-*/
 .badges a {
     color: #763333;
     text-decoration: underline;
@@ -183,76 +138,6 @@ a:hover {
     visibility: hidden;
 }
 
-/*h1 {
-    font-size: 160%;
-    line-height: 160%;
-    padding: 5px 0;
-}
-
-h2 {
-    font-size: 140%;
-    padding: 3px 0;
-    line-height: 140%;
-}
-
-h3 {
-    font-size: 120%;
-    padding: 3px 0;
-    line-height: 120%;
-}
-
-ul {
-    list-style: disc outside none;
-    margin-bottom: 1em;
-    margin-left: 20px;
-    padding-left: 0;
-}
-
-ol {
-    list-style: decimal outside none;
-    margin-bottom: 1em;
-    margin-left: 30px;
-    padding-left: 0;
-}
-
-td ul {
-    vertical-align: middle;
-}
-
-li input {
-    margin: 3px 3px 4px;
-}
-
-pre {
-    background-color: #F5F5F5;
-    font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
-    font-size: 100%;
-    margin-bottom: 10px;
-    overflow: auto;
-    padding-left: 5px;
-    padding-top: 5px;
-    width: 580px;
-}
-
-code {
-    font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
-    font-size: 100%;
-}
-
-blockquote {
-    background-color: #F5F5F5;
-    margin-bottom: 10px;
-    margin-right: 15px;
-    padding: 10px 0 1px 10px;
-}
-
- #wrapper {
-    margin: auto;
-    padding: 0;
-}
-
-
-#room { padding: 20px 0px 0px; }
 
 #ground {
     background: none repeat scroll 0 0 #EFEFEF;
@@ -261,56 +146,8 @@ blockquote {
     text-align: center;
 }
 
-
-
-
-
-#searchBar {
-    background-color: #B6C4E2;
-    border-color: #EEEEEC #A9ACA5 #BABDB6 #EEEEEC;
-    border-style: solid;
-    border-width: 1px;
-    padding: 4px 0 0;
-
-}
-
-#searchBar .content {
-}
-
-#searchBar .searchInput {
-    font-size: 13px;
-    height: 18px;
-    width: 400px;
-}
-
-#searchBar .searchBtn {
-    font-size: 14px;
-    height: 26px;
-    width: 80px;
-}
-
-#searchBar .options {
-    color: #333333;
-    font-size: 120%;
-    padding: 3px 0;
-}
-
-#searchBar .options input {
-    margin: 0 3px 0 15px;
-}
-
-#searchBar .options input:hover {
-    cursor: pointer;
-}
-
-*/
-
-
 #listA {
-    background-color: #fff;
     padding: 0 0;
-    border-left: 1px solid #D7E1E7;
-    border-right: 1px solid #D7E1E7;
 }
 
 #listA .qstA {
@@ -1694,20 +1531,7 @@ p.space-above {
     color: darkred;
 }
 
-/*
-.submit {
-    background-color: #D4D0C8;
-    border: 1px solid #777777;
-    cursor: pointer;
-    font-size: 120%;
-    font-weight: bold;
-    padding: 10px 20px;
-}
 
-.submit:hover {
-    text-decoration: underline;
-}
-*/
 .ask-body {
     padding-right: 10px;
 }
@@ -2061,13 +1885,13 @@ p.signup_p {
 
 .sidebar-box { margin: 5px 0px; padding: 10px; border: 1px solid #e5eef4;
     background: #fff; }
+.sidebar-box a { font-size: 14px; }
 
 #sidebar-profile { height: 90px;
     margin: 20px 0px 10px; }
 #sidebar-profile a { font-size:20px; }
 #sidebar-profile img { float:left; margin-right:15px;}
 
-.sidebar-box a { font-size: 14px; }
 
 .sidebar-box ul li a:hover { color: #e2edfa; background-color:#092f42; }
 
@@ -2106,11 +1930,12 @@ p.signup_p {
 
 /*______ SIDEBAR ________*/
 
-/*
+
 .boxC img { float: left; margin-right:10px; }
 
 
 .boxC p {  font-size: 13px; }
+
 
 
 .boxC p.nomargin {
@@ -2121,11 +1946,6 @@ p.signup_p {
     margin: 0;
     text-align: right;
 }
-#searchBar { clear:both; }
-#sidebar-search { font-size: 16px; }
-#sidebar-search .searchInput { font-size: 16px; height: 22px; width: 140px; }
-#sidebar-search .searchBtn { font-size: 24px; }
-
 
 
 a.sidebar_button {
@@ -2142,7 +1962,6 @@ a.sidebar_button:hover {
     text-decoration: none;
 }
 
-*/
 
 a.post-vote, .favorite-mark, a.accept-answer {
     display: block;
@@ -2701,14 +2520,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 .short-summary:hover { background:#f6f6f6; text-decoration:underline; }
 
-
-
-.headline a {
-    color: #0000aa;
-    font-weight: 600;
-    font-size: 20px; }
-
-
+.headline h3, .headline h3 a { color: #333; padding: 0px; margin: 0px; font-size: 20px; font-weight: 700; font-family: 'Open Sans', sans-serif; }
 
 .headline a:hover {
     color: #5916FE;
@@ -2823,16 +2635,12 @@ a.medal { background: none; }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
-    font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
 body {
     margin: 0;
-}
-
-
-body {
+    padding-bottom: 70px;
     min-height: 2000px;
 }
 
@@ -3105,11 +2913,12 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
+    padding-top: 70px;
 }
 input,
 button,
@@ -3194,7 +3003,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: inherit;
+    font-family: font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
@@ -3573,17 +3382,17 @@ pre code {
 }
 @media (min-width: 768px) {
     .container {
-        width: 750px;
+        width: 800px;
     }
 }
 @media (min-width: 992px) {
     .container {
-        width: 970px;
+        width: 1100px;
     }
 }
 @media (min-width: 1200px) {
     .container {
-        width: 1200px;
+        width: 1300px;
     }
 }
 .container-fluid {

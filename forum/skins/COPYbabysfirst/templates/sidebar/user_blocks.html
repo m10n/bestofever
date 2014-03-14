@@ -1,0 +1,84 @@
+{% load markup %}
+{% load user_tags %}
+{% load extra_tags %}
+{% load extra_filters %}
+{% load humanize %}
+{% load smart_if %}
+{% load i18n %}
+{% load markup %}
+{% load ui_registry markup %}
+
+{% if wrap %}
+
+<div id="CALeft">
+
+    <!--
+<div id="{{ blockid }}">{% endif %}
+    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+
+    <div class="boxC">
+        <div id="sidebar-profile">
+            {% if view_user and not view_user.is_anonymous %}
+           <a href="{{ view_user.get_profile_url }}">
+               {% gravatar view_user 80 %}
+               {{ view_user.decorated_name }}</a>{% if not view_user.is_suspended %}<br/>
+                     {{view_user.reputation|intcomma}}
+                     {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
+                     {% else %} suspended {{ view_user.suspension.extra.publicmsg }
+        </div>
+        {% endif %}
+    </div>
+    {% if wrap %}
+</div>{% endif %}
+{% endif %} -->
+
+<div id="tagSelector" class="boxC">
+    <div class="bs-glyphicons">
+        <ul class="bs-glyphicons-list">
+            <li><span class="glyphicon glyphicon-globe"></span>
+                <span class="glyphicon-class">News</span>
+            </li>
+            <li><span class="glyphicon glyphicon-phone"></span>
+                <span class="glyphicon-class">Tech</span>
+            </li>
+            <li><span class="glyphicon glyphicon-heart"></span>
+                <span class="glyphicon-class">Advice</span>
+            </li>
+            <li><span class="glyphicon glyphicon-certificate"></span>
+                <span class="glyphicon-class">Ideas</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">SF</span>
+            </li>
+            <li><span class="glyphicon glyphicon-map-marker"></span>
+                <span class="glyphicon-class">NYC</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="boxC">
+    <div class="sidebar-box">
+        <h4>Menu</h4>
+        <ul>
+            <li><a href="{% url users %}">Users</a></li>
+            <li><a href="{% url tags %}">Themes</a></li>
+            <li><a href="{% url badges %}">Badges</a></li>
+        </ul>
+    </div>
+<!--
+    <div id="sidebar-search">
+        <form action="{% url search %}" method="get">
+            {% csrf_token %}
+            <div class="sidebar-search-input">
+                <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
+                <input type="submit" name="Submit" value="Search" class="searchBtn" />
+                <div class="search-options">
+                    <input id="type-question" type="radio" value="question" name="t"
+                           checked="checked" /><label for="type-question">topics </label>
+                    <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">themes </label>
+                    <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">people </label>
+                </div>
+            </div>
+        </form>
+    </div> -->
