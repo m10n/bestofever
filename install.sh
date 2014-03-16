@@ -20,6 +20,12 @@ sudo pip install markdown
 echo '==== Installing html5lib'
 sudo pip install html5lib
 
+echo '==== Installing crispyforms'
+sudo pip install django-crispy-forms
+
+echo '==== Installing twitter-bootstrap'
+sudo pip install django-twitter-bootstrap==3.1.0
+
 cd ..
 
 echo '==== Syncing DB'
