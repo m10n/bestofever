@@ -1839,14 +1839,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
- $('#my-affix').affix({
-    offset: {
-        top: 100
-        , bottom: function () {
-            return (this.bottom = $('.footer').outerHeight(true))
-        }
-    }
-})
 
 +function ($) {
   'use strict';
@@ -1957,6 +1949,34 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
+    $('#leftCol').affix({
+        offset: {
+            top: 235
+        }
+    });
+
+    var $body   = $(document.body);
+    var navHeight = $('.navbar').outerHeight(true) + 10;
+
+    $body.scrollspy({
+        target: '#leftCol',
+        offset: navHeight
+    });
+
+    /* smooth scrolling sections */
+    $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - 50
+                }, 1000);
+                return false;
+            }
+        }
+    });
+
 
   // AFFIX DATA-API
   // ==============
@@ -1976,3 +1996,5 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   })
 
 }(jQuery);
+
+

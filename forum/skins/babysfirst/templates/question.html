@@ -66,7 +66,7 @@
 
     function beforeUnload(e) {
 
-        if($("textarea#editor").tinymce().getContent() != "") {
+        if($("textarea#editor")[0].value != "") {
             return yourWorkWillBeLost(e);
         }
 
@@ -93,6 +93,51 @@
     </style>
 </noscript>
 {% endblock %}
+
+
+<div id="sidebar" data-spy="affix" data-offset-top="235">
+{% block sidebar %}
+{% sidebar_upper %}
+{% include "subscription_status.html" %}
+{% markdown_help %}
+{% cache 60 questions_tags settings.APP_URL question.id %}
+
+{% endcache %}
+    <p>
+        {% trans "Question tags" %}:
+    </p>
+    <p class="tags">
+        {% for tag in question.tags.all %}
+        <a href="{% url tag_questions tag.name|urlencode %}"
+           class="tag-link-{{ tag.name }}"
+           title="{% trans "see questions tagged"%}'{{tag.name}}'{% trans "using tags" %}"
+        rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br/>
+        {% endfor %}
+    </p>
+    <p>
+        {% trans "question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
+    </p>
+    <p>
+        {% trans "question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
+    </p>
+    <p>
+        {% trans "last updated" %}: <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
+    </p>
+            <div class="boxC">
+             <h3 class="subtitle">{% trans "Related questions" %}</h3>
+                <div class="questions-related">
+                 {% for question in similar_questions %}
+                   <p>
+                   <a href="{{ question.get_absolute_url }}">{{ question.headline }}</a>
+                   </p>
+                    {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock %}
+
 
 {% block content %}
 <div id="main-body">
@@ -296,53 +341,7 @@
 </div><!--main-body-->
 {% endblock %}
 
-{% block sidebar %}
-<div class="boxC" id="subscription_box">
-    {% include "subscription_status.html" %}
-</div>
 
-{% markdown_help %}
-
-{% sidebar_upper %}
-
-{% cache 60 questions_tags settings.APP_URL question.id %}
-<div class="boxC">
-    <p>
-        {% trans "Question tags" %}:
-    </p>
-    <p class="tags" >
-        {% for tag in question.tags.all %}
-        <a href="{% url tag_questions tag.name|urlencode %}"
-           class="tag-link-{{ tag.name }}"
-           title="{% trans "see questions tagged"%}'{{tag.name}}'{% trans "using tags" %}"
-        rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br/>
-        {% endfor %}
-    </p>
-    <p>
-        {% trans "question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
-    </p>
-    <p>
-        {% trans "question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
-    </p>
-    <p>
-        {% trans "last updated" %}: <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
-    </p>
-</div>
-{% endcache %}
-<div class="boxC">
-    <h3 class="subtitle">{% trans "Related questions" %}</h3>
-    <div class="questions-related">
-
-        {% for question in similar_questions %}
-        <p>
-            <a href="{{ question.get_absolute_url }}">{{ question.headline }}</a>
-        </p>
-        {% endfor %}
-
-    </div>
-</div>
-
-{% endblock %}
 
 {% block endjs %}
 {% endblock %}

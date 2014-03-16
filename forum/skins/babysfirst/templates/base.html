@@ -4,17 +4,17 @@
 {% block full_width_banner %}{% endblock %}
 <div id="wrapper">
     {% block site_width_banner %}{% endblock %}
-
+    {% include "header.html" %}
     <div class="container">
         <div id="house">
-            <div id="CALeft">
-                <div class="col-md-9">
-                    {% block content%}
+            <div id="leftCol">
+                <div class="col-md-3">
+                    {% block sidebar %}
                     {% endblock%}</div>
             </div>
             <div id="CARight">
-                <div class="col-md-3">
-                    {% block sidebar %}
+                <div class="col-md-9">
+                    {% block content %}
                     {% endblock%}</div>
             </div>
             <div id="tail" style="clear:both;">

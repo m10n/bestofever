@@ -6,6 +6,25 @@
 {% load general_sidebar_tags %}
 {% load ui_registry extra_filters markup %}
 
+{% block meta %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
+<script type="text/javascript" src="media/js/osqa.main.js"></script>
+<script type="text/javascript" src="media/js/bootstrap.js"></script>
+{% endblock %}
+
+<div id="sidebar" data-spy="affix" data-offset-top="235">
+
+{% block sidebar %}
+{% sidebar_upper %}
+{% question_list_related_tags questions.paginator.page %}
+
+{% tag_selector %}
+{% include "question_list/count.html" %}
+
+</div>
+        {% endblock %}
+
+<!--
 {% block title %}{% spaceless %}{{ page_title }}{% endspaceless %}{% endblock %}
 
 {% block metadescription %}{% spaceless %}
@@ -14,10 +33,7 @@
 {% endif %}
 {% endspaceless %}{% endblock %}
 
-{% block meta %}
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
-<script type="text/javascript" src="media/js/bootstrap.js"></script>
-{% endblock %}
+</div>-->
 
 
 {% block content %}
@@ -48,12 +64,6 @@
     {% question_list_item question %}
     {% endif %}
     {% endfor %}</div>
-{% endblock %}
-{% block sidebar %}
-{% include "question_list/count.html" %}
-<!--{% sidebar_upper %}
-{% tag_selector %}
-{% question_list_related_tags questions.paginator.page %}-->
 {% endblock %}
 
 {% block tail %}

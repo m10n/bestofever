@@ -8,7 +8,7 @@
 {% load markup %}
 {% load ui_registry markup %}
 
-<div data-spy="affix" data-offset-bottom="0" data-offset-bottom="0">
+            <div id="sidebar" data-spy="affix" data-offset-top="235">
     <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
     <div id="sidebar-profile">
         {% if view_user and not view_user.is_anonymous %}
@@ -17,8 +17,9 @@
             {{ view_user.decorated_name }}<br/>
             {{view_user.reputation|intcomma}}
             {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
-            {% endif %}
     </div>
+            {% endif %}
+
     <div class="bs-glyphicons">
         <ul class="bs-glyphicons-list">
             <li><span class="glyphicon glyphicon-globe"></span>
@@ -63,6 +64,8 @@
             </div>
         </form>
     </div>
+</div>
+
 </div>
     <!--
 {% if wrap %}

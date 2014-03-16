@@ -3,26 +3,62 @@
 {% load general_sidebar_tags %}
 {% load question_list_tags %}
 {% load i18n %}
-{% block fulltitle %}{{ settings.APP_TITLE }}{% endblock %}
-{% block sidebar %}
-    {% if not request.user.is_authenticated %}
-        {% if settings.SHOW_WELCOME_BOX %}
-            <div class="boxA">
-                <h3>{% trans "welcome to " %}{{ settings.APP_SHORT_NAME }}</h3>
-                <div class="body">
-                  {{ settings.APP_INTRO|safe }}
-                  <div class="more"><a href="{% url about %}">{% trans "about" %} </a></div>
-                  <div class="more"><a href="{% url faq %}">{% trans "faq" %} </a></div>
+
+
+
+{% block fulltitle %}{{ settings.APP_TITLE }}
+{% endblock %}
+{% block masthead %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Bootstrap Sidebar
+                    <p class="lead">With Affix and Scrollspy</p>
+                </h1>
+            </div>
+            <div class="col-md-5">
+                <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="//placehold.it/180x100" class="img-responsive">
+                        </div>
+                        <div class="col-sm-6">
+                            Some text here
+                        </div>
+                    </div>
                 </div>
             </div>
-        {% endif %}
-    {% endif %}
-    {% sidebar_upper user %}
-    {% include "question_list/count.html" %}
-    {% if request.user.is_authenticated %}
-        {% tag_selector %}
-    {% endif %}
-    {% recent_awards %}
+        </div>
+    </div><!-- /cont -->
+
 {% endblock %}
+
+
+
+{% block sidebar %}
+{% sidebar_upper user %}
+
+{% include "question_list/count.html" %}
+{% if request.user.is_authenticated %}
+{% tag_selector %}
+{% endif %}
+{% recent_awards %}
+{% endblock %}
+
+
+<!--
+{% if not request.user.is_authenticated %}
+{% if settings.SHOW_WELCOME_BOX %}
+    <div class="boxA">
+        <h3>{% trans "welcome to " %}{{ settings.APP_SHORT_NAME }}</h3>
+        <div class="body">
+          {{ settings.APP_INTRO|safe }}
+          <div class="more"><a href="{% url about %}">{% trans "about" %} </a></div>
+          <div class="more"><a href="{% url faq %}">{% trans "faq" %} </a></div>
+        </div>
+    </div>
+{% endif %}
+{% endif %} -->
+
 <!-- index.html -->
 
