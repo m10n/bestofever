@@ -52,6 +52,7 @@
         {% include "question_list/title.html" %}
         <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>
     <ul class="nav nav-tabs">
+
         {{ questions.paginator.sort_tabs }}
     </ul>
     </div>

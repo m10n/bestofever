@@ -13,7 +13,7 @@
     <div id="sidebar-profile">
         {% if view_user and not view_user.is_anonymous %}
         <a href="{{ view_user.get_profile_url }}">
-            {% gravatar view_user 80 %}
+            {% gravatar view_user 64 %}
             {{ view_user.decorated_name }}<br/>
             {{view_user.reputation|intcomma}}
             {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
@@ -49,21 +49,7 @@
             <li><a href="{% url tags %}">Themes</a></li>
             <li><a href="{% url badges %}">Badges</a></li>
         </ul>
-    <div id="sidebar-search">
-        <form action="{% url search %}" method="get">
-            {% csrf_token %}
-            <div class="sidebar-search-input">
-                <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
-                <input type="submit" name="Submit" value="Search" class="searchBtn" />
-                <div class="search-options">
-                    <input id="type-question" type="radio" value="question" name="t"
-                           checked="checked" /><label for="type-question">topics </label>
-                    <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">themes </label>
-                    <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">people </label>
-                </div>
-            </div>
-        </form>
-    </div>
+
 </div>
 
 </div>

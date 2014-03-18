@@ -5,18 +5,18 @@
 {% load i18n %}
 {% block title %}{% spaceless %}{% trans "Users" %}{% endspaceless %}{% endblock %}
 {% block forejs %}
-       <script type="text/javascript">
-	   //todo move javascript out
-        $().ready(function(){
-            $("#type-user").attr('checked',true);
-            var orderby = "{{ tab_id }}";
-            $("#sort_" + orderby).attr('className',"on");
-            
-            Hilite.exact = false;
-            Hilite.elementid = "main-body";
-            Hilite.debug_referrer = location.href;
-        });
-        </script>
+<script type="text/javascript">
+    //todo move javascript out
+    $().ready(function(){
+        $("#type-user").attr('checked',true);
+        var orderby = "{{ tab_id }}";
+        $("#sort_" + orderby).attr('className',"on");
+
+        Hilite.exact = false;
+        Hilite.elementid = "main-body";
+        Hilite.debug_referrer = location.href;
+    });
+</script>
 {% endblock %}
 {% block content %}
         <div class="container">
@@ -25,20 +25,20 @@
     {{ users.paginator.sort_tabs }}
 </div>
 <div id="main-body" style="width:100%">
-    <p>        
+    <p>
         {% if suser %}
-			{% blocktrans %}users matching query {{suser}}:{% endblocktrans %}
+        {% blocktrans %}users matching query {{suser}}:{% endblocktrans %}
         {% endif %}
-    
+
         {% if not users.paginator.count %}
-            <span>{% trans "Nothing found." %}</span>
+        <span>{% trans "Nothing found." %}</span>
         {% endif %}
     </p>
     <div class="userList">
         {% for user in users.paginator.page %}
         <div class="user">
             <ul>
-                <li class="thumb"><a href="{{ user.get_profile_url }} ">{% gravatar user 48 %}</a></li>
+                <li class="thumb"><a href="{{ user.get_profile_url }} ">{% gravatar user 32 %}</a></li>
                 <li><a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ user.get_profile_url }}">{{ user.decorated_name }}</a></li>
                 <li>{% get_score_badge user %}</li>
             </ul>
@@ -50,7 +50,7 @@
 {% block tail %}
 <div class="pager">
     {{ users.paginator.page_numbers }}
-</div>              
-{% endblock %}
+</div>
         </div>
+{% endblock %}
 <!-- end users.html -->

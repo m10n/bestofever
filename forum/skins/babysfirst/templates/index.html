@@ -9,29 +9,95 @@
 {% block fulltitle %}{{ settings.APP_TITLE }}
 {% endblock %}
 {% block masthead %}
-  <div id="masthead">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h1>Bootstrap Sidebar
-                    <p class="lead">With Affix and Scrollspy</p>
-                </h1>
-            </div>
-            <div class="col-md-5">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <img src="//placehold.it/180x100" class="img-responsive">
+ <div id="masthead">
+     <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="masthead-item">
+                            <center>
+                                 <img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains">
+                                    <br>
+                                 <p>Click a list to post your own line, or start your own</p>
+                            </center>
                         </div>
-                        <div class="col-sm-6">
-                            Some text here
+                    </div>
+                    <div class="col-md-4">
+                        <div id="masthead-item">
+                            <center>
+                                 <img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="...">
+                                <br>
+                                  <p>Vote on a line to make it rise to the top of a list</p>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="masthead-item">
+                            <center>
+                                 <img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="...">
+                                 <br>
+                                 <p>The top voted line in a list appears here on the mainpage</p>
+                            </center>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div><!-- /cont -->
-  </div>
+                <div class="row">
+                    <p><center>    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Join Mowt
+                </button></center></p>
+
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog">
+                        <div class="form-signin">
+                            <form class="form-signin mg-btm">
+                                <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    Sign up for Mowt</h3>
+                                <div class="social-box">
+                                    <div class="row mg-btm">
+                                        <div class="col-md-12">
+                                            <a href=http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
+                                                <i class="icon-facebook"></i>    Login with Facebook
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
+                                                <i class="icon-twitter"></i>    Login with Twitter
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main">
+                                    {% if msg %}
+                                    <p class="error">{{ msg }}</p>
+                                    {% endif %}
+                                    <input type="text" class="form-control" placeholder="Username" autofocus>
+                                    <input type="password" class="form-control" placeholder="Password">
+                                    Are you a business? <a href=""> Get started here</a>
+                                    <span class="clearfix"></span>
+                                </div>
+                                <div class="login-footer">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="left-section">
+                                                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
+                                                <a href="http://localhost:8000/account/signin/">Sign up now</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-md-4 pull-right">
+                                            <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+     </div>
+ </div>
 
 {% endblock %}
 
@@ -39,13 +105,14 @@
 
 {% block sidebar %}
 {% sidebar_upper user %}
+{% endblock %}
 
+        <!--
 {% include "question_list/count.html" %}
 {% if request.user.is_authenticated %}
 {% tag_selector %}
 {% endif %}
-{% recent_awards %}
-{% endblock %}
+{% recent_awards %}-->
 
 
 <!--

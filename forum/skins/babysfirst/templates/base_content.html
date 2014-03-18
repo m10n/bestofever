@@ -42,6 +42,16 @@
             });
         </script>
 
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //Handles menu drop down
+                $('.dropdown-menu').find('form').click(function (e) {
+                    e.stopPropagation();
+                });
+            });
+            </script>
+
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
         /*<![CDATA[*/
@@ -99,7 +109,6 @@
             </div>
         {% endif %}-->
         {% include "header.html" %}
-        <div id="wrapper">
             {% block masthead %}{% endblock %}
             <div id="CAFull">
                     {% block page_center %}
@@ -113,7 +122,6 @@
                     {% endblock %}
                 </div>
             <div class="spacer3"></div>
-        </div>
 
         <!--{% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
             {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}
