@@ -8,8 +8,6 @@
 
 {% block meta %}
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
-<script type="text/javascript" src="media/js/osqa.main.js"></script>
-<script type="text/javascript" src="media/js/bootstrap.js"></script>
 {% endblock %}
 
 <div id="sidebar" data-spy="affix" data-offset-top="235">
@@ -22,7 +20,7 @@
 {% include "question_list/count.html" %}
 
 </div>
-        {% endblock %}
+{% endblock %}
 
 <!--
 {% block title %}{% spaceless %}{{ page_title }}{% endspaceless %}{% endblock %}
@@ -46,15 +44,13 @@
     {% endif %}
 </div> -->
 
-
 <div class="tabBar">
-    <div class="tabsa">
-        {% include "question_list/title.html" %}
-        <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>
-    <ul class="nav nav-tabs">
-
-        {{ questions.paginator.sort_tabs }}
-    </ul>
+   <div class="container">
+        <div class="row">
+                <div class="headquestions">{% include "question_list/title.html" %}</div>
+            <!--<a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>-->
+                <div class="tabsa">{{ questions.paginator.sort_tabs }}</div>
+        </div>
     </div>
 </div>
 
@@ -66,6 +62,7 @@
     {% endif %}
     {% endfor %}</div>
 {% endblock %}
+
 
 {% block tail %}
 <div class="pager">{{ questions.paginator.page_numbers }}</div>
