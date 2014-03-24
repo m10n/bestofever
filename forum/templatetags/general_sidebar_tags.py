@@ -14,7 +14,7 @@ def markdown_help():
 def recent_awards():
     return {'awards': Award.objects.order_by('-awarded_at')[:settings.RECENT_AWARD_SIZE]}
 
-@register.inclusion_tag('sidebar/user_blocks.html')
+@register.inclusion_tag('sidebar/sidebar.html')
 def sidebar_upper(user=None):
     return {
         'show': settings.SIDEBAR_UPPER_SHOW,

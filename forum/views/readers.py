@@ -34,12 +34,12 @@ class HottestQuestionsSort(pagination.SortBase):
 
 
 class QuestionListPaginatorContext(pagination.PaginatorContext):
-    def __init__(self, id='QUESTIONS_LIST', prefix='', pagesizes=(15, 30, 50), default_pagesize=30):
+    def __init__(self, id='QUESTIONS_LIST', prefix='', pagesizes=(20, 60, 100), default_pagesize=100):
         super (QuestionListPaginatorContext, self).__init__(id, sort_methods=(
-            (_('active'), pagination.SimpleSort(_('Active Lists'), '-last_activity_at', _("Most <strong>recently updated</strong> questions"))),
-            (_('hottest'), HottestQuestionsSort(_('Trending'), _("most <strong>active</strong> questions in the last 24 hours</strong>"))),
-            (_('newest'), pagination.SimpleSort(_('Newest'), '-added_at', _("most <strong>recently asked</strong> questions"))),
-            (_('mostvoted'), pagination.SimpleSort(_('Most Voted'), '-score', _("most <strong>voted</strong> questions"))),
+            (_('active'), pagination.SimpleSort(_('Active Lists'), '-last_activity_at', _("Most <strong>recently updated</strong> lists"))),
+            (_('trending'), HottestQuestionsSort(_('Trending'), _("most <strong>active</strong> lists in the last 24 hours</strong>"))),
+            (_('newest'), pagination.SimpleSort(_('Newest'), '-added_at', _("most <strong>recently started</strong> lists"))),
+            (_('mostvoted'), pagination.SimpleSort(_('Most Voted'), '-score', _("most <strong>voted</strong> lists"))),
         ), pagesizes=pagesizes, default_pagesize=default_pagesize, prefix=prefix)
 
 class AnswerSort(pagination.SimpleSort):
@@ -50,12 +50,12 @@ class AnswerSort(pagination.SimpleSort):
             return super(AnswerSort, self).apply(answers)
 
 class AnswerPaginatorContext(pagination.PaginatorContext):
-    def __init__(self, id='ANSWER_LIST', prefix='', default_pagesize=10):
+    def __init__(self, id='ANSWER_LIST', prefix='', default_pagesize=50):
         super (AnswerPaginatorContext, self).__init__(id, sort_methods=(
             (_('oldest'), AnswerSort(_('oldest answers'), 'added_at', _("oldest answers will be shown first"))),
             (_('newest'), AnswerSort(_('newest answers'), '-added_at', _("newest answers will be shown first"))),
             (_('votes'), AnswerSort(_('popular answers'), ('-score', 'added_at'), _("most voted answers will be shown first"))),
-        ), default_sort=_('votes'), pagesizes=(5, 10, 20), default_pagesize=default_pagesize, prefix=prefix)
+        ), default_sort=_('votes'), pagesizes=(50, 100, 200), default_pagesize=default_pagesize, prefix=prefix)
 
 class TagPaginatorContext(pagination.PaginatorContext):
     def __init__(self):

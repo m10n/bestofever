@@ -1,71 +1,136 @@
-{% extends "base.html" %}
+{% extends "base_content.html" %}
 <!-- questions.html -->
-{% load question_list_tags %}
+<!--{% load question_list_tags %}
 {% load i18n %}
 {% load extra_tags %}
 {% load general_sidebar_tags %}
 {% load ui_registry extra_filters markup %}
-
+<!--
 {% block meta %}
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
 {% endblock %}
+-->
 
-<div id="sidebar" data-spy="affix" data-offset-top="235">
 
-{% block sidebar %}
-{% sidebar_upper %}
-{% question_list_related_tags questions.paginator.page %}
+    {% block sidebar %}
+	<div class="row clearfix">
+			 <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
+			 <a id="modal-582288" href="#modal-container-582288" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
-{% tag_selector %}
-{% include "question_list/count.html" %}
+			<div class="modal fade" id="modal-container-582288" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								Modal title
+							</h4>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-</div>
-{% endblock %}
-
-<!--
-{% block title %}{% spaceless %}{{ page_title }}{% endspaceless %}{% endblock %}
-
-{% block metadescription %}{% spaceless %}
-{% if tag %}
-{% blocktrans with settings.APP_TITLE as app_title %}Questions and answers about {{ tag }} on {{ app_title }}{% endblocktrans %}
-{% endif %}
-{% endspaceless %}{% endblock %}
-
-</div>-->
-
+			<div class="panel-group" id="panel-480263">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-829436">Collapsible Group Item #1</a>
+					</div>
+					<div id="panel-element-829436" class="panel-collapse collapse">
+						<div class="panel-body">
+							Anim pariatur cliche...
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-162052">Collapsible Group Item #2</a>
+					</div>
+					<div id="panel-element-162052" class="panel-collapse collapse">
+						<div class="panel-body">
+							Anim pariatur cliche...
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="list-group">
+				 <a href="#" class="list-group-item active">Home</a>
+				<div class="list-group-item">
+					List header
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">
+						List group item heading
+					</h4>
+					<p class="list-group-item-text">
+						...
+					</p>
+				</div>
+				<div class="list-group-item">
+					<span class="badge">14</span>Help
+				</div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
+			</div>
+		</div><!--sidebar column-->
+    {% endblock %}
 
 {% block content %}
-
-<!-- <div id="announcement">
-    <!-- {% if settings.USE_ANNOUNCEMENT_BAR|or_preview:request %}
-    <div id="announcement">
-        {{ settings.ANNOUNCEMENT_BAR|or_preview:request|static_content:settings.ANNOUNCEMENT_BAR_RENDER_MODE }}
-    </div>
-    {% endif %}
-</div> -->
-
-<div class="tabBar">
-   <div class="container">
-        <div class="row">
-                <div class="headquestions">{% include "question_list/title.html" %}</div>
-            <!--<a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>-->
-                <div class="tabsa">{{ questions.paginator.sort_tabs }}</div>
+        <div class="row clearfix">
+                <div class="tabBar">
+                        <div class="col-md-4">
+                            <div class="headQuestions">{% include "question_list/title.html" %}</div>
+                            <!--<a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>-->
+                        </div>
+                        <div class="col-md-8">
+                            <div class="tabsA">{{ questions.paginator.sort_tabs }}
+                            </div>
+                        </div>
+                </div>
         </div>
-    </div>
-</div>
+        <div class="row clearfix">
+                <div id ="content-lists">
+                    <div id="listA">
+                    <div class="col-md-6 column">
+                        {% for question in questions.paginator.page %}
+                        {% if show_summary %}
+                        {% question_list_item question question_summary=yes %}
+                        {% else %}
+                        {% question_list_item question %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6 column">
+                        {% for question in questions.paginator.page %}
+                        {% if show_summary %}
+                        {% question_list_item question question_summary=yes %}
+                        {% else %}
+                        {% question_list_item question %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row clearfix">
+                        <div class="col-md-4 col-md-offset-8">
+                            <div class="pagesize">{{ questions.paginator.page_sizes }}</div>
+                            <div class="pager">{{ questions.paginator.page_numbers }}</div>
 
-<div id="listA">{% for question in questions.paginator.page %}
-    {% if show_summary %}
-    {% question_list_item question question_summary=yes %}
-    {% else %}
-    {% question_list_item question %}
-    {% endif %}
-    {% endfor %}</div>
-{% endblock %}
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#">Prev</a>
+                                </li>
+                                <li>
+                                    <a href="#">Next</a>
+                                </li>
+                            </ul>
+                        </div>
+            </div>
+    {% endblock %}
 
 
-{% block tail %}
-<div class="pager">{{ questions.paginator.page_numbers }}</div>
-<div class="pagesize">{{ questions.paginator.page_sizes }}</div>
-{% endblock %}
 <!-- end questions.html -->

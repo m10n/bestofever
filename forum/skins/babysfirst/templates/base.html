@@ -1,28 +1,24 @@
 {% extends "base_content.html" %}
 
-{% block page_center %}
+<!--{% block page_center %}
 {% block full_width_banner %}{% endblock %}
-<div id="wrapper">
     {% block site_width_banner %}{% endblock %}
-    {% include "header.html" %}
-    <div class="container">
-        <div id="house">
             <div id="leftCol">
                 <div class="col-md-2">
                     {% block sidebar %}
                     {% endblock%}</div>
             </div>
             <div id="CARight">
-                <div class="col-md-10">
+                <div class="col-md-10 col-md-offset-2">
                     {% block content %}
-                    {% endblock%}</div>
+                    {% endblock%}
+                    </div>
             </div>
+
             <div id="tail" style="clear:both;">
                 {% block tail %}
                 {% endblock %}
             </div>
-        </div>
-        <div class="spacer3"></div>
-    </div>
-</div>
+        <div class="spacer3"></div>-->
+
 {% endblock %}

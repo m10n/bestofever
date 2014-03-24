@@ -15,6 +15,12 @@
 
 
 
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5; }
 
 /* ___ Begin custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
 
@@ -101,14 +107,11 @@
 }
 
 /* ___ End custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
-
-body {
-    padding-top:0px;
-}
+/*
 
 #masthead {
     min-height:200px;
-    background-color: #000044;
+    background-color: #0d2134;
     color: #fff;
     margin-top:50px;
 }
@@ -140,40 +143,48 @@ body {
     }
 }
 
-
 .affix-top,.affix{
     position: static;
 }
 
+
 @media (min-width: 979px) {
     #sidebar.affix-top {
-        position: static;
-        margin-top:30px;
-        width:180px;
+        position: fixed;
+        top:250px;
+        width:230px;
+        bottom: 0;
+        z-index: 1000;
+        display: block;
+        background-color: #2f3f4e;}
     }
 
     #sidebar.affix {
         position: fixed;
         top:80px;
-        width:180px;
+        width:250px;
+        bottom: 0;
+        z-index: 1000;
+        display: block;
+        background-color: #2f3f4e;}
+
+#leftCol {
+    position: fixed;
+    top:250px;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: block;
+    background-color: #2f3f4e;}
     }
-}
+
 
 #sidebar li.active {
     border:0 #eee solid;
     border-right-width:4px;
 }
+*/
 
-
-
-/* #wrapper { padding-top: 50px; } */
-
-#logo { padding: 0px 20px 0px 10px;
-    margin-top: 8px; }
-
-#main-body { }
-
-#CAFull { padding-top: 50px; background-color:#f8f9fa; }
 #mainbar-full { margin-top: 50px; }
 
 #askform{ background: #fff; border: 1px solid #d9e0e2; }
@@ -182,7 +193,6 @@ body {
     color:#999;
 }
 
-#CARight { }
 
 #askform #description{
     padding:20px 0 20px 0;
@@ -279,6 +289,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/*
 .spacer1 {
     clear: both;
     height: 6px;
@@ -301,12 +312,8 @@ a:hover {
     text-align: center;
 }
 
-#listA {
-    background: #fff;
-    border-left: 1px solid #d9e0e2;
-    border-right: 1px solid #d9e0e2;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
+*/
+/*
 
 #listA .qstA {
     border-top: 1px dashed #CCCCCE;
@@ -415,6 +422,7 @@ a:hover {
     font-weight: 800;
 }
 
+*/
 
 .questions-count {
     color: #104763;
@@ -425,6 +433,7 @@ a:hover {
     padding: 0 0 5px;
 }
 
+/*
 .boxA {
     background: none repeat scroll 0 0 #888A85;
     margin-bottom: 8px;
@@ -450,6 +459,7 @@ a:hover {
     padding: 2px;
     text-align: right;
 }
+
 
 .boxB {
     background: none repeat scroll 0 0 #F9F7ED;
@@ -480,6 +490,7 @@ a:hover {
     text-align: right;
 }
 
+*/
 
 .pager {
     float: left;
@@ -562,6 +573,7 @@ a:hover {
 .paginator-container-left {
     padding: 5px 0 10px;
 }
+
 
  .tags {
     display: block;
@@ -647,9 +659,7 @@ a.medal:hover {
 }
 
 
-.tabBar {
-    clear: both;
-}
+
 
 .tabsB {
     display: block;
@@ -691,16 +701,13 @@ a.medal:hover {
 }
 
 .headQuestions {
-    float: left;
     font-size: 22px;
+    float:left;
 }
 
 .headAnswers {
-    background: url("../images/ico_answers.gif") no-repeat scroll left 2px transparent;
-    float: left;
-    font-size: 18px;
-    font-weight: 800;
-    padding: 3px 3px 3px 24px;
+    font-size: 22px;
+    float:left;
 }
 
 .headTags {
@@ -744,11 +751,8 @@ a.medal:hover {
 }
 
 .headNormal {
-    border-bottom: 1px solid #ccc;
-    font-size: 28px;
-    margin-bottom: 10px;
-    padding: 3px;
-    text-align: left;
+    font-size: 34px;
+    padding: 10px 0px 10px 20px;
 }
 
 .headUser {
@@ -909,15 +913,6 @@ p.form-item {
     padding: 0 3px 2px;
 }
 
-#answers {
-}
-
-.answer {
-    border-bottom: 1px solid #ECEFF0;
-    padding: 10px 0px;
-}
-
-.answer:hover { background-color: rgba(255, 60, 31, 0.05); text-decoration:underline; border:1px solid #FF3C1F; }
 
 
 .accepted-answer {
@@ -2651,19 +2646,26 @@ div.wmd-button-bar {
     float:left;
 }
 
-
+/********* item.html **********/
 
 
 div.short-summary { /* Containing div must have a position value */
-    position:relative; padding: 15px 10px 10px 20px;
-}
+    position:relative; padding: 30px 10px; background: #fff;
+    margin-bottom: 8px;
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
+    border-bottom: 1px solid #ECEFF0; }
+
+
+
 div.short-summary a.biglink { /* Make whole home page topic div clickable to topic permalink (override individual exceptions below) */
     position:absolute;
     width:100%;
     height:100%;
     top:0;
     left:0;
-    text-decoration:underline; /* Makes sure the link   doesn't get underlined */
+    /*text-decoration:underline;  Makes sure the link   doesn't get underlined */
     z-index: 1;
     background-color:white; /*workaround to make clickable in IE */
     opacity: 0; /*workaround to make clickable in IE */
@@ -2673,46 +2675,24 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 .posted, .topthumb { /* Specify divs that contain links within topic divs on item.html/home page/etc. so they are clickable */
     position:relative;
-    z-index: 10;
-}
+    z-index: 10; }
 
 
-.short-summary:hover { text-indent:5px; position:relative;
-    bottom:4px; background-color: rgba(255, 60, 31, 0.05); text-decoration:underline; border: 5px solid #ddd;}
+.short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 5px solid #ddd;}
 
-.headline h3, .headline h3 a { color: #222; padding: 0px; margin: 0px; font-size: 22px; font-family: 'Helvetica Neue' }
 
-.headline a:hover {
-    color: #5916FE;
-    text-decoration: underline;}
+.headline h3, .headline h3 a { color: #248dc1; padding: 5px 0px; margin: 0px; font-size: 20px; font-family: 'Montserrat', sans-serif; }
 
-.top-poster { float:right; }
+.top-poster { float: right;
+    text-align: right; }
 
-.top-post-content { font-size: 16px; margin-top: 10px; color: #333;}
-
-.top-post-content a:hover { font-size: 15px; color: #333;}
+.top-post-content { font-size: 18px; margin-top: 10px; color: #333;}
 
 
 
-.short-summary {
-    border-bottom: 1px solid #ECEFF0;
-    /*
-    -webkit-box-shadow: #D7E1E7 0 -1px 0 inset;
-    -moz-box-shadow: #d7e1e7 0 -1px 0 inset;
-    -ms-box-shadow: #d7e1e7 0 -1px 0 inset;
-    -o-box-shadow: #d7e1e7 0 -1px 0 inset;
-    box-shadow: #D7E1E7 0 -1px 0 inset;
-    border-bottom: 1px solid #D7E1E7; */
-    overflow: hidden;
-    position: relative;
-}
+.counts { display: inline; color: #ccc; float:right; text-align: right; }
 
-
-.counts { display: inline; color: #999; float:right; text-align: right; }
-
-.item-count { display: inline; font-weight: bold; color: #888; margin-left:10px;  }
-
-
+.item-count { display: inline; font-weight: bold; color: #ccc; margin-left:10px;  }
 
 
 .empty-topic, .posted a { font-size: 14px; color: #666; font-weight:bold; }
@@ -2721,18 +2701,18 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .posted-date a { font-size: 14px; color: #999; font-style:italic;  }
 
 
-
 .topthumb { float:left; margin-right: 18px; }
 
 .short-summary .userinfo {
     color: #666666;
     float: right;
-    margin-top: 8px;
-}
+    margin-top: 8px; }
 
 .userinfo a, a.userinfo {
     color: #3060A8;
 }
+
+
 
 
 
@@ -2754,12 +2734,18 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 
 
-/*___ POSTS ____*/
+/*___ LINES ____*/
 
+.answer {
+    border-bottom: 1px solid #ECEFF0;
+    padding: 10px 0px;
+}
 
+.answer:hover { text-indent:5px; position:relative;
+    bottom:4px; background-color: #fdfeff; border: 5px solid #ddd; }
 
 .answer-body { float: left; margin: 10px 0px 0px 10px; }
-.answer-body p, .question-body p { font-size: 16px; }
+.answer-body p, .question-body p { font-size: 18px; }
 .post-update-info a, .post-update-info a { font-size: 14px; line-height: 15px; }
 .author-name a { font-size: 14px; font-weight: bold; color: #444; }
 
@@ -2801,9 +2787,10 @@ html {
     -ms-text-size-adjust: 100%;
 }
 body {
-    margin: 0;
     padding-bottom: 70px;
     min-height: 2000px;
+    margin-top: 40px;
+    padding-top: 90px;
 }
 
 .navbar-static-top {
@@ -3079,7 +3066,9 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #fff;
+    background-color: #f2f2f2;
+    margin-top: 40px;
+    padding-top: 90px;
 }
 
 input,
@@ -3165,8 +3154,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: font-family: 'Helvetica Neue', Monserrat, sans-serif;
-    font-weight: 500;
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
     letter-spacing: -1px;
     line-height: 1.1;
     color: inherit;
@@ -3205,6 +3193,7 @@ h2,
 .h2,
 h3,
 .h3 {
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -3228,6 +3217,8 @@ h5,
 .h5,
 h6,
 .h6 {
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -6295,11 +6286,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
     max-width: none;
 }
+.tabBar {
+}
+.answer-tabs { margin:20px 0px 0px; }
 
 
 .tabsA {
-    display: block;
-    float: left;  padding-left:20px; }
+    display: block; float:right; }
 
 
 .tabsA a {
@@ -6472,9 +6465,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     min-height: 50px;
     margin-bottom: 0px;
     border: 1px solid transparent;
-    box-shadow: inset 0 1px #fff, 0 1px 4px rgba(34,25,25,0.5);
-    -moz-box-shadow: inset 0 1px #fff, 0 1px 5px rgba(34,25,25,0.5);
-    -webkit-box-shadow: inset 0 1px #fff, 0 1px 4px rgba(34,25,25,0.5);
+
 }
 @media (min-width: 768px) {
     .navbar {
@@ -6518,8 +6509,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .navbar-fixed-bottom .navbar-collapse {
         padding-right: 0;
         padding-left: 0;
+
     }
 }
+
+
+
 .container > .navbar-header,
 .container-fluid > .navbar-header,
 .container > .navbar-collapse,
@@ -6578,10 +6573,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand:focus {
     text-decoration: none;
 }
+
+
+
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
-        margin-left: -15px;
+        margin-left: -15px; color: #fff; font-family: 'Montserrat', sans serif;
     }
 }
 .navbar-toggle {
@@ -6772,12 +6770,17 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 }
 .navbar-default {
-    background-color: rgba(255,255,255,0.8);
-    border-color: #e7e7e7;
+    background-color: #2f3f4e; }
+
+/*
+box-shadow: inset 0 1px #fff, 0 1px 4px rgba(34,25,25,0.5);
+-moz-box-shadow: inset 0 1px #fff, 0 1px 5px rgba(34,25,25,0.5);
+-webkit-box-shadow: inset 0 1px #fff, 0 1px 4px rgba(34,25,25,0.5);
+background-color: rgba(255,255,255,0.8);*/
 }
 
 .navbar-default .navbar-brand {
-    color: #777;
+    color: #fff;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {

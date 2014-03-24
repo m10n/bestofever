@@ -9,9 +9,9 @@
 {% load ui_registry markup %}
 
 
-<div id="sidebar" data-spy="affix" data-offset-top="235">
     <div class="sidebar-nav">
         <div class="navbar navbar-default" role="navigation">
+            <!--<div id="sidebar" data-spy="affix" data-offset-top="300">-->
             <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
             <div id="sidebar-profile">
                 {% if view_user and not view_user.is_anonymous %}
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 </div>
     <!--

@@ -32,14 +32,12 @@
 
 
 <div class="tabBar">
-    <div class="tabsa">
         {% include "question_list/title.html" %}
         <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');" href="{{ feed_url }}" title="{% trans "subscribe to question RSS feed" %}"></a>
     <ul class="nav nav-tabs">
         {{ questions.paginator.sort_tabs }}
     </ul>
     </div>
-</div>
 
 <div id="listA">{% for question in questions.paginator.page %}
     {% if show_summary %}

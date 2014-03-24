@@ -1,11 +1,12 @@
 {% load i18n %}
 
-        <!--
-<div class="tabsA">
-    <ul class="nav nav-tabs">
-    <li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active topics">active</a></li>
-        <li> <a id="latest" href="{{ base_url }}latest"{% ifequal current "latest" %} class="on"{% endifequal %} title="Most recently created topics">newest</a></li>
-        <li><a id="hottest" href="{{ base_url }}hottest"{% ifequal current "hottest" %} class="on"{% endifequal %} title="Most active topics">hottest</a></li>
-        <li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted topics">most kjhkjhkjhvoted</a></li>
-    </ul>
-</div> -->
+        <!-- from readers.py-->
+<div class="tabsa">
+<ul class="nav nav-tabs">
+    <li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
+        <li> <a id="trending" href="{{ base_url }}trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours">trending</a></li>
+        <li><a id="newest" href="{{ base_url }}newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists">newest</a></li>
+        <li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists">most voted</a></li>
+</ul>
+</div>
+

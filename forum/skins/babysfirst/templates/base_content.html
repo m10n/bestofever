@@ -22,35 +22,18 @@
                  <link href="{% media  "/media/style/style.css" %}" rel="stylesheet" type="text/css" />
         {% if settings.USE_CUSTOM_CSS|or_preview:request %}
         <!-- Bootstrap -->
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-        <script type="text/javascript" src="media/js/bootstrap.js"></script>
         {% endif %}
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{% media  "/media/js/bootstrap.min.js" %}"></script>
 
-
-
-        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" />
         <!--[if IE 6]>
         <style type="text/css">
         img, div, a { behavior: url({% media "/media/iepngfix/iepngfix.htc" %}) }
         </style>
         <![endif]-->
         {% block forestyle %}{% endblock %}
-        <script type="text/javascript" src="media/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector: "textarea"
-            });
-        </script>
-
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                //Handles menu drop down
-                $('.dropdown-menu').find('form').click(function (e) {
-                    e.stopPropagation();
-                });
-            });
-            </script>
 
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
@@ -80,21 +63,8 @@
             }
         /*]]>*/
         </script>
-        <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
+        <script type='text/javascript' src='{% media  "/media/js/osqa.main.js" %}'></script>
 
-        {% if user_messages %}
-        <style type="text/css">
-            body { margin-top:2.4em; }
-        </style>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var element = $('#validate_email_alert');
-                element.click(function(){notify.close(true);})
-                notify.show();
-                var notifyRemove = setTimeout('notify.close(true)', 10000);
-            });
-        </script>
-        {% endif %}
         {% if settings.USE_CUSTOM_HEAD|or_preview:request %}
             {{ settings.CUSTOM_HEAD|or_preview:request|safe }}
         {% endif %}
@@ -103,51 +73,34 @@
         {% loadregistry head_content %}{% endloadregistry %}
     </head>
 <body>
-        <!--{% if settings.USE_CUSTOM_HEADER|or_preview:request %}
-            <div id="custom_header">
-                {{ settings.CUSTOM_HEADER|or_preview:request|static_content:settings.CUSTOM_HEADER_RENDER_MODE }}
-            </div>
-        {% endif %}-->
-        {% include "header.html" %}
-            {% block masthead %}{% endblock %}
-            <div id="CAFull">
-                    {% block page_center %}
-                    <div class="col-md-12">
-                    {% block content%}
-                    {% endblock%}</div>
-                </div>
-                <div id="tail" style="clear:both;">
-                    {% block tail %}
-                    {% endblock %}
-                    {% endblock %}
-                </div>
-            <div class="spacer3"></div>
 
-        <!--{% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
-            {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}
-                <div id="custom_footer">
-                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-                </div>
-            {% endifequal %}
-            <div id="ground">
-                {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
-                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-                {% else %}
-                    {% include "footer.html" %}
-                {% endifequal %}
-            </div>
-            {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "below" %}
-                <div id="custom_footer">
-                    {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-                </div>
-            {% endifequal %}
-        {% else %}-->
-            <div id="ground">
-                {% include "footer.html" %}
-            </div>
-        {% endif %}
-        {% block endjs %}
-        {% endblock %}
+
+<!--    {% block full_width_banner %}{% endblock %}
+    {% block site_width_banner %}{% endblock %} -->
+
+
+
+            {% include "header.html" %}
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-2 column" id="leftcol">
+            {% block sidebar %}
+            {% endblock%}
+        </div>
+        <div class="col-md-10 column" id="rightcol">
+            {% block content %}
+            {% endblock%}
+        </div>
+    </div>
+</div>
+    <div class="container" id="footer">
+    {% include "footer.html" %}
+    </div>
+{% block endjs %}
+{% endblock %}
+
+
         {% if settings.GOOGLE_ANALYTICS_KEY %}
             <script type="text/javascript">
                 var _gaq = _gaq || [];
@@ -162,6 +115,7 @@
             </script>
         {% endif %}
 
+
         <!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
         <div class="notify" style="display:none">
             {% autoescape off %}
@@ -173,10 +127,8 @@
             {% endautoescape %}
             <a id="close-notify" onclick="notify.close(true)">&#215;</a>
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-    </body>
+
+</body>
 </html>
 <!-- end template base_content.html -->
 
