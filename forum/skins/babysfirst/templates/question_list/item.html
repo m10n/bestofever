@@ -3,20 +3,22 @@
     <a class="biglink" href="{{ question.get_absolute_url }}"></a>
                   <div id="list-row1" class="row">
                           <div class="col-md-12">
+                              <div class="counts">{% if favorite_count %}
+                                            <div class="item-count">{{question.favourite_count|intcomma}}        </div>
+                                            {% if question.favourite_count %} on{% endif %}
+                                                {% endif %}
+                                  <div class="item-count">{{question.score|intcomma}}        </div>
+                                  {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
+                                  <div class="item-count">{{question.answer_count|intcomma}}        </div>
+                                  <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+                                  {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span></div>
+                              <!--<div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
+                              {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
                               <div class="media">
                                   <a class="pull-right" href="{{ question.author.get_profile_url }}">{% gravatar question.author 48 %}
                                   </a>
-                                      <span class="headline">{% if sample_answer %}<h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a>                                <div class="counts"><!--{% if favorite_count %}
-                                            <div class="item-count">{{question.favourite_count|intcomma}}        </div>
-                                            {% if question.favourite_count %} on{% endif %}
-                                                {% endif %}-->
-                              <div class="item-count">{{question.score|intcomma}}        </div>
-                              {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
-                              <div class="item-count">{{question.answer_count|intcomma}}        </div>
-                              <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
-                              {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span></div>
-                              <!--<div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
-                              {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
+                                      <span class="headline">{% if sample_answer %}<h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a>
+
                           </div>
 
                       </div>
@@ -24,10 +26,13 @@
           <div id="list-row2">
                  <div class="row">
                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                  <a class="pull-left" href="{{ sample_answer.author.get_profile_url }}">
-                                      <img class="left-thumb" a href="{{ sample_answer.author.get_profile_url }}">{% gravatar sample_answer.author 48 %}
+                              <div class="media">
+                                  <a href="{{ sample_answer.author.get_profile_url }}" class="pull-left"><img class="media-object">                                      {% gravatar sample_answer.author 48 %}
                                   </a>
-                                      <span class="sample-answer">{{sample_answer.html|safe}}</span>
+                                  <div class="media-body">
+                                      <span class="sample-answer"><p>{{sample_answer.html|safe}}</p></span>
+                                  </div>
+                              </div>
                           </div>
                 </div>
           </div>

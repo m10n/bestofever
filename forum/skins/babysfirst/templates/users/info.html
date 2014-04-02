@@ -24,7 +24,7 @@
                         {% if view_user.is_staff %}Moderator
                         {% endif %}
                         {% endif %}
-                    <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
+                    <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}average votes
                     {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}</div>
                     {% endif %}
                     </h4>
@@ -39,35 +39,37 @@
             </div>
         </div>
         <div class="col-md-6 column">
-            <dl class="dl-horizontal">
-                {% if view_user.location %}
-                <dt><span class="glyphicon glyphicon-map-marker"> Location</span></dt>
-                <dd>{{view_user.location}}</dd>
-                {% endif %}
-                        <dt><span class="glyphicon glyphicon-user"> Joined</span></dt>
+                    <dl class="dl-horizontal">
+                        <dt><span class="glyphicon glyphicon-user">Joined</span></dt>
                         <dd>{% diff_date view_user.date_joined %}</dd>
                         <!--{% if view_user.last_seen %}
                         <dt>Last seen</dt>
                         <dd><title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</dd>
                         {% endif %}-->
                         {% if view_user.website %}
-                        <dt><span class="glyphicon glyphicon-globe"> Website</span></dt>
+                        <dt><span class="glyphicon glyphicon-globe">Website</span></dt>
                         <dd><a rel="nofollow" target="_blank" href="{{view_user.website}}">{{view_user.website}}</a></dd>
                         {% endif %}
+                        {% if view_user.location %}
+                        <dt><span class="glyphicon glyphicon-map-marker">Location</span></dt>
+                        <dd>{{view_user.location}}</dd>
+                        {% endif %}
+                    {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
                     </dl>
-            {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
-
-            </div>
+        </div>
     </div>
 </div>
 {% with view_user.username|slugify as user_slug %}
 <div class="row clearfix">
     <div class="col-md-12 column">
-            <div class="user-tabs">
-                {% loopregistry profile_tabs %}
+
+            <div class="tabsA">
+                {% loopregistry profile_tabs %}{% spaceless %}
                 <a title="{{ tab_description }}" id="{{ tab_name }}" {% ifequal active_tab tab_name %}class="on"{% endifequal %} href="{{ tab_url }}">
-                {{ tab_title }}</a>{% endloopregistry %}
+                {{ tab_title }}</a>
+                {% endspaceless %}{% endloopregistry %}
             </div>
+        </ul>
     </div>
 </div>
 {% endwith %}
