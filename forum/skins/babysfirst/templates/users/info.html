@@ -1,133 +1,73 @@
 <!-- user_info.html -->
 {% load extra_tags %}
-{% load extra_filters %}
 {% load humanize %}
 {% load smart_if %}
-{% load i18n %}
 {% load markup %}
 {% load user_tags %}
+{% load extra_filters ui_registry i18n %}
 
-<div id="subheader" class="headUser{% if view_user.is_suspended %} suspended-user{% endif %}">
-    {{view_user.decorated_name}}
-</div>
-<table class="user-info-table">
-    <tr>
-        <td width="180" style="vertical-align:middle;text-align:center;">
-            <table width="100%">
-                <tr>
-                    <td>
-                        {% gravatar view_user 128 %}
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
+<div class="row clearfix">
+        <div class="col-md-6 column">
+            <div class="media">
+                <a href="#" class="pull-left">{% gravatar view_user 140 %}</a>
+                <div class="media-body">
+                    <h4 class="media-heading">
                         {% if not view_user.is_suspended %}
-                        <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}</div>
-                        <p><b style="color:#777;">{% trans "reputation" %}</b></p>
+                        {% if view_user.real_name %}
+                        {{view_user.real_name}}
                         {% else %}
-                        <div class="scoreNumber">{% trans "Suspended" %}</div>
-                        <p>{{ view_user.suspension.extra.publicmsg }}</p>
+                        {{view_user.decorated_name}}
                         {% endif %}
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td width="360" style="vertical-align: top;">
-            {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
-            <table class="user-details">
-                <tr>
-                    <th colspan="2" align="left">
-                        <h3>
-                            {% if view_user.is_superuser %}
-                            {% trans "Administrator" %}
-                            {% else %}
-                            {% if view_user.is_staff %}
-                            {% trans "Moderator" %}
-                            {% else %}
-                            {% trans "Registered user" %}
-                            {% endif %}
-                            {% endif %}
-                        </h3>
-                    </th>
-                </tr>
-                {% if view_user.real_name %}
-                <tr>
-                    <td>{% trans "real name" %}</td>
-                    <td><b>{{view_user.real_name}}</b></td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td>{% trans "member for" %}</td>
-                    <td><strong>{% diff_date view_user.date_joined %}</strong></td>
-                </tr>
-                {% if view_user.last_seen %}
-                <tr>
-                    <td>{% trans "last seen" %}</td>
-                    <td><strong title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</strong></td>
-                </tr>
-                {% endif %}
-                {% if view_user.website %}
-                <tr>
-                    <td>{% trans "user's website" %}</td>
-                    <td><a rel="nofollow" target="_blank" href="{{view_user.website}}">{{view_user.website}}</a></td>
-                </tr>
-                {% endif  %}
-                {% if view_user.location %}
-                <tr>
-                    <td>{% trans "location" %}</td>
-                    <td>{{view_user.location}}</td>
-                </tr>
-                {% endif %}
-                {% if view_user.date_of_birth%}
-                <tr>
-                    <!--todo  - redo this with blocktrans -->
-                    {% if view_user.date_of_birth.year != 1900%}
-                    <td>{% trans "age" %}</td>
-                    <td>{% get_age view_user.date_of_birth %} {% trans "age unit" %}</td>
+                        {% if view_user.is_suspended %}This user has been suspended.{% endif %}
+                        {% if view_user.is_superuser %}Administrator
+                        {% else %}
+                        {% if view_user.is_staff %}Moderator
+                        {% endif %}
+                        {% endif %}
+                    <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
+                    {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}</div>
                     {% endif %}
-                </tr>
-                {% endif %}
-                {% if can_view_private %}
-                <tr>
-                    <td>{% trans "email" %}</td>
-                    <td>
-                        <a href="mailto:{{ view_user.email }}">{{ view_user.email }}</a>
-                        {% if not view_user.email_isvalid %}
-                        ({% trans "not validated" %})
-                        {% ifequal request.user view_user %}
-                    </td></tr><tr><td></td><td><a href="{% url send_validation_email %}">{% trans "Send me a validation link." %}</a>
-                {% endifequal %}
-                {% endif %}
-            </td>
-            </tr>
-                {% endif %}
-
-                <tr>
-                    <td colspan="2" style="text-align:right">
-                        <a href="{% url user_report user.pk %}" class="ajax-command withprompt">
-                            Report user
-                        </a>
-                    </td>
-                </tr>
-                <!--
-                {% if votes_today_left %}
-                <tr>
-                    <td>{% trans "todays unused votes" %}</td>
-                    <td><strong class="darkred">{{ votes_today_left }}</strong> {% trans "votes left" %}</td>
-                </tr>
-                {% endif %}
-                -->
-            </table>
-        </td>
-        <td width="380">
-            {% if not view_user.is_suspended %}
-            <div class="user-about">
-                {% if view_user.about %}
-                {{view_user.about|markdown}}
-                {% endif %}
+                    </h4>
+                    <div class="user-about">
+                         {% if not view_user.is_suspended %}
+                         {% if view_user.about %}
+                         {{view_user.about|markdown}}
+                         {% endif %}
+                         {% endif %}
+                    </div>
+                </div>
             </div>
-            {% endif %}
-        </td>
-    </tr>
-</table>
-<!-- end user_info.html -->
+        </div>
+        <div class="col-md-6 column">
+            <dl class="dl-horizontal">
+                {% if view_user.location %}
+                <dt><span class="glyphicon glyphicon-map-marker"> Location</span></dt>
+                <dd>{{view_user.location}}</dd>
+                {% endif %}
+                        <dt><span class="glyphicon glyphicon-user"> Joined</span></dt>
+                        <dd>{% diff_date view_user.date_joined %}</dd>
+                        <!--{% if view_user.last_seen %}
+                        <dt>Last seen</dt>
+                        <dd><title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</dd>
+                        {% endif %}-->
+                        {% if view_user.website %}
+                        <dt><span class="glyphicon glyphicon-globe"> Website</span></dt>
+                        <dd><a rel="nofollow" target="_blank" href="{{view_user.website}}">{{view_user.website}}</a></dd>
+                        {% endif %}
+                    </dl>
+            {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
+
+            </div>
+    </div>
+</div>
+{% with view_user.username|slugify as user_slug %}
+<div class="row clearfix">
+    <div class="col-md-12 column">
+            <div class="user-tabs">
+                {% loopregistry profile_tabs %}
+                <a title="{{ tab_description }}" id="{{ tab_name }}" {% ifequal active_tab tab_name %}class="on"{% endifequal %} href="{{ tab_url }}">
+                {{ tab_title }}</a>{% endloopregistry %}
+            </div>
+    </div>
+</div>
+{% endwith %}

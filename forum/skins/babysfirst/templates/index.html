@@ -1,20 +1,59 @@
 <!--{% extends "questions.html" %}
  index.html -->
-<!--
 
 {% load general_sidebar_tags %}
 {% load question_list_tags %}
-{% load i18n %}
+{% include "question_list/count.html" %}
+{% if request.user.is_authenticated %}
+{% tag_selector %}
+{% endif %}
+{% recent_awards %}
 
-<!--
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<!--<script src="<?=base_url('assets/js/bootstrap.min.js')?>"></script>-->
+<script src="<?=base_url('masonry/masonry.min.js')?>"></script>
+<script src="<?=base_url('masonry/masonry.js')?>"></script>
+
+<script type="text/javascript">
+
+    var msnry = $container.data('masonry');
+
+    var container = $('#container');
+    container.imagesLoaded( function(){
+        container.masonry({
+            itemSelector : '.item'
+        });
+    });
+
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+$('#container').masonry({
+columnWidth: 200,
+itemSelector: '.item'
+});
+});
+</script>
 
 {% block fulltitle %}{{ settings.APP_TITLE }}
 {% endblock %}
+
 
 {% block masthead %}
 <div id="masthead">
 <div class="container">
         <div class="row">
+            <div class="row clearfix">
+                <div class="tabBar">
+                    <div class="hiden-xs hidden-sm col-md-3 col-lg-4">
+                        <div class="headQuestions">{% include "question_list/title.html" %}</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                        <div class="tabsA">{{ questions.paginator.sort_tabs }}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
                 <div id="masthead-item">
                     <center>
@@ -95,35 +134,61 @@
      </div>
  </div>
 
-{% endblock %}
 
 
-
-{% block sidebar %}
-{% sidebar_upper user %}
-{% endblock %}
--->
-        <!--
-{% include "question_list/count.html" %}
-{% if request.user.is_authenticated %}
-{% tag_selector %}
-{% endif %}
-{% recent_awards %}-->
+{% endblock %}-->
 
 
-<!--
 {% if not request.user.is_authenticated %}
 {% if settings.SHOW_WELCOME_BOX %}
     <div class="boxA">
-        <h3>{% trans "welcome to " %}{{ settings.APP_SHORT_NAME }}</h3>
+        <h3>"welcome to "{{ settings.APP_SHORT_NAME }}</h3>
         <div class="body">
           {{ settings.APP_INTRO|safe }}
-          <div class="more"><a href="{% url about %}">{% trans "about" %} </a></div>
-          <div class="more"><a href="{% url faq %}">{% trans "faq" %} </a></div>
+          <div class="more"><a href="{% url about %}">About </a></div>
+          <div class="more"><a href="{% url faq %}">FAQ </a></div>
         </div>
     </div>
 {% endif %}
-{% endif %} -->
+{% endif %}
+
+
+
+{% block content %}
+
+<div class="row clearfix">
+    <div id="content-lists">
+        <div id="listA">
+            <div class="row">
+                {% for question in questions.paginator.page %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    {% question_list_item question %}
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-4 col-md-offset-8">
+        <div class="pagesize">{{ questions.paginator.page_sizes }}</div>
+        <div class="pager">{{ questions.paginator.page_numbers }}</div>
+
+        <ul class="pagination">
+            <li>
+                <a href="#">Prev</a>
+            </li>
+            <li>
+                <a href="#">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
 <!-- index.html -->
 

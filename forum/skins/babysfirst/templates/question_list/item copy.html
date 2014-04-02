@@ -1,106 +1,59 @@
 {% load i18n humanize extra_filters extra_tags user_tags %}
 <div class="short-summary">
     <a class="biglink" href="{{ question.get_absolute_url }}"></a>
-    <a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a>
-    {% if sample_answer %}
-    <div class="counts">{% if favorite_count %}
-        <div class="item-count">{{question.favourite_count|intcomma}}        </div>
-        {% if question.favourite_count %} on{% endif %}">
-
-        {% endif %}
-        <div class="item-count">{{question.score|intcomma}}        </div>
-        {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
-        <div class="item-count">{{question.answer_count|intcomma}}        </div>
-        <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
-        {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span>
-
-        <div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
-        {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}
-
-    </div>
-
-    <div class="top-post-content">
-        <div class="topthumb"><a href="{{ sample_answer.author.get_profile_url }} ">{% gravatar sample_answer.author 48 %}</a></div>
-        <span class="top-post">{{sample_answer.html|safe}}</span>
-    </div>
-    <div class="top-poster">
-            <span class="posted">&mdash; <a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ sample_answer.author.get_profile_url }}">{{ sample_answer.author.decorated_name }}
-                {% get_score_badge sample_answer.author %}</a></span>
-        <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">, posted {% diff_date question.last_activity_at %}</a></span>
-    </div>
-    {% else %}
-    <span class="empty-topic"><br/>You could be the first!</span>
-    {% endif %}
-</div>
-
-
-
-_______________________________________________________________
-
-
-{% load i18n humanize extra_filters extra_tags user_tags %}
-
-<div class="container">
-    <div class="short-summary">
-        <a class="biglink" href="{{ question.get_absolute_url }}"></a>
-        <h2><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></h2>
-        {% if sample_answer %}
+    <div id="list-row1">
         <div class="row">
-            <div class="col-md-8">
-            </div>
+            <div class="col-md-12">
 
-            <div class="col-md-4">
-                <div class="counts">
-                    {% if favorite_count %}
-                    <div class="item-count">{{question.favourite_count|intcomma}}
-                                            <span class="favorites">
-                                                    <span class="favorite-mark{% if question.favourite_count %} on{% endif %}"></span>
-                                            </span>
-                        {% endif %}
-                    </div>
-                    <div class="item-count">{{question.score|intcomma}}
-                                            <span class="votes">
-                                                    <span>{% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}</span>
-                                            </span>
-                    </div>
-                    <div class="item-count">{{question.answer_count|intcomma}}
-                        <span class="posts" {% if question.accepted_count %}title="This list has a winner"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
-                        {% ifequal question.answer_count 1 %}line{% else %}lines{% endifequal %}</span>
-                    </div>
-                    <div class="item-count">{{question.view_count|decorated_int|safe}}
-                                            <span class="views">
-                                                 <span>{% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}</span>
-                                            </span>
-                    </div>
-                </div><!--counts-->
-            </div><!--column-->
-        </div>
-    </div>
-    <div id="headline-bottom">
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <div class="top-post-content">
-                    <div class="topthumb"><a href="{{ sample_answer.author.get_profile_url }} ">{% gravatar sample_answer.author 48 %}</a></div>
-                    <span class="top-post">{{sample_answer.html|safe}}</span>
+                <div class="media">
+                    <a class="pull-right" href="{{ question.author.get_profile_url }}">{% gravatar question.author 48 %}
+                    </a>
+                    <span class="headline">{% if sample_answer %}<h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a></span>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="list-row2">
         <div class="row">
-            <div class="col-xs-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="media">
+                    <a class="pull-left" href="{{ sample_answer.author.get_profile_url }}">
+                        <img class="media-object" a href="{{ sample_answer.author.get_profile_url }}">{% gravatar sample_answer.author 48 %}
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{sample_answer.html|safe}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="list-row3">
+        <div class="row">
+
+            <div class="col-md-6">
                 <div class="top-poster">
-                                        <span class="posted">&mdash; <a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ sample_answer.author.get_profile_url }}">{{ sample_answer.author.decorated_name }}
-                                    {% get_score_badge sample_answer.author %}</a></span>
-                    <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">, posted {% diff_date question.last_activity_at %}</a></span>
+                                            <span class="posted">&mdash; <a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ sample_answer.author.get_profile_url }}">
+                                             {{ sample_answer.author.decorated_name }}<!--{% get_score_badge sample_answer.author %}--></a></span>
+                    <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">{% diff_date question.last_activity_at %}</a></span>
+                    <br/>{% else %}
+                                            <span class="empty-topic"><h3>{{question.headline}}</h3>
+                                                        <br/><a href="{{ question.get_absolute_url }}">You could be the first!</a></span>{% endif %}
                 </div>
-                {% else %}
-                <span class="empty-topic"><br/>You could be the first!</span>
-                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="counts"><!--{% if favorite_count %}
+                                            <div class="item-count">{{question.favourite_count|intcomma}}        </div>
+                                            {% if question.favourite_count %} on{% endif %}
+                                                {% endif %}-->
+                    <div class="item-count">{{question.score|intcomma}}        </div>
+                    {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
+                    <div class="item-count">{{question.answer_count|intcomma}}        </div>
+                    <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+                    {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span>
+                    <!--<div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
+                    {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-
-
-

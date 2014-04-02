@@ -10,6 +10,8 @@ All rights reserved. 2008 CNPROG.COM
 @import url(media/style/jquery.autocomplete.css);
 @import url(media/style/openid.css);
 
+/*
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, form, label, table, caption, tbody, tfoot, thead, tr, th, td
 {
     margin: 0;
@@ -19,25 +21,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
     background: transparent;
 }
-html, body {
-    height: 100%;
-    overflow: auto;
-}
-body{
-    font-family: "segoe ui",Helvetica,"Microsoft YaHei",����,Tahoma,Verdana,MingLiu,PMingLiu,Arial,sans-serif;
-    font-size: 80%;
 
-    margin:0;
-    padding:0;
-    text-align:center;
-    line-height: 1;
-}
-.wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-}
+
 blockquote, q
 {
     quotes: none;
@@ -171,7 +156,6 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     color:darkred;
     font-weight:400;
     font-size:100%;
-    /*letter-spacing:1px;*/
 
 }
 
@@ -205,12 +189,7 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     float: left;
     font-size: 140%;
     font-weight:700;
-    /*letter-spacing:3px;
-    margin-top:8px;
-    padding:5px 0 0 3px ;
-    height:20px;
-    width:200px;
-    color:#333;*/
+
 }
 
 #question-title{
@@ -380,8 +359,7 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
 
 .header-table{
     width:100%;
-    /*solve template header space problem
-    margin-top:-12px;*/
+
 }
 
 .header-table a{
@@ -445,8 +423,7 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
 }
 
 .highlight-box{
-    /*letter-spacing:1px;
-    color:#735005;*/
+
 }
 
 .highlight-box p{
@@ -855,6 +832,7 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
 }
 
 /*adjustment for editor preview*/
+/*
 .wmd-preview pre{
     background-color:#E7F1F8;
 
@@ -874,7 +852,6 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     margin-bottom:-10px;
     width:600px;
     color:#aaa;
-    /*letter-spacing:1px;*/
 
 }
 
@@ -888,7 +865,6 @@ h4 {display:block;font-size:90%; font-family:Verdana;color:#ccc;}
     margin:5px 0 5px 0;
 }
 
-/* 2 textarea resizer styles */
 div.grippie {
     background:#EEEEEE url(../../images/grippie.png) no-repeat scroll center 2px;
     border-color:#DDDDDD;
@@ -925,7 +901,6 @@ div.grippie {
 
 .openid-login-submit{
     padding:6px;
-    /*padding:4px;*/
     cursor:pointer;
     font-weight:bold;
     font-size:120%;
@@ -1092,11 +1067,7 @@ div.grippie {
 
 .line{
     border-bottom:1px solid #777;
-    width:650px; /*IE*/
-    /*
-    width:100% !important;
 
-    margin-bottom:20px */
 }
 
 .taglist-td{
@@ -1173,8 +1144,7 @@ form .errorlist li{
 }
 
 .revision .summary span{
-    /**background-color:yellow;
-    display:inline;*/
+
 }
 .revision h1{
     font-size:130%;
@@ -1213,7 +1183,7 @@ ins .post-tag{
     background-color: #97ff97;
 };
 
-/** PAGINATOR */
+
 .paginator {
     padding:5px 0 10px 0;
     font:normal .8em arial;
@@ -1319,15 +1289,12 @@ table.user-details td {
     width:32px;
 }
 
-#mainbar-full {
-    width:950px;
-}
+
 
 #subheader {
     border-bottom:1px solid #666666;
     clear:both;
     height:34px;
-    width:100%;
 }
 
 #tabs {
@@ -1364,7 +1331,6 @@ table.user-details td {
     margin:10px;
     overflow:auto;
     padding:10px;
-    width:90%;
 }
 
 .favorites-count-off {
@@ -1690,8 +1656,7 @@ a.comment-user:hover {
 }
 
 .revision-summary{
-    /**background-color:#FFFE9B;
-    padding:2px;*/
+
 }
 .question-title-link a{
     font-weight:bold;

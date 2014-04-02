@@ -14,6 +14,116 @@
     */
 
 
+/* Header.html */
+
+.main { padding-top: 50px; }
+.pagecenter { padding-top: 50px; }
+
+/* USERS.HTML User page */
+
+.userList { background: #fff; }
+
+.tabBar { }
+.answer-tabs { margin:20px 0px 0px; }
+
+.user-main { background-color: #fff;
+    /* margin-bottom: 30px; */
+    border-radius: 4px;
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
+    border-bottom: 2px solid #cdcdcd;
+padding: 10px 0px;}
+
+.action-body { height:40px; display:inline; }
+
+
+.action-date { height:40px; display:inline; float:right; }
+.user-stats { padding: 20px; background-color: #fff; font-size: 16px; line-height:24px;     border-radius: 4px;
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.20);
+    border-bottom: 2px solid #cdcdcd;
+border-top: 2px solid #fff; }
+
+
+
+.user-tabs { margin: 30px 0px 10px; }
+
+.user-tabs a,
+.tabsA a {
+font-size:18px;
+border: 1px solid transparent;
+padding: 10px;
+border-radius: 4px 4px 0 0; }
+
+.user-tabs a.on, .user-tabs a:hover,
+.tabsA a.on,
+.tabsA a:hover { background: #fff;
+border: 1px solid #ddd;
+color: #000;
+border-bottom-color: #fff;
+font-size: 130%;
+text-decoration: none;
+border-radius: 4px 4px 0 0;
+}
+
+
+/* USER.HTML Info */
+
+/* USER.HTML Stats.html Stats */
+
+
+.subheader { float: left;
+    font-size: 18px;
+    line-height: 34px;
+    margin-bottom: 0; }
+
+
+
+/* USER.HTML Stats Reputation.html */
+
+div#repstats, #repstats { padding: 30px 10px; background-color: #fff; }
+
+#diagram { width: 90%; height:300px; }
+
+.reputation-tracking {  border: 1px solid #ccc; padding: 20px 10px; margin-top:5px; }
+.reputation-updates { float:left;text-align:right;font-weight:bold;background:#eee;padding:2px 10px 2px 10px;margin-right:5px; }
+
+
+.positiveReputation,
+div.positiveReputation {
+    float: left;
+    min-width: 20px;
+    color: green;
+    padding-right: 5px; }
+.negativeReputation,
+div.negativeReputation {
+    float: left;
+    min-width: 20px;
+    color: red; }
+
+
+
+.user-details {
+    background: #fff;
+    box-shadow: 0 3px 0 #ddd;
+    border-radius: 3px;
+    line-height:20px;
+}
+
+
+.user-about {
+    border: 2px solid #ccc;
+    line-height: 20px;
+    overflow: auto;
+    padding: 10px;
+    width:300px;
+}
+
+
+
+.left-thumb { float: left; }
 
 #footer {
     position: absolute;
@@ -36,6 +146,10 @@
     border-radius:3px;
     border: 8px solid #dbdce0;
 }
+
+
+
+
 .main{
     padding: 38px;
     color: #222;
@@ -107,15 +221,16 @@
 }
 
 /* ___ End custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
-/*
+
 
 #masthead {
     min-height:200px;
-    background-color: #0d2134;
-    color: #fff;
-    margin-top:50px;
+    background-color: #ABCCBD;
+    color: #7DBEB8;
+    padding:20px 0px;
 }
 
+/*
 #masthead-item { padding-top: 30px; }
 
 #masthead p {
@@ -184,15 +299,12 @@
     border-right-width:4px;
 }
 */
-
+/*
 #mainbar-full { margin-top: 50px; }
-
-#askform{ background: #fff; border: 1px solid #d9e0e2; }
 
 #askform .title-desc{
     color:#999;
 }
-
 
 #askform #description{
     padding:20px 0 20px 0;
@@ -203,7 +315,7 @@
 /*letter-spacing:1px;
 background-color:#D4D0C8;*/ }
 
-
+*/
 label {
     vertical-align: middle;
 }
@@ -289,7 +401,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/*
+
 .spacer1 {
     clear: both;
     height: 6px;
@@ -297,23 +409,16 @@ a:hover {
     visibility: hidden;
 }
 
-.spacer3 {
-    clear: both;
-    height: 30px;
-    line-height: 30px;
-    visibility: hidden;
-}
 
 
 #ground {
+    margin-top:50px;
     background: none repeat scroll 0 0 #EFEFEF;
     border-top: 1px solid #CCCCCC;
     padding: 20px 0px;
     text-align: center;
 }
 
-*/
-/*
 
 #listA .qstA {
     border-top: 1px dashed #CCCCCE;
@@ -433,7 +538,7 @@ a:hover {
     padding: 0 0 5px;
 }
 
-/*
+
 .boxA {
     background: none repeat scroll 0 0 #888A85;
     margin-bottom: 8px;
@@ -566,9 +671,7 @@ a:hover {
 }
 
 .paginator-container {
-    float: right;
-    padding: 10px 0;
-}
+    padding: 10px 0;  }
 
 .paginator-container-left {
     padding: 5px 0 10px;
@@ -658,16 +761,15 @@ a.medal:hover {
     text-decoration: none;
 }
 
-
+.stat-header { border-bottom: 3px solid #888; padding: 10px 0px 5px; }
 
 
 .tabsB {
     display: block;
-    float: left;
-    font-weight: bold;
-    height: 20px;
     position: relative;
+    float: right;
 }
+
 
 .tabsB a.on,
 .tabsB a:hover {
@@ -675,7 +777,7 @@ a.medal:hover {
     color: #000;
 }
 
-
+#user-tags { padding-top:30px; }
 
 .tabsB a {
     background: none repeat scroll 0 0 #EEEEEE;
@@ -683,10 +785,9 @@ a.medal:hover {
     color: #777777;
     display: block;
     float: left;
-    height: 22px;
     line-height: 28px;
     margin: 5px 0 0 4px;
-    padding: 0 11px;
+    padding: 0 4px;
     text-decoration: none;
 }
 
@@ -702,7 +803,6 @@ a.medal:hover {
 
 .headQuestions {
     font-size: 22px;
-    float:left;
 }
 
 .headAnswers {
@@ -1218,28 +1318,19 @@ ins .post-tag {
 
 .count {
     color: #000;
-    font-size: 180%;
     font-weight: 700;
 }
 
+
+/*
 .scoreNumber {
     color: #333;
     font-size: 24px;
     line-height: 30px;
 }
+*/
 
-.user-details {
-    font-size: 13px;
-}
 
-.user-about {
-    background-color: #EEEEEE;
-    height: 200px;
-    line-height: 20px;
-    overflow: auto;
-    padding: 10px;
-    width: 90%;
-}
 
 .user-edit-link {
     background: url("../images/edit.png") no-repeat scroll 0 0 transparent;
@@ -1274,12 +1365,12 @@ ins .post-tag {
     overflow: hidden;
     padding: 11px 0;
 }
-
+/*
 .user-info-table {
     margin-bottom: 10px;
 }
 
-
+*/
 .narrow .stats {
     background: none repeat scroll 0 0 transparent;
     float: left;
@@ -1462,10 +1553,11 @@ div.started .reputation-score {
     color: #0077CC;
     font-weight: bold;
 }
-
+/*
 .answer-title-link a {
     color: #333333;
 }
+*/
 
 .post-type-1 a {
     font-weight: bold;
@@ -1951,31 +2043,16 @@ div.dialog .dialog-buttons { margin: 0px;
     padding-bottom: 10px;
 }
 
-.post-controls {
-}
+.post-controls { }
 
-#question-controls .tags {
-    margin: 0px;
-    float:left;
-}
+#question-controls .tags { }
 
-.post-update-info-container {
-}
-
-.post-update-info-user {
-}
-.post-update-info {
-
-}
-
-.post-update-info p {
-
-}
-
-.post-update-info img {
-    float: left;
-    margin: 4px 8px 0 0;
-}
+#list-submission1 {  }
+.post-update-info-container {  }
+.post-update-info-user { }
+.post-update-info { }
+.post-update-info p { }
+.post-update-info img { ; }
 
 
 #list-submission {
@@ -2084,13 +2161,13 @@ p.signup_p {
 
 /*______ SIDEBAR ________*/
 
+#rightbar { float: right; }
+
 
 .boxC img { float: left; margin-right:10px; }
 
 
 .boxC p {  font-size: 13px; }
-
-
 
 .boxC p.nomargin {
     margin: 0;
@@ -2189,13 +2266,9 @@ span.comment-chars-left.warn {
 
 
 
-.comments-container {
-    clear: both;
-}
+.comments-container {  }
 
-.comments-container {
-    padding: 0;
-}
+.comments-container {  }
 
 .answered-by-owner .comments-container {
     background-color: #E6ECFF;
@@ -2655,22 +2728,9 @@ div.short-summary { /* Containing div must have a position value */
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 1px solid #ECEFF0; }
+    border-bottom: 3px solid #cdcdcd;
+    border-radius: 3px; }
 
-
-
-div.short-summary a.biglink { /* Make whole home page topic div clickable to topic permalink (override individual exceptions below) */
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    /*text-decoration:underline;  Makes sure the link   doesn't get underlined */
-    z-index: 1;
-    background-color:white; /*workaround to make clickable in IE */
-    opacity: 0; /*workaround to make clickable in IE */
-    filter: alpha(opacity=1); /*workaround to make clickable in IE */
-}
 
 
 .posted, .topthumb { /* Specify divs that contain links within topic divs on item.html/home page/etc. so they are clickable */
@@ -2678,21 +2738,20 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
     z-index: 10; }
 
 
-.short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 5px solid #ddd;}
+.short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 3px solid #ddd;}
 
 
-.headline h3, .headline h3 a { color: #248dc1; padding: 5px 0px; margin: 0px; font-size: 20px; font-family: 'Montserrat', sans-serif; }
+.headline h3, .headline h3 a { margin: 0px; font-size: 20px; line-height:24px; background:#eee; font-family: 'Montserrat', sans-serif; }
 
-.top-poster { float: right;
-    text-align: right; }
+.top-poster { float: right; text-align: right; }
 
 .top-post-content { font-size: 18px; margin-top: 10px; color: #333;}
 
 
 
-.counts { display: inline; color: #ccc; float:right; text-align: right; }
+.counts { display: inline; color: #aaa; text-align: right; }
 
-.item-count { display: inline; font-weight: bold; color: #ccc; margin-left:10px;  }
+.item-count { display: inline; font-weight: bold; color: #aaa;  }
 
 
 .empty-topic, .posted a { font-size: 14px; color: #666; font-weight:bold; }
@@ -2713,8 +2772,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 }
 
 
-
-
+/*
 
 .votes-section { margin-right: 20px; float: left; width: 500px; height:100px; }
 .votes-section h2 { font-size: 160%; float: left; padding-right: 30px; }
@@ -2724,17 +2782,19 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 
 #questionsblock { margin-right: 20px; float: left; width: 500px; }
-.user-stats-table  { width: 500px; }
+
 
 .topics-section { margin-right: 20px; float: left; width: 500px; }
 .topics-section h2 { font-size: 160%; }
 
 .posts-section { float: right; width: 500px; }
 .posts-section h2 { font-size: 160%; }
-
+*/
 
 
 /*___ LINES ____*/
+
+
 
 .answer {
     border-bottom: 1px solid #ECEFF0;
@@ -2746,10 +2806,8 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 .answer-body { float: left; margin: 10px 0px 0px 10px; }
 .answer-body p, .question-body p { font-size: 18px; }
-.post-update-info a, .post-update-info a { font-size: 14px; line-height: 15px; }
 .author-name a { font-size: 14px; font-weight: bold; color: #444; }
-
-
+.question-body {  }
 
 
 .search-options { padding: 5px 10px 10px 10px; font-size: 14px; }
@@ -2782,19 +2840,19 @@ a.medal { background: none; }
  */
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+
+
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
+
 body {
     padding-bottom: 70px;
     min-height: 2000px;
-    margin-top: 40px;
-    padding-top: 90px;
-}
+    margin-top: 50px;
 
-.navbar-static-top {
-    margin-bottom: 19px;
 }
 article,
 aside,
@@ -3066,9 +3124,9 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #f2f2f2;
-    margin-top: 40px;
-    padding-top: 90px;
+    background-color: #F5F5EB;
+;
+
 }
 
 input,
@@ -3393,7 +3451,7 @@ dl {
 }
 dt,
 dd {
-    line-height: 1.42857143;
+    line-height: 1.7;
 }
 dt {
     font-weight: bold;
@@ -3405,14 +3463,15 @@ dd {
     .dl-horizontal dt {
         float: left;
         width: 160px;
-        overflow: hidden;
         clear: left;
         text-align: right;
         text-overflow: ellipsis;
-        white-space: nowrap;
+       /* white-space: nowrap;
+        overflow: hidden;*/
     }
     .dl-horizontal dd {
         margin-left: 180px;
+
     }
 }
 abbr[title],
@@ -6286,31 +6345,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
     max-width: none;
 }
-.tabBar {
-}
-.answer-tabs { margin:20px 0px 0px; }
-
-
-.tabsA {
-    display: block; float:right; }
-
-
-.tabsA a {
-    font-size:18px;
-    border: 1px solid transparent;
-    padding: 10px;
-    border-radius: 4px 4px 0 0; }
-
-
-.tabsA a.on,
-.tabsA a:hover { background: #fff;
-    border: 1px solid #ddd;
-    color: #000;
-    border-bottom-color: #fff;
-    font-size: 130%;
-    text-decoration: none;
-    border-radius: 4px 4px 0 0;
-}
 
 
 .nav-tabs {   }
@@ -6574,12 +6608,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     text-decoration: none;
 }
 
-
+.navbar-fixed-top {box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
+    -webkit-transform: translateZ(0); background-color: rgba(255,255,255,0.9); }
 
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
-        margin-left: -15px; color: #fff; font-family: 'Montserrat', sans serif;
+        margin-left: -15px; color: #2828B9; font-family: 'Montserrat', sans serif;
     }
 }
 .navbar-toggle {
@@ -6612,7 +6647,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 }
 .navbar-nav {
-    margin: 7.5px -15px;
+    margin: 8px -15px;
 }
 .navbar-nav > li > a {
     padding-top: 10px;
@@ -6769,8 +6804,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         margin-right: 0;
     }
 }
-.navbar-default {
-    background-color: #2f3f4e; }
+.navbar-default { }
 
 /*
 box-shadow: inset 0 1px #fff, 0 1px 4px rgba(34,25,25,0.5);
@@ -6780,11 +6814,11 @@ background-color: rgba(255,255,255,0.8);*/
 }
 
 .navbar-default .navbar-brand {
-    color: #fff;
+    color: #00184D;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #5e5e5e;
+    color: #2828B9;
     background-color: transparent;
 }
 .navbar-default .navbar-text {

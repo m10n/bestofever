@@ -2,11 +2,9 @@
 
         <!-- from readers.py-->
 <div class="tabsa">
-<ul class="nav nav-tabs">
     <li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
         <li> <a id="trending" href="{{ base_url }}trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours">trending</a></li>
         <li><a id="newest" href="{{ base_url }}newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists">newest</a></li>
         <li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists">most voted</a></li>
-</ul>
 </div>
 

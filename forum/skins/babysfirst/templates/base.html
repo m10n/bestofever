@@ -1,24 +1,35 @@
 {% extends "base_content.html" %}
 
-<!--{% block page_center %}
+
 {% block full_width_banner %}{% endblock %}
-    {% block site_width_banner %}{% endblock %}
-            <div id="leftCol">
-                <div class="col-md-2">
-                    {% block sidebar %}
-                    {% endblock%}</div>
-            </div>
-            <div id="CARight">
-                <div class="col-md-10 col-md-offset-2">
-                    {% block content %}
-                    {% endblock%}
-                    </div>
-            </div>
+{% block site_width_banner %}{% endblock %}
 
-            <div id="tail" style="clear:both;">
-                {% block tail %}
-                {% endblock %}
-            </div>
-        <div class="spacer3"></div>-->
 
+{% block page_center %}
+<div class="row clearfix">
+  <div class="pagecenter">
+        <div id="leftCol" class="col-md-2">
+            {% block sidebar %}
+            {% endblock%}
+        </div>
+        <div id="centerCol" class="col-md-7">
+            {% block content %}
+            {% endblock%}
+        </div>
+        <div id="rightbar" class="col-md-3">
+            {% block rightbar %}
+            {% endblock%}
+        </div>
+  </div>
+        <div id="tail" style="clear:both;">
+            {% block tail %}
+            {% endblock %}
+        </div>
+</div>
 {% endblock %}
+
+
+
+
+
+

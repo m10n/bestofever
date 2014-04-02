@@ -3,10 +3,15 @@
 {% load extra_tags %}
 {% load user_tags %}
 {% block usercontent %}
-        <div style="padding-top:5px;font-size:13px;">
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="user-stats">
         {% for act in activities %}
-            {% activity_item act request.user %} 
+            {% activity_item act request.user %}
         {% endfor %}
         </div>
+    </div>
+</div>
 {% endblock %}
 

@@ -51,6 +51,7 @@ def question_list_item(parser, token):
     tokens = token.split_contents()[1:]
     return QuestionItemNode(tokens[0], argument_parser(tokens[1:]))
 
+
 @register.tag
 def subscription_list_item(parser, token):
     tokens = token.split_contents()[1:]
