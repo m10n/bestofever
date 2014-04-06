@@ -15,26 +15,16 @@
         {% if settings.GOOGLE_SITEMAP_CODE %}
         <meta name="google-site-verification" content="{{ settings.GOOGLE_SITEMAP_CODE }}" />
         {% endif %}
-        <link rel="shortcut icon" href="{{ settings.APP_FAVICON }}" />
-
-
-
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="shortcut icon" href="{{ settings.APP_FAVICON }}" />
 
-         <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
-                 <link href="{% media  "/media/style/style.css" %}" rel="stylesheet" type="text/css" />
+        <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
+        <link href="{% media "/media/style/style.css" %}" rel="stylesheet" type="text/css" />
         {% if settings.USE_CUSTOM_CSS|or_preview:request %}
         <!-- Bootstrap -->
         {% endif %}
-
-
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{% media  "/media/js/bootstrap.min.js" %}"></script>
 
         <!--[if IE 6]>
         <style type="text/css">
@@ -71,6 +61,12 @@
             }
         /*]]>*/
         </script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{% media  "/media/js/bootstrap.min.js" %}"></script>
+
+        <script type="text/javascript" src="{% media "/media/tinymce/tinymce.min.js" %}"></script>
+        <script type="text/javascript" src="{% media "/media/masonry/masonry.pkgd.min.js" %}"></script>
+
         <script type='text/javascript' src='{% media  "/media/js/osqa.main.js" %}'></script>
 
         {% if settings.USE_CUSTOM_HEAD|or_preview:request %}
