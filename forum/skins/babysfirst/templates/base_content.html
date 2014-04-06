@@ -6,7 +6,7 @@
 
 {% load i18n extra_tags extra_filters markup ui_registry %}
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>{% block after_head_js %}{% endblock %}
+    <head>
         <title>{% block fulltitle %}{% block title %}{% endblock %} - {{ settings.APP_SHORT_NAME }}{% endblock %}</title>
         <meta name="description" content="{% block metadescription %}{{ settings.APP_DESCRIPTION }}{% endblock %}" />
         <meta name="keywords" content="{% block metakeywords %}{{ settings.APP_KEYWORDS }}{% endblock %}" />
@@ -32,6 +32,20 @@
         </style>
         <![endif]-->
         {% block forestyle %}{% endblock %}
+
+        {% if settings.GOOGLE_ANALYTICS_KEY %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_KEY }}']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        {% endif %}
 
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
@@ -76,6 +90,8 @@
 
         <script type='text/javascript' src="{% media  '/media/js/osqa.main.js' %}"></script>
 
+        {% block after_head_js %}{% endblock %}
+
         {% if settings.USE_CUSTOM_HEAD|or_preview:request %}
             {{ settings.CUSTOM_HEAD|or_preview:request|safe }}
         {% endif %}
@@ -94,57 +110,34 @@
     {% block masthead %}{% endblock%}
     {% block page_center %}
     <div class="container-fluid">
-            <div class="row clearfix">
-                {% block content %}
-                <div class="col-md-12" id="full-col">
-                    {% endblock%}
-                </div>
+        <div class="row clearfix">
+            {% block content %}
+            <div class="col-md-12" id="full-col">
             </div>
-            <div id="tail">
-                {% block tail %}
-                {% endblock %}
-            </div>
-        <div class="spacer3"></div>
-        {% endblock %}
-        <div id="ground">
-        {% include "footer.html" %}
+            {% endblock %}
+        </div>
+        <div id="tail" style="clear:both;">
+            {% block tail %}
+            {% endblock %}
         </div>
     </div>
-
-    <!--
+    <div class="spacer3"></div>
+    {% endblock %}
     {% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
     {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}
         {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
     {% endifequal %}
-    {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "below" %}
+    <div id="ground">
+        {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
         {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-    {% endifequal %}
-    {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
-        {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-    {% endifequal %}
-    {% else %}
-    {% endif %}-->
-    {% block endjs %}
-    {% endblock %}
+        {% else %}
+        {% include "footer.html" %}
+        {% endifequal %}
+    </div>
+    {% endif %}
 
 <!--    {% block full_width_banner %}{% endblock %}
     {% block site_width_banner %}{% endblock %} -->
-
-
-        {% if settings.GOOGLE_ANALYTICS_KEY %}
-            <script type="text/javascript">
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', '{{ settings.GOOGLE_ANALYTICS_KEY }}']);
-                _gaq.push(['_trackPageview']);
-
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-        {% endif %}
-
 
         <!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
         <div class="notify" style="display:none">
@@ -157,7 +150,8 @@
             {% endautoescape %}
             <a id="close-notify" onclick="notify.close(true)">&#215;</a>
         </div>
-
+    {% block endjs %}
+    {% endblock %}
 </body>
 </html>
 <!-- end template base_content.html -->
