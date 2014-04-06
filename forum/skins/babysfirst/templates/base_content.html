@@ -87,41 +87,36 @@
     {% block masthead %}{% endblock%}
     {% block page_center %}
     <div class="container-fluid">
-       <div class="
             <div class="row clearfix">
                 {% block content %}
                 <div class="col-md-12" id="full-col">
                     {% endblock%}
                 </div>
             </div>
-        </div>
-            <div id="tail" style="clear:both;">
+            <div id="tail">
                 {% block tail %}
                 {% endblock %}
             </div>
-        </div>
         <div class="spacer3"></div>
-    {% endblock %}
+        {% endblock %}
+        <div id="ground">
+        {% include "footer.html" %}
+        </div>
+    </div>
+
+    <!--
     {% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
     {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}
-    <div id="custom_footer">
         {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-    </div>
     {% endifequal %}
-    <div id="ground">
-        {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
-        {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-        {% else %}
-        {% include "footer.html" %}
-        {% endifequal %}
-    </div>
     {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "below" %}
-    <div id="custom_footer">
         {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
-    </div>
+    {% endifequal %}
+    {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
+        {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
     {% endifequal %}
     {% else %}
-    {% endif %}
+    {% endif %}-->
     {% block endjs %}
     {% endblock %}
 
