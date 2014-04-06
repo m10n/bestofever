@@ -16,7 +16,6 @@
                  {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
                       {% else %}<img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
                  {{ post.score }}
-
                  {% endifequal %}
 
                  <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}    {{ vote.node.score }}
