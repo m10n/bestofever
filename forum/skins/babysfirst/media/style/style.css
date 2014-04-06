@@ -989,16 +989,22 @@ span.form-error {
     font-weight: normal;
     margin-left: 5px;
 }
-
-p.form-item {
-    margin: 0;
-}
-
 .post-comments a {
     color: #888888;
     padding: 0 3px 2px;
 }
 
+
+
+/****** ask.html ******/
+
+#id_title { height: 50px; }
+
+.form-item { padding: 10px 0px; }
+
+p.form-item {
+    margin: 0;
+}
 
 
 

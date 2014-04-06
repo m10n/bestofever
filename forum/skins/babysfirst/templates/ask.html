@@ -3,10 +3,13 @@
 {% load i18n extra_tags extra_filters %}
 {% block title %}{% spaceless %}{% trans "Ask a question" %}{% endspaceless %}{% endblock %}
 {% block forejs %}
+
+
+        <!--
 <script type='text/javascript' src='{% media  "/media/tinymce/tinymce.min.js" %}'></script>
 <script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
 <script type='text/javascript' src='{% media  "/media/js/html_sanitizer.js" %}'></script>
-<link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" /> -->
 <script type="text/html" id="question-summary-template">
     <div class="answer-summary">
         <a href="%URL%"><div class="answer-votes">%SCORE%</div></a>
@@ -92,6 +95,7 @@
 
 
 {% block content %}
+
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil">
         </button>
 
@@ -105,6 +109,8 @@
 <div class="modal-body">
         <div id="main-body" class="ask-body">
         <div id="askform">
+
+
         <form id="fmask" action="" method="post" accept-charset="utf-8">
         {% csrf_token %}
 {% if not request.user.is_authenticated %}
