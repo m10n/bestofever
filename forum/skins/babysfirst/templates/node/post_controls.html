@@ -1,6 +1,7 @@
 {% load i18n %}
 {% spaceless %}
 {% for control in controls %}
+
     <span class="action-link">
         <a rel="nofollow" title="{{ control.title }}" class="{{ control.classes }}" href="{{ control.url }}">{{ control.text }}</a>
     </span>

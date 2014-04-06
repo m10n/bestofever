@@ -29,12 +29,7 @@
         <!-- Bootstrap -->
         {% endif %}
 
-        <script type="text/javascript" src="/tinymce/tinymce.min.js"></script>
 
-        <script type="text/javascript" src="/media/tinymce/tinymce.min.js"></script>
-
-        <script src="<?=base_url('masonry/masonry.min.js')?>"></script>
-        <script src="<?=base_url('masonry/masonry.pkgd.js')?>"></script>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -96,19 +91,20 @@
     {% block masthead %}{% endblock%}
     {% block page_center %}
     <div class="container-fluid">
-       <div class="pagecenter">
+       <div class="
             <div class="row clearfix">
                 {% block content %}
                 <div class="col-md-12" id="full-col">
                     {% endblock%}
                 </div>
             </div>
-       </div>
+        </div>
             <div id="tail" style="clear:both;">
                 {% block tail %}
                 {% endblock %}
             </div>
-    </div>
+        </div>
+        <div class="spacer3"></div>
     {% endblock %}
     {% if settings.USE_CUSTOM_FOOTER|or_preview:request %}
     {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "above" %}

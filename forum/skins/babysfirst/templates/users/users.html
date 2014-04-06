@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 <!-- users.html -->
+{% load markup %}
+{% load user_tags %}
 {% load extra_tags %}
+{% load extra_filters %}
 {% load humanize %}
+{% load smart_if %}
 {% load i18n %}
-{% block title %}{% spaceless %}{% trans "Users" %}{% endspaceless %}{% endblock %}
+{% load markup %}
+{% load ui_registry markup %}
+
+{% load ui_registry extra_filters markup %}
+
+{% load node_tags %}
+{% block title %}Users{% endblock %}
 {% block forejs %}
 <script type="text/javascript">
     //todo move javascript out
@@ -18,82 +28,21 @@
     });
 </script>
 {% endblock %}
+
+
 {% block sidebar %}
-<div class="row clearfix">
-    <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
-    <a id="modal-582288" href="#modal-container-582288" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
-    <div class="modal fade" id="modal-container-582288" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        Modal title
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
 
-    <div class="panel-group" id="panel-480263">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-829436">Collapsible Group Item #1</a>
-            </div>
-            <div id="panel-element-829436" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Anim pariatur cliche...
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-162052">Collapsible Group Item #2</a>
-            </div>
-            <div id="panel-element-162052" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Anim pariatur cliche...
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="list-group">
-        <a href="#" class="list-group-item active">Home</a>
-        <div class="list-group-item">
-            List header
-        </div>
-        <div class="list-group-item">
-            <h4 class="list-group-item-heading">
-                List group item heading
-            </h4>
-            <p class="list-group-item-text">
-                ...
-            </p>
-        </div>
-        <div class="list-group-item">
-            <span class="badge">14</span>Help
-        </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
-    </div>
-</div>
-{% endblock%}
-
+{% endblock %}
 
 
 {% block content %}
 <div class="tabBar">
-    <div class="headUsers">{% trans "Users" %}</div>
-    <div class="tabsA">
-    {{ users.paginator.sort_tabs }}
-        </div>
+    <div class="headUsers">Users</div>
+    <div class="tabsA">{{ users.paginator.sort_tabs }}</div>
 </div>
-<div id="main-body" style="width:100%">
+<div id="main-body">
     <p>
         {% if suser %}
         {% blocktrans %}users matching query {{suser}}:{% endblocktrans %}
@@ -107,7 +56,7 @@
         {% for user in users.paginator.page %}
         <div class="user">
             <ul>
-                <li class="thumb"><a href="{{ user.get_profile_url }} ">{% gravatar user 32 %}</a></li>
+                <li class="thumb"><a href="{{ user.get_profile_url }} ">{% gravatar user 60 %}</a></li>
                 <li><a {% if user.is_suspended %}class="suspended-user" {% endif %}href="{{ user.get_profile_url }}">{{ user.decorated_name }}</a></li>
                 <li>{% get_score_badge user %}</li>
             </ul>
@@ -117,81 +66,26 @@
 </div>
 {% endblock %}
 {% block tail %}
-<div class="pager">
-    {{ users.paginator.page_numbers }}
-</div>
-        </div>
-</div>
+<div class="pager">{{ users.paginator.page_numbers }}</div>
+
 {% endblock %}
 
 {% block rightbar %}
-<div class="boxC">
-    <div class="row clearfix">
-        <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
-        <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
-        <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
+{% if wrap %}<div id="{{ blockid }}">{% endif %}
 
-        <a id="modal-582288" href="#modal-container-582288" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-        <div class="modal fade" id="modal-container-582288" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Modal title
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-group" id="panel-480263">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-829436">Collapsible Group Item #1</a>
-                </div>
-                <div id="panel-element-829436" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-162052">Collapsible Group Item #2</a>
-                </div>
-                <div id="panel-element-162052" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Home</a>
-            <div class="list-group-item">
-                List header
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    List group item heading
-                </h4>
-                <p class="list-group-item-text">
-                    ...
-                </p>
-            </div>
-            <div class="list-group-item">
-                <span class="badge">14</span>Help
-            </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
-        </div>
-    </div><!--sidebar column-->
+    <div id="sidebar-profile">
+        {% if view_user and not view_user.is_anonymous %}
+       <a href="{{ view_user.get_profile_url }}"></a>
+           {{ view_user.decorated_name }}</a>
+        {% gravatar view_user 80 %}
+        {% if not view_user.is_suspended %}<br/>
+                 {{view_user.reputation|intcomma}}
+                 {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}
+                 {% else %} suspended {{ view_user.suspension.extra.publicmsg }
+    </div>
+    {% endif %}
 </div>
+{% endif %}
+
 {% endblock%}
 <!-- end users.html -->

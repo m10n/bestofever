@@ -3,17 +3,7 @@
     <a class="biglink" href="{{ question.get_absolute_url }}"></a>
                   <div id="list-row1" class="row">
                           <div class="col-md-12">
-                              <div class="counts">{% if favorite_count %}
-                                            <div class="item-count">{{question.favourite_count|intcomma}}        </div>
-                                            {% if question.favourite_count %} on{% endif %}
-                                                {% endif %}
-                                  <div class="item-count">{{question.score|intcomma}}        </div>
-                                  {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
-                                  <div class="item-count">{{question.answer_count|intcomma}}        </div>
-                                  <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
-                                  {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span></div>
-                              <!--<div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
-                              {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
+
                               <div class="media">
                                   <a class="pull-right" href="{{ question.author.get_profile_url }}">{% gravatar question.author 48 %}
                                   </a>
@@ -30,7 +20,7 @@
                                   <a href="{{ sample_answer.author.get_profile_url }}" class="pull-left"><img class="media-object">                                      {% gravatar sample_answer.author 48 %}
                                   </a>
                                   <div class="media-body">
-                                      <span class="sample-answer"><p>{{sample_answer.html|safe}}</p></span>
+                                      <span class="sample-answer">{{sample_answer.html|safe}}</span>
                                   </div>
                               </div>
                           </div>

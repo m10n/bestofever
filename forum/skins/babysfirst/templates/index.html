@@ -42,32 +42,20 @@ itemSelector: '.item'
 {% block masthead %}
 <div id="masthead">
 <div class="container">
-        <div class="row">
-            <div class="row clearfix">
-                <div class="tabBar">
-                    <div class="hiden-xs hidden-sm col-md-3 col-lg-4">
-                        <div class="headQuestions">{% include "question_list/title.html" %}</div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
-                        <div class="tabsA">{{ questions.paginator.sort_tabs }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <div class="row">
             <div class="col-md-4">
                 <div id="masthead-item">
                     <center>
                          <img src="http://static.tumblr.com/53bec08a7d086c93e69245b8739d630f/zq6vc7t/A8Fmne9jy/tumblr_static_cursor_hand.png" alt="the-brains">
-                            <br>
-                         <p>Click a list to post your own line, or start your own</p>
                     </center>
                 </div>
             </div>
             <div class="col-md-4">
                 <div id="masthead-item">
                     <center>
-                        <br>
-                          <p>Vote on a line to make it rise to the top of a list</p>
+                        <p>Vote on a line to make it rise to the top of a list</p>
+                        <p>Click a list to post your own line, or start your own</p>
+                        <p>The top voted line in a list appears here on the mainpage</p>
                     </center>
                 </div>
             </div>
@@ -77,18 +65,14 @@ itemSelector: '.item'
                         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                             Join Mowt
                         </button>
-                         <br>
-                         <p>The top voted line in a list appears here on the mainpage</p>
                     </center>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-            <div class="modal-dialog">
-                <div class="form-signin">
-                        <h3 class="heading-desc" class="modal-title" id="SignupModal">
-                            <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="form-signin">
+                                <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     Sign up for Mowt</h3>
                                 <div class="social-box">
                                     <div class="row mg-btm">
@@ -130,9 +114,22 @@ itemSelector: '.item'
                                 </div>
                         </div>
                     </div>
+            </div>
+   </div>
+
+    <div class="row clearfix">
+        <div class="tabBar">
+            <div class="hiden-xs hidden-sm col-md-3 col-lg-4">
+                <div class="headQuestions">{% include "question_list/title.html" %}</div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                <div class="tabsA">{{ questions.paginator.sort_tabs }}
                 </div>
-     </div>
- </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
 
@@ -161,10 +158,10 @@ itemSelector: '.item'
         <div id="listA">
             <div class="row">
                 {% for question in questions.paginator.page %}
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     {% question_list_item question %}
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+                {% if forloop.counter|divisibleby:4 %}
             </div>
             <div class="row">
                 {% endif %}

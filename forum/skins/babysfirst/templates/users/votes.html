@@ -11,22 +11,22 @@
 <div class="row clearfix">
     {% if votes %}
     {% for vote in votes %}
-         <div class="col-md-6 column">
              <div class="action-section">
-                      {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
+                 {% gravatar vote.node.author 48 %}
+                 {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
                       {% else %}<img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
+                 {{ post.score }}
+
                  {% endifequal %}
-                <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}</a></span>
+
+                 <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}    {{ vote.node.score }}
+                     {{ vote.node.html|safe }}</a></span>
              </div>
-         </div>
-         <div class="col-md-6 column">
              <div class="action-date">{% diff_date vote.voted_at 3 %}</div>
          </div>
     {% endfor %}
-
     {% else %}Sorry, no votes yet.
     {% endif %}
-</div>
 </div>
 {% endblock %}
 <!-- end user_votes.html -->

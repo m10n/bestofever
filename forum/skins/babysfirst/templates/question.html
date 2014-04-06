@@ -1,6 +1,12 @@
-
 {% extends "base.html" %}
 <!-- question.html -->
+
+
+{% load question_list_tags %}
+{% include "question_list/count.html" %}
+{% if request.user.is_authenticated %}
+{% tag_selector %}
+{% endif %}
 {% load node_tags %}
 {% load extra_tags %}
 {% load extra_filters %}
@@ -9,6 +15,7 @@
 {% load humanize %}
 {% load i18n %}
 {% load cache %}
+{% load ui_registry markup %}
 {% block metadescription %}{{ question.meta_description }}{% endblock %}
 {% block metakeywords %}{{question.tagname_meta_generator}}{% endblock %}
 {% block meta %}
@@ -96,112 +103,84 @@
 {% endblock %}
 
 
-
     {% block sidebar %}
-    <div class="row clearfix">
-        <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
-        <a id="modal-582288" href="#modal-container-582288" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+    <div id="sidebar-profile" class="row clearfix">
+                    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+                    {% if view_user and not view_user.is_anonymous %}
+                    <a href="{{ view_user.get_profile_url }}">
+                        {% gravatar view_user 64 %}
+                        {{ view_user.decorated_name }}<br/>
+                        {{view_user.reputation|intcomma}}
+                        {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
+                           {% endif %}
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="visible-sm visible-xs navbar-brand">Sidebar menu</span>
+                </div>
 
-        <div class="modal fade" id="modal-container-582288" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Modal title
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#">Trending</a></li>
+                        <li><a href="http://localhost:8000/questions/?sort=newest">Newest</a></li>
+                        <li><a href="http://localhost:8000/questions/?sort=mostvoted">Most Voted</a></li>
+                        <li>
+                            <a href="http://localhost:8000/tags/news/" span class="glyphicon-class"><span class="glyphicon glyphicon-globe"> News</a></span>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/tags/tech/" span class="glyphicon-class"><span class="glyphicon glyphicon-phone"> Tech</a></span>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/tags/advice/" span class="glyphicon-class"><span class="glyphicon glyphicon-heart"> Advice</a></span>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/tags/ideas/" span class="glyphicon-class"><span class="glyphicon glyphicon-certificate"> Ideas</a></span>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/tags/sf/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker"> SF</a></span>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker"> NYC</a></span>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="panel-group" id="panel-480263">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-829436">Collapsible Group Item #1</a>
-                </div>
-                <div id="panel-element-829436" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-162052">Collapsible Group Item #2</a>
-                </div>
-                <div id="panel-element-162052" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Home</a>
-            <div class="list-group-item">
-                List header
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    List group item heading
-                </h4>
-                <p class="list-group-item-text">
-                    ...
-                </p>
-            </div>
-            <div class="list-group-item">
-                <span class="badge">14</span>Help
-            </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
-        </div>
     </div>
-    <div class="boxC" id="subscription_box">
-        {% include "subscription_status.html" %}
-    </div>
-
-    {% markdown_help %}
 {% endblock%}
 
 {% block content %}
-    <div id="answer area">
-        <div class="headNormal"><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></div>
-        <div id="list-submission1" class="row">
-            <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}{% favorite_mark question request.user %}</div></div>
-            <div class="col-md-7"><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
-            <div class="col-md-4"><div class="post-update-info-container">{% contributors_info question %}
 
-            {% if question.last_edited %}
-            <div class='post-update-info post-update-info-edited'>
-                <a href="{{ question.get_revisions_url }}">{{ question.last_edited.verb }}{% diff_date question.last_edited.at %}
-                </a>
-            </div>
-                {% endif %}
-            </div></div>
+        <div class="new-section">
+<div class="list-top">
+        <div class="row">
+            <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
+            <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2></div>
+            <div class="col-md-3">{% contributors_info question %}</div>
         </div>
-        <div id="list-submission2" class="row">
-            <!--<div class="col-md-1">{% favorite_mark question request.user %}</div>-->
-            <div class="col-md-3 col-md-offset-1">{% for tag in question.tagname_list %}
+        <div class="row">
+            <div class="col-md-1">{% favorite_mark question request.user %}</div>
+            <div class="col-md-8"><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
+            <div class="col-md-3">{% post_controls question request.user %}<!--{% wiki_symbol request.user question %}--></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-8"><div class="comments-container">{% comments question request.user %}</div></div>
+            <div class="col-md-3">{% for tag in question.tagname_list %}
                 <a href="{% url tag_questions tag|urlencode %}" class="post-tag tag-link-{{ tag }}"
                    title="{% blocktrans with tag as tagname %}see questions tagged '{{ tagname }}'{% endblocktrans %}" rel="tag">{{ tag }}</a>{% endfor %}</div>
-            <div class="col-md-4">{% post_controls question request.user %}{% wiki_symbol request.user question %}</div>
         </div>
-        <div id="list-submission3" class="row">
-            <div class="col-md-12"><div class="comments-container">{% comments question request.user %}</div></div>
-        </div>
+    </div>
 </div>
 
 {% if answers %}
-
-<div class="tabBar">
-    <div class="row">
-        <div class="col-md-4"><div class="headQuestions">{% blocktrans count answers.paginator.count as counter %}One Answer:{% plural %}{{counter}} Answers:{% endblocktrans %}</div></div>
-        <div class="col-md-8"><div class="tabsA">{{ answers.paginator.sort_tabs }}</div></div>
+    <div id="list-tabs">
+        <div class="row">
+        <div class="col-md-4"><div class="headQuestions">{% blocktrans count answers.paginator.count as counter %}One line{% plural %}{{counter}} lines{% endblocktrans %}</div></div>
+        <div class="col-md-8"><div class="list-tabs">{{ answers.paginator.sort_tabs }}</div></div>
+    </div>
 </div>
 {{ answers.paginator.page_numbers }}
 {% for answer in answers.paginator.page %}
@@ -245,7 +224,6 @@
     {{ answers.paginator.page_numbers }}
 </div>
 {% endif %}
-</div>
 
 <form id="fmanswer" action="{% url answer question.id %}" method="post">
     {% csrf_token %}
@@ -256,10 +234,9 @@
     <div style="padding:10px 0 0 0;">
         {% spaceless %}
         <div class="headNormal">
-            {% if answers %}
-            {% trans "Your answer" %}
+            {% if answers %}Add a line
             {% else %}
-            {% trans "Be the first one to answer this question!" %}
+            Be the first person to add a line
             {% endif %}
         </div>
         {% endspaceless %}
@@ -305,7 +282,6 @@
                     </td>
                     {% endif %}
                 </tr>
-
             </table>
         </div>
         {{ answer.text.errors }}
@@ -342,12 +318,12 @@
 
 
 {% block rightbar %}
-{% cache 60 questions_tags settings.APP_URL question.id %}
+        {% cache 60 questions_tags settings.APP_URL question.id %}
+        <div class="boxC" id="subscription_box">{% include "subscription_status.html" %}</div>
 
+{% markdown_help %}
 <div class="boxC">
-    <p>
-        {% trans "Question tags" %}:
-    </p>
+    <p>Categories</p>
     <p class="tags">
         {% for tag in question.tags.all %}
         <a href="{% url tag_questions tag.name|urlencode %}"
@@ -356,93 +332,22 @@
         rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br/>
         {% endfor %}
     </p>
-    <p>
-        {% trans "question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
+    <p>List started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
     </p>
-    <p>
-        {% trans "question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
+    <p>List last seen <strong>{{ question.view_count|intcomma }} times</strong>
     </p>
-    <p>
-        {% trans "last updated" %}: <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
+    <p>List last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
     </p>
 </div>
 {% endcache %}
 <div class="boxC">
-    <h3 class="subtitle">{% trans "Related questions" %}</h3>
+    <h3 class="subtitle">Similar lists</h3>
     <div class="questions-related">
-
         {% for question in similar_questions %}
-        <p>
-            <a href="{{ question.get_absolute_url }}">{{ question.headline }}</a>
-        </p>
+         <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
         {% endfor %}
-
     </div>
 </div>
-<div class="boxC">
-    <div class="row clearfix">
-        <a href="#" class="btn btn-block btn-lg btn-default" type="button">Button</a><img alt="140x140" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
-        <a id="modal-582288" href="#modal-container-582288" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-        <div class="modal fade" id="modal-container-582288" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Modal title
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-group" id="panel-480263">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-829436">Collapsible Group Item #1</a>
-                </div>
-                <div id="panel-element-829436" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-480263" href="#panel-element-162052">Collapsible Group Item #2</a>
-                </div>
-                <div id="panel-element-162052" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Home</a>
-            <div class="list-group-item">
-                List header
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    List group item heading
-                </h4>
-                <p class="list-group-item-text">
-                    ...
-                </p>
-            </div>
-            <div class="list-group-item">
-                <span class="badge">14</span>Help
-            </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
-        </div>
-    </div><!--sidebar column-->
 </div>
 {% endblock%}
 

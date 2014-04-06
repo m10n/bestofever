@@ -10,7 +10,7 @@
 {% block usercontent %}
 <div class="user-stats">
         <div class="row clearfix">
-                <div class="col-md-6 column">
+                <div class="col-md-4 column">
                     <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 column">
+                <div class="col-md-4 column">
                     <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
@@ -65,7 +65,8 @@
                                         </span>
                                     </a>
                                     <div class="answer-link">
-                                        <a href="{{ answer.get_absolute_url }}">{{answer.headline}}</a>
+                                        {% gravatar answer.author 48 %}
+                                        <a href="{{ answer.get_absolute_url }}">{{answer.headline}}{{ answer.html|safe }}</a>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -75,7 +76,39 @@
                         </div>
                     </div>
                 </div>
-        </div>
+            <div class="col-md-4 column">
+                <div class="stat-header">
+                    <div class="row clearfix">
+                        <div class="col-md-4 column">
+                        </div>
+                        <div class="col-md-8 column">
+                            <div class="tabsB">{{ vode.node.paginator.sort_tabs }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        {% if votes %}
+                        {% for vote in votes %}
+                        <div class="action-section">
+                            {% gravatar vote.node.author 48 %}
+                            {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
+                            {% else %}<img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
+                            {{ post.score }}
+
+                            {% endifequal %}
+
+                 <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}    {{ vote.node.score }}
+                     {{ vote.node.html|safe }}</a></span>
+                        </div>
+                        <div class="action-date">{% diff_date vote.voted_at 3 %}</div>
+                    </div>
+                    {% endfor %}
+                    {% else %}Sorry, no votes yet.
+                    {% endif %}
+                </div>
+            </div>
+            </div>
 <div class="row clearfix">
     <div id="user-tags" class="col-md-12 column">
         <div class="stat-header">
