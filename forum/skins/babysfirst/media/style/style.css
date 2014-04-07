@@ -2548,8 +2548,8 @@ div.wmd-button-bar {
 
 
 div.short-summary { /* Containing div must have a position value */
-    position:relative; padding: 20px 10px; background: #fff;
-    margin-bottom: 8px;
+    position:relative; padding: 15px; background: #fff;
+    margin-bottom: 15px;
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
@@ -2557,6 +2557,7 @@ div.short-summary { /* Containing div must have a position value */
     border-radius: 3px; }
 
 #list-row1 { padding-bottom:10px; }
+#list-row2 { padding-bottom:4px; }
 
 .posted, .topthumb { /* Specify divs that contain links within topic divs on item.html/home page/etc. so they are clickable */
     position:relative;
@@ -2565,18 +2566,18 @@ div.short-summary { /* Containing div must have a position value */
 
 .short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 1px solid #888;}
 
-.short-summary p { font-weight: 500; font-size: 16px; margin: 0px; }
+.short-summary p { font-size: 1.1em; margin: 0px; }
 
-.headline h3 a, .headline h3 { text-align:center; margin-top: 0px; color: #00184D; font-size: 1.2em; line-height:24px; font-family: 'Helvetica Neue', sans-serif; font-weight:500; }
+.headline h3 a, .headline h3 { margin-top: 0px; color: #00184D; font-size: 1.2em; line-height:24px; font-family: 'Helvetica Neue', sans-serif; font-weight:500; }
 
 
 .top-poster { padding-top: 5px; float: right; text-align: right; }
 
 .top-post-content { font-size: 18px; margin-top: 10px; color: #333;}
 
-.counts { display: inline; color: #bbb; text-align: right; }
+.counts { float:right; display: inline; color: #bbb; font-weight: 600; font-size: .9em; }
 
-.item-count { display: inline; font-weight: bold; color: #aaa;  }
+.item-count { display: inline; color: #bbb;  }
 
 
 .empty-topic, .posted a { padding: 10px 0px; font-size: 14px; color: #888; font-weight:bold; }
