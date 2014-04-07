@@ -407,7 +407,7 @@ $(function() {
         //alert(comment_box_cursor_position);
     });
 
-    $('a.ajax-command').live('click', function(evt) {
+    $('a.ajax-command').bind('click', function(evt) {
         if (running) return false;
 
         var el = $(this);
