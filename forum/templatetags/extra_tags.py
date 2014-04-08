@@ -158,11 +158,12 @@ def diff_date(date, limen=2):
     minutes = int(diff.seconds/60)
 
     if date.year != now.year:
-        return _('on ') + dateformat.format(date, 'D, M j \'y, g:i a')
-    elif days > 2:
-        return _('on ') + dateformat.format(date, 'D M j, g:i a')
+        return _(' ') + dateformat.format(date, 'D, M j \'y, g:i a')
+    elif days > 3:
+        return _(' ') + dateformat.format(date, 'D M j, g:i a')
 
-
+    elif days == 2:
+        return _('3 days ago')
     elif days == 2:
         return _('2 days ago')
     elif days == 1:
@@ -173,6 +174,8 @@ def diff_date(date, limen=2):
         return ungettext('%(min)d ' + _("min ago"), '%(min)d ' + _("mins ago"), minutes) % {'min':minutes}
     else:
         return ungettext('%(sec)d ' + _("sec ago"), '%(sec)d ' + _("secs ago"), diff.seconds) % {'sec':diff.seconds}
+
+
 
 @register.simple_tag
 def media(url):

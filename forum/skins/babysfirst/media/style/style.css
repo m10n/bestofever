@@ -854,6 +854,7 @@ a.medal:hover {
 
 .headQuestions {
     font-size: 22px;
+
 }
 
 .headAnswers {
@@ -901,10 +902,7 @@ a.medal:hover {
     padding: 3px 3px 3px 24px;
 }
 
-.headNormal {
-    font-size: 34px;
-    padding: 10px 0px 10px 20px;
-}
+
 
 .headUser {
     font-size: 20px;
@@ -984,11 +982,7 @@ form.post-comments input {
     width: 100px;
 }
 
-span.form-error {
-    color: #990000;
-    font-weight: normal;
-    margin-left: 5px;
-}
+
 .post-comments a {
     color: #888888;
     padding: 0 3px 2px;
@@ -1072,20 +1066,7 @@ table.check-table td {
     padding-top: 10px;
 }
 
-.errors {
-    color: red;
-    line-height: 20px;
-}
 
-.error {
-    color: darkred;
-    font-size: 10px;
-    margin: 0;
-}
-
-.error-list li {
-    padding: 5px;
-}
 
 .fieldset {
     border: medium none;
@@ -1141,6 +1122,8 @@ span.form-error {
 }
 */
 
+
+/*
 #editor {
     font-size: 100%;
     line-height: 18px;
@@ -1178,7 +1161,7 @@ span.form-error {
 .preview-toggle span:hover {
     cursor: pointer;
 }
-
+*/
 .edit-content-html {
     border-bottom: 1px dotted #D8D2A9;
     border-top: 1px dotted #D8D2A9;
@@ -1630,10 +1613,7 @@ div.started .reputation-score {
 }
 
 .score {
-    color: #333333;
-    font-size: 110%;
-    font-weight: bold;
-    margin-left: 3px;
+
 }
 
 .footerLinks {
@@ -1991,6 +1971,7 @@ div.dialog .dialog-buttons { margin: 0px;
 
 #question-controls .tags { }
 
+#list-submission { margin: 0px; }
 #list-submission1 {  }
 .post-update-info-container {  }
 .post-update-info-user { }
@@ -1999,10 +1980,7 @@ div.dialog .dialog-buttons { margin: 0px;
 .post-update-info p { }
 .post-update-info img { ; }
 
-
-#list-submission {
-    margin-bottom: 10px;
-}
+.date-edit { float:left;}
 
 .admin {
     background-color: #FFF380;
@@ -2028,11 +2006,6 @@ div.dialog .dialog-buttons { margin: 0px;
     margin: 0 2px 0 1px;
 }
 
-#recaptcha_widget_div {
-    clear: both;
-    float: left;
-    width: 318px;
-}
 
 p.signup_p {
     margin: 20px 0 0;
@@ -2157,7 +2130,6 @@ a.accept-answer.on, a.accept-answer:hover {
 .post-score {
     color: #777777;
     font-size: 140%;
-    font-weight: bold;
 }
 
 .favorite-mark {
@@ -2222,12 +2194,11 @@ span.comment-chars-left {
     margin-right: 20px;
 }
 
-div.comment-tools { padding: 5px 0px; text-align: right; }
+div.comment-tools { padding: 0px; text-align: right; }
 
 div.comment-tools span.comment-tools-separator {
     float: left;
     display: block;
-    line-height: 17px;
     color: #ccc;
     font-size: 15px;
     margin-left: 1px;
@@ -2238,7 +2209,7 @@ div.comment-tools .comments-showing {
     font-size: 11px;
 }
 
-div.comment-tools a { cursor: pointer; font-size: 12px; border-top: 1px solid #e8e8e8; padding: 2px 5px 5px; }
+div.comment-tools a { cursor: pointer; font-size: 12px; border-top: 1px solid #e8e8e8; padding: 0px; }
 
 div.comment-tools a:hover {
     background-color: #777777;
@@ -2556,7 +2527,7 @@ div.short-summary { /* Containing div must have a position value */
     border-bottom: 3px solid #cdcdcd;
     border-radius: 3px; }
 
-#list-row1 { padding-bottom:10px; }
+#list-row1 {  }
 #list-row2 { padding-bottom:4px; }
 
 .posted, .topthumb { /* Specify divs that contain links within topic divs on item.html/home page/etc. so they are clickable */
@@ -2566,9 +2537,9 @@ div.short-summary { /* Containing div must have a position value */
 
 .short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 1px solid #888;}
 
-.short-summary p { font-size: 1.1em; margin: 0px; }
+.short-summary p { font-size: 1em; margin: 0px; }
 
-.headline h3 a, .headline h3 { margin-top: 0px; color: #00184D; font-size: 1.2em; line-height:24px; font-family: 'Helvetica Neue', sans-serif; font-weight:500; }
+.headline h3 a, .headline h3 { margin-top: 0px; color: #00184D; font-size: 1.1em; line-height:1.2; font-family: 'Helvetica Neue', sans-serif; font-weight:500; }
 
 
 .top-poster { padding-top: 5px; float: right; text-align: right; }
@@ -2597,6 +2568,8 @@ div.short-summary { /* Containing div must have a position value */
     color: #3060A8;
 }
 
+.headNormal {
+    font-size: 24px; }
 
 /*
 
@@ -2622,14 +2595,9 @@ div.short-summary { /* Containing div must have a position value */
 
 /*___ Question.html question page, lines ____*/
 
-.list-top { padding: 10px 0px;
-    background: #fff;
-    margin-bottom: 6px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 2px solid #dedede; }
-.list-top h2, .list-top h2 a { margin-top: 10px; margin-bottom: 0px; padding: 0px; }
+
+
+.list-top h2, .list-top h2 a { font-size: 24px; margin: 0; padding: 0; }
 
 #centerCol { /* background-color: #fff;
     border-radius: 4px;
@@ -2638,37 +2606,30 @@ div.short-summary { /* Containing div must have a position value */
 #rightbar, #leftCol { background-color: #f8f8f8; }
 
 
-#list-tabs { padding: 30px 0px 10px;}
-
-.list-tabs {  }
-
-.list-tabs { }
-.list-tabs a { font-size:18px;
-    border: 1px solid transparent;
-    padding: 10px; }
-.list-tabs a.on, .list-tabs a:hover {background: #fff;
-    border: 1px solid #ddd;
-    color: #000;
-    font-size: 130%;
-    text-decoration: none; }
+#list-tabs { padding: 30px 0 10px;}
+.list-tabs a { font-size:18px; border: 1px solid transparent; padding: 2px 8px; }
+.list-tabs a.on, .list-tabs a:hover {background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
+.tabs-headline { font-size: 20px; }
 
 
-
-.answer {
-    padding: 10px 0px;
+.answer, .list-top {
+    padding: 20px 0 10px;
     background: #fff;
     margin-bottom: 8px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 3px solid #dedede;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+    border-bottom: 2px solid #ccc;
+
 }
 
 
-.answer:hover { text-indent:5px; position:relative; background-color: #EEEEEC; }
+.answer:hover { border: 1px solid #333; }
 
-.answer-body { float: left; margin: 10px 0px 0px 10px; }
-.answer-body p, .question-body p { font-size: 18px; }
+.question-body { margin: 0; }
+.question-body p { margin:10px 0 0; }
+.answer-body { margin: 0; }
+.answer-body p { margin:10px 0 0; }
 .author-name a { font-size: 14px; font-weight: bold; color: #444; }
 .question-body {  }
 
@@ -2692,6 +2653,34 @@ div.short-summary { /* Containing div must have a position value */
 .unanswered { background: none repeat scroll 0 0 #F3E3E1; color: #6B2B28; }
 .deleted { background: none repeat scroll 0 0 #F4E7E7; }
 
+#recaptcha { clear: both; float: left; width: 318px; }
+
+.error { list-style:none; margin: 10px 0px; }
+
+.error-list li { padding: 10px;
+    list-style:none; }
+
+
+
+.post-headline { font-size: 20px; padding: 10px 0px; }
+
+
+.message {
+    background-color: #EEEEEE;
+    border: 1px solid #AAAAAA;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.message h1 {
+    font-size: 15px;
+    padding-top: 0;
+}
+
+.message p {
+    margin-bottom: 0;
+}
+
 .comments-container {  }
 
 .comment { border-top: 1px solid #eee; margin: 0; position: relative; }
@@ -2711,6 +2700,8 @@ div.short-summary { /* Containing div must have a position value */
     height: 100%;
     text-align: center;
 }
+
+
 
 
 a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert, a.comment-convert-to-question {
@@ -2782,16 +2773,15 @@ img.subscription-remove {
     font-weight: 800;
 }
 
-.questions-related {
-    font-weight: 700;
-    word-wrap: break-word;
-}
+/******* sidebar.html  *******/
 
-.questions-related p {
-    font-size: 100%;
-    line-height: 20px;
-    margin-bottom: 10px;
-}
+.questions-related {  }
+.questions-related h3, .questions-related h3 a { font-size: 16px; color: #888; line-height:1; margin:5px 0 0; padding:0; }
+.questions-related a { font-size: 12px; color: #888;}
+.questions-related p { font-size:13px; color: #999; }
+.questions-related .counts, .questions-related .top-poster { display:none;}
+.questions-related div.short-summary { border: none; background-color: #e2e2e2; padding: 5px 10px;  }
+
 
 .question-status {
     background-color: #F5F5F5;

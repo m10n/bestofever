@@ -140,7 +140,7 @@ def post_controls(post, user):
             else:
                 controls.append(post_control(_('delete'), reverse('delete_post', kwargs={'id': post.id}),
                         command=True, confirm=True))
-                 # We show the link tool if the post is an Answer. It is visible to Guests too.
+                 # benjyw We show the link tool if the post is an Answer. It is visible to Guests too.
     if post_type == "answer":
         # Answer permanent link tool
         controls.append(post_control(_('link'), reverse('answer_permanent_link', kwargs={'id' : post.id,}),
