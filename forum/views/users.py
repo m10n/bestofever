@@ -359,12 +359,16 @@ def user_profile(request, user, **kwargs):
     awards = [(Badge.objects.get(id=b['id']), b['count']) for b in
               Badge.objects.filter(awards__user=user).values('id').annotate(count=Count('cls')).order_by('-count')]
 
+    votes = user.votes.exclude(node__state_string__contains="(deleted").filter(
+            node__node_type__in=("question", "answer")).order_by('-voted_at')[:USERS_PAGE_SIZE]
+
     return pagination.paginated(request, (
     ('questions', QuestionListPaginatorContext('USER_QUESTION_LIST', _('questions'), default_pagesize=5)),
     ('answers', UserAnswersPaginatorContext())), {
     "view_user" : user,
     "questions" : questions,
     "answers" : answers,
+    "votes": votes,
     "up_votes" : up_votes,
     "down_votes" : down_votes,
     "total_votes": up_votes + down_votes,
