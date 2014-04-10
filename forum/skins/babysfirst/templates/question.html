@@ -118,7 +118,9 @@
                         {{view_user.reputation|intcomma}}
                         {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
                            {% endif %}
-
+       <!-- <img src="http://static.tumblr.com/53bec08a7d086c93e69245b8739d630f/zq6vc7t/A8Fmne9jy/tumblr_static_cursor_hand.png" alt="the-brains">
+        <p>Vote on a line to make it rise to the top of a list, Click a list to post your own line, or start your own, The top voted line in a list appears here on the mainpage</p>
+-->
         {% cache 60 questions_tags settings.APP_URL question.id %}
         <div class="boxC" id="subscription_box">{% include "subscription_status.html" %}</div>
 
@@ -141,41 +143,7 @@
             </p>
         </div>
         {% endcache %}
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <span class="visible-sm visible-xs navbar-brand">Sidebar menu</span>
-                </div>
 
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#">Trending</a></li>
-                        <li><a href="http://localhost:8000/questions/?sort=newest">Newest</a></li>
-                        <li><a href="http://localhost:8000/questions/?sort=mostvoted">Most Voted</a></li>
-                        <li>
-                            <a href="http://localhost:8000/tags/news/" span class="glyphicon-class"><span class="glyphicon glyphicon-globe"> News</a></span>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8000/tags/tech/" span class="glyphicon-class"><span class="glyphicon glyphicon-phone"> Tech</a></span>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8000/tags/advice/" span class="glyphicon-class"><span class="glyphicon glyphicon-heart"> Advice</a></span>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8000/tags/ideas/" span class="glyphicon-class"><span class="glyphicon glyphicon-certificate"> Ideas</a></span>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8000/tags/sf/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker"> SF</a></span>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker"> NYC</a></span>
-                        </li>
-                    </ul>
-                </div>
     </div>
 {% endblock%}
 
@@ -289,7 +257,7 @@
 
 
 
-
+</div>
 {% endblock %}
 
 <!-- end question.html -->

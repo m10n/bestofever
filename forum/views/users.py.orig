@@ -23,7 +23,7 @@ from forum.modules import ui
 from forum.utils import pagination
 from forum.views.readers import QuestionListPaginatorContext, AnswerPaginatorContext
 from forum.settings import ONLINE_USERS
- 
+
 import time
 import datetime
 import decorators
@@ -218,7 +218,7 @@ def award_points(request, id):
     return {'commands': {
             'update_profile_karma': [user.reputation]
         }}
-    
+
 
 @decorate.withfn(decorators.command)
 def suspend(request, id):
@@ -372,7 +372,7 @@ def user_profile(request, user, **kwargs):
     "awards": awards,
     "total_awards" : len(awards),
     })
-    
+
 @user_view('users/recent.html', 'recent', _('recent activity'), _('recent user activity'))
 def user_recent(request, user, **kwargs):
     activities = user.actions.exclude(
@@ -478,7 +478,7 @@ def user_preferences(request, user, **kwargs):
             form = UserPreferencesForm(initial=preferences)
         else:
             form = UserPreferencesForm()
-            
+
     return {'view_user': user, 'form': form}
 
 

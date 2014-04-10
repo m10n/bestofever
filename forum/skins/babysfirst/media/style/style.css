@@ -112,21 +112,16 @@ padding: 10px 0px;}
 .user-stats {font-size: 16px; line-height:24px; }
 
 
-.user-tabs { margin: 30px 0px 10px; }
+
+
+.user-tabs { margin: 30px 0 10px; }
 
 .user-tabs a,
-.tabsA a {
-font-size:18px;
-padding: 10px;  }
+.tabsA a { font-size:18px; padding: 10px;  }
 
 .user-tabs a.on, .user-tabs a:hover,
 .tabsA a.on,
-.tabsA a:hover { background: #fff;
-border: 1px solid #ddd;
-color: #000;
-font-size: 130%;
-text-decoration: none;
-}
+.tabsA a:hover { background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
 
 
 /* USER.HTML Info */
@@ -193,7 +188,7 @@ div.negativeReputation {
 
 /* ___ Begin custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
 
-#myModal { width: 400px; }
+#myModal { width: 400px; clear:both; }
 
 .form-signin {
     max-width: 400px;
@@ -205,9 +200,6 @@ div.negativeReputation {
     border-radius:3px;
     border: 8px solid #dbdce0;
 }
-
-
-
 
 .main{
     padding: 38px;
@@ -281,81 +273,6 @@ div.negativeReputation {
 
 /* ___ End custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
 
-
-#masthead {
-    color: #7DBEB8;
-    padding:20px 0px;
-}
-
-/*
-#masthead-item { padding-top: 30px; }
-
-#masthead p {
-    font-size: 20px;
-    line-height: 1;
-    color: #eee;
-    font-weight: 500;
-    padding: 15px 40px 0px 40px;
-}
-
-
-#masthead .well {
-    margin-top:13%;
-    background-color:#111155;
-    border-color:#000033;
-}
-
-.icon-bar {
-    background-color:#fff;
-}
-
-@media screen and (min-width: 768px) {
-    #masthead h1 {
-        font-size: 20px;
-    }
-}
-
-.affix-top,.affix{
-    position: static;
-}
-
-
-@media (min-width: 979px) {
-    #sidebar.affix-top {
-        position: fixed;
-        top:250px;
-        width:230px;
-        bottom: 0;
-        z-index: 1000;
-        display: block;
-        background-color: #2f3f4e;}
-    }
-
-    #sidebar.affix {
-        position: fixed;
-        top:80px;
-        width:250px;
-        bottom: 0;
-        z-index: 1000;
-        display: block;
-        background-color: #2f3f4e;}
-
-#leftCol {
-    position: fixed;
-    top:250px;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    display: block;
-    background-color: #2f3f4e;}
-    }
-
-
-#sidebar li.active {
-    border:0 #eee solid;
-    border-right-width:4px;
-}
-*/
 /*
 #mainbar-full { margin-top: 50px; }
 
@@ -1405,11 +1322,7 @@ div.started .reputation-score {
     float: left;
 }
 
-.answer-summary {
-    clear: both;
-    display: block;
-    padding: 3px;
-}
+/*
 
 .answer-votes {
     background-color: #EEEEEE;
@@ -1424,7 +1337,7 @@ div.started .reputation-score {
     text-decoration: none;
     width: 20px;
 }
-
+*/
 .vote-count {
     color: #777777;
     font-size: 160%;
@@ -2045,36 +1958,6 @@ p.signup_p {
 .sidebar-box ul li a:hover { color: #e2edfa; background-color:#092f42; }
 
 
-.bs-glyphicons .glyphicon {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 24px;  }
-
-.bs-glyphicons .glyphicon-class {
-    display: block;
-    text-align: center;
-    word-wrap: break-word; }
-
-.bs-glyphicons-list {
-    list-style: none; padding-left: 0; }
-
-
-.bs-glyphicons li {
-    float: left;
-    width: 50%;
-    padding: 10px 0px;
-    text-align: center;
-    border: 2px solid #fff;
-    color: #092f42;
-    background-color: #e2edfa;
-    -moz-transition: background-color .4s;
-    -o-transition: background-color .4s;
-    -webkit-transition: background-color .4s;
-    -ms-transition: background-color .4s;
-    transition: background-color .4s; }
-
-.bs-glyphicons li:hover { background: red; color: white; }
-
 
 
 /*______ SIDEBAR ________*/
@@ -2510,9 +2393,45 @@ div.wmd-button-bar {
 /**** questions.html, index.html **********/
 
 
-.tabBar { padding:20px 0px 40px; }
+.bs-glyphicons .glyphicon { }
 
-.tabsA { padding:20px 0px; }
+.glyphicon-class { padding:0; }
+
+
+.bs-glyphicons li {  }
+
+.bs-glyphicons li:hover {  }
+
+
+
+.masthead-item { padding: 20px; text-align:center;}
+
+#masthead p {
+    font-size: 20px;
+    line-height: 1;
+    color: #eee;
+    font-weight: 500;
+    padding: 15px 40px 0px 40px;
+}
+
+
+#masthead .well {
+    margin-top:13%;
+    background-color:#111155;
+    border-color:#000033;
+}
+
+
+
+.tabBar { padding:0; margin:0; }
+
+.tabsA { padding:20px 0; }
+
+
+.home-header, .home-tabs { padding: 0; margin: 10px 0 0; float:none; }
+.home-tabs a { margin:0 10px;  }
+
+.home-tabs a.on, .home-tabs a:hover { background: #fff; text-decoration: none; }
 
 
 /********* item.html **********/
@@ -2528,7 +2447,7 @@ div.short-summary { /* Containing div must have a position value */
     border-radius: 3px; }
 
 #list-row1 {  }
-#list-row2 { padding-bottom:4px; }
+#list-row2 { padding-bottom:2px; }
 
 .posted, .topthumb { /* Specify divs that contain links within topic divs on item.html/home page/etc. so they are clickable */
     position:relative;
@@ -2546,15 +2465,15 @@ div.short-summary { /* Containing div must have a position value */
 
 .top-post-content { font-size: 18px; margin-top: 10px; color: #333;}
 
-.counts { float:right; display: inline; color: #bbb; font-weight: 600; font-size: .9em; }
+.counts { float:right; display: inline; color: #bbb; font-weight: 500; font-size: .9em; padding: 0 0 5px; }
 
 .item-count { display: inline; color: #bbb;  }
 
 
-.empty-topic, .posted a { padding: 10px 0px; font-size: 14px; color: #888; font-weight:bold; }
+.empty-topic, .posted a { padding: 10px 0px; font-size: 14px; color: #999; font-weight:500; }
 
 .posted a:hover { text-decoration:underline; color: #5916FE; }
-.posted-date a { font-size: 14px; color: #999; font-style:italic;  }
+.posted-date a { font-size: .9em; font-weight: 300; color: #aaa; font-style:italic;  }
 
 
 .topthumb { float:left; margin-right: 18px; }
@@ -2599,11 +2518,11 @@ div.short-summary { /* Containing div must have a position value */
 
 .list-top h2, .list-top h2 a { font-size: 24px; margin: 0; padding: 0; }
 
-#centerCol { /* background-color: #fff;
+#centercol { /* background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     border: 1px solid #cdcdcd; */ }
-#rightbar, #leftCol { background-color: #f8f8f8; }
+#rightbar, #leftbar {  }
 
 
 #list-tabs { padding: 30px 0 10px;}
@@ -2776,7 +2695,7 @@ img.subscription-remove {
 /******* sidebar.html  *******/
 
 .questions-related {  }
-.questions-related h3, .questions-related h3 a { font-size: 16px; color: #888; line-height:1; margin:5px 0 0; padding:0; }
+.questions-related h3, .questions-related h3 a { font-size: 1em; color: #888; line-height:1; margin:5px 0 0; padding:0; }
 .questions-related a { font-size: 12px; color: #888;}
 .questions-related p { font-size:13px; color: #999; }
 .questions-related .counts, .questions-related .top-poster { display:none;}
@@ -2941,7 +2860,7 @@ sub {
     bottom: -.25em;
 }
 img {
-    border-radius:5px;
+    border-radius:3px;
 }
 svg:not(:root) {
     overflow: hidden;
@@ -3140,10 +3059,7 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #f8f8f8;
-;
-
-}
+    background-color: #efefef; }
 
 input,
 button,
@@ -6440,6 +6356,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
     margin-left: 2px;
 }
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {

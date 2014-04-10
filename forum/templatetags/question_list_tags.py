@@ -9,6 +9,9 @@ from django.conf import settings as djsettings
 
 register = template.Library()
 
+
+
+
 class QuestionItemNode(template.Node):
     template = template.loader.get_template('question_list/item.html')
 
@@ -45,6 +48,7 @@ class SubscriptionItemNode(template.Node):
             'subscription': self.subscription.resolve(context),
             'signature_type': self.options.get('signature_type', 'lite'),
         }))
+
 
 @register.tag
 def question_list_item(parser, token):

@@ -40,34 +40,41 @@ itemSelector: '.item'
 
 {% block masthead %}
 <div id="masthead">
-<div class="container">
-   <div class="row">
-            <div class="col-md-4">
-                <div id="masthead-item">
-                    <center>
-                         <img src="http://static.tumblr.com/53bec08a7d086c93e69245b8739d630f/zq6vc7t/A8Fmne9jy/tumblr_static_cursor_hand.png" alt="the-brains">
-                    </center>
+        <div class="container">
+                <div class="row">
+                    <div class="masthead-item">
+                        <ul class="nav nav-pills">
+                                <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
+                                <li><div class="home-tabs">{{ questions.paginator.sort_tabs }}</div></li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/news/" span class="glyphicon-class"><span class="glyphicon glyphicon-globe">News</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/tech/" span class="glyphicon-class"><span class="glyphicon glyphicon-phone">Tech</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/advice/" span class="glyphicon-class"><span class="glyphicon glyphicon-heart">Advice</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/ideas/" span class="glyphicon-class"><span class="glyphicon glyphicon-certificate">Ideas</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/sf/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">SF</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">NYC</a></span>
+                                </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div id="masthead-item">
-                    <center>
-                        <p>Vote on a line to make it rise to the top of a list</p>
-                        <p>Click a list to post your own line, or start your own</p>
-                        <p>The top voted line in a list appears here on the mainpage</p>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="masthead-item">
-                    <center>
-                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            <div class="row">
+                <div class="masthead-item">
+                    <a class="btn btn-primary btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                             Join Mowt
                         </button>
-                    </center>
-                </div>
-            </div>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="form-signin">
                                 <h3 class="heading-desc" class="modal-title" id="SignupModal">
@@ -113,25 +120,11 @@ itemSelector: '.item'
                                 </div>
                         </div>
                     </div>
-            </div>
-   </div>
-
-    <div class="row clearfix">
-        <div class="tabBar">
-            <div class="hiden-xs hidden-sm col-md-3 col-lg-4">
-                <div class="headQuestions">{% include "question_list/title.html" %}</div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
-                <div class="tabsA">{{ questions.paginator.sort_tabs }}
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
-
-
 {% endblock %}
 
 

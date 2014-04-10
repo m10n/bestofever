@@ -1,0 +1,57 @@
+{% load i18n humanize extra_filters extra_tags user_tags %}
+<div class="short-summary">
+    <a class="biglink" href="{{ question.get_absolute_url }}"></a>
+    <div id="list-row1" class="row">
+        <div class="col-md-12">
+            <div class="counts">{% if favorite_count %}
+                <div class="item-count">{{question.favourite_count|intcomma}}        </div>
+                {% if question.favourite_count %} on{% endif %}
+                {% endif %}
+                <div class="item-count">{{question.score|intcomma}}        </div>
+                {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
+                <div class="item-count">{{question.answer_count|intcomma}}        </div>
+                <span class="posts" {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="status {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+                {% ifequal question.answer_count 1 %}post{% else %}posts{% endifequal %}</span>
+                <!--<div class="item-count">{{question.view_count|decorated_int|safe}}        </div>
+                {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
+            </div>
+        </div>
+    </div>
+    <div id="list-row2" class="row">
+        <div class="media">
+            <a class="pull-left" href="{{ question.author.get_profile_url }}">{% gravatar question.author 40 %}
+            </a>
+                                      <span class="headline"><h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a>
+                                      </span>
+        </div>
+
+    </div>
+    <div id="list-row3">
+        <div class="row">
+            <div class="media">
+                {% if sample_answer %}
+                <img class="media-object"><a href="{{ sample_answer.author.get_profile_url }}" class="pull-left">
+                {% gravatar sample_answer.author 40 %}</a>
+                <div class="media-body">
+                    <span class="sample-answer">{{sample_answer.html|safe}}</span>
+                </div>
+                {% else %}
+                <span class="empty-topic"><a href="{{ question.get_absolute_url }}">You could be the first!</a></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div id="list-row4">
+        <div class="row">
+            <div class="top-poster">
+                {% if sample_answer %}
+                             <span class="posted">&mdash;<a href="{{ sample_answer.author.get_profile_url }}">
+                                 {{ sample_answer.author.decorated_name }}</a></span>
+                <span class="posted-date"><a href="{{ sample_answer.get_absolute_url }}">{% diff_date question.last_activity_at %}</a></span>
+                {% else %}
+                <span class="posted-date"><a href="{{ question.get_absolute_url }}">posted {% diff_date question.last_activity_at %}</a></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
