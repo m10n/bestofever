@@ -10,7 +10,7 @@
 {% block usercontent %}
 <div class="user-stats">
     <div class="row clearfix">
-            <div class="col-md-4 column">
+            <div class="col-md-3 column">
                 <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 column">
+            <div class="col-md-3 column">
                 <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 column">
+            <div class="col-md-3 column">
                 <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
@@ -134,6 +134,32 @@
                         {% endif %}
                     </div>
             </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="stat-header">
+                <div class="row clearfix">
+                    <div class="col-md-4 column">
+                        <h4>{% blocktrans count favorite.node.paginator.count as counter %}
+                            <span class="count">{{counter}}</span> Favorites{% plural %}
+                            <span class="count">{{counter}}</span> Favorites{% endblocktrans %}
+                        </h4>
+                    </div>
+                    <div class="col-md-8 column">
+                        <div class="tabsB">{{ favorite.node.paginator.sort_tabs }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    {% if favorites %}
+                    {% for favorite in favorites %}
+                        {% question_list_item favorite.node favorite_count=yes signature_type=badges %}
+                {% endfor %}
+                {% else %}Sorry, no favorites yet.
+                {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row clearfix">
         <div id="user-tags" class="col-md-12 column">
@@ -157,5 +183,4 @@
     {% endif %}
     {% endfor %}
     </div>
-</div>
 {% endblock %}
