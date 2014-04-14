@@ -96,23 +96,25 @@
 
 
 
-.user-main { background-color: #fff;
+#user-main { background-color: #fff;
     /* margin-bottom: 30px; */
     border-radius: 4px;
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
     border-bottom: 2px solid #cdcdcd;
-padding: 10px 0px;}
+    padding: 10px;
+    margin: 20px 0;}
 
 .action-body { height:40px; display:inline; }
 
 
 .action-date { height:40px; display:inline; float:right; }
-.user-stats {font-size: 16px; line-height:24px; }
 
 
+.user-stats {font-size: 16px; line-height:24px; margin:10px 200px; }
 
+.profile-p, .profile-p a { font-size: 14px; color: #333; line-height:20px; }
 
 .user-tabs { margin: 30px 0 10px; }
 
@@ -129,9 +131,9 @@ padding: 10px 0px;}
 /* USER.HTML Stats.html Stats */
 
 
-.subheader { float: left;
-    font-size: 18px;
-    line-height: 34px;
+.subheader h4, .subheader a {
+    font-size: 20px;
+    font-weight:normal;
     margin-bottom: 0; }
 
 
@@ -289,7 +291,7 @@ div.negativeReputation {
 /*letter-spacing:1px;
 background-color:#D4D0C8;*/ }
 
-*/
+
 label {
     vertical-align: middle;
 }
@@ -734,7 +736,12 @@ a.medal:hover {
     text-decoration: none;
 }
 
-.stat-header { border-bottom: 3px solid #888; padding: 10px 0px 5px; }
+.stat-header { border-bottom: 3px solid #aaa;
+    padding: 10px 0px 5px;
+    margin-bottom: 10px;
+    background-color: #555;
+    color: #fff;
+    text-align: center; }
 
 .tabsB {
     display: block;
@@ -2425,7 +2432,12 @@ div.wmd-button-bar {
 
 .tabBar { padding:0; margin:0; }
 
-.tabsA { padding:20px 0; }
+.tabsA { padding: 8px 0;
+    text-align: center;
+    background: #ddd;
+    border: 1px solid #ccc;
+    margin: 0 190px 20px;
+}
 
 
 .home-header, .home-tabs { padding: 0; margin: 10px 0 0; float:none; }

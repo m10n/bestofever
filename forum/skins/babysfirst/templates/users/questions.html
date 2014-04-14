@@ -3,6 +3,20 @@
 {% load extra_tags question_list_tags i18n %}
 {% block usercontent %}
 <div class="user-stats">
+<div class="stat-header">
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <h4>{% blocktrans count favorites.paginator.count as counter %}
+                <span class="count">{{counter}}</span> Saved List{% plural %}
+                <span class="count">{{counter}}</span> Saved Lists{% endblocktrans %}
+            </h4>
+        </div>
+        <div class="col-md-6 column">
+            <div class="tabsB">{{ favorite.node.paginator.sort_tabs }}</div>
+        </div>
+    </div>
+</div>
+
 {% if favorites %}
     {% for favorite in favorites %}
         {% question_list_item favorite.node favorite_count=yes signature_type=badges %}

@@ -9,13 +9,40 @@
 
 {% block usercontent %}
 <div class="user-stats">
+
+<div class="row clearfix">
+    <div id="user-tags" class="col-md-4 column">
+            <h4>{% blocktrans count user_tags|length as counter %}
+                <span class="count">{{counter}}</span> Category{% plural %}
+                <span class="count">{{counter}}</span> Categories{% endblocktrans %}</h4>
+    </div>
+</div>
+<div class="row clearfix">
+    {% for tag in user_tags %}
+    <div class="col-md-2 column">
+        <a name="tags"></a>
+        <a rel="tag" class="tag-link-{{ tag.name }}"
+           title="{% blocktrans with tag.name as tag_name %}see other questions with {{view_user}}'s contributions tagged '{{ tag_name }}' {% endblocktrans %}"
+           href="{% url tag_questions tag|urlencode %}?user={{view_user.username}}">{{tag.name}}</a>
+        <span class="tag-number">&#215; {{ tag.user_tag_usage_count|intcomma }}</span><br/>
+    </div>
+    {% if forloop.counter|divisibleby:"6" %}
+    {% endif %}
+    {% endfor %}
+</div>
     <div class="row clearfix">
-            <div class="col-md-3 column">
+            <div class="col-md-4 column">
                 <div class="stat-header">
                     <div class="row clearfix">
                         <div class="col-md-4 column">
                             <a name="questions"></a>
-                            <div class="subheader"><h4>{% blocktrans count questions.paginator.count as counter %}
+                            <div class="subheader"><h4>
+                                                       {% if view_user.real_name %}
+                                                       {{view_user.real_name}}
+                                                       {% else %}
+                                                       {{view_user.decorated_name}}
+                                                       {% endif %}'s
+                                                       {% blocktrans count questions.paginator.count as counter %}
                                 <span class="count">{{counter}}</span> List{% plural %}
                                 <span class="count">{{counter}}</span> Lists{% endblocktrans %}</h4>
                             </div>
@@ -37,15 +64,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 column">
-                <div class="stat-header">
-                    <div class="row clearfix">
-                        <div class="col-md-4 column">
-                            <a name="answers"></a>
-                            <div class="subheader"><h4>{% blocktrans count answers.paginator.count as counter %}
-                                <span class="count">{{counter}}</span> Lines{% plural %}
-                                <span class="count">{{counter}}</span> Lines{% endblocktrans %}</h4>
-                            </div>
+
+            <div class="col-md-4 column">
+                            <div class="stat-header">
+                                <div class="row clearfix">
+                                    <div class="col-md-4 column">
+                                        <a name="answers"></a>
+                                        <div class="subheader"><h4>
+                                                                   {% if view_user.real_name %}
+                                                                   {{view_user.real_name}}
+                                                                   {% else %}
+                                                                   {{view_user.decorated_name}}
+                                                                   {% endif %}'s
+                                                                   {% blocktrans count answers.paginator.count as counter %}
+                                            <span class="count">{{counter}}</span> Lines{% plural %}
+                                            <span class="count">{{counter}}</span> Lines{% endblocktrans %}</h4>
+                                        </div>
                         </div>
                         <div class="col-md-8 column">
                             <div class="tabsB">{{ answers.paginator.sort_tabs }}</div>
@@ -81,7 +115,7 @@
                                     <div class="media">
                                         <img class="media-object"><a href="{{ answer.author.get_profile_url }}" class="pull-right">{% gravatar answer.author 48 %}</a>
                                         <div class="media-body">
-                                            <span class="sample-answer"><a href="{{ answer.get_absolute_url }}">{{ answer.html|safe }}</a></span>
+                                            <span class="profile-p"><a href="{{ answer.get_absolute_url }}">{{ answer.html|safe }}</a></span>
                                         </div>
                                     </div>
                             </div>
@@ -100,87 +134,80 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 column">
-                <div class="stat-header">
-                    <div class="row clearfix">
-                        <div class="col-md-4 column">
-                            <h4>{% blocktrans count vote.node.paginator.count as counter %}
-                                <span class="count">{{counter}}</span> Vote{% plural %}
-                                <span class="count">{{counter}}</span> Votes{% endblocktrans %}
-                            </h4>
+
+        <div class="col-md-4 column">
+               <div class="stat-header">
+                   <div class="row clearfix">
+                       <div class="col-md-6 column">
+                           <h4>
+                               {% if view_user.real_name %}
+                               {{view_user.real_name}}
+                               {% else %}
+                               {{view_user.decorated_name}}
+                               {% endif %}'s
+                               {% blocktrans count vote.node.paginator.count as counter %}
+                               <span class="count">{{counter}}</span> Voted Line{% plural %}
+                               <span class="count">{{counter}}</span> Voted Lines{% endblocktrans %}
+                           </h4>
+                       </div>
+                       <div class="col-md-6 column">
+                           <div class="tabsB">{{ vote.node.paginator.sort_tabs }}</div>
+                       </div>
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-md-12 column">
+                       {% if votes %}
+                       {% for vote in votes %}
+                       <div class="short-summary">
+                           <div id="list-row1">
+                               <div class="col-md-12">
+                                   <div class="counts">
+                                       {% ifequal vote.value 1 %}
+                                       <img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">Upvoted
+                                       {% else %}
+                                       <img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">Downvoted
+                                       {% endifequal %}
+                                       <div class="item-count">on {% diff_date vote.voted_at 3 %}</div>
+
+                                       <span class="posted-date"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.score }} votes total</a></span>
+
+                                   </div>
+                               </div>
+                           </div>
+                           <div id="list-row2" class="row">
+                               <div class="media">
+                                   <a class="pull-right" href="{{ answer.vote.node.author.get_profile_url }}">
+                                   </a>
+                                    <span class="headline"><span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">
+                                        {{ vote.node.headline }}</a></span>
+                                    </span>
+                               </div>
+                           </div>
+                           <div id="list-row3" class="row">
+                               <div class="media">
+                                   <img class="media-object"><a href="{{ vote.node.author.get_profile_url }}" class="pull-right">{% gravatar vote.node.author 48 %}</a>
+                                   <div class="media-body">
+                                            <span class="profile-p"><a href="{{ vote.node.get_absolute_url }}">
+                                                {{ vote.node.html|safe }}</a></span>
+                                   </div>
+                               </div>
+                           </div>
+                           <div id="list-row4" class="row">
+                               <div class="top-poster">
+                                    <span class="posted">&mdash;<a href="{{ vote.node.author.get_profile_url }}">
+                                        {{ vote.node.author.decorated_name }}</a></span>
+                               </div>
+                           </div>
+                       </div>
+                       {% endfor %}
+                       {% else %}Sorry, no votes yet.
+                       {% endif %}
                         </div>
-                        <div class="col-md-8 column">
-                            <div class="tabsB">{{ vote.node.paginator.sort_tabs }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        {% if votes %}
-                        {% for vote in votes %}
-                        <div class="answer-summary">
-                        {% gravatar vote.node.author 48 %}{{ vote.node.score }}
-                             <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}
-                                 {{ vote.node.html|safe }}</a></span>
-                        {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
-                        {% else %}<img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
-                        {{ post.score }}
-                        {% endifequal %}
-                    </div>
-                    <div class="action-date">{% diff_date vote.voted_at 3 %}</div>
-                </div>
-                        {% endfor %}
-                        {% else %}Sorry, no votes yet.
-                        {% endif %}
-                    </div>
-            </div>
+                       <div class="pager">{{ votes.paginator.page_numbers }}</div>
+                   </div>
+               </div>
         </div>
-        <div class="col-md-3 column">
-            <div class="stat-header">
-                <div class="row clearfix">
-                    <div class="col-md-4 column">
-                        <h4>{% blocktrans count favorite.node.paginator.count as counter %}
-                            <span class="count">{{counter}}</span> Favorites{% plural %}
-                            <span class="count">{{counter}}</span> Favorites{% endblocktrans %}
-                        </h4>
-                    </div>
-                    <div class="col-md-8 column">
-                        <div class="tabsB">{{ favorite.node.paginator.sort_tabs }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    {% if favorites %}
-                    {% for favorite in favorites %}
-                        {% question_list_item favorite.node favorite_count=yes signature_type=badges %}
-                {% endfor %}
-                {% else %}Sorry, no favorites yet.
-                {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row clearfix">
-        <div id="user-tags" class="col-md-12 column">
-            <div class="stat-header">
-                <h4>{% blocktrans count user_tags|length as counter %}
-                    <span class="count">{{counter}}</span> Category{% plural %}
-                    <span class="count">{{counter}}</span> Categories{% endblocktrans %}</h4>
-            </div>
-        </div>
-    </div>
-    <div class="row clearfix">
-    {% for tag in user_tags %}
-        <div class="col-md-2 column">
-                    <a name="tags"></a>
-                    <a rel="tag" class="tag-link-{{ tag.name }}"
-                         title="{% blocktrans with tag.name as tag_name %}see other questions with {{view_user}}'s contributions tagged '{{ tag_name }}' {% endblocktrans %}"
-                         href="{% url tag_questions tag|urlencode %}?user={{view_user.username}}">{{tag.name}}</a>
-                    <span class="tag-number">&#215; {{ tag.user_tag_usage_count|intcomma }}</span><br/>
-        </div>
-    {% if forloop.counter|divisibleby:"6" %}
-    {% endif %}
-    {% endfor %}
-    </div>
+</div>
+
 {% endblock %}

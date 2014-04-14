@@ -5,13 +5,16 @@
 {% load markup %}
 {% load user_tags %}
 {% load extra_filters ui_registry i18n %}
-
-<div class="row clearfix">
-        <div class="col-md-6 column">
-            <div class="media">
-                <a href="#" class="pull-left">{% gravatar view_user 140 %}</a>
-                <div class="media-body">
-                    <h4 class="media-heading">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="row clearfix">
+                <div class="col-md-7">
+            <div id="user-main">
+                    <div class="media">
+                        <a href="#" class="pull-left">{% gravatar view_user 140 %}</a>
+                        <div class="media-body">
+                         <h4 class="media-heading">
                         {% if not view_user.is_suspended %}
                         {% if view_user.real_name %}
                         {{view_user.real_name}}
@@ -24,50 +27,55 @@
                         {% if view_user.is_staff %}Moderator
                         {% endif %}
                         {% endif %}
-                    <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}average votes
-                    {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}</div>
-                    {% endif %}
-                    </h4>
-                    <div class="user-about">
+                         <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
+                             {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}</div>
+                              {% endif %}
+                          </h4>
+                        <div class="user-about">
                          {% if not view_user.is_suspended %}
                          {% if view_user.about %}
                          {{view_user.about|markdown}}
                          {% endif %}
                          {% endif %}
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 column">
+                <div class="col-md-5 column">
+                    <div id="user-main">
                     <dl class="dl-horizontal">
-                        <dt><span class="glyphicon glyphicon-user">Joined</span></dt>
+                        {% if view_user.location %}
+                        <dt><span class="glyphicon glyphicon-map-marker"> Location</span></dt>
+                        <dd>{{view_user.location}}</dd>
+                        {% endif %}
+                        {% if view_user.website %}
+                        <dt><span class="glyphicon glyphicon-globe"> Website</span></dt>
+                        <dd><a rel="nofollow" target="_blank" href="{{view_user.website}}">{{view_user.website}}</a></dd>
+                        {% endif %}
+                        <dt><span class="glyphicon glyphicon-user"> Joined</span></dt>
                         <dd>{% diff_date view_user.date_joined %}</dd>
                         <!--{% if view_user.last_seen %}
                         <dt>Last seen</dt>
                         <dd><title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</dd>
                         {% endif %}-->
-                        {% if view_user.website %}
-                        <dt><span class="glyphicon glyphicon-globe">Website</span></dt>
-                        <dd><a rel="nofollow" target="_blank" href="{{view_user.website}}">{{view_user.website}}</a></dd>
-                        {% endif %}
-                        {% if view_user.location %}
-                        <dt><span class="glyphicon glyphicon-map-marker">Location</span></dt>
-                        <dd>{{view_user.location}}</dd>
-                        {% endif %}
-                    {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
                     </dl>
+                </div>
+            </div>
+
+            </div>
         </div>
     </div>
 </div>
 {% with view_user.username|slugify as user_slug %}
 <div class="row clearfix">
     <div class="col-md-12 column">
-
             <div class="tabsA">
-                {% loopregistry profile_tabs %}{% spaceless %}
+                {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
+                {% loopregistry profile_tabs %}
                 <a title="{{ tab_description }}" id="{{ tab_name }}" {% ifequal active_tab tab_name %}class="on"{% endifequal %} href="{{ tab_url }}">
                 {{ tab_title }}</a>
-                {% endspaceless %}{% endloopregistry %}
+                {% endloopregistry %}
             </div>
     </div>
 </div>

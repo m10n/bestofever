@@ -6,26 +6,96 @@
 {% load i18n %}
 
 
+<!--
+<div style="padding-top:5px;font-size:13px;">
+{% if votes %}
+{% for vote in votes %}
+<div style="clear:both;line-height:20px" >
+<div style="width:150px;float:left">{% diff_date vote.voted_at 3 %}</div>
+<div style="width:30px;float:left">
+    {% ifequal vote.value 1 %}
+    <img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
+    {% else %}
+    <img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
+    {% endifequal %}
+</div>
+    {% gravatar vote.node.author 48 %}
+    <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}</a></span>
+</div>
+{% endfor %}
+{% else %}Sorry, no votes yet.
+{% endif %}
+</div>
+end user_votes.html -->
+
 {% block usercontent %}
 <div class="user-stats">
-<div class="row clearfix">
-    {% if votes %}
-    {% for vote in votes %}
-             <div class="action-section">
-                 {% gravatar vote.node.author 48 %}
-                 {% ifequal vote.value 1 %}<img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
-                      {% else %}<img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
-                 {{ post.score }}
-                 {% endifequal %}
-
-                 <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}    {{ vote.node.score }}
-                     {{ vote.node.html|safe }}</a></span>
-             </div>
-             <div class="action-date">{% diff_date vote.voted_at 3 %}</div>
-         </div>
-    {% endfor %}
-    {% else %}Sorry, no votes yet.
-    {% endif %}
+<div class="stat-header">
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <h4>{% blocktrans count vote.node.paginator.count as counter %}
+                <span class="count">{{counter}}</span> Vote{% plural %}
+                <span class="count">{{counter}}</span> Votes{% endblocktrans %}
+            </h4>
+        </div>
+        <div class="col-md-6 column">
+            <div class="tabsB">{{ vote.node.paginator.sort_tabs }}</div>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="col-md-12 column">
+        {% if votes %}
+        {% for vote in votes %}
+        <div class="short-summary">
+            <div id="list-row1">
+                <div class="col-md-12">
+                    <div class="counts">
+                        {% ifequal vote.value 1 %}
+                        <img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">Upvoted
+                        {% else %}
+                        <img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">Downvoted
+                        {% endifequal %}
+                        <div class="item-count">on {% diff_date vote.voted_at 3 %}</div>
+
+                        <span class="posted-date"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.score }} votes total</a></span>
+
+                    </div>
+                </div>
+            </div>
+            <div id="list-row2" class="row">
+                <div class="media">
+                    <a class="pull-right" href="{{ answer.vote.node.author.get_profile_url }}">
+                    </a>
+                                    <span class="headline"><span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">
+                                        {{ vote.node.headline }}</a></span>
+                                    </span>
+                </div>
+            </div>
+            <div id="list-row3" class="row">
+                <div class="media">
+                    <img class="media-object"><a href="{{ vote.node.author.get_profile_url }}" class="pull-right">{% gravatar vote.node.author 48 %}</a>
+                    <div class="media-body">
+                                            <span class="profile-p"><a href="{{ vote.node.get_absolute_url }}">
+                                                {{ vote.node.html|safe }}</a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="list-row4" class="row">
+                <div class="top-poster">
+                                    <span class="posted">&mdash;<a href="{{ vote.node.author.get_profile_url }}">
+                                        {{ vote.node.author.decorated_name }}</a></span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}Sorry, no votes yet.
+        {% endif %}
+    </div>
+    <div class="pager">{{ votes.paginator.page_numbers }}</div>
+</div>
+    </div>
 {% endblock %}
+
+
 <!-- end user_votes.html -->

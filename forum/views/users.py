@@ -362,6 +362,9 @@ def user_profile(request, user, **kwargs):
     votes = user.votes.exclude(node__state_string__contains="(deleted").filter(
             node__node_type__in=("question", "answer")).order_by('-voted_at')[:USERS_PAGE_SIZE]
 
+    favorites = FavoriteAction.objects.filter(canceled=False, user=user)
+
+
     return pagination.paginated(request, (
     ('questions', QuestionListPaginatorContext('USER_QUESTION_LIST', _('questions'), default_pagesize=5)),
     ('answers', UserAnswersPaginatorContext())), {
@@ -369,6 +372,7 @@ def user_profile(request, user, **kwargs):
     "questions" : questions,
     "answers" : answers,
     "votes": votes,
+    "favorites": favorites,
     "up_votes" : up_votes,
     "down_votes" : down_votes,
     "total_votes": up_votes + down_votes,
@@ -414,7 +418,7 @@ def user_votes(request, user, **kwargs):
 def user_favorites(request, user, **kwargs):
     favorites = FavoriteAction.objects.filter(canceled=False, user=user)
 
-    return {"favorites" : favorites, "view_user" : user}
+    return {"view_user" : user, "favorites" : favorites }
 
 @user_view('users/subscriptions.html', 'subscriptions', _('subscription'), _('subscriptions'), True, tabbed=False)
 def user_subscriptions(request, user, **kwargs):
