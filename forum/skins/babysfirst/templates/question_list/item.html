@@ -19,10 +19,8 @@
                      </div>
                   <div id="list-row2" class="row">
                          <div class="media">
-                                  <a class="pull-left" href="{{ question.author.get_profile_url }}">{% gravatar question.author 40 %}
-                                  </a>
-                                      <span class="headline"><h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</h3></a>
-                                      </span>
+                                  <a class="pull-left" href="{{ question.author.get_profile_url }}">{% gravatar question.author 40 %}</a>
+                                      <h3><a {% if not question_summary %}title="{{ question.summary }}"{% endif %} href="{{ question.get_absolute_url }}">{{question.headline}}</a></h3>
                          </div>
 
                       </div>

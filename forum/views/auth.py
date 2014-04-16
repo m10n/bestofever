@@ -50,13 +50,6 @@ def signin_page(request):
     context for context in all_providers if context.mode == 'BIGICON' and can_show(context)
     ], sort)
 
-    smallicon_providers = sorted([
-    context for context in all_providers if context.mode == 'SMALLICON' and can_show(context)
-    ], sort)
-
-    top_stackitem_providers = sorted([
-    context for context in all_providers if context.mode == 'TOP_STACK_ITEM' and can_show(context)
-    ], sort)
 
     stackitem_providers = sorted([
     context for context in all_providers if context.mode == 'STACK_ITEM' and can_show(context)
@@ -74,9 +67,7 @@ def signin_page(request):
             'msg': msg,
             'all_providers': all_providers,
             'bigicon_providers': bigicon_providers,
-            'top_stackitem_providers': top_stackitem_providers,
             'stackitem_providers': stackitem_providers,
-            'smallicon_providers': smallicon_providers,
             },
             RequestContext(request))
 

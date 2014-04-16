@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_question.html" %}
 <!-- question.html -->
 
 
@@ -118,60 +118,25 @@
                         {{view_user.reputation|intcomma}}
                         {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
                            {% endif %}
-       <!-- <img src="http://static.tumblr.com/53bec08a7d086c93e69245b8739d630f/zq6vc7t/A8Fmne9jy/tumblr_static_cursor_hand.png" alt="the-brains">
-        <p>Vote on a line to make it rise to the top of a list, Click a list to post your own line, or start your own, The top voted line in a list appears here on the mainpage</p>
--->
-        {% cache 60 questions_tags settings.APP_URL question.id %}
-        <div class="boxC" id="subscription_box">{% include "subscription_status.html" %}</div>
-
-        {% markdown_help %}
-        <div class="boxC">
-            <p>Categories</p>
-            <p class="tags">
-                {% for tag in question.tags.all %}
-                <a href="{% url tag_questions tag.name|urlencode %}"
-                   class="tag-link-{{ tag.name }}"
-                   title="{% trans "see questions tagged"%}'{{tag.name}}'{% trans "using tags" %}"
-                rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br/>
-                {% endfor %}
-            </p>
-            <p>List started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
-            </p>
-            <p>List last seen <strong>{{ question.view_count|intcomma }} times</strong>
-            </p>
-            <p>List last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
-            </p>
-        </div>
-        {% endcache %}
-
     </div>
-{% endblock%}
+    {% endblock%}
 
 {% block content %}
-
     <div class="list-top">
         <div class="row">
             <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
             <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
-            <div class="col-md-3">{% contributors_info question %}</div>
+            <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}</div></div>
         </div>
         <div class="row">
             <div class="col-md-1">{% favorite_mark question request.user %}</div>
-            <div class="col-md-8"></div>
-            <div class="col-md-3">{% post_controls question request.user %}<!--{% wiki_symbol request.user question %}--></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
             <div class="col-md-8"><div class="comments-container">{% comments question request.user %}</div></div>
-            <div class="col-md-3">{% for tag in question.tagname_list %}
-                <a href="{% url tag_questions tag|urlencode %}" class="post-tag tag-link-{{ tag }}"
-                   title="{% blocktrans with tag as tagname %}see questions tagged '{{ tagname }}'{% endblocktrans %}" rel="tag">{{ tag }}</a>{% endfor %}</div>
+            <div class="col-md-3">{% post_controls question request.user %}<!--{% wiki_symbol request.user question %}--></div>
         </div>
     </div>
 
-
 {% if answers %}
-<div id="list-tabs">
+    <div id="list-tabs">
         <div class="row">
             <div class="col-md-4"><div class="tabs-headline">{% blocktrans count answers.paginator.count as counter %}One line{% plural %}{{counter}} lines{% endblocktrans %}</div></div>
             <div class="col-md-8"><div class="list-tabs">{{ answers.paginator.sort_tabs }}</div></div>
@@ -182,7 +147,7 @@
 {% for answer in answers.paginator.page %}
 
     <div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}{% ifequal answer.id focused_answer_id %} focusedAnswer{% endifequal %}">
-    <a name="{{ answer.id }}"></a>
+        <a name="{{ answer.id }}"></a>
          <div class="row">
              <div class="col-xs-1 col-md-1"><div class="vote-buttons">{% vote_buttons answer request.user %}</div></div>
              <div class="col-xs-11 col-md-8"><div class="answer-body">{{ answer.html|safe }}</div></div>
@@ -255,24 +220,44 @@
     </div>
 </div>
 
-
-
 </div>
 {% endblock %}
 
-<!-- end question.html -->
 
 
 {% block rightbar %}
+{% markdown_help %}
+{% cache 60 questions_tags settings.APP_URL question.id %}
 
-<div class="boxC">
-    <h3 class="subtitle">Similar lists</h3>
-    <div class="questions-related">
-        {% for question in similar_questions %}
-         <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
-        {% endfor %}
-    </div>
-</div>
+     <div class="sidebar-section">
+     <div class="panel panel-default">
+         <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
+         <div class="panel-body">
+             Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
+             Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
+             Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
+             <p class="tags">
+                 {% for tag in question.tags.all %}
+                 See more in <a href="{% url tag_questions tag.name|urlencode %}"
+                    class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                    rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
+                 {% endfor %}
+         </div>
+     </div>
+ {% endcache %}
+{% include "subscription_status.html" %}
+         <div class="sidebar-section">
+             <div class="panel panel-default">
+                 <div class="panel-heading"><h3 class="panel-title">Similar Lists</h3></div>
+                 <div class="panel-body">
+                    <div class="questions-related">
+                        {% for question in similar_questions %}
+                         <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
+                         {% endfor %}
+                    </div>
+                 </div>
+             </div>
+         </div>
 
 {% endblock%}
 

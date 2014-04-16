@@ -52,9 +52,9 @@ class AnswerSort(pagination.SimpleSort):
 class AnswerPaginatorContext(pagination.PaginatorContext):
     def __init__(self, id='ANSWER_LIST', prefix='', default_pagesize=50):
         super (AnswerPaginatorContext, self).__init__(id, sort_methods=(
-            (_('oldest'), AnswerSort(_('oldest answers'), 'added_at', _("oldest answers will be shown first"))),
-            (_('newest'), AnswerSort(_('newest answers'), '-added_at', _("newest answers will be shown first"))),
-            (_('votes'), AnswerSort(_('popular answers'), ('-score', 'added_at'), _("most voted answers will be shown first"))),
+            (_('oldest'), AnswerSort(_('oldest'), 'added_at', _("oldest lines will be shown first"))),
+            (_('newest'), AnswerSort(_('newest'), '-added_at', _("newest lines will be shown first"))),
+            (_('votes'), AnswerSort(_('most voted'), ('-score', 'added_at'), _("most voted lines will be shown first"))),
         ), default_sort=_('votes'), pagesizes=(50, 100, 200), default_pagesize=default_pagesize, prefix=prefix)
 
 class TagPaginatorContext(pagination.PaginatorContext):

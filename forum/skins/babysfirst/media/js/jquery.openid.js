@@ -7,19 +7,19 @@ var providers_large = {
         url: 'https://www.google.com/accounts/o8/id'
     },
     yahoo: {
-        name: 'Yahoo',      
+        name: 'Yahoo',
         url: 'http://me.yahoo.com/'
-    },    
+    },
 /*    aol: {
-        name: 'AOL',     
+        name: 'AOL',
         label: 'Enter your AOL screenname.',
         url: 'http://openid.aol.com/{username}'
     },
     openid: {
-        name: 'OpenID',     
+        name: 'OpenID',
         label: 'Enter your OpenID.',
         url: 'http://'
-    } 
+    }
 };
 var providers_small = {
     myopenid: {
@@ -33,7 +33,7 @@ var providers_small = {
         url: 'http://{username}.livejournal.com/'
     },
     flickr: {
-        name: 'Flickr',        
+        name: 'Flickr',
         label: 'Enter your Flickr username.',
         url: 'http://flickr.com/{username}/'
     },
@@ -95,7 +95,7 @@ var openid = {
         }
         if (providers_small) {
         	openid_btns.append('<br/>');
-	        for (id in providers_small) {       
+	        for (id in providers_small) {
 	           	openid_btns.append(this.getBoxHTML(providers_small[id], 'small', '.png'));
 	        }
         }

@@ -1,4 +1,4 @@
-{% extends "base_content.html" %}
+{% extends "base_container.html" %}
 <!-- user.html -->
 {% load extra_tags %}
 {% load extra_filters %}
@@ -29,7 +29,6 @@
 {% block sidebar %}
     <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
 
-
 {% endblock%}
 <div class="user-main">
 {% block content %}
@@ -40,6 +39,7 @@
 {% endblock %}
         </div>
 {% block rightbar %}
+<a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
 
 {% endblock%}
 

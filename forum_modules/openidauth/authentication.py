@@ -25,7 +25,7 @@ class GoogleAuthContext(ConsumerTemplateContext):
 #    human_name = 'Yahoo'
 #    icon = '/media/images/openid/yahoo.gif'
 
-    
+
 #class OpenIdUrlAuthConsumer(OpenIdAbstractAuthConsumer):
 #    pass
 

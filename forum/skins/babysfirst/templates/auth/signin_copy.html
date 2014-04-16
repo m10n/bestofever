@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-6">
+        <!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Join Mowt
+        </button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <div class="modal-dialog">
+            <div class="form-signin">
+                <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    Sign up for Mowt</h3>
+                <div class="social-box">
+                    <div class="row mg-btm">
+                        <div class="col-md-12">
+                            <a href="http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
+                                <i class="icon-facebook"></i>    Login with Facebook
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mg-btm">
+                        <div class="col-md-12">
+                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
+                                <i class="icon-twitter"></i>    Login with Twitter
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="http://localhost:8000/account/google/signin/" class="btn btn-danger btn-block" >
+                                <i class="icon-google"></i>    Login with Google
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="main">
+                    {% if msg %}
+                    <p class="error">{{ msg }}</p>
+                    {% endif %}
+                    {% for provider in stackitem_providers %}
+                    <form class="signin_form" method="POST" action="{% url auth_provider_signin provider=provider.id %}" accept-charset="utf-8">
+                        {% csrf_token %}
+                        {% include provider.stack_item_template %}
+                        <input type="hidden" class="validate_email" name="validate_email" value="yes" />
+                    </form>
+                    <input type="text" class="form-control required login" placeholder="Username" id="id_username" name="username">
+                    <input type="password" class="form-control required login" placeholder="Password" id="id_password" name="password">
+                    {% if request.user.is_anonymous %}
+                    <div class="checkbox" id="validate_email">
+                        <label>
+                            <input type="checkbox"> Verify my e-mail after I sign in
+                        </label>
+                    </div>
+                    {% endif %}
+                    <span class="clearfix"></span>
+                </div>
+                <div class="login-footer">
+                    <div class="row">
+                        <div class="col-xs-8 col-md-8">
+                            <div class="left-section">
+                                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
+                                <a href="{% url auth_local_register %}">Sign up now</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-4 pull-right">
+                            <button type="submit" class="btn btn-large btn-success pull-right">
+                                <input id="blogin" name="blogin" type="submit" value="Log In" /></button>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+

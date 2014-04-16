@@ -11,12 +11,11 @@
 <div class="user-stats">
 
 <div class="row clearfix">
-    <div id="user-tags" class="col-md-4 column">
+    <div id="profile-tags">
             <h4>{% blocktrans count user_tags|length as counter %}
                 <span class="count">{{counter}}</span> Category{% plural %}
                 <span class="count">{{counter}}</span> Categories{% endblocktrans %}</h4>
     </div>
-</div>
 <div class="row clearfix">
     {% for tag in user_tags %}
     <div class="col-md-2 column">
@@ -33,27 +32,19 @@
     <div class="row clearfix">
             <div class="col-md-4 column">
                 <div class="stat-header">
-                    <div class="row clearfix">
-                        <div class="col-md-4 column">
+                    <div class="row">
                             <a name="questions"></a>
-                            <div class="subheader"><h4>
-                                                       {% if view_user.real_name %}
-                                                       {{view_user.real_name}}
-                                                       {% else %}
-                                                       {{view_user.decorated_name}}
-                                                       {% endif %}'s
-                                                       {% blocktrans count questions.paginator.count as counter %}
-                                <span class="count">{{counter}}</span> List{% plural %}
-                                <span class="count">{{counter}}</span> Lists{% endblocktrans %}</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                    {% blocktrans count questions.paginator.count as counter %}
+                                    <span class="count">{{counter}}</span> List{% plural %}
+                                    <span class="count">{{counter}}</span> Lists{% endblocktrans %}
                             </div>
-                        </div>
-                        <div class="col-md-8 column">
-                            <div class="tabsB">{{ questions.paginator.sort_tabs }}</div>
+                                <div class="profile-tabs">{{ questions.paginator.sort_tabs }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-md-12 column">
                             {% if questions %}
                             {% for question in questions.paginator.page %}
                                 {% question_list_item question %}
@@ -61,34 +52,25 @@
                             {% else %}Sorry, no lists yet.
                             {% endif %}
                                 <div class="pager">{{ questions.paginator.page_numbers }}</div>
-                    </div>
                 </div>
             </div>
 
             <div class="col-md-4 column">
                             <div class="stat-header">
                                 <div class="row clearfix">
-                                    <div class="col-md-4 column">
                                         <a name="answers"></a>
-                                        <div class="subheader"><h4>
-                                                                   {% if view_user.real_name %}
-                                                                   {{view_user.real_name}}
-                                                                   {% else %}
-                                                                   {{view_user.decorated_name}}
-                                                                   {% endif %}'s
-                                                                   {% blocktrans count answers.paginator.count as counter %}
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            {% blocktrans count answers.paginator.count as counter %}
                                             <span class="count">{{counter}}</span> Lines{% plural %}
                                             <span class="count">{{counter}}</span> Lines{% endblocktrans %}</h4>
                                         </div>
-                        </div>
-                        <div class="col-md-8 column">
-                            <div class="tabsB">{{ answers.paginator.sort_tabs }}</div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="profile-tabs">{{ answers.paginator.sort_tabs }}</div>
+                                    </div>
+                                </div>
+                            </div>
                 <div class="row clearfix">
-                    <div class="col-md-12 column">
-                    {% if answers %}
+                         {% if answers %}
                         {% for answer in answers.paginator.page %}
                         <div class="short-summary">
                             <a class="biglink" href="{{ answer.get_absolute_url }}"></a>
@@ -131,32 +113,33 @@
                         {% else %}Sorry, no lines yet.
                         {% endif %}
                         <div class="pager">{{ answers.paginator.page_numbers }}</div>
-                    </div>
                 </div>
             </div>
 
         <div class="col-md-4 column">
-               <div class="stat-header">
-                   <div class="row clearfix">
-                       <div class="col-md-6 column">
-                           <h4>
-                               {% if view_user.real_name %}
-                               {{view_user.real_name}}
-                               {% else %}
-                               {{view_user.decorated_name}}
-                               {% endif %}'s
-                               {% blocktrans count vote.node.paginator.count as counter %}
-                               <span class="count">{{counter}}</span> Voted Line{% plural %}
-                               <span class="count">{{counter}}</span> Voted Lines{% endblocktrans %}
-                           </h4>
-                       </div>
-                       <div class="col-md-6 column">
-                           <div class="tabsB">{{ vote.node.paginator.sort_tabs }}</div>
-                       </div>
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col-md-12 column">
+            <div class="stat-header">
+                <div class="row clearfix">
+                    <a name="answers"></a>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {% blocktrans count answers.paginator.count as counter %}
+                            <span class="count">{{counter}}</span> Vote {% plural %}
+                            <span class="count">{{counter}}</span> Voted lists & lines{% endblocktrans %}
+                            {% blocktrans count total_votes as cnt %}
+                            <span class="count">{{cnt}}</span> Vote
+                            {% plural %}
+                            <span class="count">{{cnt}}</span> Votes
+                            {% endblocktrans %}
+                        </div>
+                        <div class="profile-tabs">
+                            <a name="votes"></a>
+                             <span title="{% trans "user has voted up this many times" %}" class="vote-count">{{up_votes}} upvotes</span>
+                             <span title="{% trans "user voted down this many times" %}" class="vote-count">{{down_votes}} downvotes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                 <div class="row">
                        {% if votes %}
                        {% for vote in votes %}
                        <div class="short-summary">
@@ -203,11 +186,11 @@
                        {% endfor %}
                        {% else %}Sorry, no votes yet.
                        {% endif %}
-                        </div>
+                 </div>
                        <div class="pager">{{ votes.paginator.page_numbers }}</div>
-                   </div>
                </div>
         </div>
+    </div>
 </div>
 
 {% endblock %}

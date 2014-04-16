@@ -5,12 +5,10 @@
 {% load markup %}
 {% load user_tags %}
 {% load extra_filters ui_registry i18n %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-            <div class="row clearfix">
-                <div class="col-md-7">
-            <div id="user-main">
+
+        <div class="row clearfix">
+            <div class="col-md-7">
+                <div id="user-main">
                     <div class="media">
                         <a href="#" class="pull-left">{% gravatar view_user 140 %}</a>
                         <div class="media-body">
@@ -59,22 +57,19 @@
                         <dt>Last seen</dt>
                         <dd><title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</dd>
                         {% endif %}-->
+                        {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
                     </dl>
                 </div>
             </div>
-
-            </div>
         </div>
-    </div>
-</div>
+
 {% with view_user.username|slugify as user_slug %}
 <div class="row clearfix">
     <div class="col-md-12 column">
             <div class="tabsA">
-                {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
                 {% loopregistry profile_tabs %}
                 <a title="{{ tab_description }}" id="{{ tab_name }}" {% ifequal active_tab tab_name %}class="on"{% endifequal %} href="{{ tab_url }}">
-                {{ tab_title }}</a>
+                {{ tab_title }}
                 {% endloopregistry %}
             </div>
     </div>

@@ -1,7 +1,5 @@
 @import "jquery.autocomplete.css";
 
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
 }
 
 /*
@@ -97,12 +95,8 @@
 
 
 #user-main { background-color: #fff;
-    /* margin-bottom: 30px; */
-    border-radius: 4px;
-    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
-    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.20);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
-    border-bottom: 2px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
     padding: 10px;
     margin: 20px 0;}
 
@@ -112,7 +106,7 @@
 .action-date { height:40px; display:inline; float:right; }
 
 
-.user-stats {font-size: 16px; line-height:24px; margin:10px 200px; }
+.user-stats { margin:0; }
 
 .profile-p, .profile-p a { font-size: 14px; color: #333; line-height:20px; }
 
@@ -127,15 +121,11 @@
 
 
 /* USER.HTML Info */
-
-/* USER.HTML Stats.html Stats */
-
-
-.subheader h4, .subheader a {
-    font-size: 20px;
-    font-weight:normal;
-    margin-bottom: 0; }
-
+.tabsA { padding: 8px 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+}
 
 
 /* USER.HTML Stats Reputation.html */
@@ -165,7 +155,6 @@ div.negativeReputation {
 .user-details {
     background: #fff;
     box-shadow: 0 3px 0 #ddd;
-    border-radius: 3px;
     line-height:20px;
 }
 
@@ -190,7 +179,7 @@ div.negativeReputation {
 
 /* ___ Begin custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
 
-#myModal { width: 400px; clear:both; }
+#myModal { clear:both; }
 
 .form-signin {
     max-width: 400px;
@@ -218,15 +207,17 @@ div.negativeReputation {
     font-weight: 500;
     font-size:18px;
     padding:8px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
 }
 .social-box a i{
-    font-weight:bold;
-    font-size:20px;
+    font-weight:500;
+    font-size:18px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
 }
 .heading-desc{
     font-size:20px;
     font-weight: 600;
-    padding: 20px 50px 0px 50px;
+    padding: 20px 50px 0 50px;
     color: #222;
     text-shadow: 0 1px 1px rgba(255,255,255,1);
 }
@@ -270,7 +261,7 @@ div.negativeReputation {
     line-height:19px;
 }
 .mg-btm{
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
 
 /* ___ End custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
@@ -391,7 +382,7 @@ a:hover {
     margin-top:50px;
     background: none repeat scroll 0 0 #EFEFEF;
     border-top: 1px solid #CCCCCC;
-    padding: 20px 0px;
+    padding: 20px 0;
     text-align: center;
 }
 
@@ -570,7 +561,6 @@ a:hover {
     text-align: right;
 }
 
-*/
 
 .pager {
     float: left;
@@ -736,12 +726,37 @@ a.medal:hover {
     text-decoration: none;
 }
 
-.stat-header { border-bottom: 3px solid #aaa;
-    padding: 10px 0px 5px;
-    margin-bottom: 10px;
-    background-color: #555;
-    color: #fff;
-    text-align: center; }
+.tabsB {
+    display: block;
+    position: relative;
+    float: right;
+}
+
+/**** user.html, info.html ****/
+
+
+/*** user.html stats.html user profile ***/
+
+.subheader h4, .subheader a {
+    font-size: 20px;
+    font-weight:normal;
+    margin-bottom: 0; }
+
+.vote-count {
+}
+
+.profile-tabs a.on,
+.profiile-tabs a:hover {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000; }
+
+#profile-tags { }
+
+.profile-tabs a { padding: 0 6px; text-decoration: none; }
+
+.stat-header {  }
+
+
 
 .tabsB {
     display: block;
@@ -756,7 +771,7 @@ a.medal:hover {
     color: #000;
 }
 
-#user-tags { padding-top:30px; }
+#profile-tags { }
 
 .tabsB a {
     background: none repeat scroll 0 0 #EEEEEE;
@@ -1215,8 +1230,8 @@ ins .post-tag {
     float: left;
     overflow: hidden;
     padding: 11px 0;
-}
-/*
+}/*
+
 .user-info-table {
     margin-bottom: 10px;
 }
@@ -1237,7 +1252,6 @@ ins .post-tag {
 }
 
 .narrow .votes {
-    -moz-border-radius: 5px 5px 5px 5px;
     background: none repeat scroll 0 0 #EEEEEE;
     float: left;
     height: 42px;
@@ -1258,7 +1272,6 @@ ins .post-tag {
 }
 
 .narrow .views {
-    -moz-border-radius: 5px 5px 5px 5px;
     float: left;
     height: 42px;
     margin: 0 7px 0 0;
@@ -1268,7 +1281,6 @@ ins .post-tag {
 }
 
 .narrow .status {
-    -moz-border-radius: 5px 5px 5px 5px;
     float: left;
     height: 42px;
     margin: 0 3px 0 0;
@@ -1345,11 +1357,6 @@ div.started .reputation-score {
     width: 20px;
 }
 */
-.vote-count {
-    color: #777777;
-    font-size: 160%;
-    font-weight: 700;
-}
 
 .user-action {
 }
@@ -1745,7 +1752,6 @@ p.space-above {
 }
 
 .action-status span {
-    -moz-border-radius: 5px 5px 5px 5px;
     background-color: #FFF380;
     font-weight: normal;
     padding: 3px 5px;
@@ -1845,16 +1851,13 @@ ul.form-horizontal-rows li input {
 }
 
 /*______ DIALOG POP-UP ________*/
-div.dialog { position: absolute; background-color: #EEEEEE;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 2px 2px 5px #3060A8;
-    -webkit-box-shadow: 2px 2px 5px #3060A8; }
+div.dialog { position: absolute; background-color: #EEEEEE; }
 div.dialog.confirm { font-size: 140%; font-weight: bold; }
 div.dialog .dialog-content { padding: 12px 12px 42px 12px; z-index: 1000; }
 div.dialog .dialog-buttons { margin: 0px;
     height: 25px; text-align: center;
     position: absolute; bottom: 0px; left: 0px; width: 100%; }
-.dialog-yes, .dialog-no { padding: 0px 5px; margin: 0 3px 5px 3px; -moz-border-radius: 3px;
-    -webkit-border-radius: 3px; background-color: #3060A8; color: white; line-height: 20px;
+.dialog-yes, .dialog-no { padding: 0px 5px; margin: 0 3px 5px 3px; background-color: #3060A8; color: white; line-height: 20px;
     vertical-align: baseline; font-weight: bold; border: 0; }
 
 #emailpw-form li input {
@@ -1893,7 +1896,7 @@ div.dialog .dialog-buttons { margin: 0px;
 
 #list-submission { margin: 0px; }
 #list-submission1 {  }
-.post-update-info-container {  }
+.post-update-info-container { margin-top:10px; }
 .post-update-info-user { }
 .post-update-info-edited {display: none; }
 .post-update-info { }
@@ -1931,6 +1934,11 @@ p.signup_p {
     margin: 20px 0 0;
 }
 
+
+
+/*______ SIDEBAR ________*/
+
+
 .simple-subscribe-options ul {
     list-style: none outside none;
     margin: 0;
@@ -1965,25 +1973,72 @@ p.signup_p {
 .sidebar-box ul li a:hover { color: #e2edfa; background-color:#092f42; }
 
 
-
-
-/*______ SIDEBAR ________*/
-
 #rightbar { float: right; }
+#sidebar-section { background: #fff; }
 
 
-.boxC img { float: left; margin-right:10px; }
 
 
-.boxC p {  font-size: 13px; }
+/******* sidebar.html  *******/
 
-.boxC p.nomargin {
-    margin: 0;
+.questions-related {  }
+.questions-related .short-summary h3, .questions-related .short-summary h3 a { font-size: 1em; color: #888; line-height:1; margin:5px 0 0; padding:0; }
+.questions-related a { font-size: 12px; color: #888;}
+.questions-related p { font-size:13px; color: #999; }
+.questions-related .counts, .questions-related .top-poster { display:none;}
+.questions-related div.short-summary {
+    border: none;
+    box-shadow: none;
+    background: none;
+    border-bottom: 2px solid #ddd;
+    padding: 0 0 10px;
+    margin: 10px 0; }
+
+.question-status {
+    background-color: #F5F5F5;
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
 }
 
-.boxC p.info-box-follow-up-links {
-    margin: 0;
-    text-align: right;
+.question-status h3 {
+    font-size: 125%;
+}
+
+.question-mark {
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+}
+
+.question-edit {
+    overflow: hidden;
+    text-align: left;
+}
+
+.vote-buttons {
+    float: left;
+    text-align: center;
+}
+
+.vote-buttons img {
+    cursor: pointer;
+}
+
+.vote-notification {
+    background-color: darkred;
+    color: White;
+    cursor: pointer;
+    display: none;
+    padding: 15px;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+
+.vote-notification a {
+    color: White;
+    text-decoration: underline;
 }
 
 a.post-vote, .favorite-mark, a.accept-answer {
@@ -2182,10 +2237,6 @@ div.comment-tools a:hover {
 div.dialog, .context-menu-dropdown {
     position: absolute;
     background-color: #EEEEEE;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 2px 2px 5px #3060A8;
-    -webkit-box-shadow: 2px 2px 5px #3060A8;
 }
 
 .context-menu-dropdown {
@@ -2199,8 +2250,7 @@ div.dialog, .context-menu-dropdown {
 
 .context-menu-dropdown li.item {
     padding: 4px 8px 4px 8px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+
 }
 
 .context-menu-dropdown li.item a {
@@ -2250,8 +2300,6 @@ div.dialog .dialog-buttons {
 .dialog-yes, .dialog-no {
     padding: 0px 5px;
     margin: 0 3px 5px 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
     background-color: #3060A8;
     color: white;
     line-height: 20px;
@@ -2298,47 +2346,7 @@ div#subscription_list {
     /*float:left;*/
 }
 
-.subscription_switch {
-    display: inline-block;
-    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
-    *display: inline;
-    vertical-align: baseline;
-    margin: 0 2px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font: 11px Arial, Helvetica, sans-serif;
-    padding: .2em 1em .275em;
-    text-shadow: 0 1px 1px rgba(0,0,0,.3);
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
-    border-radius: .5em;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    color: #101010 !important;
-    border: solid 1px #b7b7b7;
-    background: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-    background: -moz-linear-gradient(top,  #fff,  #ededed);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
-}
-.subscription_switch:hover {
-    text-decoration: none;
-    background: #ededed;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
-    background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
-    color: #101010 !important;
-}
-.subscription_switch:active {
-    position: relative;
-    top: 1px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
-    background: -moz-linear-gradient(top,  #ededed,  #fff);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
-}
+.subscription_switch, .subscription_switch:hover, .subscription_switch:active { color: #fff; }
 
 div.subscription_summary {
     border-top: 2px dotted #CCCCCE;
@@ -2359,9 +2367,7 @@ div.subscription_title {
 
 a.subscription_unsubscribe_button {
     float:left;
-    font-size: 11px;
     font-weight:bold;
-
     margin-right:15px;
     margin-top: 5px;
 }
@@ -2432,13 +2438,6 @@ div.wmd-button-bar {
 
 .tabBar { padding:0; margin:0; }
 
-.tabsA { padding: 8px 0;
-    text-align: center;
-    background: #ddd;
-    border: 1px solid #ccc;
-    margin: 0 190px 20px;
-}
-
 
 .home-header, .home-tabs { padding: 0; margin: 10px 0 0; float:none; }
 .home-tabs a { margin:0 10px;  }
@@ -2455,8 +2454,7 @@ div.short-summary { /* Containing div must have a position value */
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 3px solid #cdcdcd;
-    border-radius: 3px; }
+    border-bottom: 2px solid #cdcdcd; }
 
 #list-row1 {  }
 #list-row2 { padding-bottom:2px; }
@@ -2466,12 +2464,10 @@ div.short-summary { /* Containing div must have a position value */
     z-index: 10; }
 
 
-.short-summary:hover { text-indent:0px; position:relative; background-color: #fdfeff; border: 1px solid #888;}
+.short-summary:hover { text-indent:0; position:relative; background-color: #fdfeff; border: 1px solid #888;}
 
-.short-summary p { font-size: 1em; margin: 0px; }
-
-.headline h3 a, .headline h3 { margin-top: 0px; color: #00184D; font-size: 1.1em; line-height:1.2; font-family: 'Helvetica Neue', sans-serif; font-weight:500; }
-
+.short-summary p { font-size: 1em; margin: 0; }
+.short-summary h3 a, .short-summary h3 { margin-top: 0; font-size: 1.1em; font-weight:500; }
 
 .top-poster { padding-top: 5px; float: right; text-align: right; }
 
@@ -2482,7 +2478,7 @@ div.short-summary { /* Containing div must have a position value */
 .item-count { display: inline; color: #bbb;  }
 
 
-.empty-topic, .posted a { padding: 10px 0px; font-size: 14px; color: #999; font-weight:500; }
+.empty-topic, .posted a { padding: 10px 0; font-size: 14px; color: #999; font-weight:500; }
 
 .posted a:hover { text-decoration:underline; color: #5916FE; }
 .posted-date a { font-size: .9em; font-weight: 300; color: #aaa; font-style:italic;  }
@@ -2528,25 +2524,36 @@ div.short-summary { /* Containing div must have a position value */
 
 
 
-.list-top h2, .list-top h2 a { font-size: 24px; margin: 0; padding: 0; }
+.list-top h2, .list-top h2 a { font-size: 1.3em; color: #444; font-weight: 500; margin: 0; padding: 0; }
 
 #centercol { /* background-color: #fff;
-    border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     border: 1px solid #cdcdcd; */ }
 #rightbar, #leftbar {  }
 
 
 #list-tabs { padding: 30px 0 10px;}
+.list-tabs { float: right; }
 .list-tabs a { font-size:18px; border: 1px solid transparent; padding: 2px 8px; }
 .list-tabs a.on, .list-tabs a:hover {background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
 .tabs-headline { font-size: 20px; }
 
 
-.answer, .list-top {
-    padding: 20px 0 10px;
+.answer{
+    padding:0;
     background: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+    border-bottom: 2px solid #ccc; }
+
+
+.list-top {
+
+    padding: 10px 0 5px;
+    background: #fff;
+    margin-bottom: 50px;
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
@@ -2704,62 +2711,6 @@ img.subscription-remove {
     font-weight: 800;
 }
 
-/******* sidebar.html  *******/
-
-.questions-related {  }
-.questions-related h3, .questions-related h3 a { font-size: 1em; color: #888; line-height:1; margin:5px 0 0; padding:0; }
-.questions-related a { font-size: 12px; color: #888;}
-.questions-related p { font-size:13px; color: #999; }
-.questions-related .counts, .questions-related .top-poster { display:none;}
-.questions-related div.short-summary { border: none; background-color: #e2e2e2; padding: 5px 10px;  }
-
-
-.question-status {
-    background-color: #F5F5F5;
-    margin-top: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.question-status h3 {
-    font-size: 125%;
-}
-
-.question-mark {
-    overflow: hidden;
-    padding: 5px;
-    text-align: left;
-}
-
-.question-edit {
-    overflow: hidden;
-    text-align: left;
-}
-
-.vote-buttons {
-    float: left;
-    text-align: center;
-}
-
-.vote-buttons img {
-    cursor: pointer;
-}
-
-.vote-notification {
-    background-color: darkred;
-    color: White;
-    cursor: pointer;
-    display: none;
-    padding: 15px;
-    position: absolute;
-    text-align: center;
-    z-index: 1;
-}
-
-.vote-notification a {
-    color: White;
-    text-decoration: underline;
-}
 
 
 /*______ BADGES PAGE________*/
@@ -3122,8 +3073,7 @@ img {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+
 }
 .img-circle {
     border-radius: 50%;
@@ -3156,8 +3106,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
-    letter-spacing: -1px;
+    font-family: 'Helvetica Neue', sans-serif;
     line-height: 1.1;
     color: inherit;
 }
@@ -3195,7 +3144,7 @@ h2,
 .h2,
 h3,
 .h3 {
-    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -3219,7 +3168,7 @@ h5,
 .h5,
 h6,
 .h6 {
-    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
 
     margin-top: 10px;
     margin-bottom: 10px;
@@ -6559,8 +6508,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
-        margin-left: -10px; color: #2828B9; font-family: 'Montserrat', sans serif;
-    }
+        margin-left: -10px; color: #2828B9; }
 }
 .navbar-toggle {
     position: relative;

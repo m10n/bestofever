@@ -1,4 +1,4 @@
-{% extends "base_content.html" %}
+{% extends "base_container.html" %}
 <!-- complete.html -->
 {% load i18n %}
 {% block head %}{% endblock %}
@@ -19,8 +19,8 @@
                 {% trans "Please choose your screen name and confirm your email address. A valid email address is necessary to receive notifications about activity in the areas of this community you're most interested in, and will help you become an involved participant in this community." %}
             </p>
         </div>
-    	<p style="display:none">{% trans "This account already exists, please use another." %}</p>
-	</div>
+
+        <div class="alert alert-danger" style="display:none">This account already exists, please use another.</div>
 
 	{% if form1.errors %}
         <ul class="errorlist">
@@ -87,11 +87,11 @@
 	</div>
     {% comment %}<!-- this form associates openID with an existing password-protected account, not yet functional -->
     {% if form2 %}
-	<div class="login" style="display:none">
+	<div class="login">
         <form name="fverify" action="{% url user_register %}" method="POST">
             {% csrf_token %}
             {{ form2.next }}
-			<fieldset style="padding:10px">
+			<fieldset>
 				<legend class="big">{% trans "Existing account" %}</legend>
 				<div class="form-row"><label for="id_username">{% trans "user name" %}</label><br/>{{ form2.username }}</div>
 				<div class="form-row"><label for="id_passwordl">{% trans "password" %}</label><br/>{{ form2.password }}</div>

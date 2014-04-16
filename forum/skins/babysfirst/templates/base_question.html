@@ -1,4 +1,4 @@
-{% extends "base_content.html" %}
+{% extends "base.html" %}
 
 
 {% block full_width_banner %}{% endblock %}
@@ -7,7 +7,7 @@
 
 {% block page_center %}
 <div class="row clearfix">
-  <div class="pagecenter">
+    <div class="pagecenter">
         <div id="leftbar" class="hidden-xs hidden-sm col-md-2">
             {% block sidebar %}
             {% endblock%}
@@ -20,16 +20,10 @@
             {% block rightbar %}
             {% endblock%}
         </div>
-  </div>
-        <div id="tail">
-            {% block tail %}
-            {% endblock %}
-        </div>
+    </div>
+    <div id="tail">
+        {% block tail %}
+        {% endblock %}
+    </div>
 </div>
 {% endblock %}
-
-
-
-
-
-

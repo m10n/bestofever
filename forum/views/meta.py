@@ -134,9 +134,9 @@ def page(request):
     sidebar = page.extra.get('sidebar', '')
 
     if template == 'default':
-        base = 'base_content.html'
-    elif template == 'sidebar':
         base = 'base.html'
+    elif template == 'sidebar':
+        base = 'base_question.html'
 
         sidebar_render = page.extra.get('render', 'markdown')
 

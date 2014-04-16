@@ -17,7 +17,7 @@ class ConsumerTemplateContext(object):
 
         class attributes:
 
-        mode - one of BIGICON, SMALLICON, FORM
+        mode - one of BIGICON, FORM
 
         human_name - the human readable name of the provider
 

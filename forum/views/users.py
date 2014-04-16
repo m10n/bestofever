@@ -420,7 +420,7 @@ def user_favorites(request, user, **kwargs):
 
     return {"view_user" : user, "favorites" : favorites }
 
-@user_view('users/subscriptions.html', 'subscriptions', _('subscription'), _('subscriptions'), True, tabbed=False)
+@user_view('users/subscriptions.html', 'subscriptions', _('subscription'), _('subscriptions'), True, tabbed=True)
 def user_subscriptions(request, user, **kwargs):
     return _user_subscriptions(request, user, **kwargs)
 
