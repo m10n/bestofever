@@ -2239,7 +2239,7 @@ div.comment-tools a:hover {
     margin-top: 6px;
 }
 
-.comments-char-left-count.warn {
+.comments-chars-left-count.warn {
     color: orange;
 }
 
