@@ -94,7 +94,7 @@ var response_commands = {
 
     remove_comment: function(id) {
         var $comment = $('#comment-' + id);
-        $comment.css('background', 'red')
+        $comment.addClass('deleted');
         $comment.fadeOut('slow', function() {
             $comment.remove();
         });
@@ -140,9 +140,15 @@ var response_commands = {
         if (post_type == 'question') {
             var $container = $('#question-table');
             $container.addClass('deleted');
+            $container.fadeOut('slow', function() {
+              $container.remove();
+            });
         } else {
             var $el = $('#' + post_type + '-container-' + post_id);
             $el.addClass('deleted');
+            $el.fadeOut('slow', function() {
+              $el.remove();
+            });
         }
     },
 
@@ -352,8 +358,6 @@ function process_ajax_response(data, evt, callback) {
     if (typeof data['commands'] != undefined){
         for (var command in data.commands) {
             response_commands[command].apply(null, data.commands[command])
-
-
         }
 
         if (data['message'] != undefined) {
@@ -412,8 +416,8 @@ $(function() {
 
         var el = $(this);
 
-        var ajax_url = el.attr('href')
-        ajax_url = ajax_url + "?nocache=" + new Date().getTime()
+        var ajax_url = el.attr('href');
+        ajax_url = ajax_url + "?nocache=" + new Date().getTime();
 
         $('.context-menu-dropdown').slideUp('fast');
 
