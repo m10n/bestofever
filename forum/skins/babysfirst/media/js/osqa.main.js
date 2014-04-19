@@ -608,12 +608,12 @@ $(function() {
                 return false;
             });
 
-            $button.click(function(evt) {
+            $button.bind('click', function(evt) {
                 if (running) return false;
 
                 var post_data = {
                     comment: $textarea.val()
-                }
+                };
 
                 if (comment_in_form) {
                     post_data['id'] = comment_in_form;
@@ -634,7 +634,7 @@ $(function() {
             });
 
             // Submit comment with CTRL + Enter
-            $textarea.keydown(function(e) {
+            $textarea.bind('keydown', function(e) {
                 if (e.ctrlKey && e.keyCode == 13 && !$button.attr('disabled')) {
                     $(this).parent().find('input.comment-submit').click();
                 }
