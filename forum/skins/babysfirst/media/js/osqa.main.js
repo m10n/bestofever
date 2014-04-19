@@ -488,7 +488,7 @@ $(function() {
             var $cancel = $container.find('.comment-cancel');
             var $chars_left_message = $container.find('.comments-chars-left-msg');
             var $chars_togo_message = $container.find('.comments-chars-togo-msg');
-            var $chars_counter = $container.find('.comments-char-left-count');
+            var $chars_counter = $container.find('.comments-chars-left-count');
 
             var $add_comment_link = $comment_tools.find('.add-comment-link');
 
