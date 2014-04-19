@@ -641,13 +641,11 @@ $(function() {
             });
 
             $cancel.bind('click', function(event) {
-                if (confirm("You will lose all of your changes in this comment.  Do you still wish to proceed?")){
-                    if (comment_in_form) {
-                        $comment = $('#comment-' + comment_in_form).slideDown('slow');
-                    }
-                    hide_comment_form();
-                    cleanup_form();
+                if (comment_in_form) {
+                    $comment = $('#comment-' + comment_in_form).slideDown('slow');
                 }
+                hide_comment_form();
+                cleanup_form();
                 return false;
             });
         }
