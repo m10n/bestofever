@@ -636,12 +636,11 @@ $(function() {
             // Submit comment with CTRL + Enter
             $textarea.keydown(function(e) {
                 if (e.ctrlKey && e.keyCode == 13 && !$button.attr('disabled')) {
-                    // console.log('submit');
                     $(this).parent().find('input.comment-submit').click();
                 }
             });
 
-            $cancel.click(function(event) {
+            $cancel.bind('click', function(event) {
                 if (confirm("You will lose all of your changes in this comment.  Do you still wish to proceed?")){
                     if (comment_in_form) {
                         $comment = $('#comment-' + comment_in_form).slideDown('slow');
