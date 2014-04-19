@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 <!-- questions.html -->
-<!--{% load question_list_tags %}
+{% load question_list_tags %}
 {% load i18n %}
 {% load extra_tags %}
 {% load general_sidebar_tags %}
 {% load ui_registry extra_filters markup %}
-<!--
+
 {% block meta %}
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
 {% endblock %}
--->
+
 
 
     {% block sidebar %}
@@ -80,15 +80,10 @@
 
 {% block content %}
         <div class="row clearfix">
-                <div class="tabBar">
-                        <div class="hiden-xs hidden-sm col-md-3 col-lg-4">
-                            <div class="headQuestions">{% include "question_list/title.html" %}</div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
-                            <div class="tabsA">{{ questions.paginator.sort_tabs }}
+                            <div class="results-tabs">
+                                <!--{% include "question_list/title.html" %}-->
+                                {{ questions.paginator.sort_tabs }}
                             </div>
-                        </div>
-                </div>
         </div>
         <div class="row clearfix">
                 <div id="content-lists">
@@ -102,16 +97,10 @@
                 </div>
         </div>
             <div class="row clearfix">
-                        <div class="col-md-4 col-md-offset-8">
-                            <div class="pagesize">{{ questions.paginator.page_sizes }}</div>
-                            <div class="pager">{{ questions.paginator.page_numbers }}</div>
-
+                        <div class="col-md-2 col-md-offset-10">
                             <ul class="pagination">
-                                <li>
-                                    <a href="#">Prev</a>
-                                </li>
-                                <li>
-                                    <a href="#">Next</a>
+                                <li><div class="pagesize">{{ questions.paginator.page_sizes }}</div>
+                                    <div class="pager">{{ questions.paginator.page_numbers }}</div>
                                 </li>
                             </ul>
                         </div>

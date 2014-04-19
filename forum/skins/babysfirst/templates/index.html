@@ -41,9 +41,9 @@ itemSelector: '.item'
 {% block masthead %}
 <div id="masthead">
         <div class="container">
-                <div class="row">
-                    <div class="masthead-item">
-                        <ul class="nav nav-pills">
+                <div class="row" id="masthead-item">
+                        <div class="col-md-9">
+                            <ul class="nav nav-pills">
                                 <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
                                 <li><div class="home-tabs">{{ questions.paginator.sort_tabs }}</div></li>
                                 <li>
@@ -64,16 +64,14 @@ itemSelector: '.item'
                                 <li>
                                     <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">NYC</a></span>
                                 </li>
-                        </ul>
-                    </div>
-                </div>
-            <div class="row">
-                <div class="masthead-item">
-                    <a class="btn btn-primary btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                        <a class="btn btn-default btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
 
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
                             Join Mowt
-                        </button>
+                            </button>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="form-signin">
@@ -110,7 +108,7 @@ itemSelector: '.item'
                                         <div class="col-xs-8 col-md-8">
                                             <div class="left-section">
                                                 <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
-                                                <a href="http://localhost:8000/account/signin/">Sign up now</a>
+                                                <a href="{% url auth_local_register %}">Sign up now</a>
                                             </div>
                                         </div>
                                         <div class="col-xs-4 col-md-4 pull-right">
@@ -121,10 +119,11 @@ itemSelector: '.item'
                         </div>
                     </div>
                 </div>
-            </div>
+             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 
@@ -141,10 +140,7 @@ itemSelector: '.item'
 {% endif %}
 {% endif %}
 
-
-
 {% block content %}
-
 <div class="row clearfix">
     <div id="content-lists">
         <div id="listA">
@@ -159,18 +155,9 @@ itemSelector: '.item'
     </div>
 </div>
 <div class="row clearfix">
-    <div class="col-md-4 col-md-offset-8">
-        <div class="pagesize">{{ questions.paginator.page_sizes }}</div>
-        <div class="pager">{{ questions.paginator.page_numbers }}</div>
-
-        <ul class="pagination">
-            <li>
-                <a href="#">Prev</a>
-            </li>
-            <li>
-                <a href="#">Next</a>
-            </li>
-        </ul>
+    <div class="col-md-2 col-md-offset-10">
+    {{ questions.paginator.page_sizes }}
+    {{ questions.paginator.page_numbers }}
     </div>
 </div>
 {% endblock %}

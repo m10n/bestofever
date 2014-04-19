@@ -1,8 +1,18 @@
 {% load i18n smart_if ui_registry %}
 
-<div id="user-menu-container" class="context-menu">
-    <span id="user-menu" class="context-menu-trigger">{% trans "User tools" %} &#9660;</span>
-    <ul id="user-menu-dropdown" class="context-menu-dropdown">
+
+
+
+<div class="dropdown">
+    <div class="context-menu">
+    <a data-toggle="dropdown" data-target="#">
+        <span class="context-menu-trigger">
+        User settings <span class="caret"></span></span>
+    </a>
+
+    <ul class="dropdown-menu context-menu-dropdown" role="menu" aria-labelledby="dLabel">
         {% loadregistry user_menu %}{% endloadregistry %}
     </ul>
+    </div>
 </div>
+

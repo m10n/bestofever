@@ -12,30 +12,30 @@
                     <div class="media">
                         <a href="#" class="pull-left">{% gravatar view_user 140 %}</a>
                         <div class="media-body">
-                         <h4 class="media-heading">
+                         <h2 class="media-heading">
                         {% if not view_user.is_suspended %}
                         {% if view_user.real_name %}
                         {{view_user.real_name}}
                         {% else %}
                         {{view_user.decorated_name}}
                         {% endif %}
-                        {% if view_user.is_suspended %}This user has been suspended.{% endif %}
-                        {% if view_user.is_superuser %}Administrator
+                            {% loadregistry USER_MENU %}{% endloadregistry %}</h2>
+                            {% if view_user.is_suspended %}This user has been suspended.{% endif %}
+                            <div class="user-score">
+                                {{view_user.reputation|intcomma}}
+                                {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}
+                                {% endif %}
+                        {% if view_user.is_superuser %} | Administrator
                         {% else %}
-                        {% if view_user.is_staff %}Moderator
+                        {% if view_user.is_staff %} | Moderator
                         {% endif %}
-                        {% endif %}
-                         <div class="scoreNumber" id="user-reputation">{{view_user.reputation|intcomma}}
-                             {% else %}Suspended{{ view_user.suspension.extra.publicmsg }}</div>
-                              {% endif %}
-                          </h4>
+                        {% endif %}</div>
                         <div class="user-about">
                          {% if not view_user.is_suspended %}
                          {% if view_user.about %}
                          {{view_user.about|markdown}}
                          {% endif %}
-                         {% endif %}
-                        </div>
+                         {% endif %}</div>
                         </div>
                     </div>
                 </div>
@@ -53,17 +53,37 @@
                         {% endif %}
                         <dt><span class="glyphicon glyphicon-user"> Joined</span></dt>
                         <dd>{% diff_date view_user.date_joined %}</dd>
-                        <!--{% if view_user.last_seen %}
-                        <dt>Last seen</dt>
+                        {% if view_user.last_seen %}
+                        <dt><span class="glyphicon glyphicon-user"> Last seen</span></dt>
                         <dd><title="{{ view_user.last_activity }}">{% diff_date view_user.last_activity %}</dd>
-                        {% endif %}-->
-                        {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
+                        {% endif %}
+                        <dt></dt>
+                        <dd>{% if can_view_private %}{% user_menu request.user view_user %}{% endif %}</dd>
                     </dl>
                 </div>
             </div>
         </div>
 
 {% with view_user.username|slugify as user_slug %}
+
+<div class="row clearfix">
+    <div id="profile-tags" class="col-md-2 column">
+            {% blocktrans count user_tags|length as counter %}
+            <span class="count">{{counter}} Category{% plural %}{{counter}} Categories{% endblocktrans %}</span>
+    </div>
+        {% for tag in user_tags %}
+        <div class="col-md-1 column">
+            <a name="tags"></a>
+            <a rel="tag" class="tag-link-{{ tag.name }}"
+               title="{% blocktrans with tag.name as tag_name %}see other questions with {{view_user}}'s contributions tagged '{{ tag_name }}' {% endblocktrans %}"
+               href="{% url tag_questions tag|urlencode %}?user={{view_user.username}}">{{tag.name}}</a>
+            <span class="tag-number">&#215; {{ tag.user_tag_usage_count|intcomma }}</span><br/>
+        </div>
+        {% if forloop.counter|divisibleby:"8" %}
+        {% endif %}
+        {% endfor %}
+    </div>
+
 <div class="row clearfix">
     <div class="col-md-12 column">
             <div class="tabsA">

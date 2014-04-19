@@ -1,10 +1,5 @@
 {% load i18n extra_tags %}
 
-
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">Follow this list</h3></div>
-    <div class="panel-body">
-        <strong>By email<br/></strong>
         {% if request.user.is_authenticated %}
         {% if subscription %}
             {% if subscription.auto_subscription %}
@@ -13,19 +8,17 @@
             {% endif %}
         {% else %}You are not subscribed to this list.</p>
         {% endif %}
-
         <button type="button" class="btn btn-primary"><a class="ajax-command sidebar_button subscription_switch" href="{% url subscribe_simple id=question.id %}">
         {% if subscription %}Unsubscribe{% else %}Subscribe{% endif %}</a></button>
         {% blocktrans with request.user.get_user_subscriptions_url as subscriptions_url %}
             <p>Protip: you can adjust your settings on your <a href="{{ subscriptions_url }}">profile</a>
         {% endblocktrans %}</p>
-{% else %}
-    <p>Once you're signed in you can subscribe for updates</p>
-{% endif %}
-<strong>By RSS</strong>
-<p><a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');"
+        {% else %}
+    <strong><p>Sign in to subscribe to this list</p></strong>
+        {% endif %}
+        <!--
+        <p><a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');"
         href="{{ question.get_absolute_url }}?type=rss" title="Subscribe to lines"></a> Lines
-    <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');"
+        <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');"
         href="{{ question.get_absolute_url }}?type=rss&comments=yes" title="Subscribe to lists and lines"></a> Lists and lines
-    </div>
-</div>
+        -->

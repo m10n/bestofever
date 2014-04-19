@@ -10,25 +10,6 @@
 {% block usercontent %}
 <div class="user-stats">
 
-<div class="row clearfix">
-    <div id="profile-tags">
-            <h4>{% blocktrans count user_tags|length as counter %}
-                <span class="count">{{counter}}</span> Category{% plural %}
-                <span class="count">{{counter}}</span> Categories{% endblocktrans %}</h4>
-    </div>
-<div class="row clearfix">
-    {% for tag in user_tags %}
-    <div class="col-md-2 column">
-        <a name="tags"></a>
-        <a rel="tag" class="tag-link-{{ tag.name }}"
-           title="{% blocktrans with tag.name as tag_name %}see other questions with {{view_user}}'s contributions tagged '{{ tag_name }}' {% endblocktrans %}"
-           href="{% url tag_questions tag|urlencode %}?user={{view_user.username}}">{{tag.name}}</a>
-        <span class="tag-number">&#215; {{ tag.user_tag_usage_count|intcomma }}</span><br/>
-    </div>
-    {% if forloop.counter|divisibleby:"6" %}
-    {% endif %}
-    {% endfor %}
-</div>
     <div class="row clearfix">
             <div class="col-md-4 column">
                 <div class="stat-header">
@@ -37,8 +18,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                     {% blocktrans count questions.paginator.count as counter %}
-                                    <span class="count">{{counter}}</span> List{% plural %}
-                                    <span class="count">{{counter}}</span> Lists{% endblocktrans %}
+                                    <span class="stat-count">{{counter}}</span> List{% plural %}
+                                    <span class="stat-count">{{counter}}</span> Lists{% endblocktrans %}
                             </div>
                                 <div class="profile-tabs">{{ questions.paginator.sort_tabs }}</div>
                         </div>
@@ -62,8 +43,8 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             {% blocktrans count answers.paginator.count as counter %}
-                                            <span class="count">{{counter}}</span> Lines{% plural %}
-                                            <span class="count">{{counter}}</span> Lines{% endblocktrans %}</h4>
+                                            <span class="stat-count">{{counter}}</span> Lines{% plural %}
+                                            <span class="stat-count">{{counter}}</span> Lines{% endblocktrans %}</h4>
                                         </div>
                                     <div class="profile-tabs">{{ answers.paginator.sort_tabs }}</div>
                                     </div>
@@ -123,18 +104,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             {% blocktrans count answers.paginator.count as counter %}
-                            <span class="count">{{counter}}</span> Vote {% plural %}
-                            <span class="count">{{counter}}</span> Voted lists & lines{% endblocktrans %}
+                            <span class="stat-count">{{counter}}</span> Vote {% plural %}
+                            <span class="stat-count">{{counter}}</span> Voted lists & lines{% endblocktrans %}
                             {% blocktrans count total_votes as cnt %}
-                            <span class="count">{{cnt}}</span> Vote
+                            <span class="stat-count">{{cnt}}</span> Vote
                             {% plural %}
-                            <span class="count">{{cnt}}</span> Votes
+                            <span class="stat-count">{{cnt}}</span> Votes
                             {% endblocktrans %}
                         </div>
                         <div class="profile-tabs">
                             <a name="votes"></a>
-                             <span title="{% trans "user has voted up this many times" %}" class="vote-count">{{up_votes}} upvotes</span>
-                             <span title="{% trans "user voted down this many times" %}" class="vote-count">{{down_votes}} downvotes</span>
+                             <span title="{% trans "user has voted up this many times" %}" class="vote-count"><span class="glyphicon glyphicon-chevron-up"></span>
+                                                                                     {{up_votes}} upvotes  </span>
+                             <span title="{% trans "user voted down this many times" %}" class="vote-count"><span class="glyphicon glyphicon-chevron-down"></span>
+                                                                                     {{down_votes}} downvotes</span>
                         </div>
                     </div>
                 </div>

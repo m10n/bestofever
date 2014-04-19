@@ -109,16 +109,7 @@
 
 
     {% block sidebar %}
-    <div id="sidebar-profile" class="row clearfix">
-                    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
-                    {% if view_user and not view_user.is_anonymous %}
-                    <a href="{{ view_user.get_profile_url }}">
-                        {% gravatar view_user 64 %}
-                        {{ view_user.decorated_name }}<br/>
-                        {{view_user.reputation|intcomma}}
-                        {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
-                           {% endif %}
-    </div>
+
     {% endblock%}
 
 {% block content %}
@@ -226,26 +217,36 @@
 
 
 {% block rightbar %}
-{% markdown_help %}
-{% cache 60 questions_tags settings.APP_URL question.id %}
+<!--{% markdown_help %}-->
+<div id="sidebar-profile" class="row clearfix">
+    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+    {% if view_user and not view_user.is_anonymous %}
+    <a href="{{ view_user.get_profile_url }}">
+        {% gravatar view_user 64 %}
+        {{ view_user.decorated_name }}<br/>
+        {{view_user.reputation|intcomma}}
+        {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
+    {% endif %}
+</div>
 
+{% cache 60 questions_tags settings.APP_URL question.id %}
      <div class="sidebar-section">
      <div class="panel panel-default">
          <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
          <div class="panel-body">
              Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
              Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
-             Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
-             <p class="tags">
-                 {% for tag in question.tags.all %}
-                 See more in <a href="{% url tag_questions tag.name|urlencode %}"
-                    class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
-                    rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
-                 {% endfor %}
-         </div>
+               Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
+         <p class="tags">
+             {% for tag in question.tags.all %}
+             Posted under <a href="{% url tag_questions tag.name|urlencode %}"
+                            class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                            rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
+             {% endfor %}
+             {% include "subscription_status.html" %}
+     </div>
      </div>
  {% endcache %}
-{% include "subscription_status.html" %}
          <div class="sidebar-section">
              <div class="panel panel-default">
                  <div class="panel-heading"><h3 class="panel-title">Similar Lists</h3></div>

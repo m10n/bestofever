@@ -1,0 +1,17 @@
+
+
+div.short-summary { /* Containing div must have a position value */
+    position:relative; padding: 15px 10px 10px 20px;
+}
+div.short-summary a.biglink { /* Make whole home page topic div clickable to topic permalink (override individual exceptions below) */
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    text-decoration:underline; /* Makes sure the link   doesn't get underlined */
+    z-index: 1;
+    background-color:white; /*workaround to make clickable in IE */
+    opacity: 0; /*workaround to make clickable in IE */
+    filter: alpha(opacity=1); /*workaround to make clickable in IE */
+}

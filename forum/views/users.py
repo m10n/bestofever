@@ -71,7 +71,7 @@ def users(request):
     })
 
 
-@decorators.render('users/online_users.html', 'online_users', _('Online Users'), weight=200, tabbed=False)
+@decorators.render('users/online_users.html', 'online_users', _('Online Users'), weight=200, tabbed=True)
 def online_users(request):
     suser = request.REQUEST.get('q', "")
 
@@ -169,6 +169,7 @@ def edit_user(request, id, slug):
             return HttpResponseRedirect(user.get_profile_url())
     else:
         form = EditUserForm(user)
+
     return render_to_response('users/edit.html', {
     'user': user,
     'form' : form,
@@ -420,7 +421,7 @@ def user_favorites(request, user, **kwargs):
 
     return {"view_user" : user, "favorites" : favorites }
 
-@user_view('users/subscriptions.html', 'subscriptions', _('subscription'), _('subscriptions'), True, tabbed=True)
+@user_view('users/subscriptions.html', 'subscriptions', _('subscriptions'), _('subscriptions'), True, tabbed=True)
 def user_subscriptions(request, user, **kwargs):
     return _user_subscriptions(request, user, **kwargs)
 
@@ -472,7 +473,7 @@ def _user_subscriptions(request, user, **kwargs):
             'manage_open':manage_open,
         }
 
-@user_view('users/preferences.html', 'preferences', _('preferences'), _('preferences'), True, tabbed=False)
+@user_view('users/preferences.html', 'preferences', _('preferences'), _('preferences'), True, tabbed=True)
 def user_preferences(request, user, **kwargs):
     if request.POST:
         form = UserPreferencesForm(request.POST)

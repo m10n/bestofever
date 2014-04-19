@@ -22,38 +22,51 @@
             <div class="col-sm-4 col-md-3">
                 <ul class="nav navbar-nav">
                 <li class="dropdown dropdown-large">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
                     <ul class="dropdown-menu dropdown-menu-large row" style="padding: 15px 0px;min-width: 550px;">
                         <li class="col-sm-4">
                             <ul>
-                                <li class="dropdown-header">Glyphicons</li>
-                                <li><a href="#">Available glyphs</a></li>
-                                <li class="disabled"><a href="#">How to use</a></li>
-                                <li><a href="#">Examples</a></li>
+                                <li class="dropdown-header">Lists</li>
+                                <li><a id="active" href="{{ base_url }}/questions/?sort=active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
+                                <li><a id="trending" href="{{ base_url }}/questions/?sort=trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours">trending</a></li>
+                                <li><a id="newest" href="{{ base_url }}/questions/?sort=newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists">newest</a></li>
+                                <li><a id="mostvoted" href="{{ base_url }}/questions/?sort=mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists">most voted</a></li>
                                 <li class="divider"></li>
                                 <li class="dropdown-header">Dropdowns</li>
-                                <li><a href="#">Example</a></li>
-                                <li><a href="#">Aligninment options</a></li>
-                                <li><a href="#">Headers</a></li>
-                                <li><a href="#">Disabled menu items</a></li>
+                                <li class="disabled"><a href="#">Coming soon</a></li>
                             </ul>
                         </li>
                         <li class="col-sm-4">
                             <ul>
-                                <li class="dropdown-header">Button groups</li>
-                                <li><a href="#">Basic example</a></li>
-                                <li><a href="#">Button toolbar</a></li>
-                                <li><a href="#">Sizing</a></li>
-                                <li><a href="#">Nesting</a></li>
-                                <li><a href="#">Vertical variation</a></li>
+                                <li class="dropdown-header">Categories</li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/news/" span class="glyphicon-class"><span class="glyphicon glyphicon-globe">News</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/tech/" span class="glyphicon-class"><span class="glyphicon glyphicon-phone">Tech</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/advice/" span class="glyphicon-class"><span class="glyphicon glyphicon-heart">Advice</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/ideas/" span class="glyphicon-class"><span class="glyphicon glyphicon-certificate">Ideas</a></span>
+                                </li>
+
                                 <li class="divider"></li>
-                                <li class="dropdown-header">Button dropdowns</li>
-                                <li><a href="#">Single button dropdowns</a></li>
+                                <li class="dropdown-header">Cities</li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/sf/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">SF</a></span>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">NYC</a></span>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">All</li>
+                                <li><a id="mostvoted" href="{{ base_url }}/tags/" class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">categories</a></span></li>
                             </ul>
-                        </li>
                         <li class="col-sm-4">
                             <ul>
-                                <li class="dropdown-header">Input groups</li>
+                                <li class="dropdown-header">Featured</li>
                                 <li><a href="#">Basic example</a></li>
                                 <li><a href="#">Sizing</a></li>
                                 <li><a href="#">Checkboxes and radio addons</a></li>
@@ -81,7 +94,12 @@
             <div class="col-md-2 col-sm-4 col-xs-12">
                 <ul class="nav navbar-nav">
                 <li class="dropdown">
+                    {% if user_authenticated %}
+                    {% gravatar view_user 30 %}<b class="caret"></b></a>
+                    {% else %}
                     <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown">Sign in<b class="caret"></b></a>
+                    {% endif %}
+
                     <ul class="dropdown-menu" style="padding: 15px 0px;min-width: 250px;">
                         <li>
                             <div class="row">
@@ -89,7 +107,7 @@
                                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                         <div class="form-group">
                                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="exampleInputPassword2">Password</label>
@@ -97,7 +115,7 @@
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Remember me
+                                                <input type="checkbox"> Verify my email
                                             </label>
                                         </div>
                                         <div class="form-group">
@@ -106,9 +124,9 @@
                                         </div>
                                         <li class="divider"></li>
 
-                                        <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                                        <input class="btn btn-info btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
                                         <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook">
-                                        <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                                        <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
                                     </form>
                                 </div>
                             </div>
@@ -118,14 +136,19 @@
                 </ul>
                 <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"><b class="caret"></b></a>
+                    <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown">
+                        {% if view_user_authenticated %}
+                        {% gravatar view_user 20 %}<b class="caret"></b></a>
+                        {% else %}
+                         <span class="glyphicon glyphicon-cog"><b class="caret"></b>
+                        {% endif %}
                     <ul class="dropdown-menu">
                         <li>{% loadregistry USERNAME_SCORE_BADGE %}{% endloadregistry %}</li>
                         <li>{% loadregistry ADMIN_SUPERUSER %}{% endloadregistry %}</li>
+                        <li>{% loadregistry PROFILE_TABS %}{% endloadregistry %}</li>
+
                         <li class="divider"></li>
                         <li>{% loadregistry LOGIN_OUT %}{% endloadregistry %}</li>
-                        <li class="divider"></li>
-                        <li><a href="http://localhost:8000/account/signin/">Sign Up</a></li>
                     </ul>
                 </li>
                 </ul>

@@ -6,7 +6,6 @@
 {% block title %}{% spaceless %}{% trans "Login" %}{% endspaceless %}{% endblock %}
 
 {% block forejs %}
-<link rel="stylesheet" type="text/css" media="screen" href="{% media "/media/style/auth.css" %}"/>
 {% for provider in all_providers %}
 {% for location in provider.extra_css %}
 <link rel="stylesheet" type="text/css" media="screen" href="{{ location }}"/>
@@ -20,92 +19,198 @@
 {{ provider.pre_code|safe }}
 {% endif %}
 {% endfor %}
-<div class="headNormal">
-    {% trans "User login" %}
-</div>
-{% if msg %}
-<p class="error">{{ msg }}</p>
-{% endif %}
-{% for provider in top_stackitem_providers %}
-<form class="signin_form" method="POST" action="{% url auth_provider_signin provider=provider.id %}" accept-charset="utf-8">
-    {% csrf_token %}
-    {% include provider.stack_item_template %}
-    <input type="hidden" class="validate_email" name="validate_email" value="yes" />
-</form>
-{% endfor %}
-{% if top_stackitem_providers %}
-<h3 class="or_label">{% trans 'Or...' %}</h3>
-{% endif %}
-<div style="width:600px;float:left;margin-bottom:5px;">
-    {% blocktrans %}
-    External login services use <b><a href="http://openid.net/">OpenID</a></b> technology, where your password always stays confidential between
-    you and your login provider and you don't have to remember another one.
-    {% endblocktrans %}
-</div>
-{% if request.user.is_anonymous %}
-<div style="width:600px;float:left;margin-bottom:5px;">
-    <input type="checkbox" checked="checked" id="validate_email" />
-    {% trans "Validate my email after I login." %}
-</div>
-{% endif %}
-<div id="bigicon_providers">
-    {% for provider in bigicon_providers %}
-    <div class="provider_logo big" name="{{ provider.id }}">
-        <div class="inner">
-            {% ifequal provider.type "DIRECT" %}
-            <a class="provider_direct" href="{% url auth_provider_signin provider=provider.id %}">
-                <img src="{% media provider.icon %}" />
-            </a>
-            {% endifequal %}
-            {% ifequal provider.type "CUSTOM" %}
-            {% include provider.code_template %}
-            {% endifequal %}
-            {% ifequal provider.type "SIMPLE_FORM" %}
-            <img alt="{{ provider.simple_form_context.your_what }}" class="simple_form_provider" src="{% media provider.icon %}" />
-            {% endifequal %}
+
+<div class="row">
+    <div class="col-md-6">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown">Sign in<b class="caret"></b></a>
+                <ul class="dropdown-menu" style="padding: 15px 0px;min-width: 250px;">
+                    <li>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Verify my email
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-block">Sign in</button>
+
+                                    </div>
+                                    <li class="divider"></li>
+
+                                    <input class="btn btn-info btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                                    <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook">
+                                    <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Join Mowt
+        </button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <div class="modal-dialog">
+            <div class="form-signin">
+                <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    Sign up for Mowt</h3>
+                <div class="social-box">
+                    <div class="row mg-btm">
+                            <a href="http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
+                                Login with Facebook</a>
+                    </div>
+                    <div class="row mg-btm">
+                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
+                                Login with Twitter</a>
+                    </div>
+                    <div class="row mg-btm">
+                            <a href="http://localhost:8000/account/google/signin/" class="btn btn-danger btn-block">
+                                Login with Google</a>
+                    </div>
+                </div>
+                <div class="main">
+                    {% if msg %}
+                    <p class="error">{{ msg }}</p>
+                    {% endif %}
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Verify my email
+                        </label>
+                    </div>
+                    <span class="clearfix"></span>
+                </div>
+                <div class="login-footer">
+                    <div class="row">
+                        <div class="col-xs-8 col-md-8">
+                            <div class="left-section">
+                                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
+                                <a href="{% url auth_local_register %}">Sign up now</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-4 pull-right">
+                            <button type="submit" class="btn btn-large btn-success pull-right">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    {% endfor %}
-</div>
-<div id="smallicon_providers">
-    {% for provider in smallicon_providers %}
-    <div class="provider_logo small" name="{{ provider.id }}">
-        <div class="inner">
-            {% ifequal provider.type "DIRECT" %}
-            <a class="provider_direct" href="{% url auth_provider_signin provider=provider.id %}">
-                <img src="{% media provider.icon %}" />
-            </a>
-            {% endifequal %}
-            {% ifequal provider.type "CUSTOM" %}
-            {% include provider.code_template %}
-            {% endifequal %}
-            {% ifequal provider.type "SIMPLE_FORM" %}
-            <img alt="{{ provider.simple_form_context.your_what }}" class="simple_form_provider" src="{% media provider.icon %}" />
-            {% endifequal %}
-        </div>
-    </div>
-    {% endfor %}
-</div>
-<form name="signin_form" id="signin_form" class="signin_form" method="POST" action="">
-    {% csrf_token %}
-    <div id="signin_form_slot"></div>
-    <input type="hidden" class="validate_email" name="validate_email" value="yes" />
-</form>
-{% for provider in stackitem_providers %}
-<h3 class="or_label">{% trans 'Or...' %}</h3>
-<form class="signin_form" method="POST" action="{% url auth_provider_signin provider=provider.id %}" accept-charset="utf-8">
-    {% csrf_token %}
-    {% include provider.stack_item_template %}
-    <input type="hidden" class="validate_email" name="validate_email" value="yes" />
-</form>
+    <div class="col-md-6">
+{% for provider in all_providers %}
+{% if provider.pre_code %}
+{{ provider.pre_code|safe }}
+{% endif %}
 {% endfor %}
-<h3 class="or_label">{% trans 'Or...' %}</h3>
-<form name="signin_form" id="dummy_form_unused" class="signin_form" method="POST" action="">
-    {% csrf_token %}
-    <fieldset>
-        {% trans 'Click' %} <a href="{% url auth_request_tempsignin %}">{% trans 'here' %}</a> {% trans "if you're having trouble signing in." %}
-    </fieldset>
-</form>
+
+
+        <div class="headNormal"> Sign in or up </div>
+            {% if msg %}
+        <p class="error">{{ msg }}</p>
+            {% endif %}
+
+
+        {% for provider in bigicon_providers %}
+            <div class="provider_logo big" name="{{ provider.id }}">
+                <div class="inner">
+                    {% ifequal provider.type "DIRECT" %}
+                    <a class="provider_direct" href="{% url auth_provider_signin provider=provider.id %}">
+                        <img src="{% media provider.icon %}" />
+                    </a>
+                    {% endifequal %}
+                    {% ifequal provider.type "CUSTOM" %}
+                    {% include provider.code_template %}
+                    {% endifequal %}
+                    {% ifequal provider.type "SIMPLE_FORM" %}
+                    <img alt="{{ provider.simple_form_context.your_what }}" class="simple_form_provider" src="{% media provider.icon %}" />
+                    {% endifequal %}
+                </div>
+            </div>
+        {% endfor %}
+
+
+        {% for provider in stackitem_providers %}
+            <form class="signin_form" method="POST" action="{% url auth_provider_signin provider=provider.id %}" accept-charset="utf-8">
+                {% csrf_token %}
+                {% include provider.stack_item_template %}
+                <input type="hidden" class="validate_email" name="validate_email" value="yes" />
+            </form>
+        {% endfor %}
+
+        {% if request.user.is_anonymous %}
+            <input type="checkbox" checked="checked" id="validate_email" />
+            Verify my email after I login
+        {% endif %}
+
+            <form name="signin_form" id="dummy_form_unused" class="signin_form" method="POST" action="">
+                {% csrf_token %}
+                <fieldset>
+                Click <a href="{% url auth_request_tempsignin %}">here</a> if you're having trouble signing in.
+                </fieldset>
+            </form>
+
+
+
+
+        <!--
+        <div id="smallicon_providers">
+            {% for provider in smallicon_providers %}
+            <div class="provider_logo small" name="{{ provider.id }}">
+                <div class="inner">
+                    {% ifequal provider.type "DIRECT" %}
+                    <a class="provider_direct" href="{% url auth_provider_signin provider=provider.id %}">
+                        <img src="{% media provider.icon %}" />
+                    </a>
+                    {% endifequal %}
+                    {% ifequal provider.type "CUSTOM" %}
+                    {% include provider.code_template %}
+                    {% endifequal %}
+                    {% ifequal provider.type "SIMPLE_FORM" %}
+                    <img alt="{{ provider.simple_form_context.your_what }}" class="simple_form_provider" src="{% media provider.icon %}" />
+                    {% endifequal %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <form name="signin_form" id="signin_form" class="signin_form" method="POST" action="">
+            {% csrf_token %}
+            <div id="signin_form_slot"></div>
+            <input type="hidden" class="validate_email" name="validate_email" value="yes" />
+        </form>
+        {% for provider in top_stackitem_providers %}
+        <form class="signin_form" method="POST" action="{% url auth_provider_signin provider=provider.id %}" accept-charset="utf-8">
+            {% csrf_token %}
+            {% include provider.stack_item_template %}
+            <input type="hidden" class="validate_email" name="validate_email" value="yes" />
+        </form>
+        {% endfor %}
+        {% if top_stackitem_providers %}
+        <h3 class="or_label">{% trans 'Or...' %}</h3>
+        {% endif %} -->
+
+</div>
+
 <script type="text/html" id="simple_form_template">
     <fieldset id="slot_form">
         <p id="provider_name_slot">{% trans 'Enter your ' %}%%YOUR_WHAT%%</p>

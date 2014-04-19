@@ -96,9 +96,10 @@
 
 #user-main { background-color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
+    font-weight: 500;
     border-bottom: 1px solid #cdcdcd;
     padding: 10px;
-    margin: 20px 0;}
+    margin: 30px 0 20px; min-height: 160px;}
 
 .action-body { height:40px; display:inline; }
 
@@ -112,20 +113,34 @@
 
 .user-tabs { margin: 30px 0 10px; }
 
-.user-tabs a,
-.tabsA a { font-size:18px; padding: 10px;  }
-
-.user-tabs a.on, .user-tabs a:hover,
-.tabsA a.on,
-.tabsA a:hover { background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
-
-
-/* USER.HTML Info */
 .tabsA { padding: 8px 0;
     text-align: center;
     border: 1px solid #ccc;
     margin: 20px 0;
-}
+    border-radius: 3px;
+    background: #ededed;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20); }
+.user-tabs a,
+.tabsA a { font-size: 16px;
+    padding: 9px 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 1px #fff;
+    color: #555; }
+
+.user-tabs a.on, .user-tabs a:hover,
+.tabsA a.on,
+.tabsA a:hover { background: #fff; border-right: 1px solid #ddd; border-left: 1px solid #ddd; color: #000; font-size: 120%; text-decoration: none; }
+
+
+/* USER.HTML Info */
+
+
+
+.user-score {
+    color: #888;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 0 10px 10px; }
 
 
 /* USER.HTML Stats Reputation.html */
@@ -745,18 +760,21 @@ a.medal:hover {
 .vote-count {
 }
 
+.stat-count { font-size: 18px;
+}
+
+
+
+#profile-tags { float:left; }
+
+.profile-tabs { padding: 10px 0; }
+.profile-tabs a { padding: 10px 8px; text-decoration: none; font-weight: 500; color: #777; }
 .profile-tabs a.on,
-.profiile-tabs a:hover {
-    background: none repeat scroll 0 0 #FFFFFF;
-    color: #000; }
-
-#profile-tags { }
-
-.profile-tabs a { padding: 0 6px; text-decoration: none; }
+.profile-tabs a:hover { background: #fff; color: #222; font-size: 130%; text-decoration: none; }
 
 .stat-header {  }
 
-
+.answer-title-link { font-weight: 700; }
 
 .tabsB {
     display: block;
@@ -771,7 +789,6 @@ a.medal:hover {
     color: #000;
 }
 
-#profile-tags { }
 
 .tabsB a {
     background: none repeat scroll 0 0 #EEEEEE;
@@ -1188,13 +1205,12 @@ ins .post-tag {
 }
 
 
-/*
-.scoreNumber {
-    color: #333;
-    font-size: 24px;
-    line-height: 30px;
-}
-*/
+
+.user-score {
+    color: #888;
+    font-size: 18px;
+    font-weight: 700;
+padding-bottom: 10px; }
 
 
 
@@ -1965,7 +1981,7 @@ p.signup_p {
     background: #fff; }
 .sidebar-box a { font-size: 14px; }
 
-#sidebar-profile { }
+#sidebar-profile { margin-bottom: 20px;  }
 #sidebar-profile a { font-size:20px; }
 #sidebar-profile img { float:left; margin-right:15px;}
 
@@ -2019,6 +2035,7 @@ p.signup_p {
 .vote-buttons {
     float: left;
     text-align: center;
+    margin-top:5px;
 }
 
 .vote-buttons img {
@@ -2043,25 +2060,26 @@ p.signup_p {
 
 a.post-vote, .favorite-mark, a.accept-answer {
     display: block;
-    height: 30px;
+    height: 24px;
     position: relative;
     width: 30px;
+    opacity: 0.6;
 }
 
-a.post-vote.up { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_up-24.png")
-no-repeat scroll center center transparent; opacity: 0.4; }
+a.post-vote.up { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_up-32.png")
+no-repeat scroll center center transparent; opacity: 0.2; }
 
 
 a.post-vote.up.on, a.post-vote.up:hover { background: url("https://cdn1.iconfinder.com/data/icons/freeapplication/png/24x24/Dollar.png")
-no-repeat scroll center center transparent; opacity:1;}
+no-repeat scroll center center transparent; opacity:0.7;}
 
 
-a.post-vote.down { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_down-24.png")
-no-repeat scroll center center transparent; opacity: 0.4; height:20px; }
+a.post-vote.down { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_down-32.png")
+no-repeat scroll center center transparent; opacity: 0.2; height:20px; }
 
 
 a.post-vote.down.on, a.post-vote.down:hover { background: url("https://cdn1.iconfinder.com/data/icons/pixelo/32/poo.png")
-no-repeat scroll center center transparent; opacity:1; height:30px; }
+no-repeat scroll center center transparent; opacity:0.7; height:28px; }
 
 
 a.accept-answer {
@@ -2074,7 +2092,9 @@ a.accept-answer.on, a.accept-answer:hover {
 
 .post-score {
     color: #777777;
-    font-size: 140%;
+    font-size: 16px;
+    font-weight: bold;
+    padding:0;
 }
 
 .favorite-mark {
@@ -2087,9 +2107,8 @@ a.accept-answer.on, a.accept-answer:hover {
 
 .favorite-count {
     color: #777777;
-    font-size: 100%;
-    font-weight: bold;
-    padding: 0;
+    padding: 5px 0 0 10px;
+    font-size: 16px;
 }
 
 
@@ -2154,7 +2173,7 @@ div.comment-tools .comments-showing {
     font-size: 11px;
 }
 
-div.comment-tools a { cursor: pointer; font-size: 12px; border-top: 1px solid #e8e8e8; padding: 0px; }
+div.comment-tools a { cursor: pointer; font-weight:500; color: #888; font-size: 11px; border-top: 1px solid #e8e8e8; padding: 0 2px; }
 
 div.comment-tools a:hover {
     background-color: #777777;
@@ -2241,8 +2260,6 @@ div.dialog, .context-menu-dropdown {
 
 .context-menu-dropdown {
     display: none;
-    right: 0px;
-    top: 1.5em;
     text-align: left;
     list-style-type: none;
     z-index: 500;
@@ -2403,13 +2420,14 @@ div.wmd-button-bar {
     float:left;
 }
 
-/**** questions.html, index.html **********/
+/*********** index.html ***************/
 
 
-.bs-glyphicons .glyphicon { }
+.bs-glyphicons .glyphicon {  }
 
-.glyphicon-class { padding:0; }
+.glyphicon-class { padding:0; color: #777 }
 
+.glyphicon-class a { font-weight: 500; }
 
 .bs-glyphicons li {  }
 
@@ -2417,14 +2435,19 @@ div.wmd-button-bar {
 
 
 
-.masthead-item { padding: 20px; text-align:center;}
+#masthead-item { padding: 8px 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20); }
 
 #masthead p {
     font-size: 20px;
     line-height: 1;
     color: #eee;
     font-weight: 500;
-    padding: 15px 40px 0px 40px;
+    padding: 15px 20px 0 20px;
 }
 
 
@@ -2435,15 +2458,28 @@ div.wmd-button-bar {
 }
 
 
-
 .tabBar { padding:0; margin:0; }
-
-
 .home-header, .home-tabs { padding: 0; margin: 10px 0 0; float:none; }
-.home-tabs a { margin:0 10px;  }
-
+.home-tabs a { margin:0 10px; color: #777; font-weight: 500; }
 .home-tabs a.on, .home-tabs a:hover { background: #fff; text-decoration: none; }
 
+
+
+/********* questions.html **********/
+
+
+
+.results-header, .results-tabs { padding: 8px 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 20px 100px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20); }
+
+.results-title { display:inline; }
+.results-tabs a { font-size: 18px;
+    padding: 10px; }
+.results-tabs a.on, .results-tabs a:hover { background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
 
 /********* item.html **********/
 
@@ -2455,6 +2491,20 @@ div.short-summary { /* Containing div must have a position value */
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     border-bottom: 2px solid #cdcdcd; }
+
+
+div.short-summary a.biglink { /* Make whole home page topic div clickable to topic permalink (override individual exceptions below) */
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    text-decoration:underline; /* Makes sure the link   doesn't get underlined */
+    z-index: 1;
+    background-color:white; /*workaround to make clickable in IE */
+    opacity: 0; /*workaround to make clickable in IE */
+    filter: alpha(opacity=1); /*workaround to make clickable in IE */
+}
 
 #list-row1 {  }
 #list-row2 { padding-bottom:2px; }
@@ -2524,6 +2574,7 @@ div.short-summary { /* Containing div must have a position value */
 
 
 
+
 .list-top h2, .list-top h2 a { font-size: 1.3em; color: #444; font-weight: 500; margin: 0; padding: 0; }
 
 #centercol { /* background-color: #fff;
@@ -2546,19 +2597,16 @@ div.short-summary { /* Containing div must have a position value */
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 2px solid #ccc; }
+    border-bottom: 1px solid #ccc; }
 
 
 .list-top {
-
     padding: 10px 0 5px;
     background: #fff;
-    margin-bottom: 50px;
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-    border-bottom: 2px solid #ccc;
-
+    border-bottom: 1px solid #ccc;
 }
 
 
@@ -3033,13 +3081,13 @@ textarea {
     line-height: inherit;
 }
 a {
-    color: #428bca;
+    color: #1F006C;
     text-decoration: none;
 }
 a:hover,
 a:focus {
-    color: #2a6496;
-    text-decoration: underline;
+    color: #5916FE;
+    text-decoration: none;
 }
 a:focus {
     outline: thin dotted;
@@ -6493,12 +6541,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
     float: left;
     height: 50px;
-    padding: 15px 15px;
-    font-size: 18px;
-    line-height: 20px;
+    padding: 10px 20px 0;
+    font-size: 20px;
+    font-weight: bold;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
+    color: #000088;
     text-decoration: none;
 }
 
@@ -7700,7 +7749,7 @@ a.list-group-item-danger.active:focus {
 .panel-group .panel {
     margin-bottom: 0;
     overflow: hidden;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
 }
 .panel-group .panel + .panel {
     margin-top: 5px;
@@ -7721,9 +7770,11 @@ a.list-group-item-danger.active:focus {
     border-color: #ddd;
 }
 .panel-default > .panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;
+    color: #fff;
+    background-color: #aaa;
+    border-color: #888;
+    font-size:18px;
+    text-shadow: 0 1px 1px #444;
 }
 .panel-default > .panel-heading + .panel-collapse .panel-body {
     border-top-color: #ddd;
