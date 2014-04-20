@@ -82,7 +82,7 @@
                 <a class="navbar-brand" href="{% url index %}">Mowt</a>
             </div>
             <div class="col-lg-2 col-md-3 col-md-offset-4 col-sm-4">
-                    <form class="navbar-form" role="search">
+                    <form action="{% url search %}" class="navbar-form" role="search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" name="q">
                             <div class="input-group-btn">
