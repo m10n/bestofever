@@ -39,54 +39,67 @@
 
 
 {% block masthead %}
-<div class="row" id="masthead">
-        <div class="col-md-9">
-            <ul class="nav nav-pills">
-                <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
-                <li>{% include "question_list/sort_tabs.html" %}</li>
-                <li>
-                    <a href="http://localhost:8000/tags/news/"><i class="fa-block fa-globe fa-2x"></i>News</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/tech/"><i class="fa-block fa-mobile fa-2x"></i>Tech</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/advice/"><i class="fa-block fa-comments-o fa-2x"></i>Advice</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/ideas/"><i class="fa-block fa-lightbulb-o fa-2x"></i>Ideas</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/love/"><i class="fa-block fa-heart-o fa-2x"></i>Love</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/wordplay/"><i class="fa-block fa-keyboard-o fa-2x"></i>Wordplay</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/sf/"><i class="fa-block fa-camera-retro fa-2x"></i>SF</a>
-                </li>
-                <li>
-                    <a href="http://localhost:8000/tags/nyc/"><i class="fa-block fa-camera fa-2x"></i>NYC</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <a class="btn btn-default btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
-            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-                Join Mowt
-            </button>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="form-signin">
-                        <h3 class="heading-desc" class="modal-title" id="SignupModal">
-                            <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            Sign up for Mowt</h3>
-                        <div class="social-box">
-                            <div class="row mg-btm">
-                                <div class="col-md-12">
-                                    <a href=http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
-                                        <i class="fa fa-facebook"></i>    Login with Facebook
-                                    </a>
+<div id="masthead">
+                <div class="row" id="masthead-item">
+                    <div class="col-md-9">
+                        <ul class="nav nav-pills">
+                            <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
+                            <li>{% include "question_list/sort_tabs.html" %}</li>
+                            <li>
+                                <a href="http://localhost:8000/tags/news/"><i class="fa-block fa-globe fa-2x"></i>News</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/tech/"><i class="fa-block fa-mobile fa-2x"></i>Tech</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/advice/"><i class="fa-block fa-comments-o fa-2x"></i>Advice</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/ideas/"><i class="fa-block fa-lightbulb-o fa-2x"></i>Ideas</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/love/"><i class="fa-block fa-heart-o fa-2x"></i>Love</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/wordplay/"><i class="fa-block fa-keyboard-o fa-2x"></i>Wordplay</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/sf/"><i class="fa-block fa-camera-retro fa-2x"></i>SF</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/tags/nyc/"><i class="fa-block fa-camera fa-2x"></i>NYC</a>
+                            </li>
+                        </ul>
+                    </div>
+                        <div class="col-md-3">
+                        <a class="btn btn-default btn-lg" data-toggle="modal" href="{% url ask %}" role="button" data-target="#askModal">
+                            Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+
+                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                            Join Mowt
+                            </button>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="form-signin">
+                                <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    Sign up for Mowt</h3>
+                                <div class="social-box">
+                                    <div class="row mg-btm">
+                                        <div class="col-md-12">
+                                            <a href=http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
+                                                <i class="icon-facebook"></i>    Login with Facebook
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
+                                                <i class="icon-twitter"></i>    Login with Twitter
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -141,6 +154,10 @@
 {% endif %}
 
 {% block content %}
+<div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"><div class="modal-content"></div> </div>
+</div>
+
 <div class="row clearfix">
     <div id="content-lists">
         <div id="listA">
