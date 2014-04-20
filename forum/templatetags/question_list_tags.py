@@ -23,7 +23,13 @@ class QuestionItemNode(template.Node):
 
     def render(self, context):
         q = self.question.resolve(context)
-        sample_answer = q.answers[0] if len(q.answers) else ''
+        max_score = -1
+        argmax_score = ''
+        for answer in q.answers:
+            if answer.score > max_score:
+                max_score = answer.score
+                argmax_score = answer
+        sample_answer = argmax_score
         return self.template.render(template.Context({
             'question': q,
             'sample_answer': sample_answer,

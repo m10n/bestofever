@@ -1,5 +1,4 @@
 from base import *
-from tag import Tag
 from django.utils.translation import ugettext as _
 
 class QuestionManager(NodeManager):
