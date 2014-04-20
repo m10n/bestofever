@@ -17,6 +17,8 @@
 
     <link rel="shortcut icon" href="{{ settings.APP_FAVICON }}" />
 
+    <link rel="stylesheet" type="text/css" href="{% media '/media/font-awesome-4.0.3/css/font-awesome.css' %}">
+
     <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
     <link href="{% media '/media/style/style.css' %}" rel="stylesheet" type="text/css" />
     {% if settings.USE_CUSTOM_CSS|or_preview:request %}
