@@ -72,7 +72,9 @@ itemSelector: '.item'
                             </ul>
                         </div>
                         <div class="col-md-3">
-                        <a class="btn btn-default btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-default btn-lg" data-toggle="modal" href="{% url ask %}" role="button" data-target="#askModal">
+                            Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
 
                             <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
                             Join Mowt
@@ -145,6 +147,10 @@ itemSelector: '.item'
 {% endif %}
 
 {% block content %}
+<div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"><div class="modal-content"></div> </div>
+</div>
+
 <div class="row clearfix">
     <div id="content-lists">
         <div id="listA">

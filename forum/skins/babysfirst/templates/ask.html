@@ -1,15 +1,17 @@
-{% extends "base_container.html" %}
-<!-- template ask.html -->
+
 {% load i18n extra_tags extra_filters %}
-{% block title %}{% spaceless %}{% trans "Ask a question" %}{% endspaceless %}{% endblock %}
-{% block forejs %}
 
+<script type="text/javascript" src="{% media '/media/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        menubar : false,
+        plugins : 'autolink link code',
+        toolbar : "undo redo | bold italic underline strikethrough subscript superscript | code | link",
+        browser_spellcheck : true
+    });
+</script>
 
-        <!--
-<script type='text/javascript' src='{% media  "/media/tinymce/tinymce.min.js" %}'></script>
-<script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
-<script type='text/javascript' src='{% media  "/media/js/html_sanitizer.js" %}'></script>
-<link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" /> -->
 <script type="text/html" id="question-summary-template">
     <div class="answer-summary">
         <a href="%URL%"><div class="answer-votes">%SCORE%</div></a>
@@ -27,10 +29,10 @@
         //toggle preview of editor
         //todo remove copy-paste
         var display = true;
-        var txt = "[{% trans "hide preview" %}]";
+        var txt = "[{% trans 'hide preview' %}]";
         $('#pre-collapse').text(txt);
         $('#pre-collapse').bind('click', function(){
-            txt = display ? "[{% trans "show preview" %}]" : "[{% trans "hide preview" %}]";
+            txt = display ? "[{% trans 'show preview' %}]" : "[{% trans 'hide preview' %}]";
             display = !display;
             $('#previewer').toggle();
             $('#pre-collapse').text(txt);
@@ -88,30 +90,19 @@
 
     var related_questions_url = "{% url related_questions %}";
 </script>
-<script src="{% media "/media/js/osqa.ask.js" %}" type="text/javascript"></script>
-<script src="osqa.ask.js"></script>
+<script src="{% media '/media/js/osqa.ask.js' %}" type="text/javascript"></script>
 
-{% endblock %}
-
-
-{% block content %}
-
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil">
-        </button>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <div class="modal-header">
+<div tabindex="-1" role="dialog">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Start a new list</h4>
-</div>
-<div class="modal-body">
+        <h4 class="modal-title" id="myModalLabel">Start a new list</h4>
+    </div>
+    <div class="modal-body">
         <div id="main-body" class="ask-body">
-        <div id="askform">
+            <div id="askform">
 
 
-        <form id="fmask" action="" method="post" accept-charset="utf-8">
+        <form id="fmask" action="{% url ask %}" method="post" accept-charset="utf-8">
         {% csrf_token %}
 {% if not request.user.is_authenticated %}
 <div class="message">
@@ -145,7 +136,7 @@ After submiting your question, you will be redirected to the login/signup page.
         <table width="100%">
         <tr>
         <td>
-        <span id="pre-collapse" title="{% trans "Toggle the real time Markdown editor preview" %}">{% trans "toggle preview" %}</span>
+        <span id="pre-collapse" title="{% trans 'Toggle the real time Markdown editor preview' %}">{% trans "toggle preview" %}</span>
 </td>
 <td style="text-align: right;" id="editor-metrics"></td>
 {% if settings.WIKI_ON %}
@@ -178,9 +169,9 @@ After submiting your question, you will be redirected to the login/signup page.
 
 <div class="modal-footer">
         {% if not request.user.is_authenticated %}
-<button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)"/>Log in to start a list</button>
+<button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Log in to start a list</button>
 {% else %}
-<button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)"/>Post your list</button>
+<button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Post your list</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 {% endif %}
 </div>
@@ -190,6 +181,4 @@ After submiting your question, you will be redirected to the login/signup page.
 </div>
 
 </div>
-</div>
-</div>
-{% endblock %}
+
