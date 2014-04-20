@@ -26,12 +26,12 @@
 
 </script>
 <script type="text/javascript">
-$( document ).ready(function() {
-$('#container').masonry({
-columnWidth: 200,
-itemSelector: '.item'
-});
-});
+    $( document ).ready(function() {
+        $('#container').masonry({
+            columnWidth: 200,
+            itemSelector: '.item'
+        });
+    });
 </script>
 
 {% block fulltitle %}{{ settings.APP_TITLE }}
@@ -39,108 +39,104 @@ itemSelector: '.item'
 
 
 {% block masthead %}
-<div id="masthead">
-                <div class="row" id="masthead-item">
-                        <div class="col-md-9">
-                            <ul class="nav nav-pills">
-                                <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
-                                <li><div class="home-tabs">{{ questions.paginator.sort_tabs }}</div></li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/news/"><i class="fa-block fa-globe fa-2x"></i>News</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/tech/"><i class="fa-block fa-mobile fa-2x"></i>Tech</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/advice/"><i class="fa-block fa-comments-o fa-2x"></i>Advice</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/ideas/"><i class="fa-block fa-lightbulb-o fa-2x"></i>Ideas</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/love/"><i class="fa-block fa-heart-o fa-2x"></i>Love</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/wordplay/"><i class="fa-block fa-keyboard-o fa-2x"></i>Wordplay</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/sf/"><i class="fa-block fa-camera-retro fa-2x"></i>SF</a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/nyc/"><i class="fa-block fa-camera fa-2x"></i>NYC</a>
-                                </li>
-                            </ul>
+<div class="row" id="masthead">
+        <div class="col-md-9">
+            <ul class="nav nav-pills">
+                <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
+                <li>{% include "question_list/sort_tabs.html" %}</li>
+                <li>
+                    <a href="http://localhost:8000/tags/news/"><i class="fa-block fa-globe fa-2x"></i>News</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/tech/"><i class="fa-block fa-mobile fa-2x"></i>Tech</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/advice/"><i class="fa-block fa-comments-o fa-2x"></i>Advice</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/ideas/"><i class="fa-block fa-lightbulb-o fa-2x"></i>Ideas</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/love/"><i class="fa-block fa-heart-o fa-2x"></i>Love</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/wordplay/"><i class="fa-block fa-keyboard-o fa-2x"></i>Wordplay</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/sf/"><i class="fa-block fa-camera-retro fa-2x"></i>SF</a>
+                </li>
+                <li>
+                    <a href="http://localhost:8000/tags/nyc/"><i class="fa-block fa-camera fa-2x"></i>NYC</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-default btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
+            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                Join Mowt
+            </button>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="form-signin">
+                        <h3 class="heading-desc" class="modal-title" id="SignupModal">
+                            <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            Sign up for Mowt</h3>
+                        <div class="social-box">
+                            <div class="row mg-btm">
+                                <div class="col-md-12">
+                                    <a href=http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
+                                        <i class="fa fa-facebook"></i>    Login with Facebook
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
+                                        <i class="fa fa-twitter"></i>    Login with Twitter
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                        <a class="btn btn-default btn-lg" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
-
-                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-                            Join Mowt
-                            </button>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="form-signin">
-                                <h3 class="heading-desc" class="modal-title" id="SignupModal">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    Sign up for Mowt</h3>
-                                <div class="social-box">
-                                    <div class="row mg-btm">
-                                        <div class="col-md-12">
-                                            <a href=http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
-                                                <i class="icon-facebook"></i>    Login with Facebook
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
-                                                <i class="icon-twitter"></i>    Login with Twitter
-                                            </a>
-                                        </div>
+                        <div class="main">
+                            {% if msg %}
+                            <p class="error">{{ msg }}</p>
+                            {% endif %}
+                            <input type="text" class="form-control" placeholder="Username" autofocus>
+                            <input type="password" class="form-control" placeholder="Password">
+                            Are you a business? <a href=""> Get started here</a>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="login-footer">
+                            <div class="row">
+                                <div class="col-xs-8 col-md-8">
+                                    <div class="left-section">
+                                        <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
+                                        <a href="{% url auth_local_register %}">Sign up now</a>
                                     </div>
                                 </div>
-                                <div class="main">
-                                    {% if msg %}
-                                    <p class="error">{{ msg }}</p>
-                                    {% endif %}
-                                    <input type="text" class="form-control" placeholder="Username" autofocus>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                    Are you a business? <a href=""> Get started here</a>
-                                    <span class="clearfix"></span>
+                                <div class="col-xs-4 col-md-4 pull-right">
+                                    <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
                                 </div>
-                                <div class="login-footer">
-                                    <div class="row">
-                                        <div class="col-xs-8 col-md-8">
-                                            <div class="left-section">
-                                                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
-                                                <a href="{% url auth_local_register %}">Sign up now</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4 col-md-4 pull-right">
-                                            <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
 </div>
-
 {% endblock %}
 
 
 {% if not request.user.is_authenticated %}
 {% if settings.SHOW_WELCOME_BOX %}
-    <div class="boxA">
-        <h3>"welcome to "{{ settings.APP_SHORT_NAME }}</h3>
-        <div class="body">
-          {{ settings.APP_INTRO|safe }}
-          <div class="more"><a href="{% url about %}">About </a></div>
-          <div class="more"><a href="{% url faq %}">FAQ </a></div>
-        </div>
+<div class="boxA">
+    <h3>"welcome to "{{ settings.APP_SHORT_NAME }}</h3>
+    <div class="body">
+        {{ settings.APP_INTRO|safe }}
+        <div class="more"><a href="{% url about %}">About </a></div>
+        <div class="more"><a href="{% url faq %}">FAQ </a></div>
     </div>
+</div>
 {% endif %}
 {% endif %}
 
@@ -160,11 +156,10 @@ itemSelector: '.item'
 </div>
 <div class="row clearfix">
     <div class="col-md-2 col-md-offset-10">
-    {{ questions.paginator.page_sizes }}
-    {{ questions.paginator.page_numbers }}
+        {{ questions.paginator.page_sizes }}
+        {{ questions.paginator.page_numbers }}
     </div>
 </div>
 {% endblock %}
 
 <!-- index.html -->
-

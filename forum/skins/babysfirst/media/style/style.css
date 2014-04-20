@@ -2429,42 +2429,15 @@ div.wmd-button-bar {
 /*********** index.html ***************/
 
 
-.bs-glyphicons .glyphicon {  }
-
-.glyphicon-class { display:block; padding:0; color: #777 }
-
-.glyphicon-class a { display:block; font-weight: 500; }
-
-.bs-glyphicons li { display:block; }
-
-.bs-glyphicons li:hover {  }
-
-
-
-#masthead-item { padding: 8px 0;
+#masthead {
     text-align: center;
-    border: 1px solid #ccc;
-    margin: 20px 0;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20); }
+    margin: 70px 0 20px; border: 1px solid #ccc; }
 
-#masthead p {
-    font-size: 20px;
-    line-height: 1;
-    color: #eee;
-    font-weight: 500;
-    padding: 15px 20px 0 20px;
+#masthead p, #masthead a {  color: #777; padding: 6px 12px; margin: 0; border-radius: 0; }
+
+#masthead p:hover, #masthead a:hover { font-weight:500; background: #fff; color: #333; border-left: 1px solid #eee; border-right: 1px solid #eee; }
 }
-
-
-#masthead .well {
-    margin-top:13%;
-    background-color:#111155;
-    border-color:#000033;
-}
-
-
-.masthead-nav { display:block; }
+.home-tabs { padding: 0; }
 
 .tabBar { padding:0; margin:0; }
 .home-header, .home-tabs { padding: 0; margin: 10px 0 0; float:none; }

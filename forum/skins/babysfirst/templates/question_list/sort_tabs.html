@@ -1,10 +1,6 @@
 {% load i18n %}
-
-        <!-- from readers.py-->
-<div class="tabsa">
-    <li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
-        <li> <a id="trending" href="{{ base_url }}trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours">trending</a></li>
-        <li><a id="newest" href="{{ base_url }}newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists">newest</a></li>
-        <li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists">most voted</a></li>
-</div>
-
+<!-- from readers.py-->
+<li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists"><i class="fa-block fa-list-alt fa-2x"></i>Home</a></li>
+<li><a id="trending" href="{{ base_url }}trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours"><i class="fa-block fa-users fa-2x"></i>Trending</a></li>
+<li><a id="newest" href="{{ base_url }}newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists"><i class="fa-block fa-user fa-2x"></i>Newest</a></li>
+<li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists"><i class="fa-block fa-trophy fa-2x"></i>Best of</a></li>
