@@ -2,29 +2,25 @@
 {% load extra_tags ui_registry i18n extra_filters markup %}
 
 
-<header class="navbar navbar-default navbar-fixed-top" role="navigation">
+<header class="nav navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="row">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".js-navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!--<img src="{{ settings.APP_LOGO }}" title="home" alt="{{settings.APP_TITLE}} logo"/>-->
         </div>
-    </div>
-        <div class="collapse navbar-collapse js-navbar-collapse">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-sm-4 col-md-3">
-                <ul class="nav navbar-nav">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
                 <li class="dropdown dropdown-large">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-large row" style="padding: 15px 0px;min-width: 550px;">
-                        <li class="col-sm-4">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars fa-2x"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-large row" style="padding: 10px 0 20px;">
+                        <li class="col-sm-6">
                             <ul>
                                 <li class="dropdown-header">Lists</li>
                                 <li><a id="active" href="{{ base_url }}/questions/?sort=active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
@@ -36,20 +32,20 @@
                                 <li class="disabled"><a href="#">Coming soon</a></li>
                             </ul>
                         </li>
-                        <li class="col-sm-4">
+                        <li class="col-sm-6">
                             <ul>
                                 <li class="dropdown-header">Categories</li>
                                 <li>
-                                    <a href="http://localhost:8000/tags/news/"><span class="glyphicon glyphicon-globe"></span>News
+                                    <a href="{{ base_url }}/tags/news/"><span class="glyphicon glyphicon-globe"></span>News
                                 </li>
                                 <li>
-                                    <a href="http://localhost:8000/tags/tech/"><span class="glyphicon glyphicon-phone"></span>Tech</a>
+                                    <a href="{{ base_url }}/tags/tech/"><span class="glyphicon glyphicon-phone"></span>Tech</a>
                                 </li>
                                 <li>
-                                    <a href="http://localhost:8000/tags/advice/"><span class="glyphicon glyphicon-heart"></span>Advice</a>
+                                    <a href="{{ base_url }}/tags/advice/"><span class="glyphicon glyphicon-heart"></span>Advice</a>
                                 </li>
                                 <li>
-                                    <a href="http://localhost:8000/tags/ideas/"><span class="glyphicon glyphicon-certificate"></span>Ideas</a>
+                                    <a href="{{ base_url }}/tags/ideas/"><span class="glyphicon glyphicon-certificate"></span>Ideas</a>
                                 </li>
 
                                 <li class="divider"></li>
@@ -64,96 +60,94 @@
                                 <li class="dropdown-header">All</li>
                                 <li><a id="mostvoted" href="{{ base_url }}/tags/" class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">categories</a></span></li>
                             </ul>
-                        <li class="col-sm-4">
-                            <ul>
-                                <li class="dropdown-header">Featured</li>
-                                <li><a href="#">Basic example</a></li>
-                                <li><a href="#">Sizing</a></li>
-                                <li><a href="#">Checkboxes and radio addons</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Navs</li>
-                                <li><a href="#">Tabs</a></li>
-                                <li><a href="#">Pills</a></li>
-                                <li><a href="#">Justified</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
-                <a class="navbar-brand" href="{% url index %}">Mowt</a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-md-offset-4 col-sm-4">
-                    <form action="{% url search %}" class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="q">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    {% if user_authenticated %}
-                    {% gravatar view_user 30 %}<b class="caret"></b></a>
-                    {% else %}
-                    <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown">Sign in<b class="caret"></b></a>
-                    {% endif %}
+                <a class="navbar-brand" href="{% url index %} ">mowt</a>
+            </ul>
 
-                    <ul class="dropdown-menu" style="padding: 15px 0px;min-width: 250px;">
+            <div class="col-lg-2 col-md-3 col-md-offset-4 col-sm-4">
+                <form action="{% url search %}" class="navbar-form" role="search">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-navsearch" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search" name="q">
+
+                    </div>
+                </form>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user and user.is_anonymous %}
+                <li class="dropdown">
+                    <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+                        Sign In <b class="caret"></b>
+                    </button>
+                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                         <li>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Verify my email
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Verify my email
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-block">Sign in</button>
 
-                                        </div>
-                                        <li class="divider"></li>
+                                    </div>
+                                    <li class="divider"></li>
 
-                                        <input class="btn btn-info btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-                                        <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook">
-                                        <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
-                                    </form>
-                                </div>
+                                    <input class="btn btn-info btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                                    <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook">
+                                    <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                                </form>
                             </div>
                         </li>
                     </ul>
                 </li>
-                </ul>
-                <ul class="nav navbar-nav">
+                {% else %}
+                <li><button class="btn btn-default navbar-btn" data-toggle="modal" a href="{% url ask %}" data-target="#askModal">
+                    Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                </li>
+                {% endif %}
                 <li class="dropdown">
-                    <a href="http://localhost:8000/account/signin/" class="dropdown-toggle" data-toggle="dropdown">
-                        {% if view_user_authenticated %}
-                        {% gravatar view_user 20 %}<b class="caret"></b></a>
-                        {% else %}
-                         <span class="glyphicon glyphicon-cog"><b class="caret"></b>
-                        {% endif %}
+                    {% if user.is_authenticated %}
+
+                    <p class="navbar-gravatar dropdown-toggle" data-toggle="dropdown">
+                        {% gravatar user 34 %} <b class="caret"></b></p>
+                    {% else %}
+                    <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown" a href="{{ base_url }}/account/signin/">
+                        Sign In<b class="caret"></b>
+                    </button>
+                    {% endif %}
+
                     <ul class="dropdown-menu">
                         <li>{% loadregistry USERNAME_SCORE_BADGE %}{% endloadregistry %}</li>
-                        <li>{% loadregistry ADMIN_SUPERUSER %}{% endloadregistry %}</li>
                         <li>{% loadregistry PROFILE_TABS %}{% endloadregistry %}</li>
                         <li>{% loadregistry USER_MENU %}{% endloadregistry %}</li>
+
+                        <li>{% loadregistry FOOTER_LINKS %}{% endloadregistry %}</li>
+
+                        <li>{% loadregistry ADMIN_SUPERUSER %}{% endloadregistry %}</li>
                         <li class="divider"></li>
+
                         <li>{% loadregistry LOGIN_OUT %}{% endloadregistry %}</li>
+
                     </ul>
                 </li>
-                </ul>
-            </div>
-        </div>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </div>
 </header>
+
 
