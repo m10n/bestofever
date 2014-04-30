@@ -22,6 +22,28 @@
 </script>
 <script type="text/javascript">
     $(function(){
+        $('#fmask').on('submit', function(e){
+            e.preventDefault();
+            $.post('{% url ask %}',
+                   $('#fmask').serialize(),
+                   function(data, status, xhr){
+                       // Page will contain the magic string iff it's not a redirect,
+                       // because then it'll be in this text!
+                       var magicString = '__ask_page_render_in_modal__';
+                       if(data.indexOf(magicString) == -1) {
+                           // We've been redirected.
+                           var newDoc = window.document.open("text/html", "replace");
+                           newDoc.write(data);
+                           newDoc.close();
+                       } else {
+                           $('#askModal-content').html(data);
+                       }
+                   });
+            return false;
+        });
+    });
+
+    $(function(){
         //set current module button style
         $("#nav_ask").attr('className',"on");
         $('#editor').TextAreaResizer();
@@ -76,9 +98,6 @@
             $("input.submit")[0].disabled=true;
         }
         window.removeEventListener('beforeunload', beforeUnload, true);
-        if (f) {
-            f.submit();
-        }
     }
 
     function beforeUnload(e) {
@@ -102,7 +121,7 @@
             <div id="askform">
 
 
-        <form id="fmask" action="{% url ask %}" method="post" accept-charset="utf-8">
+        <form id="fmask" accept-charset="utf-8">
         {% csrf_token %}
 {% if not request.user.is_authenticated %}
 <div class="message">
@@ -155,7 +174,7 @@ After submiting your question, you will be redirected to the login/signup page.
         {% if not request.user.is_authenticated %}
 <button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Log in to start a list</button>
 {% else %}
-<button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Post your list</button>
+<button type="submit" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Post your list</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 {% endif %}
 </div>
