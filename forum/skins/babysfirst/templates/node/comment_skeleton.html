@@ -51,15 +51,15 @@
                         {% if user.is_authenticated %}
                         {% if show_gravatar %}{% gravatar user 20 %}{% endif %}
                         {% endif %}
-                        <a class="comment-user" href="%PROFILE_URL%">%USERNAME%</a>
+                        <a class="comment-user" href="%PROFILE_URL%">%USERNAME%</a><br/>
                         <span class="comment-age">{% trans "just now" %}<br/></span>
                         </div>
                         <div class="comment-info" id="comment-%ID%-info">
                             <div class="comment-controls">
                             <a id="comment-%ID%-edit" href="%EDIT_URL%" title="{% trans "Edit comment" %}"
-                    class="comment-edit" rel="nofollow"> </a>
+                    class="comment-edit" rel="nofollow"><i class="fa fa-edit fa-lg"></i></a>
                     <a id="comment-%ID%-delete" href="%DELETE_URL%" title="{% trans "Delete comment" %}"
-                    class="ajax-command comment-delete confirm" rel="nofollow"> </a>
+                    class="ajax-command comment-delete confirm" rel="nofollow"><i class="fa fa-times fa-lg"></i></a>
                     <!--<a rel="nofollow" id="comment-%ID%-convert" style="display:none;" href="%CONVERT_URL%" title="{% trans "Convert comment to answer" %}"
                     class="ajax-command comment-convert confirm" rel="nofollow"> </a>-->
                                 </div>

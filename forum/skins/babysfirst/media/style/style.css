@@ -2729,8 +2729,9 @@ img.subscription-remove {
     vertical-align: top;
 }
 
+#comment-short-summary { padding: 5px 0; }
 
-.comment-text { padding-top:5px;ncolor: #777; font-size: 12px; }
+.comment-text { color: #777; font-size: 12px; }
 
 .comment-text p {
     margin: 0;

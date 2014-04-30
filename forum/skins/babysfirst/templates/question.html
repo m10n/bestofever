@@ -109,13 +109,32 @@
 
 
 {% block sidebar %}
+{% cache 60 questions_tags settings.APP_URL question.id %}
+<div class="sidebar-section">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">
+            {% for tag in question.tags.all %}
+            <a href="{% url tag_questions tag.name|urlencode %}"
+               class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+               rel="tag">{{ tag.name }}</a>
+            <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
+                {% endfor %}</h3>
+        </div>
+        <div class="panel-body">
+            {% favorite_mark question request.user %}
+            Save this list
 
+            {% include "subscription_status.html" %}
+        </div>
+    </div>
+</div>
+    {% endcache %}
 {% endblock%}
 
 {% block content %}
 <div class="list-top">
     <div class="row">
-        <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}{% favorite_mark question request.user %}</div></div>
+        <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
         <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
         <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}<div class="post-controls">{% post_controls question request.user %}</div></div></div>
     </div>
@@ -240,37 +259,34 @@
 {% block rightbar %}
 <!--{% markdown_help %}-->
 
-{% cache 60 questions_tags settings.APP_URL question.id %}
-<div class="sidebar-section">
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
-        <div class="panel-body">
-            Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
-            Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
-            Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
-            <p class="tags">
-                {% for tag in question.tags.all %}
-                Posted under <a href="{% url tag_questions tag.name|urlencode %}"
-                                class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
-                                rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
-                {% endfor %}
-                {% include "subscription_status.html" %}
-        </div>
-    </div>
-    {% endcache %}
+
     <div class="sidebar-section">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Similar Lists</h3></div>
             <div class="panel-body">
                 <div class="questions-related">
                     {% for question in similar_questions %}
-                    <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
+                    <a href="{{ question.answer.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
                     {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
+            <div class="panel-body">
+                Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
+                Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
+                Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
+                <p class="tags">
+                    {% for tag in question.tags.all %}
+                    Posted under <a href="{% url tag_questions tag.name|urlencode %}"
+                                    class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                                    rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
+                    {% endfor %}
+                    {% include "subscription_status.html" %}
+            </div>
+        </div>
     </div>
-</div>
     {% endblock%}
 
     <!-- end question.html -->
