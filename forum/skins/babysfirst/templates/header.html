@@ -71,38 +71,9 @@
                 </div>
             {% if user and user.is_anonymous %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
-                <!--<button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-                    Sign In <b class="caret"></b>
-                </button>-->
-                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                            <div class="row">
-                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Verify my email
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block">Sign in</button>
-
-                                    </div>
-                                    <li class="divider"></li>
-
-                                    <input class="btn btn-info btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-                                    <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook">
-                                    <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
-                                </form>
-                            </div>
-                    </ul>
+                    <button class="btn btn-default navbar-btn" data-toggle="modal" a href="{% url auth_signin %}" data-target="#authModal">
+                        Sign In
+                    </button>
                 </li>
                 {% else %}
                 <li class="dropdown">
@@ -118,8 +89,8 @@
                     {% else %}
                 </li>
                 <li class="dropdown navbar-nav">
-                    <button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown" a href="{{ base_url }}/account/signin/">
-                        Sign In <b class="caret"></b>
+                    <!--<button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown" a href="{{ base_url }}/account/signin/">
+                        Sign In <b class="caret"></b>-->
                     </button>
                     {% endif %}
                     <ul class="dropdown-menu">
