@@ -28,7 +28,7 @@
 <script type='text/javascript' src='{% media  "/media/js/osqa.question.js" %}'></script>
 <script type='text/javascript' src='{% media  "/media/js/jquery.caret.js" %}'></script>
 
-        <!--
+<!--
 <script type='text/javascript' src='{% media  "/media/js/wmd/showdown.js" %}'></script>
 <script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
 <link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" />
@@ -108,59 +108,71 @@
 {% endblock %}
 
 
-    {% block sidebar %}
+{% block sidebar %}
 
-    {% endblock%}
+{% endblock%}
 
 {% block content %}
-    <div class="list-top">
-        <div class="row">
-            <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
-            <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
-            <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}</div></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">{% favorite_mark question request.user %}</div>
-            <div class="col-md-8"><div class="comments-container">{% comments question request.user %}</div></div>
-            <div class="col-md-3">{% post_controls question request.user %}<!--{% wiki_symbol request.user question %}--></div>
-        </div>
+<div class="list-top">
+    <div class="row">
+        <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}{% favorite_mark question request.user %}</div></div>
+        <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
+        <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}<div class="post-controls">{% post_controls question request.user %}</div></div></div>
     </div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1"><div class="comments-container">{% comments question request.user %}</div></div>
+    </div>
+</div>
 
 {% if answers %}
-    <div id="list-tabs">
-        <div class="row">
-            <div class="col-md-4"><div class="tabs-headline">{% blocktrans count answers.paginator.count as counter %}One line{% plural %}{{counter}} lines{% endblocktrans %}</div></div>
-            <div class="col-md-8"><div class="list-tabs">{{ answers.paginator.sort_tabs }}</div></div>
-        </div>
+<div id="list-tabs">
+    <div class="row">
+        <div class="col-md-4"><div class="tabs-headline">{% blocktrans count answers.paginator.count as counter %}One line{% plural %}{{counter}} lines{% endblocktrans %}</div></div>
+        <div class="col-md-8"><div class="list-tabs">{{ answers.paginator.sort_tabs }}</div></div>
     </div>
+</div>
 <!--{{ answers.paginator.page_numbers }}-->
 
 {% for answer in answers.paginator.page %}
 
-    <div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}{% ifequal answer.id focused_answer_id %} focusedAnswer{% endifequal %}">
-        <a name="{{ answer.id }}"></a>
-         <div class="row">
-             <div class="col-xs-1 col-md-1"><div class="vote-buttons">{% vote_buttons answer request.user %}</div></div>
-             <div class="col-xs-11 col-md-8"><div class="answer-body">{{ answer.html|safe }}</div></div>
-             <div class="col-xs-11 col-md-3"><div class="post-update-info-container">{% contributors_info answer %}</div></div>
-         </div>
-         <div class="row">
-             <div class="col-md-1">{% accept_button answer request.user %}</div>
-             <div class="col-md-8"><div class="comments-container">{% comments answer request.user %}</div></div>
-             <div class="col-md-3"><div class="answer-controls post-controls">{% post_controls answer request.user %}{% wiki_symbol request.user answer %}</div></div>
-         </div>
+<div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}{% ifequal answer.id focused_answer_id %} focusedAnswer{% endifequal %}">
+    <a name="{{ answer.id }}"></a>
+    <div class="row">
+        <div class="col-xs-11 col-md-7 col-md-offset-1">
+            <div class="answer-body">
+                {{ answer.html|safe }}
+            </div>
+        </div>
+        <div class="col-xs-11 col-md-3">
+            <div class="post-update-info">
+                    {% contributors_info answer %}
+                </div>
+        </div>
+        <div class="col-xs-1 col-md-1">
+            <div class="vote-buttons">
+                {% vote_buttons answer request.user %}
+                {% accept_button answer request.user %}
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1"><div class="comments-container">{% comments answer request.user %}</div></div>
+        <div class="col-md-2">                <div class="post-controls">
+            {% post_controls answer request.user %}
+        </div></div>
+    </div>
+</div>
 {% endfor %}
-    <div class="row">
+<div class="row">
     <div class="paginator-container-left">{{ answers.paginator.page_numbers }}</div>
-    </div>
+</div>
 {% endif %}
+<div class="row">
 
-<div id="line-post-section">
-    <div class="row">
+        <div class="col-md-8">
         <form id="fmanswer" action="{% url answer question.id %}" method="post">
-                {% csrf_token %}
-                {% if not question.closed %}
+            {% csrf_token %}
+            {% if not question.closed %}
             <div class="post-headline">
                 {% if not request.user.is_authenticated %}Sign up or log in to post your own!{% endif %}
                 {% if request.user.is_authenticated %}
@@ -168,8 +180,8 @@
                 Add a line{% else %}Be the first person to add a line{% endif %}
             </div>
             {% endif %}
-        {% comment %}
-        {% else %}
+            {% comment %}
+            {% else %}
             <div class="alert alert-warning">
                 {% ifequal request.user question.author  %}
                 Are you adding a line to your own list? Make sure it's not a better to edit your description or add a comment.
@@ -181,85 +193,84 @@
                 <a href="{% url send_validation_email %}">Send me a verification link again.</a>
                 {% endif %}
             </div>
-        {% endif %}
-        {% endcomment %}
+            {% endif %}
+            {% endcomment %}
 
             {% if answer.text.errors %}
             <div class="alert alert-danger error">{{ answer.text.errors }}</div>
             {% endif %}
             {{ answer.text }}
 
-    {% if answer.recaptcha %}
-    <div class="recaptcha">{{ answer.recaptcha.errors }}{{ answer.recaptcha }}</div>
-    {% endif %}
+            {% if answer.recaptcha %}
+            <div class="recaptcha">{{ answer.recaptcha.errors }}{{ answer.recaptcha }}</div>
+            {% endif %}
+            <p></p>
+            <input type="button" class="btn btn-primary btn-lg"
+            {% if user.is_anonymous %}
+            value="Sign up or log in to add a line"
+            {% else %}
+            {% if user == question.author %}
+            value="Add a line to your own list"
+            {% else %}
+            value="Add a line to this list"
+            {% endif %}
+            {% endif %}
+            class="submit" onclick="submitClicked(event, this.form)"/>
+        </form>
+        {% endif %}
+        </div>
+        <div class="col-md-4">
+            <div class="new-author-info">
+            {% if user.is_authenticated %}
+                <a class="pull-left left-gravatar" href="{{ user.get_profile_url }}">
+                    {% gravatar user 48 %}
+                </a>
+                <a class="pull left author-name" href="{{ user.get_profile_url }}">
+                    {{ user.decorated_name }}{% get_score_badge user %}</a>
+            {% endif %}
 
-    <p></p>
-
-    <input type="button" button type="button" class="btn btn-primary btn-lg"
-    {% if user.is_anonymous %}
-    value="Sign up or log in to add a line"
-    {% else %}
-    {% if user == question.author %}
-    value="Add a line to your own list"
-    {% else %}
-    value="Add a line to this list"
-    {% endif %}
-    {% endif %}
-    class="submit" onclick="submitClicked(event, this.form)"/>
-   </form>
-    {% endif %}
+            </div>
+            </div>
+        </div>
     </div>
-</div>
-
-</div>
 {% endblock %}
 
 
 
 {% block rightbar %}
 <!--{% markdown_help %}-->
-<div id="sidebar-profile" class="row clearfix">
-    <a class="btn btn-primary btn-lg btn-block" href="{% url ask %}" role="button">Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span></a>
-    {% if view_user and not view_user.is_anonymous %}
-    <a href="{{ view_user.get_profile_url }}">
-        {% gravatar view_user 64 %}
-        {{ view_user.decorated_name }}<br/>
-        {{view_user.reputation|intcomma}}
-        {% ifequal view_user.reputation 1 %} vote {% else %} votes {% endifequal %}</a>
-    {% endif %}
-</div>
 
 {% cache 60 questions_tags settings.APP_URL question.id %}
-     <div class="sidebar-section">
-     <div class="panel panel-default">
-         <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
-         <div class="panel-body">
-             Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
-             Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
-               Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
-         <p class="tags">
-             {% for tag in question.tags.all %}
-             Posted under <a href="{% url tag_questions tag.name|urlencode %}"
-                            class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
-                            rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
-             {% endfor %}
-             {% include "subscription_status.html" %}
-     </div>
-     </div>
- {% endcache %}
-         <div class="sidebar-section">
-             <div class="panel panel-default">
-                 <div class="panel-heading"><h3 class="panel-title">Similar Lists</h3></div>
-                 <div class="panel-body">
-                    <div class="questions-related">
-                        {% for question in similar_questions %}
-                         <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
-                         {% endfor %}
-                    </div>
-                 </div>
-             </div>
-         </div>
+<div class="sidebar-section">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">About this list</h3></div>
+        <div class="panel-body">
+            Started <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong><br/>
+            Seen <strong>{{ question.view_count|intcomma }}</strong> times<br/>
+            Last updated <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong><br/>
+            <p class="tags">
+                {% for tag in question.tags.all %}
+                Posted under <a href="{% url tag_questions tag.name|urlencode %}"
+                                class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                                rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span>
+                {% endfor %}
+                {% include "subscription_status.html" %}
+        </div>
+    </div>
+    {% endcache %}
+    <div class="sidebar-section">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Similar Lists</h3></div>
+            <div class="panel-body">
+                <div class="questions-related">
+                    {% for question in similar_questions %}
+                    <a href="{{ question.get_absolute_url }}"><!--{{ question.headline }}-->{% question_list_item question %}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock%}
 
-{% endblock%}
-
-<!-- end question.html -->
+    <!-- end question.html -->

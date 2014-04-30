@@ -2,7 +2,7 @@
 {% load extra_tags ui_registry i18n extra_filters markup %}
 
 
-<header class="nav navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-static-top" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -19,72 +19,63 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown dropdown-large">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars fa-2x"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-large row" style="padding: 10px 0 20px;">
-                        <li class="col-sm-6">
-                            <ul>
-                                <li class="dropdown-header">Lists</li>
-                                <li><a id="active" href="{{ base_url }}/questions/?sort=active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists">active</a></li>
-                                <li><a id="trending" href="{{ base_url }}/questions/?sort=trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours">trending</a></li>
-                                <li><a id="newest" href="{{ base_url }}/questions/?sort=newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists">newest</a></li>
-                                <li><a id="mostvoted" href="{{ base_url }}/questions/?sort=mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists">most voted</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Dropdowns</li>
-                                <li class="disabled"><a href="#">Coming soon</a></li>
+                    <ul class="dropdown-menu dropdown-menu-large row" style="width: 550px; padding: 15px 0 20px;">
+                        <div class="col-sm-4">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li class="dropdown-header">{% include "question_list/title.html" %}</li>
+                                <li>{% include "question_list/sort_tabs.html" %}</li>
                             </ul>
-                        </li>
-                        <li class="col-sm-6">
-                            <ul>
-                                <li class="dropdown-header">Categories</li>
-                                <li>
-                                    <a href="{{ base_url }}/tags/news/"><span class="glyphicon glyphicon-globe"></span>News
-                                </li>
-                                <li>
-                                    <a href="{{ base_url }}/tags/tech/"><span class="glyphicon glyphicon-phone"></span>Tech</a>
-                                </li>
-                                <li>
-                                    <a href="{{ base_url }}/tags/advice/"><span class="glyphicon glyphicon-heart"></span>Advice</a>
-                                </li>
-                                <li>
-                                    <a href="{{ base_url }}/tags/ideas/"><span class="glyphicon glyphicon-certificate"></span>Ideas</a>
-                                </li>
-
-                                <li class="divider"></li>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul class="nav nav-pills nav-stacked">
                                 <li class="dropdown-header">Cities</li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/sf/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">SF</a></span>
+                                <li><a href="{{ base_url }}/tags/sf/"><i class="fa nav-i fa-camera-retro fa-lg"></i>  San Francisco</a>
                                 </li>
-                                <li>
-                                    <a href="http://localhost:8000/tags/nyc/" span class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">NYC</a></span>
+                                <li><a href="{{ base_url }}/tags/nyc/"><i class="fa nav-i fa-camera" fa-lg></i>  New York City</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li class="dropdown-header">All</li>
-                                <li><a id="mostvoted" href="{{ base_url }}/tags/" class="glyphicon-class"><span class="glyphicon glyphicon-map-marker">categories</a></span></li>
+                                <li class="dropdown-header">More</li>
+                                <li><li class="disabled"><a href="#"><i class="fa nav-i fa-map-marker fa-lg"></i>Coming soon</a></li>
                             </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <ul class="nav nav-pills nav-stacked">
+                            <li class="dropdown-header">Categories</li>
+
+                            <li><a href="{{ base_url }}/tags/news/"><i class="fa nav-i fa-globe fa-lg"></i>  News</a>
+                            </li>
+                            <li><a href="{{ base_url }}/tags/tech/"><i class="fa nav-i fa-mobile fa-2x"></i>  Tech</a>
+                            </li>
+                            <li><a href="{{ base_url }}/tags/news/"><i class="fa nav-i fa-comments-o fa-lg"></i>  Advice</a>
+                            </li>
+                            <li><a href="{{ base_url }}/tags/news/"><i class="fa nav-i fa-lightbulb-o fa-lg"></i>  Ideas</a>
+                            </li>
+                            <li><a href="{{ base_url }}/tags/news/"><i class="fa nav-i fa-heart-o fa-lg"></i>  Love</a>
+                            </li>
+                            <li><a href="{{ base_url }}/tags/wordplay/"><i class="fa nav-i fa-keyboard-o fa-lg"></i>  Wordplay</a>
+                            </li>
+                                </ul>
+                        </div>
                     </ul>
                 </li>
                 <a class="navbar-brand" href="{% url index %} ">mowt</a>
             </ul>
-
-            <div class="col-lg-2 col-md-3 col-md-offset-4 col-sm-4">
-                <form action="{% url search %}" class="navbar-form" role="search">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button class="btn btn-navsearch" type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search" name="q">
-
-                    </div>
-                </form>
-            </div>
-
             <ul class="nav navbar-nav navbar-right">
-                {% if user and user.is_anonymous %}
+                <div class="navbar-left">
+                    <form action="{% url search %}" class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control navsearch" placeholder="Search" name="q">
+                            <button class="btn btn-default navsearch" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            {% if user and user.is_anonymous %}
                 <li class="dropdown">
-                    <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-                        Sign In <b class="caret"></b>
-                    </button>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+                <!--<button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+                    Sign In <b class="caret"></b>
+                </button>-->
                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                        <li>
                             <div class="row">
                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                     <div class="form-group">
@@ -111,43 +102,40 @@
                                     <input class="btn btn-danger btn-block" type="button" id="sign-in-google" value="Sign In with Google">
                                 </form>
                             </div>
-                        </li>
                     </ul>
                 </li>
                 {% else %}
-                <li><button class="btn btn-default navbar-btn" data-toggle="modal" a href="{% url ask %}" data-target="#askModal">
+                <li class="dropdown">
+                <button class="btn btn-default navbar-btn" data-toggle="modal" a href="{% url ask %}" data-target="#askModal">
                     Start a list &nbsp; &nbsp; <span class="glyphicon glyphicon-pencil"></span>
                 </button>
                 </li>
                 {% endif %}
-                <li class="dropdown">
                     {% if user.is_authenticated %}
-
+                <li class="dropdown">
                     <p class="navbar-gravatar dropdown-toggle" data-toggle="dropdown">
                         {% gravatar user 34 %} <b class="caret"></b></p>
                     {% else %}
-                    <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown" a href="{{ base_url }}/account/signin/">
-                        Sign In<b class="caret"></b>
+                </li>
+                <li class="dropdown navbar-nav">
+                    <button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown" a href="{{ base_url }}/account/signin/">
+                        Sign In <b class="caret"></b>
                     </button>
                     {% endif %}
-
                     <ul class="dropdown-menu">
                         <li>{% loadregistry USERNAME_SCORE_BADGE %}{% endloadregistry %}</li>
                         <li>{% loadregistry PROFILE_TABS %}{% endloadregistry %}</li>
                         <li>{% loadregistry USER_MENU %}{% endloadregistry %}</li>
-
                         <li>{% loadregistry FOOTER_LINKS %}{% endloadregistry %}</li>
-
                         <li>{% loadregistry ADMIN_SUPERUSER %}{% endloadregistry %}</li>
                         <li class="divider"></li>
 
                         <li>{% loadregistry LOGIN_OUT %}{% endloadregistry %}</li>
-
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
-</header>
+</nav>
 
 

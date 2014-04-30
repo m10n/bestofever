@@ -196,10 +196,10 @@ def _comments(post, user):
     all_comments = post.comments.filter_state(deleted=False)\
                                 .order_by('-added_at' if settings.SHOW_LATEST_COMMENTS_FIRST else 'added_at')
 
-    if len(all_comments) <= 5:
+    if len(all_comments) <= 0:
         top_scorers = all_comments
     else:
-        top_scorers = sorted(all_comments, lambda c1, c2: cmp(c2.score, c1.score))[0:5]
+        top_scorers = sorted(all_comments, lambda c1, c2: cmp(c2.score, c1.score))[0:0]
 
     comments = []
     showing = 0

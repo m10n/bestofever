@@ -1,29 +1,16 @@
 {% load extra_tags i18n %}
+        <a class="pull-left left-gravatar" href="{{ node.author.get_profile_url }}">{% gravatar node.author 48 %}</a>
+                <a class="pull-left author-name" href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a><br/>
+            <!--<span class="score">{% get_score_badge node.author %}</span>-->
+            <span class="pull-left date-edit">{% diff_date node.added_at %}</span><br/><!-- benjyw -->
+{% if node.last_edited %}
+        <a href="{{ node.get_revisions_url }}">{{ node.last_edited.verb }}
+            <span class="date-edit">{% diff_date node.last_edited.at %}</span></a>
 
-
-
-    <div class="media">
-        <a class="pull-left" href="{{ node.author.get_profile_url }}">
-            <img class="media-object">{% gravatar node.author 48 %}
-        </a>
-        <div class="media-body">
-            <h5 class="media-heading"><a href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a></h5>
-            <span class="score">{% get_score_badge node.author %}<br/></span>
-        </div>
-            <span class="date-edit">{% diff_date node.added_at %}</span><!-- benjyw -->
-    </div>
-
-        {% if node.last_edited %}
-    <div class="post-update-info post-update-info-edited">
-
-    <a href="{{ node.get_revisions_url }}">{{ node.last_edited.verb }} <span class="date-edit">{% diff_date node.last_edited.at %}</span></a>
         {% ifnotequal node.author node.last_edited.by %}
-
-{% gravatar node.last_edited.by 48 %}
+        {% gravatar node.last_edited.by 48 %}
       <a {% if node.last_edited.by.is_suspended %}class="suspended-user" {% endif %}href="{{ node.last_edited.by.get_profile_url }}">{{ node.last_edited.by.decorated_name }}</a>
-      {% get_score_badge node.last_edited.by %}<br/>
-        </div>
-
+      {% get_score_badge node.last_edited.by %}
     {% endifnotequal %}
-
 {% endif %}
+

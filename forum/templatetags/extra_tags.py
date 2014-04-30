@@ -158,11 +158,28 @@ def diff_date(date, limen=2):
     minutes = int(diff.seconds/60)
 
     if date.year != now.year:
-        return _(' ') + dateformat.format(date, 'D, M j \'y, g:i a')
-    elif days > 3:
-        return _(' ') + dateformat.format(date, 'D M j, g:i a')
+        return _(' ') + dateformat.format(date, 'D, M j \'y')
+    elif days > 60:
+        return _(' ') + dateformat.format(date, 'D M j')
 
-    elif days == 2:
+
+    elif days >= 60:
+        return _('2 months ago')
+    elif days >= 31:
+        return _('last month')
+    elif days >= 22:
+        return _('3 weeks ago')
+    elif days >= 15:
+        return _('2 weeks ago')
+    elif days >= 7:
+        return _('last week')
+    elif days == 6:
+        return _('6 days ago')
+    elif days == 5:
+        return _('5 days ago')
+    elif days == 4:
+        return _('4 days ago')
+    elif days == 3:
         return _('3 days ago')
     elif days == 2:
         return _('2 days ago')
@@ -174,6 +191,7 @@ def diff_date(date, limen=2):
         return ungettext('%(min)d ' + _("min ago"), '%(min)d ' + _("mins ago"), minutes) % {'min':minutes}
     else:
         return ungettext('%(sec)d ' + _("sec ago"), '%(sec)d ' + _("secs ago"), diff.seconds) % {'sec':diff.seconds}
+
 
 
 

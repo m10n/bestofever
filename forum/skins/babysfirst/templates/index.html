@@ -39,41 +39,41 @@
 
 
 {% block masthead %}
-<div id="masthead">
-    <div class="row" id="masthead-item">
-        <div class="col-md-10">
-            <ul class="nav nav-pills">
+<div class="container">
+    <div class="row">
+        <div id="masthead">
+            <ul class="nav nav-pills main-nav">
                 <li class="active"><div class="home-header">{% include "question_list/title.html" %}</div></li>
-                <li>{% include "question_list/sort_tabs.html" %}</li>
+                <li class="home-nav">{{ questions.paginator.sort_tabs }}</li>
                 <li>
-                    <a href="http://localhost:8000/tags/news/"><i class="fa-block fa-globe fa-2x"></i>News</a>
+                    <a href="http://localhost:8000/tags/wordplay/">News</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/tech/"><i class="fa-block fa-mobile fa-2x"></i>Tech</a>
+                    <a href="http://localhost:8000/tags/tech/">Tech</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/advice/"><i class="fa-block fa-comments-o fa-2x"></i>Advice</a>
+                    <a href="http://localhost:8000/tags/wordplay/">Advice</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/ideas/"><i class="fa-block fa-lightbulb-o fa-2x"></i>Ideas</a>
+                    <a href="http://localhost:8000/tags/memes/">Ideas</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/love/"><i class="fa-block fa-heart-o fa-2x"></i>Love</a>
+                    <a href="http://localhost:8000/tags/love/">Love</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/wordplay/"><i class="fa-block fa-keyboard-o fa-2x"></i>Wordplay</a>
+                    <a href="http://localhost:8000/tags/wordplay/">Wordplay</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/sf/"><i class="fa-block fa-camera-retro fa-2x"></i>SF</a>
+                    <a href="http://localhost:8000/tags/tech/">SF</a>
                 </li>
                 <li>
-                    <a href="http://localhost:8000/tags/nyc/"><i class="fa-block fa-camera fa-2x"></i>NYC</a>
+                    <a href="http://localhost:8000/tags/love/">NYC</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-</div>
+
 {% endblock %}
 
 
@@ -92,19 +92,20 @@
 
 {% block content %}
 <div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg"><div class="modal-content"></div> </div>
+    <div class="modal-dialog modal-lg"><div class="modal-content"></div></div>
 </div>
-
+<div class="container-fluid">
 <div class="row clearfix">
     <div id="content-lists">
-        <div class="row js-masonry">
+        <div class="row clearfix js-masonry">
             {% for question in questions.paginator.page %}
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                 {% question_list_item question %}
             </div>
             {% endfor %}
         </div>
     </div>
+</div>
 </div>
 <div class="row clearfix">
     <div class="col-md-2 col-md-offset-10">

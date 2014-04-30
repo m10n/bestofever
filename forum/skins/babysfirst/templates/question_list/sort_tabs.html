@@ -1,6 +1,6 @@
 {% load i18n %}
 <!-- from readers.py-->
-<li><a id="active" href="{{ base_url }}active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists"><i class="fa-block fa-list-alt fa-2x"></i>Home</a></li>
-<li><a id="trending" href="{{ base_url }}trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours"><i class="fa-block fa-users fa-2x"></i>Trending</a></li>
-<li><a id="newest" href="{{ base_url }}newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists"><i class="fa-block fa-user fa-2x"></i>Newest</a></li>
-<li><a id="mostvoted" href="{{ base_url }}mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists"><i class="fa-block fa-trophy fa-2x"></i>Best of</a></li>
+<li><a id="active" href="{{ base_url }}/questions/?sort=active"{% ifequal current "active" %} class="on"{% endifequal %} title="Most recently active lists"><i class="fa nav-i fa-list-alt fa-lg"></i> Active</a></li>
+<li><a id="trending" href="{{ base_url }}/questions/?sort=trending"{% ifequal current "trending" %} class="on"{% endifequal %} title="Most active lists in the last 24 hours"><i class="fa nav-i fa-users fa-lg"></i> Trending</a></li>
+<li><a id="newest" href="{{ base_url }}/questions/?sort=newest"{% ifequal current "newest" %} class="on"{% endifequal %} title="Most recently started lists"><i class="fa nav-i fa-user fa-lg"></i> Newest</a></li>
+<li><a id="mostvoted" href="{{ base_url }}/questions/?sort=mostvoted"{% ifequal current "mostvoted" %} class="on"{% endifequal %} title="Most voted lists"><i class="fa nav-i fa-trophy fa-lg"></i> Most Voted</a></li>

@@ -6,17 +6,18 @@
 
 
 {% block page_center %}
+<div class="container">
 <div class="row clearfix">
     <div class="pagecenter">
-        <div id="leftbar" class="hidden-xs hidden-sm col-md-2">
+        <div id="leftbar" class="hidden-xs hidden-sm col-md-2 col-lg-2">
             {% block sidebar %}
             {% endblock%}
         </div>
-        <div id="centercol" class="col-xs-12 col-sm-12 col-md-7">
+        <div id="centercol" class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
             {% block content %}
             {% endblock%}
         </div>
-        <div id="rightbar" class="hidden-xs hidden-sm col-md-3">
+        <div id="rightbar" class="hidden-xs hidden-sm col-md-3 col-lg-3">
             {% block rightbar %}
             {% endblock%}
         </div>
@@ -26,4 +27,5 @@
         {% endblock %}
     </div>
 </div>
+    </div>
 {% endblock %}
