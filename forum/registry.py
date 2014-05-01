@@ -26,7 +26,7 @@ ui.register(ui.LOGIN_OUT,
 
             ui.Link(
                     text=lambda u, c: u.is_authenticated() and _('logout') or _('login'),
-                    url=lambda u, c: u.is_authenticated() and reverse('logout') or reverse('auth_signin'),
+                    url=lambda u, c: u.is_authenticated() and reverse('user_signout') or reverse('auth_signin'),
                     weight=200, name='LOGIN/OUT'),
 )
 
