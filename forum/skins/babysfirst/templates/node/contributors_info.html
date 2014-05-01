@@ -1,6 +1,6 @@
 {% load extra_tags i18n %}
-        <a class="pull-left left-gravatar" href="{{ node.author.get_profile_url }}">{% gravatar node.author 48 %}</a>
-                <a class="pull-left author-name" href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a><br/>
+        <a class="pull-left left-gravatar" href="{{ node.author.get_profile_url }}">{% gravatar node.author 40 %}</a>
+                <a class="author-name" href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a><br/>
             <!--<span class="score">{% get_score_badge node.author %}</span>-->
             <a class="pull-left date-edit" href="{{answer.get_absolute_url }}">{% diff_date node.added_at %}</a><br/><!-- benjyw -->
 {% if node.last_edited %}
@@ -8,7 +8,7 @@
             <span class="date-edit">{% diff_date node.last_edited.at %}</span></a>
 
         {% ifnotequal node.author node.last_edited.by %}
-        {% gravatar node.last_edited.by 48 %}
+        {% gravatar node.last_edited.by 40 %}
       <a {% if node.last_edited.by.is_suspended %}class="suspended-user" {% endif %}href="{{ node.last_edited.by.get_profile_url }}">{{ node.last_edited.by.decorated_name }}</a>
       {% get_score_badge node.last_edited.by %}
     {% endifnotequal %}

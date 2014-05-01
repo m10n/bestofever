@@ -134,9 +134,16 @@
 {% block content %}
 <div class="list-top">
     <div class="row">
-        <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
-        <div class="col-md-8"><h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="listtitle" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+                <h2><a href="{{ question.get_absolute_url }}">{{ question.headline }}</a></h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-md-offset-1"><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
         <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}<div class="post-controls">{% post_controls question request.user %}</div></div></div>
+        <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
     </div>
     <div class="row">
         <div class="col-md-9 col-md-offset-1"><div class="comments-container">{% comments question request.user %}</div></div>
@@ -176,7 +183,7 @@
     </div>
     <div class="row">
         <div class="col-md-9 col-md-offset-1"><div class="comments-container">{% comments answer request.user %}</div></div>
-        <div class="col-md-2">                <div class="post-controls">
+        <div class="col-md-2"><div class="post-controls">
             {% post_controls answer request.user %}
         </div></div>
     </div>
@@ -242,7 +249,7 @@
             <div class="new-author-info">
             {% if user.is_authenticated %}
                 <a class="pull-left left-gravatar" href="{{ user.get_profile_url }}">
-                    {% gravatar user 48 %}
+                    {% gravatar user 40 %}
                 </a>
                 <a class="pull left author-name" href="{{ user.get_profile_url }}">
                     {{ user.decorated_name }}{% get_score_badge user %}</a>

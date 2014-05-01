@@ -2498,13 +2498,21 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 
 
+.list-top h2, .list-top h2 a { font-size: 1.15em; color: #333; font-weight: 600; margin: 0; padding: 0; z-index:1010; }
 
-.list-top h2, .list-top h2 a { font-size: 1.2em; color: #333; font-weight: 600; margin: 0; padding: 0; }
+.listtitle.affix {
+    position: fixed;
+    top: 0;
+    padding: 20px 0 0;
+    width: 100%;
+    z-index:1030;
+}
 
-#centercol { /* background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    border: 1px solid #cdcdcd; */ }
-#rightbar, #leftbar {  }
+.list-top {
+    padding: 15px 0 5px;
+    background: #fff;
+    border: 1px solid #dedede;
+    border-bottom: 2px solid #cdcdcd; }
 
 
 #list-tabs { padding: 30px 0 10px;}
@@ -2512,13 +2520,6 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .list-tabs a { font-size:18px; border: 1px solid transparent; padding: 2px 8px; }
 .list-tabs a.on, .list-tabs a:hover {background: #fff; border: 1px solid #ddd; color: #000; font-size: 130%; text-decoration: none; }
 .tabs-headline { font-size: 20px; }
-
-
-.list-top {
-    padding: 10px 0 5px;
-    background: #fff;
-    border: 1px solid #dedede;
-    border-bottom: 2px solid #cdcdcd; }
 
 
 .answer {
@@ -2533,7 +2534,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .question-body, .question-body p {  }
 .answer-body {  }
 .answer-data, .answer-data a { color: #888; font-weight: 500; text-align:right;}
-.author-name, .author-name a { font-size: 16px; font-weight: bold; color: #666; }
+.author-name, .author-name a { font-size: 1em; font-weight: bold; color: #666; }
 .date-edit { font-size: 12px; color: #999; padding:0; margin:0; font-weight:500; }
 .post-controls { font-size: 12px; color: #aaa; padding:0; margin:0; font-weight:normal; }
 .action-link { padding: 0 2px; }
@@ -2542,6 +2543,9 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .action-link a.ajax-command:hover { background-color: #777777; color: #FFFFFF;  }
 
 .action-link-separator {color: #CCCCCC; }
+
+
+
 
 
 .question-body {  }
@@ -6567,7 +6571,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 }
 .navbar-static-top {
-    z-index: 1000;
+    z-index: 900;
     border-width: 0 0 1px;
 }
 @media (min-width: 768px) {
@@ -6580,7 +6584,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     position: fixed;
     right: 0;
     left: 0;
-    z-index: 1030;
+    z-index: 900;
 }
 @media (min-width: 768px) {
     .navbar-fixed-top,
@@ -6613,7 +6617,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-static-top {box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
-    -webkit-transform: translateZ(0); background-color: rgba(255,255,255,0.8); }
+    -webkit-transform: translateZ(0); background-color: rgba(255,255,255,1); }
 
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand,
