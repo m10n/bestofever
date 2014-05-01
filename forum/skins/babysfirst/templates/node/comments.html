@@ -21,13 +21,6 @@
             </div>
             <div class="col-md-8">
                 <div class="comment-text">{{ comment.comment }}</div>
-            </div>
-            <div class="col-md-3">
-                <div class="commenter-info">
-                    <a href="{{comment.user.get_profile_url}}">{% if show_gravatar %}{% gravatar comment.user 20 %}{% endif %} {{comment.user.decorated_name}}</a>
-                    <p>{% diff_date comment.added_at %}</p>
-
-                </div>
                 <div class="comment-info" id="comment-{{comment.id}}-info">
                     <div class="comment-controls">
                         {% if comment.can_edit %}
@@ -51,6 +44,14 @@
                         {% endif %}
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <div class="commenter-info">
+                    <a href="{{comment.user.get_profile_url}}">{% if show_gravatar %}{% gravatar comment.user 20 %}{% endif %} {{comment.user.decorated_name}}</a>
+                    <p>{% diff_date comment.added_at %}</p>
+
+                </div>
+
             </div>
         </div>
         </div>

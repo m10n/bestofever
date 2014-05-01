@@ -1,7 +1,6 @@
 
 {% load i18n extra_tags extra_filters %}
 
-
 {% block forejs %}
 {% for provider in all_providers %}
 {% for location in provider.extra_css %}
@@ -17,65 +16,47 @@
 {% endif %}
 {% endfor %}
 
-<div>
-    <div>
-        <div>
-            <div class="form-signin">
-                <h3 class="heading-desc" class="modal-title" id="signupmodal">
-                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    Sign in to Mowt</h3>
-                <div class="social-box">
-                    <div class="row mg-btm">
-                            <a href="http://localhost:8000/account/facebook/signin/" class="btn btn-primary btn-block">
-                                Sign in with Facebook</a>
-                    </div>
-                    <div class="row mg-btm">
-                            <a href="http://localhost:8000/account/twitter/signin/" class="btn btn-info btn-block" >
-                                Sign in with Twitter</a>
-                    </div>
-                    <div class="row mg-btm">
-                            <a href="http://localhost:8000/account/google/signin/" class="btn btn-danger btn-block">
-                                Sign in with Google</a>
-                    </div>
-                </div>
-                <div class="main">
-                    {% if msg %}
-                    <p class="error">{{ msg }}</p>
-                    {% endif %}
-                    <div class="form-group">
-                        <label class="sr-only" for="username">user name</label>
-                        <input type="email" class="form-control" id="username" placeholder="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password">password</label>
-                        <input type="password" class="form-control" id="password" placeholder="password" required>
-                    </div>
-                    <span class="clearfix"></span>
-                </div>
-                <div class="login-footer">
-                    <div class="row">
-                        <div class="col-xs-8 col-md-8">
-                            <div class="left-section">
-                                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a><br/>
-                                <a href="{% url auth_local_register %}">Sign up now</a>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 col-md-4 pull-right">
-                            <button type="submit" class="btn btn-large btn-success pull-right">Sign In</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="authModal" class="modal-content">
+    <h3 class="signin-title">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+             Sign in to Mowt</h3>
+    <div class="signin-social">
+        <div class="row mg-btm">
+            <a href="{{ base_url }}/account/twitter/signin/" class="btn btn-block btn-social btn-lg btn-twitter">
+                <i class="fa fa-twitter"></i> Sign in with Twitter</a>
+        </div>
+        <div class="row mg-btm">
+            <a href="{{ base_url }}/account/facebook/signin/" class="btn btn-block btn-social btn-lg btn-facebook">
+                <i class="fa fa-facebook"></i> Sign in with Facebook</a>
+        </div>
+        <div class="row">
+            <a href="{{ base_url }}/account/google/signin/" class="btn btn-block btn-social btn-lg btn-google-plus">
+                <i class="fa fa-google-plus"></i>Sign in with Google</a>
         </div>
     </div>
-</div>
-
-<div class="col-md-6">
-{% for provider in all_providers %}
-{% if provider.pre_code %}
-{{ provider.pre_code|safe }}
-{% endif %}
-{% endfor %}
+    <div class="signin-form">
+            {% if msg %}<p class="error">{{ msg }}</p>{% endif %}
+        <div class="row mg-btm">
+             <label class="sr-only" for="username">user name</label>
+             <input type="email" class="form-control input-lg" id="username" placeholder="username" required>
+        </div>
+        <div class="row">
+             <label class="sr-only" for="password">password</label>
+             <input type="password" class="form-control input-lg" id="password" placeholder="password" required>
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="signin-footer row">
+        <div class="col-xs-8 col-md-8">
+            <div class="left-section">
+                <a href="{% url auth_local_register %}">Create an account</a><br/>
+                <a href="{% url auth_request_tempsignin %}">Forgot your password?</a>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4 pull-right">
+            <button type="submit" class="btn btn-lg btn-success pull-right">Sign In</button>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

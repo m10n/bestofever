@@ -186,8 +186,7 @@
     <div class="paginator-container-left">{{ answers.paginator.page_numbers }}</div>
 </div>
 {% endif %}
-<div class="row">
-
+<div class="answer row">
         <div class="col-md-8">
         <form id="fmanswer" action="{% url answer question.id %}" method="post">
             {% csrf_token %}

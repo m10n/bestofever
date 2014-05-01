@@ -263,7 +263,6 @@ div.negativeReputation {
 }
 
 
-
 .left-thumb { float: left; }
 
 #footer {
@@ -273,94 +272,41 @@ div.negativeReputation {
     height: 60px;
     background-color: #f5f5f5; }
 
-/* ___ Begin custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
 
-#myModal { clear:both; }
+/********  signin.html signin-modal
+http://bootsnipp.com/snippets/featured/pinterest-like-login-box
+http://bootsnipp.com/lipis/snippets/M3x9
+***********/
 
-.form-signin {
-    max-width: 400px;
-    display:block;
-    background-color: #fefefe;
-    /*-moz-box-shadow: 0 0 3px 3px #888;
-    -webkit-box-shadow: 0 0 3px 3px #888;
-    box-shadow: 0 0 3px 3px #888;*/
-    border-radius:3px;
-    border: 8px solid #dbdce0;
-}
+.signin-title { padding: 10px 45px 0; text-shadow: 0 1px 1px rgba(255,255,255,1); }
 
-.main{
-    padding: 38px;
-    color: #222;
-    text-shadow: 0 1px 1px rgba(255,255,255,1);
-}
+.signin-social { margin: 0 auto; padding: 20px 40px 30px; border-bottom:1px #ccc solid; }
+.signin-social a, .signin-social a:hover { color: #fff; text-shadow: 0 -1px rgba(0, 0, 0, 0.25); }
 
-.social-box{
-    margin: 0 auto;
-    padding: 38px;
-    border-bottom:1px #ccc solid;
-}
-.social-box a{
-    font-weight: 500;
-    font-size:18px;
-    padding:8px;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
-}
-.social-box a i{
-    font-weight:500;
-    font-size:18px;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
-}
-.heading-desc{
-    font-size:20px;
-    font-weight: 600;
-    padding: 20px 50px 0 50px;
-    color: #222;
-    text-shadow: 0 1px 1px rgba(255,255,255,1);
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-    margin-bottom: 10px;
-}
-.form-signin .checkbox {
-    font-weight: normal;
-}
-.form-signin .form-control {
-    position: relative;
-    font-size: 16px;
-    /*height: 20px;*/
-    /*padding: 20px;*/
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.form-signin .form-control:focus {
-    z-index: 2;
-}
-.form-signin input[type="text"] {
-    margin-bottom: 10px;
-    border-radius: 5px;
+.mg-btm { margin-bottom:10px; }
 
-}
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.login-footer{
-    background:#fefefe;
-    margin: 0 auto;
-    border-top: 1px solid #dadada;
-    padding:20px;
-}
-.login-footer .left-section a{
-    font-weight:bold;
-    color:#8a8a8a;
-    line-height:19px;
-}
-.mg-btm{
-    margin-bottom:10px;
-}
+.btn-social{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.btn-social :first-child{position:absolute;left:0;top:0;bottom:0;width:48px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.1)}
+.btn-social.btn-lg{padding-left:38px}.btn-social.btn-lg :first-child{line-height:45px;width:48px;font-size:1.8em}
 
-/* ___ End custom CSS overrides for login box - http://bootsnipp.com/snippets/featured/pinterest-like-login-box ___*/
+.btn-facebook{color:#fff;background-color:#3b5998;border-color:rgba(0,0,0,0.2)}.btn-facebook:hover,.btn-facebook:focus,.btn-facebook:active,.btn-facebook.active,.open .dropdown-toggle.btn-facebook{color:#fff;background-color:#30487b;border-color:rgba(0,0,0,0.1)}
+.btn-facebook:active,.btn-facebook.active,.open .dropdown-toggle.btn-facebook{background-image:none}
+.btn-facebook.disabled,.btn-facebook[disabled],fieldset[disabled] .btn-facebook,.btn-facebook.disabled:hover,.btn-facebook[disabled]:hover,fieldset[disabled] .btn-facebook:hover,.btn-facebook.disabled:focus,.btn-facebook[disabled]:focus,fieldset[disabled] .btn-facebook:focus,.btn-facebook.disabled:active,.btn-facebook[disabled]:active,fieldset[disabled] .btn-facebook:active,.btn-facebook.disabled.active,.btn-facebook[disabled].active,fieldset[disabled] .btn-facebook.active{background-color:#3b5998;border-color:rgba(0,0,0,0.2)}
+
+.btn-google-plus{color:#fff;background-color:#dd4b39;border-color:rgba(0,0,0,0.2)}.btn-google-plus:hover,.btn-google-plus:focus,.btn-google-plus:active,.btn-google-plus.active,.open .dropdown-toggle.btn-google-plus{color:#fff;background-color:#ca3523;border-color:rgba(0,0,0,0.2)}
+.btn-google-plus:active,.btn-google-plus.active,.open .dropdown-toggle.btn-google-plus{background-image:none}
+.btn-google-plus.disabled,.btn-google-plus[disabled],fieldset[disabled] .btn-google-plus,.btn-google-plus.disabled:hover,.btn-google-plus[disabled]:hover,fieldset[disabled] .btn-google-plus:hover,.btn-google-plus.disabled:focus,.btn-google-plus[disabled]:focus,fieldset[disabled] .btn-google-plus:focus,.btn-google-plus.disabled:active,.btn-google-plus[disabled]:active,fieldset[disabled] .btn-google-plus:active,.btn-google-plus.disabled.active,.btn-google-plus[disabled].active,fieldset[disabled] .btn-google-plus.active{background-color:#dd4b39;border-color:rgba(0,0,0,0.2)}
+
+.btn-twitter{color:#fff;background-color:#2ba9e1;border-color:rgba(0,0,0,0.2)}.btn-twitter:hover,.btn-twitter:focus,.btn-twitter:active,.btn-twitter.active,.open .dropdown-toggle.btn-twitter{color:#fff;background-color:#1c92c7;border-color:rgba(0,0,0,0.2)}
+.btn-twitter:active,.btn-twitter.active,.open .dropdown-toggle.btn-twitter{background-image:none}
+.btn-twitter.disabled,.btn-twitter[disabled],fieldset[disabled] .btn-twitter,.btn-twitter.disabled:hover,.btn-twitter[disabled]:hover,fieldset[disabled] .btn-twitter:hover,.btn-twitter.disabled:focus,.btn-twitter[disabled]:focus,fieldset[disabled] .btn-twitter:focus,.btn-twitter.disabled:active,.btn-twitter[disabled]:active,fieldset[disabled] .btn-twitter:active,.btn-twitter.disabled.active,.btn-twitter[disabled].active,fieldset[disabled] .btn-twitter.active{background-color:#2ba9e1;border-color:rgba(0,0,0,0.2)}
+
+.signin-form { padding: 30px 40px; }
+
+.signin-footer { background:#f5f5f5; margin: 0 auto; border-top: 1px solid #dadada; padding:20px; font-size: 1.1em; font-weight:600; line-height:1.3; }
+.signin-footer .left-section a { color:#777; }
+.signin-footer .left-section a:hover{ color:#333; }
+
+
 
 /*
 #mainbar-full { margin-top: 50px; }
@@ -2516,13 +2462,17 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .short-summary h3 a, .short-summary h3 { color: #222; margin: 0 0 0 5px; padding-left: 10px; font-size: 15px; font-weight:600; }
 
 
-.list-data { float:right; display: inline; color: #ccc; font-weight: 500; font-size: .85em; line-height:normal; padding: 0 0 5px; }
-.item-count { display:inline; color: #bcbcbc; font-weight: 600; font-size: .95em; padding:0 0 0 3px;  }
 
+
+.data-row { padding-bottom: 6px; }
+.list-data { float:right; text-align:center; display: inline; color: #cbcbcb; font-weight: 500; font-size: .85em; line-height:normal; }
+.item-count { display:inline; color: #bcbcbc;}
+.votes-data { padding: 0 0 0 7px; }
+.submowt-data a { color: #ababab; float:left; font-size:1em; font-weight: 500; }
 .left-gravatar { margin-right: 10px; border-bottom: 1px solid transparent; }
 .line-content {  padding: 2px 0 5px; }
-.line-data { float: right; text-align: right; display:inline; }
-.item-author, .item-author a { font-size: 1em; color: #999; font-weight: 600; }
+.line-data { color: #aaa; float: right; text-align: right; display:inline; }
+.item-author, .item-author a { font-size: .95em; color: #a9a9a9; font-weight: 600; }
 .item-author a:hover { text-decoration:underline; color: #5916FE; }
 .line-timestamp a { font-size: .85em; color: #bbb; font-style:italic;  }
 .line-empty { margin-left: 40px; }
@@ -2549,7 +2499,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 
 
-.list-top h2, .list-top h2 a { font-size: 1.3em; color: #444; font-weight: 500; margin: 0; padding: 0; }
+.list-top h2, .list-top h2 a { font-size: 1.2em; color: #333; font-weight: 600; margin: 0; padding: 0; }
 
 #centercol { /* background-color: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -8047,14 +7997,15 @@ button.close {
 .modal-content {
     position: relative;
     background-color: #fff;
-    background-clip: padding-box;
     border: 1px solid #999;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0,0,0,.2);
     border-radius: 6px;
-    outline: none;
-    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    background-clip: padding-box;
+    outline: 0;
 }
+
 .modal-backdrop {
     position: fixed;
     top: 0;

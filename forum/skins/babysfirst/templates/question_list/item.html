@@ -2,14 +2,25 @@
 
     <div class="short-summary">
         <a class="biglink" href="{{ question.get_absolute_url }}"></a>
-        <div class="row">
+        <div class="data-row row">
+                    <span class="submowt-data">
+                        {% for tag in question.tags.all %}
+                        <a href="{% url tag_questions tag.name|urlencode %}"
+                           class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                           rel="tag">{{ tag.name }}</a>
+                        {% endfor %}
+                    </span>
             <div class="list-data">
-                    <div class="item-count">{{question.score|intcomma}}</div>
-                {% ifequal question.score 1 %}vote{% else %}votes{% endifequal %}
-                    <div class="item-count">{{question.answer_count|intcomma}}</div>
-                {% ifequal question.answer_count 1 %}line{% else %}lines{% endifequal %}
-                    <div class="item-count">{{question.view_count|decorated_int|safe}}</div>
-                {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}
+                <span class="lines-data">
+                    {% ifequal question.answer_count 1 %}<i class="fa fa-list-ul"></i>{% else %}<i class="fa fa-list-ul"></i>{% endifequal %}
+                    <span class="item-count">{{question.answer_count|intcomma}}</span>
+                </span>
+                <span class="votes-data">
+                    {% ifequal question.score 1 %}<i class="fa fa-caret-up"></i>{% else %}<i class="fa fa-caret-up"></i>{% endifequal %}
+                    <span class="item-count">{{question.score|intcomma}}</span>
+                </span>
+                <!--<div class="item-count">{{question.view_count|decorated_int|safe}}</div>
+            {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
             </div>
         </div>
         <div class="list-title row">
@@ -29,7 +40,7 @@
         <div class="row">
             <div class="line-data">
                 {% if sample_answer %}
-                    <span class="item-author">&mdash;<a href="{{ sample_answer.author.get_profile_url }}">{{ sample_answer.author.decorated_name }}</a></span>
+                &mdash;<span class="item-author"><a href="{{ sample_answer.author.get_profile_url }}">{{ sample_answer.author.decorated_name }}</a></span>
                     <span class="line-timestamp"><a href="{{ sample_answer.get_absolute_url }}">{% diff_date question.last_activity_at %}</a></span>
                 {% endif %}
             </div>
