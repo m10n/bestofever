@@ -146,7 +146,7 @@
 {% if answers %}
 <div id="list-tabs">
     <div class="row">
-        <div class="col-md-4"><div class="tabs-headline">{% blocktrans count answers.paginator.count as counter %}One line{% plural %}{{counter}} lines{% endblocktrans %}</div></div>
+        <div class="col-md-4"><span class="tabs-headline"><i class="fa fa-list-ul"></i> {{ answers.paginator.count }} {{counter}}</span></div>
         <div class="col-md-8"><div class="list-tabs">{{ answers.paginator.sort_tabs }}</div></div>
     </div>
 </div>
@@ -186,7 +186,7 @@
     <div class="paginator-container-left">{{ answers.paginator.page_numbers }}</div>
 </div>
 {% endif %}
-<div class="answer row">
+<div class="row">
         <div class="col-md-8">
         <form id="fmanswer" action="{% url answer question.id %}" method="post">
             {% csrf_token %}
@@ -236,7 +236,8 @@
             class="submit" onclick="submitClicked(event, this.form)"/>
         </form>
         {% endif %}
-        </div>
+            </div>
+   </div>
         <div class="col-md-4">
             <div class="new-author-info">
             {% if user.is_authenticated %}
@@ -246,11 +247,9 @@
                 <a class="pull left author-name" href="{{ user.get_profile_url }}">
                     {{ user.decorated_name }}{% get_score_badge user %}</a>
             {% endif %}
-
-            </div>
             </div>
         </div>
-    </div>
+</div>
 {% endblock %}
 
 

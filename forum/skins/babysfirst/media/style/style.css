@@ -302,8 +302,8 @@ http://bootsnipp.com/lipis/snippets/M3x9
 
 .signin-form { padding: 30px 40px; }
 
-.signin-footer { background:#f5f5f5; margin: 0 auto; border-top: 1px solid #dadada; padding:20px; font-size: 1.1em; font-weight:600; line-height:1.3; }
-.signin-footer .left-section a { color:#777; }
+.signin-footer { background:#f5f5f5; margin: 0 auto; border-top: 1px solid #dadada; padding:20px; font-size: 1em; font-weight:600; line-height:1.3; }
+.signin-footer .left-section a { color:#989898; }
 .signin-footer .left-section a:hover{ color:#333; }
 
 
