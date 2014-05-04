@@ -6,8 +6,7 @@
     tinymce.init({
         selector: "textarea",
         menubar : false,
-        plugins : 'autolink link code',
-        height : 80,
+        plugins : 'link code',
         toolbar : "bold italic underline strikethrough subscript superscript | code | link",
         browser_spellcheck : true
     });
@@ -26,20 +25,20 @@
         $('#fmask').on('submit', function(e){
             e.preventDefault();
             $.post('{% url ask %}',
-                   $('#fmask').serialize(),
-                   function(data, status, xhr){
-                       // Page will contain the magic string iff it's not a redirect,
-                       // because then it'll be in this text!
-                       var magicString = '__ask_page_render_in_modal__';
-                       if(data.indexOf(magicString) == -1) {
-                           // We've been redirected.
-                           var newDoc = window.document.open("text/html", "replace");
-                           newDoc.write(data);
-                           newDoc.close();
-                       } else {
-                           $('#askModal-content').html(data);
-                       }
-                   });
+                    $('#fmask').serialize(),
+                    function(data, status, xhr){
+                        // Page will contain the magic string iff it's not a redirect,
+                        // because then it'll be in this text!
+                        var magicString = '__ask_page_render_in_modal__';
+                        if(data.indexOf(magicString) == -1) {
+                            // We've been redirected.
+                            var newDoc = window.document.open("text/html", "replace");
+                            newDoc.write(data);
+                            newDoc.close();
+                        } else {
+                            $('#askModal-content').html(data);
+                        }
+                    });
             return false;
         });
     });
@@ -49,7 +48,8 @@
         $("#nav_ask").attr('className',"on");
         $('#editor').TextAreaResizer();
 
-        /*//toggle preview of editor
+        //toggle preview of editor
+        //todo remove copy-paste
         var display = true;
         var txt = "[{% trans 'hide preview' %}]";
         $('#pre-collapse').text(txt);
@@ -58,7 +58,7 @@
             display = !display;
             $('#previewer').toggle();
             $('#pre-collapse').text(txt);
-        });*/
+        });
 
         //Tags autocomplete action
         $("#id_tags").autocomplete("{% url matching_tags %}", {
@@ -112,8 +112,6 @@
 <script src="{% media '/media/js/osqa.ask.js' %}" type="text/javascript"></script>
 
 
-
-
 <div id="askModal" class="modal-content">
     <div tabindex="-1" role="dialog">
         <div class="modal-header">
@@ -121,7 +119,7 @@
             <h4 class="modal-title" id="myModalLabel">Start a new list</h4>
         </div>
         <div class="modal-body">
-            <form id="fmask" accept-charset="utf-8" method="POST" action="/questions/local/ask/">
+            <form id="fmask" accept-charset="utf-8">
                 {% csrf_token %}
                 {% if not request.user.is_authenticated %}
                 <div class="alert alert-warning">
@@ -140,64 +138,53 @@
                 </div>
                 {% endif %}
                 {% endif %}
-                <div
+
                 <div class="form-item">
-                    <label for="id_title">{{ form.title.label_tag }}</label>
-                        {% if form.title.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.title.errors }}
-                            </div>
-                        {% endif %}
-                        {{ form.title }}
-                        {{ form.title.help_text }}
+                    <label form="id_title">{{ form.title.label_tag }}</label> <span class="form-error"></span><br/>
+                    {{ form.title }} {{ form.title.errors }}
+                    {{ form.title.help_text }}
+
                 </div>
                 <div id="ask-related-questions"></div>
-                    <div class="form-item">
-{{ form.text }}
+                <div class="form-item">
+                    {{ form.text }} {{ form.text.errors }}
 
-{% if form.text.errors %}
-    <div class="alert alert-danger">
-{{ form.text.errors }}
-    </div>
-{% endif %}
-
-</div>
-        <div class="form-item">
-           {{ form.tags.label_tag }}:
-{{ form.tags }}
-{% if form.tags.errors %}
-            <div class="alert alert-danger">
-{{ form.tags.errors }}
+                    <span class="form-error"></span>
                 </div>
-{% endif %}
-</div>
-{{ form.tags.help_text }}
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+                <div class="form-item">
+                    {{ form.tags.label_tag }}:
+                    <span class="form-error"></span>
+                    {{ form.tags }}  {{ form.tags.errors }}
+                </div>
+                <p class="title-desc">
+                    {{ form.tags.help_text }}
+                </p>
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
 
-{% if form.recaptcha %}
-<div class="question-captcha">
-{{ form.recaptcha.errors }}
-{{ form.recaptcha }}
-</div>
-{% endif %}
+                {% if form.recaptcha %}
+                <div class="question-captcha">
+                    {{ form.recaptcha.errors }}
+                    {{ form.recaptcha }}
+                </div>
+                {% endif %}
 
-<div class="modal-footer">
-        {% if not request.user.is_authenticated %}
-<button type="submit" class="btn btn-primary" name="ask" onclick="submitClicked(event, this.form)">Log in to start a list</button>
-{% else %}
-<button type="submit" class="btn btn-primary" name="ask" onclick="submitClicked(event, this.form)">Post your list</button>
-<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-{% endif %}
-</div>
-</form>
-</div>
-</div>
+                <div class="modal-footer">
+                    {% if not request.user.is_authenticated %}
+                    <button type="button" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Log in to start a list</button>
+                    {% else %}
+                    <button type="submit" input class="btn btn-primary" name="ask" class="submit" onclick="submitClicked(event, this.form)">Post your list</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

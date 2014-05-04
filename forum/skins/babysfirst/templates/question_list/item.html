@@ -16,8 +16,7 @@
                     <span class="item-count">{{question.answer_count|intcomma}}</span>
                 </span>
                 <span class="votes-data">
-                    {% ifequal question.score 1 %}<i class="fa fa-caret-up"></i>{% else %}<i class="fa fa-caret-up"></i>{% endifequal %}
-                    <span class="item-count">{{question.score|intcomma}}</span>
+                    <span class="item-count"><i class="fa fa-caret-up fa-lg"></i> {{question.score|intcomma}}</span>
                 </span>
                 <!--<div class="item-count">{{question.view_count|decorated_int|safe}}</div>
             {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->

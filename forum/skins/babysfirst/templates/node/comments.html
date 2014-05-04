@@ -14,22 +14,30 @@
                 <div class="comment-score">
                     <a id="post-{{ comment.id }}-upvote" href="{% url like_comment id=comment.id %}"
                        title="{% trans "I like this comment (click again to cancel)" %}" class="ajax-command comment-like{% if comment.likes %} on{% endif %}"
-                                                            rel="nofollow"><i class="fa fa-caret-up"></i>
+                                                            rel="nofollow"><i class="fa fa-caret-up"></i></a>
                     <div id="post-{{ comment.id }}-score" class="comment-score">{% if comment.score %}{{ comment.score }}{% endif %}<br/></div>
                 </div>
                 {% endif %}
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="comment-text">{{ comment.comment }}</div>
+            </div>
+            <div class="col-md-3">
+                <div class="commenter-info">
+                    <a href="{{comment.user.get_profile_url}}">{% if show_gravatar %}{% gravatar comment.user 20 %}{% endif %} {{comment.user.decorated_name}}</a>
+                    <p>{% diff_date comment.added_at %}</p>
+                </div>
+            </div>
+            <div class="col-md-1">
                 <div class="comment-info" id="comment-{{comment.id}}-info">
                     <div class="comment-controls">
                         {% if comment.can_edit %}
                         <a id="comment-{{ comment.id }}-edit" href="{% url node_markdown id=comment.id %}" title="{% trans "Edit comment" %}"
-                        class="comment-edit" rel="nofollow"><i class="fa fa-edit fa-lg"></i></a>
+                        class="comment-edit" rel="nofollow"><i class="fa fa-edit"></i></a>
                         {% endif %}
                         {% if comment.can_delete %}
                         <a id="comment-{{ comment.id }}-delete" href="{% url delete_comment id=comment.id %}" title="{% trans "Delete comment" %}"
-                        class="ajax-command comment-delete confirm" rel="nofollow"><i class="fa fa-times fa-lg"></i></a>
+                        class="ajax-command comment-delete confirm" rel="nofollow"><i class="fa fa-trash-o"></i></a>
                         {% endif %}
 
                         <!--{% if comment.can_convert %}
@@ -45,14 +53,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="commenter-info">
-                    <a href="{{comment.user.get_profile_url}}">{% if show_gravatar %}{% gravatar comment.user 20 %}{% endif %} {{comment.user.decorated_name}}</a>
-                    <p>{% diff_date comment.added_at %}</p>
-
-                </div>
-
-            </div>
         </div>
         </div>
     </div>
@@ -60,10 +60,10 @@
 </div>
 <div id="comment-tools-{{ post.id }}" class="comment-tools">
     {% ifnotequal showing total %}
-    <a href="#" class="show-all-comments-link">{% blocktrans %}show {{ more_comments_count }} comments{% endblocktrans %}</a>
+    <a href="#" class="show-all-comments-link"><i class="fa fa-comment"></i> {{ more_comments_count }}</a>
     {% endifnotequal %}
     {% if can_comment %}
-    <a href="#" class="add-comment-link"><i class="fa fa-reply fa-lg"></i></a>
+    <a href="#" class="add-comment-link"><i class="fa fa-reply"></i></a>
     {% endif %}
 </div>
 

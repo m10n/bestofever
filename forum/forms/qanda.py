@@ -21,7 +21,7 @@ class TitleField(forms.CharField):
         self.max_length = 255
         self.widget = forms.TextInput(attrs={'size' : 70, 'autocomplete' : 'off', 'maxlength' : self.max_length})
         self.label  = _('title')
-        self.help_text = _('please enter a descriptive title for your question')
+        self.help_text = _('Enter a descriptive title for your list')
         self.initial = ''
 
     def clean(self, value):
@@ -75,11 +75,11 @@ class TagNamesField(forms.CharField):
         super(TagNamesField, self).__init__(*args, **kwargs)
 
         self.required = True
-        self.widget = forms.TextInput(attrs={'size' : 50, 'autocomplete' : 'off'})
+        self.widget = forms.TextInput(attrs={'size' : 20, 'autocomplete' : 'off'})
         self.max_length = 255
         self.label  = _('tags')
         #self.help_text = _('please use space to separate tags (this enables autocomplete feature)')
-        self.help_text = _('Tags are short keywords, with no spaces within. At least %(min)s and up to %(max)s tags can be used.') % {
+        self.help_text = _('Select %(min)s to %(max)s groups.') % {
             'min': settings.FORM_MIN_NUMBER_OF_TAGS, 'max': settings.FORM_MAX_NUMBER_OF_TAGS    
         }
         self.initial = ''

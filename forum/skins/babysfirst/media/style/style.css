@@ -311,18 +311,6 @@ http://bootsnipp.com/lipis/snippets/M3x9
 /*
 #mainbar-full { margin-top: 50px; }
 
-#askform .title-desc{
-    color:#999;
-}
-
-#askform #description{
-    padding:20px 0 20px 0;
-}
-
-#askform .submit{
-    padding:5px 10px 5px 10px;
-/*letter-spacing:1px;
-background-color:#D4D0C8;*/ }
 
 
 label {
@@ -973,7 +961,15 @@ form.post-comments input {
 
 /****** ask.html ******/
 
-#id_title { height: 50px; }
+
+.help-text {  }
+
+#ask-related-questions {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+#id_title { height: 40px; }
 
 .form-item { padding: 10px 0px; }
 
@@ -1142,62 +1138,16 @@ a.openid_large_btn:focus
     margin-left: -30px !important;
 }
 
+*/
 span.form-error {
     color: #990000;
-    font-size: 90%;
     font-weight: normal;
-    margin-left: 5px;
-}
-
-.title-desc {
-    color: #666666;
-    font-size: 90%;
 }
 
 /************** end openid.css **********/
 
 /************** wmd.css **********/
 
-
-/*
-#editor {
-    font-size: 100%;
-    line-height: 18px;
-    min-height: 200px;
-    width: 100%;
-}
-
-.wmd-preview {
-    background-color: #F5F5F5;
-    margin-top: 10px;
-    min-height: 20px;
-    padding: 6px;
-    width: 100%;
-}
-
-.wmd-preview pre {
-    background-color: #E7F1F8;
-}
-
-.wmd-preview blockquote {
-    background-color: #EEEEEE;
-}
-
-.wmd-preview img {
-    max-width: 600px;
-}
-
-.preview-toggle {
-    color: #AAAAAA;
-    font-weight: 600;
-    text-align: left;
-    width: 100%;
-}
-
-.preview-toggle span:hover {
-    cursor: pointer;
-}
-*/
 .edit-content-html {
     border-bottom: 1px dotted #D8D2A9;
     border-top: 1px dotted #D8D2A9;
@@ -1726,10 +1676,6 @@ p.space-above {
 }
 
 
-.ask-body {
-    padding-right: 10px;
-}
-
 .thousand {
     color: orange;
 }
@@ -1771,26 +1717,7 @@ p.space-above {
     text-decoration: none;
 }
 
-.big {
-    font-size: 15px;
-}
 
-.bigger {
-    font-size: 14px;
-}
-
-.strong {
-    font-weight: bold;
-}
-
-.orange {
-    color: #D64000;
-    font-weight: bold;
-}
-
-.grey {
-    color: #808080;
-}
 
 .about div {
     border-top: 1px dashed #AAAAAA;
@@ -2128,13 +2055,15 @@ p.signup_p {
     text-decoration: underline;
 }
 
-a.post-vote, .favorite-mark, a.accept-answer {
+a.post-vote, a.accept-answer {
     display: block;
     height: 24px;
     position: relative;
     width: 30px;
     opacity: 0.6;
 }
+
+
 
 a.post-vote.up { background: url("https://cdn2.iconfinder.com/data/icons/picol-vector/32/arrow_sans_up-32.png")
 no-repeat scroll center center transparent; opacity: 0.15; }
@@ -2167,19 +2096,30 @@ a.accept-answer.on, a.accept-answer:hover {
     padding:0;
 }
 
+.favorite-count {
+    color: #777777;
+    font-size: 1.5em;
+    margin: 10px 0 0;
+}
+
 .favorite-mark {
-    background: url("/m/default/media/images/vote-favorite-off.png") no-repeat scroll center center transparent;
+    display: block;
+    height: 40px;
+    position: relative;
+    width: 40px;
+    opacity: 0.6;
+    float:left;
+}
+
+
+.favorite-mark {
+    background: url("https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519671-177_BookmarkUnused-32.png") no-repeat scroll center center transparent;
 }
 
 .favorite-mark.on, a.favorite-mark:hover {
-    background: url("/m/default/media/images/vote-favorite-on.png") no-repeat scroll center center transparent;
+    background: url("https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519670-176_BookmarkUsed-32.png") no-repeat scroll center center transparent;
 }
 
-.favorite-count {
-    color: #777777;
-    padding: 5px 0 0 10px;
-    font-size: 16px;
-}
 
 
 .deleted {
@@ -2223,10 +2163,6 @@ a.accept-answer.on, a.accept-answer:hover {
 }
 
 
-#ask-related-questions {
-    max-height: 150px;
-    overflow-y: auto;
-}
 
 .context-menu {
     position: relative;
@@ -2462,7 +2398,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 .short-summary h3 a, .short-summary h3 { color: #222; margin: 0 0 0 5px; padding-left: 10px; font-size: 15px; font-weight:600; }
 
 
-
+.list-title-headline { margin-top:5px;}
 
 .data-row { padding-bottom: 6px; }
 .list-data { float:right; text-align:center; display: inline; color: #cbcbcb; font-weight: 500; font-size: .85em; line-height:normal; }
@@ -2606,7 +2542,7 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 .controls-container { float:right; }
 
-.comment { border-top: 1px solid #eee; margin: 0; position: relative; }
+.comment { border-top: 1px solid #ddd; margin: 0; position: relative; }
 
 .comment.not_top_scorer {
     display: none;
@@ -2623,24 +2559,24 @@ div.short-summary a.biglink { /* Make whole home page topic div clickable to top
 
 
 
-
+/*
 a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert, a.comment-convert-to-question {
     margin-left: 2px;
     width: 18px;
 }
-
+/*
 a.comment-like {
     /*background: url("../images/comment-like.png") no-repeat scroll center center transparent;*/
 }
-
+/*
 a.comment-like:hover, a.comment-like.on {
     /*background: url("../images/comment-like-on.png") no-repeat scroll center center transparent;*/
 }
-
+/*
 a.comment-delete {
     background: url("../images/comment-delete.png") no-repeat scroll center center transparent;
 }
-
+/*
 a.comment-delete:hover {
     background: url("../images/comment-delete-hover.png") no-repeat scroll center center transparent;
 }
@@ -2668,6 +2604,7 @@ a.comment-edit {
 a.comment-edit:hover {
     background: url("../images/comment-edit-hover.png") no-repeat scroll center center transparent;
 }
+*/
 
 img.subscription-remove {
     float:right;
@@ -2695,20 +2632,16 @@ img.subscription-remove {
 .comment-controls {
     float: right;
     height: auto;
-    margin-left: 4px;
 }
 
 
 .comment-info * {
-    float: left;
-    height: 25px;
+    height: 20px;
 }
 
 .commenter-info, .commenter-info a  { color: #888; font-size: 12px; text-align:right; }
 
 a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert, a.comment-convert-to-question {
-    margin-left: 2px;
-    width: 18px;
 }
 
 .comment-form-widgets-container textarea {
@@ -2719,26 +2652,21 @@ a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert, a.comment-c
 span.comment-chars-left {
 float:right; }
 
-div.comment-tools { padding: 0px; text-align: right; }
+div.comment-tools { padding: 0 0 5px; text-align: right; }
 
 div.comment-tools span.comment-tools-separator {
     float: left;
     display: block;
     color: #ccc;
-    font-size: 15px;
-    margin-left: 1px;
 }
 
 
 
-div.comment-tools a { cursor: pointer; font-weight:500; color: #888; font-size: 11px; border-top: 1px solid #e8e8e8; padding: 0 2px; }
+div.comment-tools a { color: #aaa; }
 
 div.comment-tools a:hover {
-    background-color: #777777;
-    color: white;
-    text-decoration: none;
+    color: #333;
 }
-
 
 .deleted {
     background-color: #F4E7E7;
@@ -8074,7 +8002,8 @@ button.close {
 }
 @media (min-width: 992px) {
     .modal-lg {
-        width: 900px;
+        width: 600px;
+        height: 400px;
     }
 }
 .tooltip {

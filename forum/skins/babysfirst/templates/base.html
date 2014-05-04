@@ -86,7 +86,7 @@
             selector: "textarea",
             menubar : false,
             plugins : 'autolink link code',
-            toolbar : "undo redo | bold italic underline strikethrough subscript superscript | code | link",
+            toolbar : "bold italic underline strikethrough subscript superscript | code | link",
             browser_spellcheck : true,
         });
     </script>
@@ -116,10 +116,8 @@
 {% block masthead %}{% endblock%}
 {% block page_center %}
 <div class="container-fluid">
-    <div class="row clearfix">
+    <div id="full-coll" class="row clearfix">
         {% block content %}
-        <div class="col-md-12" id="full-col">
-        </div>
         {% endblock %}
     </div>
     <div id="tail">

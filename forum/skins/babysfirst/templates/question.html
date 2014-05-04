@@ -121,10 +121,10 @@
                 {% endfor %}</h3>
         </div>
         <div class="panel-body">
-            {% favorite_mark question request.user %}
-            Save this list
-
+            {% favorite_mark question request.user %}<br/>
+            <div class="subscription-status">
             {% include "subscription_status.html" %}
+            </div>
         </div>
     </div>
 </div>
@@ -142,7 +142,15 @@
     </div>
     <div class="row">
         <div class="col-md-7 col-md-offset-1"><div class="question-body">{{ question.html|safe }}{% post_classes question %}</div></div>
-        <div class="col-md-3"><div class="post-update-info-container">{% contributors_info question %}<div class="post-controls">{% post_controls question request.user %}</div></div></div>
+        <div class="col-md-3">
+            <div class="post-update-info-container">{% contributors_info question %}</div>
+            <div class="post-controls">{% post_controls question request.user %}</div>
+                <div data-toggle="modal" a href="{% url edit_question question.id %}" data-target="#qeditModal"><i class="fa fa-edit fa-lg"></i>
+                </div>
+                <div class="modal fade" id="qeditModal" tabindex="-1" role="dialog" aria-labelledby="qeditModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg"><div id="qeditModal-content" class="modal-content"></div></div>
+                </div>
+        </div>
         <div class="col-md-1"><div class="vote-buttons">{% vote_buttons question request.user %}</div></div>
     </div>
     <div class="row">
@@ -164,15 +172,19 @@
 <div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}{% ifequal answer.id focused_answer_id %} focusedAnswer{% endifequal %}">
     <a name="{{ answer.id }}"></a>
     <div class="row">
-        <div class="col-xs-11 col-md-7 col-md-offset-1">
+        <div class="col-md-7 col-md-offset-1">
             <div class="answer-body">
                 {{ answer.html|safe }}
             </div>
         </div>
-        <div class="col-xs-11 col-md-3">
-            <div class="post-update-info">
-                    {% contributors_info answer %}
-                </div>
+        <div class="col-md-3">
+            <div class="post-update-info">{% contributors_info answer %}</div>
+            <div class="post-controls">{% post_controls answer request.user %}</div>
+            <div data-toggle="modal" a href="{% url edit_answer answer.id %}" data-target="#aeditModal"><i class="fa fa-edit fa-lg"></i>
+            </div>
+            <div class="modal fade" id="aeditModal" tabindex="-1" role="dialog" aria-labelledby="aeditModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg"><div id="aeditModal-content" class="modal-content"></div></div>
+            </div>
         </div>
         <div class="col-xs-1 col-md-1">
             <div class="vote-buttons">
@@ -182,10 +194,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9 col-md-offset-1"><div class="comments-container">{% comments answer request.user %}</div></div>
-        <div class="col-md-2"><div class="post-controls">
-            {% post_controls answer request.user %}
-        </div></div>
+        <div class="col-md-10 col-md-offset-1"><div class="comments-container">{% comments answer request.user %}</div></div>
     </div>
 </div>
 {% endfor %}
@@ -214,7 +223,7 @@
                 Remember to post a line to the list, not add a comment.
                 {% endifequal %}
                 {% if not request.user.email_valid_and_can_answer %}
-                Remember, you can't post until we've verified  your email.
+                Remember, you can't post until we've verified your email.
                 <a href="{% url send_validation_email %}">Send me a verification link again.</a>
                 {% endif %}
             </div>
@@ -225,26 +234,25 @@
             <div class="alert alert-danger error">{{ answer.text.errors }}</div>
             {% endif %}
             {{ answer.text }}
-
+            <!--
             {% if answer.recaptcha %}
             <div class="recaptcha">{{ answer.recaptcha.errors }}{{ answer.recaptcha }}</div>
             {% endif %}
-            <p></p>
-            <input type="button" class="btn btn-primary btn-lg"
+            -->
+            <button type="submit" class="btn btn-primary btn-lg" onclick="submitClicked(event, this.form)">
             {% if user.is_anonymous %}
-            value="Sign up or log in to add a line"
-            {% else %}
-            {% if user == question.author %}
-            value="Add a line to your own list"
-            {% else %}
-            value="Add a line to this list"
+                Sign in to post
+                {% else %}
+                    {% if user == question.author %}
+                        Add a line to your own list
+                        {% else %}
+                            Post line
+                    {% endif %}
             {% endif %}
-            {% endif %}
-            class="submit" onclick="submitClicked(event, this.form)"/>
+            </button>
         </form>
         {% endif %}
-            </div>
-   </div>
+       </div>
         <div class="col-md-4">
             <div class="new-author-info">
             {% if user.is_authenticated %}

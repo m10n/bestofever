@@ -1,13 +1,9 @@
-{% extends "base_container.html" %}
 <!-- template answer_edit.html -->
 {% load i18n %}
 {% load extra_tags %}
-{% block title %}{% spaceless %}{% trans "Edit answer" %}{% endspaceless %}{% endblock %}
 {% block forejs %}
-        <script type='text/javascript' src='{% media  "/media/js/wmd/showdown.js" %}'></script>
-        <script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
+
         <script type='text/javascript' src='{% media  "/media/js/html_sanitizer.js" %}'></script>
-        <link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" />
         <script type="text/javascript">
         
         $().ready(function(){
@@ -15,7 +11,7 @@
             $('#editor').TextAreaResizer();
 
 
-            //toggle preview of editor
+           /* //toggle preview of editor
             var display = true;
             var txt = "{% trans "hide preview" %}";
             $('#pre-collapse').text(txt);
@@ -29,7 +25,7 @@
 
             $('#id_revision').unbind().change(function(){
                 $("#select_revision").click();
-            });
+            });*/
 
 
             answer = $("textarea#editor").tinymce().getContent();
@@ -47,62 +43,82 @@
             }
         }
 
-        function beforeUnload(e) {
+        /*function beforeUnload(e) {
             if($("textarea#editor").tinymce().getContent() != answer) {
                  return yourWorkWillBeLost(e);
             }
         }
         window.addEventListener('beforeunload', beforeUnload, true);
 
-        var answer = "";
+        var answer = "";*/
         </script>
+
+<script type="text/javascript" src="{% media '/media/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        menubar : false,
+        plugins : 'autolink link code',
+        height : 100,
+        toolbar : "bold italic underline strikethrough subscript superscript | code | link",
+        browser_spellcheck : true
+    });
+</script>
 {% endblock %}
         
-{% block content %}
-<div id="main-bar" class="headNormal">
-    {% trans "Edit answer" %} [<a href="{{ answer.question.get_absolute_url }}#{{ answer.id }}">{% trans "back" %}</a>]
-</div>
-<div id="main-body" class="ask-body">
-    <div id="askform">
-        <form id="fmedit" action="{% url edit_answer answer.id %}" method="post">
+<div id="aeditModal" class="modal-content">
+    <div tabindex="-1" role="dialog">
+        <form id="fmedit" accept-charset="utf-8" method="POST" action="{% url edit_answer answer.id %}">
             {% csrf_token %}
-            <label for="id_revision" ><strong>{% trans "revision" %}:</strong></label> <br/> 
-            {% if revision_form.revision.errors %}{{ revision_form.revision.errors.as_ul }}{% endif %}
-            <div>
-            {{ revision_form.revision }} <input type="submit" style="display:none" id="select_revision" name="select_revision" value="{% trans "select revision" %}">
+            <div class="modal-header">
+                <button type="submit" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <a class="modal-title" a href="{{ answer.question.get_absolute_url }}#{{ answer.id }}">Edit line</a>
             </div>
-            <div class="form-item">
-                {{ form.text }}
-                <span class="form-error"></span>
-                <div class="preview-toggle"><span id="pre-collapse" 
-					title="{% trans "Toggle the real time Markdown editor preview" %}">{% trans "toggle preview" %}</span>
-			    <span style="text-align: right; margin-left: 200px;" id="editor-metrics"></span>
+            <div class="modal-body">
+                {% if revision_form.revision.errors %}
+                <div class="alert alert-danger">{{ revision_form.revision.errors.as_ul }}</div>
+                {% endif %}
+                <div style="display:none;">
+                    <label for="id_revision">
+                    {{ revision_form.revision }}
+                    <!--<button type="submit" id="select_revision"
+                    name="select_revision">select revision</button>-->
                 </div>
+                <div class="form-item">
+                    {{ form.text.label_tag }}<br/>
+                    {{ form.text }}
+                    <!--<div class="preview-toggle"><span id="pre-collapse" title="{% trans "Toggle the real time Markdown editor preview" %}">
+                    {% trans "toggle preview" %}</span></div>-->
+                    {% if form.text.errors %}
+                    <div class="alert alert-danger">{{ form.text.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!--<div class="form-item">
+                    {{ form.summary.label_tag }}
+                    {{ form.summary }}
+                    <span class="help-text">{{ form.summary.help_text }}</span>
+                    {% if form.summary.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.summary.errors }}
+                    </div>
+                    {% endif %}
+                    {% if form.recaptcha %}
+                    <div class="question-captcha">
+                        {{ form.recaptcha.errors }}
+                        {{ form.recaptcha }}
+                    </div>
+                    {% endif %}
+                </div>-->
             </div>
-            
-            <strong>{{ form.summary.label_tag }}</strong> <br/>
-            {{ form.summary }}  {{ form.summary.errors }}
-            <div class="title-desc">
-                {{ form.summary.help_text }}
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" name="edit" onclick="submitClicked(event, this.form)">Save</button>
+                <button type="submit" class="btn btn-default" onclick="submitClicked(event, null); history.back(-1);">Cancel</button>
             </div>
-            
-            {% if form.recaptcha %}
-            <div class="question-captcha">
-            	{{ form.recaptcha.errors }}
-            	{{ form.recaptcha }}
-            </div>
-            {% endif %}
-            
-            <input type="button" value="{% trans "Save edit" %}" class="submit" onclick="submitClicked(event, this.form)" />
-            <input type="button" value="{% trans "Cancel" %}" class="submit" onclick="submitClicked(event, this.form);history.back(-1);" />
         </form>
     </div>
 </div>
-{% endblock %}
 
-{% block sidebar %}
-{% include "answer_edit_tips.html" %}
-{% endblock %}
 
 {% block endjs %}
 {% endblock %}
