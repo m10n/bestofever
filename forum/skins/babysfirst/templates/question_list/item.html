@@ -3,13 +3,6 @@
     <div class="short-summary">
         <a class="biglink" href="{{ question.get_absolute_url }}"></a>
         <div class="data-row row">
-                    <span class="submowt-data">
-                        {% for tag in question.tags.all %}
-                        <a href="{% url tag_questions tag.name|urlencode %}"
-                           class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
-                           rel="tag">{{ tag.name }}</a>
-                        {% endfor %}
-                    </span>
             <div class="list-data">
                 <span class="lines-data">
                     {% ifequal question.answer_count 1 %}<i class="fa fa-list-ul"></i>{% else %}<i class="fa fa-list-ul"></i>{% endifequal %}
@@ -21,6 +14,13 @@
                 <!--<div class="item-count">{{question.view_count|decorated_int|safe}}</div>
             {% ifequal question.view_count 1 %}view{% else %}views{% endifequal %}-->
             </div>
+            <span class="submowt-data">
+                {% for tag in question.tags.all %}
+                <a href="{% url tag_questions tag.name|urlencode %}"
+                     class="tag-link-{{ tag.name }}" title="See more in'{{tag.name}}'"
+                     rel="tag">{{ tag.name }}</a>
+                        {% endfor %}
+            </span>
         </div>
         <div class="list-title row">
             <a class="pull-left left-gravatar" href="{{ question.author.get_profile_url }}">{% gravatar question.author 36 %}</a>

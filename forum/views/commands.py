@@ -601,7 +601,6 @@ def answer_permanent_link(request, id):
         'commands' : {
             'copy_url' : [request.POST['permanent_link_url'],],
         },
-        'message' : _("The permanent URL to the answer has been copied to your clipboard."),
     }
 
 @decorate.withfn(command)

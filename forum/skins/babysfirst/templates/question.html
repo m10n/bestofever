@@ -28,12 +28,18 @@
 <script type='text/javascript' src='{% media  "/media/js/osqa.question.js" %}'></script>
 <script type='text/javascript' src='{% media  "/media/js/jquery.caret.js" %}'></script>
 
-<!--
-<script type='text/javascript' src='{% media  "/media/js/wmd/showdown.js" %}'></script>
-<script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
-<link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" />
 
--->
+<script type="text/javascript" src="{% media '/media/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        menubar : false,
+        plugins : 'autolink link code',
+        height : 100,
+        toolbar : "bold italic underline strikethrough subscript superscript | code | link",
+        browser_spellcheck : true
+    });
+</script>
 
 <script type='text/javascript' src='{% media  "/media/js/html_sanitizer.js" %}'></script>
 
@@ -147,6 +153,7 @@
             <div class="post-controls">{% post_controls question request.user %}</div>
                 <div data-toggle="modal" a href="{% url edit_question question.id %}" data-target="#qeditModal"><i class="fa fa-edit fa-lg"></i>
                 </div>
+            <!--<i class="fa fa-share-o fa-lg"></i> <i class="fa fa-trash-o fa-lg"></i> <i class="fa fa-flag-o fa-lg"></i> <i class="fa fa-link fa-lg"></i> <i class="fa fa-share-o fa-lg"></i>-->
                 <div class="modal fade" id="qeditModal" tabindex="-1" role="dialog" aria-labelledby="qeditModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg"><div id="qeditModal-content" class="modal-content"></div></div>
                 </div>
@@ -180,8 +187,9 @@
         <div class="col-md-3">
             <div class="post-update-info">{% contributors_info answer %}</div>
             <div class="post-controls">{% post_controls answer request.user %}</div>
-            <div data-toggle="modal" a href="{% url edit_answer answer.id %}" data-target="#aeditModal"><i class="fa fa-edit fa-lg"></i>
-            </div>
+            <a data-toggle="modal" href="{% url edit_answer answer.id %}" data-target="#aeditModal"><i class="fa fa-edit fa-lg"></i>
+            </a>
+            <!--<i class="fa fa-trash-o fa-lg"></i> <i class="fa fa-flag-o fa-lg"></i> <i class="fa fa-share-o fa-lg"></i>-->
             <div class="modal fade" id="aeditModal" tabindex="-1" role="dialog" aria-labelledby="aeditModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg"><div id="aeditModal-content" class="modal-content"></div></div>
             </div>

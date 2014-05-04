@@ -3,6 +3,18 @@
 {% load extra_tags %}
 {% block forejs %}
 
+
+<script type="text/javascript" src="{% media '/media/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        menubar : false,
+        plugins : 'autolink link code',
+        toolbar : "bold italic underline strikethrough subscript superscript | code | link",
+        browser_spellcheck : true
+    });
+</script>
+
         <script type='text/javascript' src='{% media  "/media/js/html_sanitizer.js" %}'></script>
         <script type="text/javascript">
         
@@ -11,7 +23,7 @@
             $('#editor').TextAreaResizer();
 
 
-           /* //toggle preview of editor
+           /*//toggle preview of editor
             var display = true;
             var txt = "{% trans "hide preview" %}";
             $('#pre-collapse').text(txt);
@@ -20,7 +32,7 @@
                 display = !display;
                 $('#previewer').toggle();
                 $('#pre-collapse').text(txt);
-            });
+            });*/
 
 
             $('#id_revision').unbind().change(function(){
@@ -53,17 +65,7 @@
         var answer = "";*/
         </script>
 
-<script type="text/javascript" src="{% media '/media/tinymce/tinymce.min.js' %}"></script>
-<script type="text/javascript">
-    tinymce.init({
-        selector: "textarea",
-        menubar : false,
-        plugins : 'autolink link code',
-        height : 100,
-        toolbar : "bold italic underline strikethrough subscript superscript | code | link",
-        browser_spellcheck : true
-    });
-</script>
+
 {% endblock %}
         
 <div id="aeditModal" class="modal-content">
@@ -85,10 +87,10 @@
                     name="select_revision">select revision</button>-->
                 </div>
                 <div class="form-item">
-                    {{ form.text.label_tag }}<br/>
+                    {{ form.text.label_tag }}
                     {{ form.text }}
                     <!--<div class="preview-toggle"><span id="pre-collapse" title="{% trans "Toggle the real time Markdown editor preview" %}">
-                    {% trans "toggle preview" %}</span></div>-->
+                    {% trans "toggle preview" %}</span></div>
                     {% if form.text.errors %}
                     <div class="alert alert-danger">{{ form.text.errors }}</div>
                     {% endif %}

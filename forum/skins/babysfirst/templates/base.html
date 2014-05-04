@@ -22,7 +22,6 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,300italic,400italic,500italic,700,700italic' rel='stylesheet' type='text/css'>
 
-    <link href="{% url custom_css %}" rel="stylesheet" type="text/css" />
     <link href="{% media '/media/style/style.css' %}" rel="stylesheet" type="text/css" />
     {% if settings.USE_CUSTOM_CSS|or_preview:request %}
     <!-- Bootstrap -->
@@ -113,7 +112,6 @@
 {% endif %}-->
 
 {% include "header.html" %}
-{% block masthead %}{% endblock%}
 {% block page_center %}
 <div class="container-fluid">
     <div id="full-coll" class="row clearfix">

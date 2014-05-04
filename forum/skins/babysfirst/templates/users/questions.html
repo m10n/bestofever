@@ -1,8 +1,9 @@
 {% extends "user.html" %}
 
 {% load extra_tags question_list_tags i18n %}
+
+
 {% block usercontent %}
-<div class="user-stats">
 <div class="stat-header">
     <div class="row clearfix">
         <div class="col-md-6 column">
@@ -16,12 +17,13 @@
         </div>
     </div>
 </div>
+        <div class="row js-masonry">
+            {% for favorite in favorites %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                {% question_list_item favorite.node %}
+            </div>
+            {% endfor %}
+        </div>
 
-{% if favorites %}
-    {% for favorite in favorites %}
-        {% question_list_item favorite.node favorite_count=yes signature_type=badges %}
-    {% endfor %}
-{% else %}Sorry, no favorites yet.
-{% endif %}
-</div>
 {% endblock %}
+

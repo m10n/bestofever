@@ -2,7 +2,7 @@
 
 <p>
     {% blocktrans %}
-    Would you like to copy the permanent link to your clipboard?
+    Copy this URL to share
     {% endblocktrans %}
 </p>
 
@@ -11,7 +11,6 @@
 <p><textarea id="permanent_link_url" name="permanent_link_url" readonly="readonly">{{ url }}</textarea></p>
 {% endspaceless %}
 
-<script type="text/javascript" src="{% media  "/media/js/ZeroClipboard.js" %}"></script>
 <script type="text/javascript">
         $(document).ready(function() {
             // We highlight the content of the text field on click event
@@ -19,11 +18,11 @@
                 $(this).select();
             });
 
-            // We use ZeroClipboard to copy the URL
+           /* // We use ZeroClipboard to copy the URL
             ZeroClipboard.setMoviePath('{% media '/media/js/ZeroClipboard.swf' %}');
 
             // Create the Client Clip
-            var clip = new ZeroClipboard.Client();
+            var clip = new ZeroClipboard.Client();*/
 
             // Create the glue when on mouse-over event
             $('#copy_clip_button').live('mouseover', function() {

@@ -11,7 +11,6 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <!--<script src="<?=base_url('assets/js/bootstrap.min.js')?>"></script>-->
 <script src="<?=base_url('masonry/masonry.min.js')?>"></script>
-<script src="<?=base_url('masonry/masonry.js')?>"></script>
 
 <script type="text/javascript">
 
@@ -38,7 +37,7 @@
 {% endblock %}
 
 
-{% block masthead %}
+<!--{% block masthead %}
 <div class="container">
     <div class="row">
         <div id="masthead">
@@ -74,7 +73,7 @@
     </div>
 </div>
 
-{% endblock %}
+{% endblock %}-->
 
 
 {% if not request.user.is_authenticated %}
@@ -104,7 +103,7 @@
     <div id="content-lists">
         <div class="row clearfix js-masonry">
             {% for question in questions.paginator.page %}
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 {% question_list_item question %}
             </div>
             {% endfor %}
